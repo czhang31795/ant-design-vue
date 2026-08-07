@@ -5,8 +5,11 @@ import ExpandedRow from './ExpandedRow';
 import { computed, defineComponent, shallowRef, watchEffect } from 'vue';
 import { useInjectTable } from '../context/TableContext';
 import { useInjectBody } from '../context/BodyContext';
+import { useInjectTableContext } from '../../table/context';
 import classNames from '../../_util/classNames';
 import type { MouseEventHandler } from '../../_util/EventInterface';
+import RowDragHandle from './RowDragHandle';
+import RowSortHandle from './RowSortHandle';
 
 export interface BodyRowProps<RecordType> {
   record: RecordType;
@@ -45,6 +48,7 @@ export default defineComponent<BodyRowProps<unknown>>({
   setup(props, { attrs }) {
     const tableContext = useInjectTable();
     const bodyContext = useInjectBody();
+    const tableResizeContext = useInjectTableContext();
     const expandRended = shallowRef(false);
 
     const expanded = computed(() => props.expandedKeys && props.expandedKeys.has(props.recordKey));
@@ -116,6 +120,93 @@ export default defineComponent<BodyRowProps<unknown>>({
         expandedRowRender,
         expandIconColumnIndex,
       } = bodyContext;
+      const rowResizable = !!tableResizeContext.rowResizable;
+      const rowDraggable = !!tableResizeContext.rowDraggable;
+      const rowHeight = tableResizeContext.rowHeights?.[String(rowKey)];
+      const minRowHeight = tableResizeContext.minRowHeight ?? 39;
+
+      const clearDragOverClass = (el: Element | null) => {
+        el?.classList.remove(
+          `${prefixCls}-row-drag-over-up`,
+          `${prefixCls}-row-drag-over-down`,
+          `${prefixCls}-row-drag-forbidden`,
+        );
+      };
+
+      const onDragOver = (e: DragEvent) => {
+        if (!rowDraggable) {
+          return;
+        }
+        e.preventDefault();
+        const wrapper = (e.currentTarget as HTMLElement).closest(`.${prefixCls}-wrapper`);
+        const draggingKey = (wrapper as any)?.__draggingRowKey as Key | undefined;
+        const allowed =
+          draggingKey == null ||
+          String(draggingKey) === String(rowKey) ||
+          tableResizeContext.canDropRow?.(draggingKey, rowKey) !== false;
+        const rowEl = e.currentTarget as HTMLElement;
+        clearDragOverClass(rowEl);
+        if (!allowed) {
+          rowEl.classList.add(`${prefixCls}-row-drag-forbidden`);
+          if (e.dataTransfer) {
+            e.dataTransfer.dropEffect = 'none';
+          }
+          return;
+        }
+        if (e.dataTransfer) {
+          e.dataTransfer.dropEffect = 'move';
+        }
+        if (draggingKey != null && String(draggingKey) === String(rowKey)) {
+          return;
+        }
+        const rect = rowEl.getBoundingClientRect();
+        const place = e.clientY < rect.top + rect.height / 2 ? 'up' : 'down';
+        rowEl.classList.add(
+          place === 'up' ? `${prefixCls}-row-drag-over-up` : `${prefixCls}-row-drag-over-down`,
+        );
+      };
+
+      const onDragLeave = (e: DragEvent) => {
+        clearDragOverClass(e.currentTarget as HTMLElement);
+      };
+
+      const onDrop = (e: DragEvent) => {
+        if (!rowDraggable) {
+          return;
+        }
+        e.preventDefault();
+        e.stopPropagation();
+        const fromKey = e.dataTransfer?.getData('text/plain');
+        const rowEl = e.currentTarget as HTMLElement;
+        clearDragOverClass(rowEl);
+        if (!fromKey || String(fromKey) === String(rowKey)) {
+          return;
+        }
+        if (tableResizeContext.canDropRow?.(fromKey, rowKey) === false) {
+          return;
+        }
+        const rect = rowEl.getBoundingClientRect();
+        const place = e.clientY < rect.top + rect.height / 2 ? 'before' : 'after';
+        tableResizeContext.onDragRowSort?.(fromKey, rowKey, place);
+      };
+
+      const onRowDragStartCapture = (e: DragEvent) => {
+        if (!rowDraggable) {
+          return;
+        }
+        const wrapper = (e.currentTarget as HTMLElement).closest(`.${prefixCls}-wrapper`) as any;
+        if (wrapper) {
+          wrapper.__draggingRowKey = rowKey;
+        }
+      };
+
+      const onRowDragEndCapture = (e: DragEvent) => {
+        const wrapper = (e.currentTarget as HTMLElement).closest(`.${prefixCls}-wrapper`) as any;
+        if (wrapper) {
+          wrapper.__draggingRowKey = undefined;
+        }
+      };
+
       const baseRowNode = (
         <RowComponent
           {...additionalProps.value}
@@ -124,24 +215,38 @@ export default defineComponent<BodyRowProps<unknown>>({
             className,
             `${prefixCls}-row`,
             `${prefixCls}-row-level-${indent}`,
+            {
+              [`${prefixCls}-row-resizable`]: rowResizable,
+              [`${prefixCls}-row-draggable`]: rowDraggable,
+            },
             computeRowClassName.value,
             additionalProps.value.class,
           )}
-          style={[style, additionalProps.value.style]}
+          style={[
+            style,
+            additionalProps.value.style,
+            rowHeight ? { height: `${rowHeight}px` } : null,
+          ]}
           onClick={onClick}
+          onDragover={rowDraggable ? onDragOver : undefined}
+          onDragleave={rowDraggable ? onDragLeave : undefined}
+          onDrop={rowDraggable ? onDrop : undefined}
+          onDragstart={rowDraggable ? onRowDragStartCapture : undefined}
+          onDragend={rowDraggable ? onRowDragEndCapture : undefined}
         >
           {flattenColumns.map((column, colIndex) => {
             const { customRender, dataIndex, className: columnClassName } = column;
 
             const key = columnsKey[colIndex];
             const fixedInfo = fixedInfoList[colIndex];
+            const isFirstColumn = colIndex === 0;
 
             let additionalCellProps;
             if (column.customCell) {
               additionalCellProps = column.customCell(record, index, column);
             }
             // not use slot to fix https://github.com/vueComponent/ant-design-vue/issues/5295
-            const appendNode =
+            const expandAppendNode =
               colIndex === (expandIconColumnIndex || 0) && nestExpandable.value ? (
                 <>
                   <span
@@ -157,6 +262,24 @@ export default defineComponent<BodyRowProps<unknown>>({
                   })}
                 </>
               ) : null;
+            const appendNode = (
+              <>
+                {isFirstColumn && rowDraggable ? (
+                  <RowSortHandle prefixCls={prefixCls} rowKey={rowKey} />
+                ) : null}
+                {expandAppendNode}
+                {isFirstColumn && rowResizable ? (
+                  <RowDragHandle
+                    prefixCls={prefixCls}
+                    height={rowHeight}
+                    minHeight={minRowHeight}
+                    record={record}
+                    index={index}
+                    rowKey={rowKey}
+                  />
+                ) : null}
+              </>
+            );
             return (
               <Cell
                 cellType="body"

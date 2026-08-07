@@ -114,6 +114,8 @@ export interface ColumnType<RecordType> extends ColumnSharedType<RecordType> {
   minWidth?: number;
   maxWidth?: number;
   resizable?: boolean;
+  /** Whether this column can be drag-reordered when table `columnDraggable` is on */
+  draggable?: boolean;
   customCell?: GetComponentProps<RecordType>;
   /** @deprecated Please use `customCell` instead */
   onCellClick?: (record: RecordType, e: MouseEvent) => void;

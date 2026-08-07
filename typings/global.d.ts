@@ -268,6 +268,9 @@ declare module 'vue' {
     AWatermark: typeof import('ant-design-vue')['Watermark'];
 
     AFlex: typeof import('ant-design-vue')['Flex'];
+
+    ASplitter: typeof import('ant-design-vue')['Splitter'];
+    ASplitterPanel: typeof import('ant-design-vue')['SplitterPanel'];
   }
 }
 export {};

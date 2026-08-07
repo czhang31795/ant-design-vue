@@ -15,13 +15,14 @@ coverDark: https://mdn.alipayobjects.com/huamei_7uahnr/afts/img/A*3OpRQKcygo8AAA
 
 ## API
 
-日期类组件包括以下五种形式。
+日期类组件包括以下形式。
 
 - DatePicker
 - DatePicker\[picker="month"]
 - DatePicker\[picker="week"]
 - DatePicker\[picker="year"]
 - DatePicker\[picker="quarter"]
+- YearQuarterMonthPicker
 - RangePicker
 
 ### 国际化配置
@@ -165,6 +166,25 @@ coverDark: https://mdn.alipayobjects.com/huamei_7uahnr/afts/img/A*3OpRQKcygo8AAA
 | 参数 | 说明 | 类型 | 默认值 | 版本 |
 | --- | --- | --- | --- | --- |
 | format | 展示的日期格式，配置参考 [dayjs](https://day.js.org/docs/zh-CN/display/format) | [formatType](#formattype) | `YYYY-wo` |  |
+
+### YearQuarterMonthPicker
+
+在同一面板中选择年 / 季 / 月的封装组件。也可通过 `DatePicker.YearQuarterMonthPicker` 访问。
+
+| 参数 | 说明 | 类型 | 默认值 | 版本 |
+| --- | --- | --- | --- | --- |
+| value(v-model) | 日期值 | [dayjs](https://day.js.org/) | - |  |
+| periodType(v-model) | 当前选择粒度 | `year` \| `quarter` \| `month` | `month` |  |
+| placeholder | 输入框提示文字 | string | `选择年 / 季 / 月` |  |
+| allowClear | 是否显示清除按钮 | boolean | true |  |
+| disabled | 禁用 | boolean | false |  |
+| inputReadOnly | 输入框只读 | boolean | true |  |
+
+| 事件名称 | 说明         | 回调参数                               |
+| -------- | ------------ | -------------------------------------- |
+| change   | 选择发生变化 | function(date, periodType, dateString) |
+
+展示格式随 `periodType` 切换：年 `YYYY`、季 `YYYY-[Q]Q`、月 `YYYY-MM`。
 
 ### RangePicker
 

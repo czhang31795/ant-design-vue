@@ -8,6 +8,18 @@
   <template v-else-if="iframeName === 'sider'">
     <Side />
   </template>
+  <template v-else-if="iframeName === 'nav-side'">
+    <NavSide />
+  </template>
+  <template v-else-if="iframeName === 'nav-top'">
+    <NavTop />
+  </template>
+  <template v-else-if="iframeName === 'nav-mix'">
+    <NavMix />
+  </template>
+  <template v-else-if="iframeName === 'nav-pro'">
+    <NavPro />
+  </template>
   <demo-sort v-else :cols="1">
     <basic />
     <top />
@@ -18,6 +30,10 @@
     <responsive />
     <FixedSider />
     <Fixed />
+    <NavSide />
+    <NavTop />
+    <NavMix />
+    <NavPro />
   </demo-sort>
 </template>
 
@@ -31,6 +47,10 @@ import Top from './top.vue';
 import FixedSider from './fixed-sider.vue';
 import Fixed from './fixed.vue';
 import Side from './side.vue';
+import NavSide from './nav-side.vue';
+import NavTop from './nav-top.vue';
+import NavMix from './nav-mix.vue';
+import NavPro from './nav-pro.vue';
 
 import CN from '../index.zh-CN.md';
 import US from '../index.en-US.md';
@@ -49,6 +69,10 @@ export default defineComponent({
     FixedSider,
     Fixed,
     Side,
+    NavSide,
+    NavTop,
+    NavMix,
+    NavPro,
   },
   props: {
     iframeName: String,
@@ -61,24 +85,13 @@ export default defineComponent({
             'fixed-sider': '/iframe/layout/#fixed-sider',
             'fixed-header': '/iframe/layout/#fixed-header',
             sider: '/iframe/layout/#sider',
+            'nav-side': '/iframe/layout/#nav-side',
+            'nav-top': '/iframe/layout/#nav-top',
+            'nav-mix': '/iframe/layout/#nav-mix',
+            'nav-pro': '/iframe/layout/#nav-pro',
           }
         : {},
     );
   },
-  // props: {
-  //   iframeName: String,
-  // },
-  // created() {
-  //   provide(
-  //     'iframeDemo',
-  //     !this.iframeName
-  //       ? {
-  //           'fixed-sider': '/iframe/layout/#fixed-sider',
-  //           'fixed-header': '/iframe/layout/#fixed-header',
-  //           sider: '/iframe/layout/#sider',
-  //         }
-  //       : {},
-  //   );
-  // },
 });
 </script>

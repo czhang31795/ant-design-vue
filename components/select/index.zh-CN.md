@@ -113,6 +113,20 @@ coverDark: https://mdn.alipayobjects.com/huamei_7uahnr/afts/img/A*5oPiTqPxGAUAAA
 | key   |      | string                    | -      |
 | label | 组名 | string\|function(h)\|slot | -      |
 
+### PersonSelect
+
+选择人员的封装组件，内置头像 + 姓名的下拉项与回填展示。也可通过 `Select.PersonSelect` 访问。其余 API 与 Select 一致。
+
+| 参数 | 说明 | 类型 | 默认值 | 版本 |
+| --- | --- | --- | --- | --- |
+| options | 人员选项，默认字段为 `value` / `label` / `avatar` | `Array<{ value, label, avatar? }>` | `[]` |  |
+| avatarKey | option 上头像字段名 | string | `avatar` |  |
+| showOptionValue | 下拉项是否展示 value 作为次要信息 | boolean | true |  |
+| showSearch | 是否可搜索（默认按姓名、value 过滤） | boolean | true |  |
+| placeholder | 选择框默认文字 | string | `请选择人员` |  |
+| value(v-model) | 当前选中人员 | 同 Select | - |  |
+| mode | 多选时设为 `multiple` | `'multiple'` \| `'tags'` | - |  |
+
 ## FAQ
 
 ### 点击 `dropdownRender` 里的内容浮层关闭怎么办？

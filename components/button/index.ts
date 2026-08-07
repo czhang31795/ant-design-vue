@@ -2,11 +2,25 @@ import type { App, Plugin } from 'vue';
 import Button from './button';
 import ButtonGroup from './button-group';
 
-import type { ButtonProps, ButtonShape, ButtonType } from './buttonTypes';
+import type {
+  ButtonColorType,
+  ButtonProps,
+  ButtonShape,
+  ButtonType,
+  ButtonVariantType,
+} from './buttonTypes';
 import type { ButtonGroupProps } from './button-group';
 import type { SizeType as ButtonSize } from '../config-provider';
 
-export type { ButtonProps, ButtonShape, ButtonType, ButtonGroupProps, ButtonSize };
+export type {
+  ButtonColorType,
+  ButtonProps,
+  ButtonShape,
+  ButtonType,
+  ButtonVariantType,
+  ButtonGroupProps,
+  ButtonSize,
+};
 
 Button.Group = ButtonGroup;
 

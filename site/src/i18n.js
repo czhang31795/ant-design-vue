@@ -6,8 +6,9 @@ import { isZhCN } from './utils/util';
 
 const i18n = createI18n({
   legacy: false,
-  locale: isZhCN(location.pathname) ? 'zh-CN' : 'en-US',
-  fallbackLocale: 'en-US',
+  // 默认中文；仅当路径明确为英文（无 -cn）且非根路径时用英文
+  locale: location.pathname === '/' || isZhCN(location.pathname) ? 'zh-CN' : 'en-US',
+  fallbackLocale: 'zh-CN',
   messages: {
     'zh-CN': zhCN,
     'en-US': enUS,

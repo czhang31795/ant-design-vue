@@ -55,6 +55,15 @@ Style of a navigation should conform to its level.
 - `Content`: The content layout with the default style, in which any element can be nested, and must be placed in `Layout`.
 - `Footer`: The bottom layout with the default style, in which any element can be nested, and must be placed in `Layout`.
 
+### Navigation mode presets
+
+Demos aligned with ProComponents ProLayout navigation modes are provided for quick reuse:
+
+- **Side**: Full menu on the left; header and content on the right.
+- **Top**: Logo and menu in the header.
+- **Mix**: Level-1 menus on top and children in the sider (`splitMenus`).
+- **Pro style**: Ant Design Pro admin shell (header logo / light sider / gray content cards).
+
 > Based on `flex layout`, please pay attention to the [compatibility](http://caniuse.com/#search=flex).
 
 ## API

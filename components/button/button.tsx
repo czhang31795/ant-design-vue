@@ -17,20 +17,16 @@ import { useInjectDisabled } from '../config-provider/DisabledContext';
 import devWarning from '../vc-util/devWarning';
 import LoadingIcon from './LoadingIcon';
 import useStyle from './style';
-import type { ButtonType } from './buttonTypes';
 import type { VNode } from 'vue';
 import { GroupSizeContext } from './button-group';
 import { useCompactItemContext } from '../space/Compact';
 import type { CustomSlotsType } from '../_util/type';
+import { isUnBorderedButtonVariant, parseButtonColorVariant } from './buttonHelpers';
 
 type Loading = boolean | number;
 
 const rxTwoCNChar = /^[\u4e00-\u9fa5]{2}$/;
 const isTwoCNChar = rxTwoCNChar.test.bind(rxTwoCNChar);
-
-function isUnBorderedButtonType(type: ButtonType | undefined) {
-  return type === 'text' || type === 'link';
-}
 export { buttonProps };
 export default defineComponent({
   compatConfig: { MODE: 3 },
@@ -83,9 +79,29 @@ export default defineComponent({
       },
     );
 
+    const mergedColorVariant = computed(() => {
+      const parsed = parseButtonColorVariant({
+        color: props.color,
+        variant: props.variant,
+        type: props.type,
+        danger: props.danger,
+      });
+      // ghost solid -> outlined (same as antd-react)
+      if (props.ghost && parsed.variant === 'solid') {
+        return { color: parsed.color, variant: 'outlined' as const };
+      }
+      return parsed;
+    });
+
+    // Only mount color/variant classes when explicitly set, so legacy `type` styles stay intact.
+    const useColorVariantClass = computed(() => props.color != null || props.variant != null);
+
     const classes = computed(() => {
       const { type, shape = 'default', ghost, block, danger } = props;
       const pre = prefixCls.value;
+      const { color: mergedColor, variant: mergedVariant } = mergedColorVariant.value;
+      const colorCls = mergedColor === 'danger' ? 'dangerous' : mergedColor;
+      const withColorVariant = useColorVariantClass.value;
 
       const sizeClassNameMap = { large: 'lg', small: 'sm', middle: undefined };
       const sizeFullname = compactSize.value || groupSizeContext?.size || size.value;
@@ -97,13 +113,20 @@ export default defineComponent({
           [hashId.value]: true,
           [`${pre}`]: true,
           [`${pre}-${shape}`]: shape !== 'default' && shape,
-          [`${pre}-${type}`]: type,
+          // Compatible with versions earlier than color/variant
+          [`${pre}-${type}`]: type && !withColorVariant,
+          [`${pre}-color-${colorCls}`]: withColorVariant && !!colorCls,
+          [`${pre}-variant-${mergedVariant}`]: withColorVariant && !!mergedVariant,
           [`${pre}-${sizeCls}`]: sizeCls,
           [`${pre}-loading`]: innerLoading.value,
-          [`${pre}-background-ghost`]: ghost && !isUnBorderedButtonType(type),
+          [`${pre}-background-ghost`]:
+            ghost &&
+            (withColorVariant
+              ? !isUnBorderedButtonVariant(mergedVariant)
+              : type !== 'text' && type !== 'link'),
           [`${pre}-two-chinese-chars`]: hasTwoCNChar.value && autoInsertSpace.value,
           [`${pre}-block`]: block,
-          [`${pre}-dangerous`]: !!danger,
+          [`${pre}-dangerous`]: !!danger || (withColorVariant && mergedColor === 'danger'),
           [`${pre}-rtl`]: direction.value === 'rtl',
         },
       ];
@@ -151,7 +174,7 @@ export default defineComponent({
 
     watchEffect(() => {
       devWarning(
-        !(props.ghost && isUnBorderedButtonType(props.type)),
+        !(props.ghost && isUnBorderedButtonVariant(mergedColorVariant.value.variant)),
         'Button',
         "`link` or `text` button can't be a `ghost` button.",
       );
@@ -179,9 +202,10 @@ export default defineComponent({
       const { icon = slots.icon?.() } = props;
       const children = flattenChildren(slots.default?.());
 
-      isNeedInserted = children.length === 1 && !icon && !isUnBorderedButtonType(props.type);
+      const mergedVariant = mergedColorVariant.value.variant;
+      isNeedInserted = children.length === 1 && !icon && !isUnBorderedButtonVariant(mergedVariant);
 
-      const { type, htmlType, href, title, target } = props;
+      const { htmlType, href, title, target } = props;
 
       const iconType = innerLoading.value ? 'loading' : icon;
       const buttonProps = {
@@ -231,7 +255,7 @@ export default defineComponent({
         </button>
       );
 
-      if (!isUnBorderedButtonType(type)) {
+      if (!isUnBorderedButtonVariant(mergedVariant)) {
         buttonNode = (
           <Wave ref="wave" disabled={!!innerLoading.value}>
             {buttonNode}

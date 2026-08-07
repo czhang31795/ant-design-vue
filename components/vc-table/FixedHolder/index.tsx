@@ -43,6 +43,8 @@ export interface FixedHeaderProps<RecordType> extends HeaderProps<RecordType> {
   stickyTopOffset?: number;
   stickyBottomOffset?: number;
   stickyClassName?: string;
+  /** Keep header table min width in sync with body (scroll.x) */
+  scrollXMinWidth?: number | string;
   onScroll: (info: { currentTarget: HTMLDivElement; scrollLeft?: number }) => void;
 }
 
@@ -63,6 +65,7 @@ export default defineComponent<FixedHeaderProps<DefaultRecordType>>({
     'stickyTopOffset',
     'stickyBottomOffset',
     'stickyClassName',
+    'scrollXMinWidth',
   ] as any,
   emits: ['scroll'],
   setup(props, { attrs, slots, emit }) {
@@ -146,8 +149,23 @@ export default defineComponent<FixedHeaderProps<DefaultRecordType>>({
         stickyBottomOffset,
         stickyClassName,
         maxContentScroll,
+        scrollXMinWidth,
       } = props;
       const { isSticky } = tableContext;
+      const scrollBarSize = combinationScrollBarSize.value;
+      let headerMinWidth: string | number | undefined;
+      if (!maxContentScroll && scrollXMinWidth != null && scrollXMinWidth !== '') {
+        if (typeof scrollXMinWidth === 'number') {
+          headerMinWidth = scrollXMinWidth + scrollBarSize;
+        } else if (
+          typeof scrollXMinWidth === 'string' &&
+          /^\d+(\.\d+)?(px)?$/.test(scrollXMinWidth)
+        ) {
+          headerMinWidth = `${Number.parseFloat(scrollXMinWidth) + scrollBarSize}px`;
+        } else {
+          headerMinWidth = scrollXMinWidth;
+        }
+      }
       return (
         <div
           style={{
@@ -162,6 +180,8 @@ export default defineComponent<FixedHeaderProps<DefaultRecordType>>({
           <table
             style={{
               tableLayout: 'fixed',
+              width: '100%',
+              minWidth: headerMinWidth,
               visibility: noData || mergedColumnWidth.value ? null : 'hidden',
             }}
           >

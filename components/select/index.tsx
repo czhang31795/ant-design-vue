@@ -1,24 +1,20 @@
-import type { Plugin, ExtractPropTypes, App } from 'vue';
+import type { Plugin, App } from 'vue';
 import { computed, defineComponent, ref } from 'vue';
 import classNames from '../_util/classNames';
 import type { BaseSelectRef } from '../vc-select';
-import RcSelect, { selectProps as vcSelectProps, Option, OptGroup } from '../vc-select';
+import RcSelect, { Option, OptGroup } from '../vc-select';
 import type { BaseOptionType, DefaultOptionType } from '../vc-select/Select';
 import type { OptionProps } from '../vc-select/Option';
 import getIcons from './utils/iconUtil';
-import PropTypes from '../_util/vue-types';
 import useConfigInject from '../config-provider/hooks/useConfigInject';
 import { DefaultRenderEmpty } from '../config-provider/renderEmpty';
 import omit from '../_util/omit';
 import { FormItemInputContext, useInjectFormItemContext } from '../form/FormItemContext';
 import type { SelectCommonPlacement } from '../_util/transition';
 import { getTransitionDirection, getTransitionName } from '../_util/transition';
-import type { SizeType } from '../config-provider';
 import { initDefaultProps } from '../_util/props-util';
 
-import type { InputStatus } from '../_util/statusUtils';
 import { getStatusClassNames, getMergedStatus } from '../_util/statusUtils';
-import { stringType, someType, functionType, booleanType } from '../_util/type';
 import { useCompactItemContext } from '../space/Compact';
 // CSSINJS
 import useStyle from './style';
@@ -26,46 +22,13 @@ import { useInjectDisabled } from '../config-provider/DisabledContext';
 import devWarning from '../vc-util/devWarning';
 
 import type { CustomSlotsType } from '../_util/type';
-
-type RawValue = string | number;
+import { selectProps } from './props';
+import type { SelectProps } from './props';
 
 export type OptionType = typeof Option;
 export type { OptionProps, BaseSelectRef as RefSelectProps, BaseOptionType, DefaultOptionType };
-
-export interface LabeledValue {
-  key?: string;
-  value: RawValue;
-  label?: any;
-}
-export type SelectValue = RawValue | RawValue[] | LabeledValue | LabeledValue[] | undefined;
-
-export const selectProps = () => ({
-  ...omit(vcSelectProps<SelectValue>(), [
-    'inputIcon',
-    'mode',
-    'getInputElement',
-    'getRawInputElement',
-    'backfill',
-  ]),
-  value: someType<SelectValue>([Array, Object, String, Number]),
-  defaultValue: someType<SelectValue>([Array, Object, String, Number]),
-  notFoundContent: PropTypes.any,
-  suffixIcon: PropTypes.any,
-  itemIcon: PropTypes.any,
-  size: stringType<SizeType>(),
-  mode: stringType<'multiple' | 'tags' | 'SECRET_COMBOBOX_MODE_DO_NOT_USE'>(),
-  bordered: booleanType(true),
-  transitionName: String,
-  choiceTransitionName: stringType(''),
-  popupClassName: String,
-  /** @deprecated Please use `popupClassName` instead */
-  dropdownClassName: String,
-  placement: stringType<SelectCommonPlacement>(),
-  status: stringType<InputStatus>(),
-  'onUpdate:value': functionType<(val: SelectValue) => void>(),
-});
-
-export type SelectProps = Partial<ExtractPropTypes<ReturnType<typeof selectProps>>>;
+export type { LabeledValue, SelectValue, SelectProps } from './props';
+export { selectProps };
 
 const SECRET_COMBOBOX_MODE_DO_NOT_USE = 'SECRET_COMBOBOX_MODE_DO_NOT_USE';
 const Select = defineComponent({
@@ -311,9 +274,10 @@ Select.install = function (app: App) {
 
 export const SelectOption = Select.Option;
 export const SelectOptGroup = Select.OptGroup;
+
 export default Select as typeof Select &
   Plugin & {
     readonly Option: typeof Option;
     readonly OptGroup: typeof OptGroup;
-    readonly SECRET_COMBOBOX_MODE_DO_NOT_USE: 'SECRET_COMBOBOX_MODE_DO_NOT_USE';
+    readonly SECRET_COMBOBOX_MODE_DO_NOT_USE: typeof SECRET_COMBOBOX_MODE_DO_NOT_USE;
   };

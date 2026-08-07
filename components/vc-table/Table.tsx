@@ -19,6 +19,7 @@ import type {
   DefaultRecordType,
 } from './interface';
 import Body from './Body';
+import VirtualBody from './Body/VirtualBody';
 import useColumns from './hooks/useColumns';
 import { useLayoutState, useTimeoutLock } from './hooks/useFrame';
 import { getPathValue, mergeObject, validateValue, getColumnsKey } from './utils/valueUtil';
@@ -51,7 +52,7 @@ import { reactivePick } from '../_util/reactivePick';
 import useState from '../_util/hooks/useState';
 import { toPx } from '../_util/util';
 import isVisible from '../vc-util/Dom/isVisible';
-import { getTargetScrollBarSize } from '../_util/getScrollBarSize';
+import getScrollBarSize, { getTargetScrollBarSize } from '../_util/getScrollBarSize';
 import classNames from '../_util/classNames';
 import type { EventHandler } from '../_util/EventInterface';
 import VCResizeObserver from '../vc-resize-observer';
@@ -78,7 +79,12 @@ export interface TableProps<RecordType = DefaultRecordType> {
   tableLayout?: TableLayout;
 
   // Fixed Columns
-  scroll?: { x?: number | true | string; y?: number | string };
+  scroll?: { x?: number | true | string; y?: number | string | 'auto' };
+
+  /** Enable vertical virtual scroll (fixed row height) */
+  virtual?: boolean;
+  /** Row height for virtual scroll */
+  virtualItemHeight?: number;
 
   rowClassName?: string | RowClassName<RecordType>;
 
@@ -191,6 +197,8 @@ export default defineComponent({
     'canExpandable',
     'onUpdateInternalRefs',
     'transformCellText',
+    'virtual',
+    'virtualItemHeight',
   ],
   emits: ['expand', 'expandedRowsChange', 'updateInternalRefs', 'update:expandedRowKeys'],
   setup(props, { attrs, slots, emit }) {
@@ -345,6 +353,30 @@ export default defineComponent({
     );
     const columnCount = computed(() => flattenColumns.value.length);
     const stickyOffsets = useStickyOffsets(colWidths, columnCount, toRef(props, 'direction'));
+
+    const isAutoHeight = computed(() => props.scroll?.y === 'auto');
+    const autoScrollY = shallowRef<number>();
+    const mergedScrollY = computed<number | string | undefined>(() => {
+      if (!props.scroll || !validateValue(props.scroll.y)) {
+        return undefined;
+      }
+      if (isAutoHeight.value) {
+        return autoScrollY.value;
+      }
+      const y = props.scroll.y as number | string;
+      if (typeof y === 'number') {
+        return y;
+      }
+      if (typeof y === 'string' && /^\d+(\.\d+)?(px)?$/.test(y)) {
+        return Number.parseFloat(y);
+      }
+      return y;
+    });
+    const mergedScrollYNumber = computed(() =>
+      typeof mergedScrollY.value === 'number' ? mergedScrollY.value : undefined,
+    );
+
+    // `scroll.y="auto"` should enter fixed-header mode before the first measure completes
     const fixHeader = computed(() => props.scroll && validateValue(props.scroll.y));
     const horizonScroll = computed(
       () => (props.scroll && validateValue(props.scroll.x)) || Boolean(props.expandFixed),
@@ -352,6 +384,14 @@ export default defineComponent({
     const fixColumn = computed(
       () => horizonScroll.value && flattenColumns.value.some(({ fixed }) => fixed),
     );
+    const useVirtual = computed(
+      () =>
+        !!props.virtual &&
+        fixHeader.value &&
+        typeof mergedScrollYNumber.value === 'number' &&
+        mergedScrollYNumber.value > 0,
+    );
+    const mergedVirtualItemHeight = computed(() => props.virtualItemHeight || 54);
 
     // Sticky
     const stickyRef = ref<{ setScrollLeft: (left: number) => void }>();
@@ -377,11 +417,16 @@ export default defineComponent({
     const scrollTableStyle = ref<CSSProperties>({});
 
     watchEffect(() => {
-      if (fixHeader.value) {
+      if (fixHeader.value && validateValue(mergedScrollY.value)) {
         scrollYStyle.value = {
           overflowY: 'scroll',
-          maxHeight: toPx(props.scroll.y),
+          maxHeight:
+            typeof mergedScrollY.value === 'number'
+              ? toPx(mergedScrollY.value)
+              : (mergedScrollY.value as string),
         };
+      } else if (!horizonScroll.value) {
+        scrollYStyle.value = {};
       }
 
       if (horizonScroll.value) {
@@ -392,12 +437,58 @@ export default defineComponent({
         if (!fixHeader.value) {
           scrollYStyle.value = { overflowY: 'hidden' };
         }
-        scrollTableStyle.value = {
-          width: props.scroll.x === true ? 'auto' : toPx(props.scroll.x),
-          minWidth: '100%',
-        };
+        // Avoid minWidth:100% when x is max-content / fixed px — leftover space would be
+        // redistributed across columns and break 1:1 column resize tracking.
+        if (props.scroll.x === true) {
+          scrollTableStyle.value = {
+            width: 'auto',
+            minWidth: '100%',
+          };
+        } else if (props.scroll.x === 'max-content') {
+          scrollTableStyle.value = {
+            width: 'max-content',
+          };
+        } else {
+          scrollTableStyle.value = {
+            width: toPx(props.scroll.x),
+            minWidth: toPx(props.scroll.x),
+          };
+        }
+      } else {
+        scrollXStyle.value = {};
+        scrollTableStyle.value = {};
       }
     });
+
+    watchEffect(() => {
+      if (process.env.NODE_ENV !== 'production' && useVirtual.value && fixColumn.value) {
+        warning(false, '`virtual` does not support fixed columns in the current version.');
+      }
+    });
+
+    const measureAutoHeight = () => {
+      if (!isAutoHeight.value || !fullTableRef.value) {
+        return;
+      }
+      const root = fullTableRef.value;
+      const titleEl = root.querySelector(`.${props.prefixCls}-title`) as HTMLElement | null;
+      const footerEl = root.querySelector(`.${props.prefixCls}-footer`) as HTMLElement | null;
+      const headerEl = root.querySelector(`.${props.prefixCls}-header`) as HTMLElement | null;
+      const summaryEl = root.querySelector(`.${props.prefixCls}-summary`) as HTMLElement | null;
+      const rootHeight = root.clientHeight;
+      if (!rootHeight) {
+        return;
+      }
+      const reserved =
+        (titleEl?.offsetHeight || 0) +
+        (footerEl?.offsetHeight || 0) +
+        (headerEl?.offsetHeight || 0) +
+        (summaryEl?.offsetHeight || 0);
+      const next = Math.max(0, rootHeight - reserved);
+      if (next && next !== autoScrollY.value) {
+        autoScrollY.value = next;
+      }
+    };
 
     const onColumnResize = (columnKey: Key, width: number) => {
       if (isVisible(fullTableRef.value)) {
@@ -463,9 +554,21 @@ export default defineComponent({
       }
     };
 
+    const resolveScrollBodyEl = () => {
+      const body = scrollBodyRef.value as any;
+      if (!body) {
+        return null;
+      }
+      if (body instanceof HTMLElement) {
+        return body;
+      }
+      return (body.getScrollBody?.() || body.$el || body) as HTMLElement;
+    };
+
     const triggerOnScroll = () => {
-      if (horizonScroll.value && scrollBodyRef.value) {
-        onScroll({ currentTarget: scrollBodyRef.value });
+      const bodyEl = resolveScrollBodyEl();
+      if (horizonScroll.value && bodyEl) {
+        onScroll({ currentTarget: bodyEl });
       } else {
         setPingedLeft(false);
         setPingedRight(false);
@@ -478,16 +581,31 @@ export default defineComponent({
         componentWidth.value = fullTableRef.value ? fullTableRef.value.offsetWidth : width;
       }
     };
-    const onFullTableResize = ({ width }) => {
+    const onFullTableResize = ({ width, height }: { width: number; height: number }) => {
       clearTimeout(timtout);
+      if (isAutoHeight.value) {
+        measureAutoHeight();
+      }
       if (componentWidth.value === 0) {
         updateWidth(width);
         return;
       }
       timtout = setTimeout(() => {
         updateWidth(width);
+        if (isAutoHeight.value || height) {
+          measureAutoHeight();
+        }
       }, 100);
     };
+
+    watch(
+      () => [props.scroll?.y, props.title, props.footer, props.showHeader, mergedData.value.length],
+      () => {
+        if (isAutoHeight.value) {
+          nextTick(() => measureAutoHeight());
+        }
+      },
+    );
 
     watch(
       [horizonScroll, () => props.data, () => props.columns],
@@ -501,20 +619,39 @@ export default defineComponent({
 
     const [scrollbarSize, setScrollbarSize] = useState(0);
     useProvideSticky();
+    const syncScrollbarSize = () => {
+      const bodyEl = resolveScrollBodyEl();
+      if (!bodyEl) {
+        return;
+      }
+      // Prefer real scrollbar occupancy; fall back to system scrollbar width when overlay/0.
+      const occupied = Math.max(0, bodyEl.offsetWidth - bodyEl.clientWidth);
+      const measured = getTargetScrollBarSize(bodyEl).width;
+      const nextSize = occupied || measured || getScrollBarSize();
+      if (nextSize !== scrollbarSize.value) {
+        setScrollbarSize(nextSize);
+      }
+    };
+
     onMounted(() => {
       nextTick(() => {
+        if (isAutoHeight.value) {
+          measureAutoHeight();
+        }
         triggerOnScroll();
-        setScrollbarSize(getTargetScrollBarSize(scrollBodyRef.value).width);
+        syncScrollbarSize();
+        const bodyEl = resolveScrollBodyEl();
         scrollBodySizeInfo.value = {
-          scrollWidth: scrollBodyRef.value?.scrollWidth || 0,
-          clientWidth: scrollBodyRef.value?.clientWidth || 0,
+          scrollWidth: bodyEl?.scrollWidth || 0,
+          clientWidth: bodyEl?.clientWidth || 0,
         };
       });
     });
     onUpdated(() => {
       nextTick(() => {
-        const scrollWidth = scrollBodyRef.value?.scrollWidth || 0;
-        const clientWidth = scrollBodyRef.value?.clientWidth || 0;
+        const bodyEl = resolveScrollBodyEl();
+        const scrollWidth = bodyEl?.scrollWidth || 0;
+        const clientWidth = bodyEl?.clientWidth || 0;
         if (
           scrollBodySizeInfo.value.scrollWidth !== scrollWidth ||
           scrollBodySizeInfo.value.clientWidth !== clientWidth
@@ -524,6 +661,10 @@ export default defineComponent({
             clientWidth,
           };
         }
+        // Virtual body mounts async; keep header scrollbar placeholder in sync
+        if (fixHeader.value || useVirtual.value) {
+          syncScrollbarSize();
+        }
       });
     });
 
@@ -531,9 +672,7 @@ export default defineComponent({
       () => {
         if (props.internalHooks === INTERNAL_HOOKS && props.internalRefs) {
           props.onUpdateInternalRefs({
-            body: scrollBodyRef.value
-              ? (scrollBodyRef.value as any).$el || scrollBodyRef.value
-              : null,
+            body: resolveScrollBodyEl(),
           });
         }
       },
@@ -631,6 +770,29 @@ export default defineComponent({
       />
     );
 
+    const virtualBodyTable = () => (
+      <VirtualBody
+        data={mergedData.value}
+        measureColumnWidth={fixHeader.value || horizonScroll.value || stickyState.value.isSticky}
+        expandedKeys={mergedExpandedKeys.value}
+        rowExpandable={props.rowExpandable}
+        getRowKey={getRowKey.value}
+        customRow={props.customRow}
+        childrenColumnName={mergedChildrenColumnName.value}
+        height={mergedScrollYNumber.value as number}
+        itemHeight={mergedVirtualItemHeight.value}
+        scrollTableStyle={scrollTableStyle.value}
+        tableLayout={mergedTableLayout.value}
+        onScroll={onScroll}
+        bodyRef={scrollBodyRef as any}
+        colWidths={colWidths.value}
+        style={{
+          ...scrollXStyle.value,
+        }}
+        v-slots={{ emptyNode }}
+      />
+    );
+
     const bodyColGroup = () => (
       <ColGroup
         colWidths={flattenColumns.value.map(({ width }) => width)}
@@ -704,6 +866,8 @@ export default defineComponent({
 
             return 0;
           }) as number[];
+        } else if (useVirtual.value) {
+          bodyContent = () => virtualBodyTable();
         } else {
           bodyContent = () => (
             <div
@@ -742,6 +906,15 @@ export default defineComponent({
           direction,
           stickyClassName,
           onScroll,
+          // Sync header minWidth with body scroll.x (virtual / fixed header)
+          scrollXMinWidth:
+            horizonScroll.value && typeof scroll?.x === 'number'
+              ? scroll.x
+              : horizonScroll.value &&
+                typeof scroll?.x === 'string' &&
+                /^\d+(\.\d+)?(px)?$/.test(scroll.x)
+              ? scroll.x
+              : undefined,
         };
 
         groupTableNode = () => (
@@ -840,19 +1013,31 @@ export default defineComponent({
             [`${prefixCls}-has-fix-right`]:
               flattenColumns.value[columnCount.value - 1] &&
               flattenColumns.value[columnCount.value - 1].fixed === 'right',
+            [`${prefixCls}-virtual`]: useVirtual.value,
+            [`${prefixCls}-auto-height`]: isAutoHeight.value,
             [attrs.class as string]: attrs.class,
           })}
-          style={attrs.style as CSSProperties}
+          style={[
+            attrs.style as CSSProperties,
+            isAutoHeight.value
+              ? { height: '100%', display: 'flex', flexDirection: 'column' }
+              : null,
+          ]}
           id={id}
           ref={fullTableRef}
         >
           {title && <Panel class={`${prefixCls}-title`}>{title(mergedData.value)}</Panel>}
-          <div class={`${prefixCls}-container`}>{groupTableNode()}</div>
+          <div
+            class={`${prefixCls}-container`}
+            style={isAutoHeight.value ? { flex: 1, minHeight: 0 } : undefined}
+          >
+            {groupTableNode()}
+          </div>
           {footer && <Panel class={`${prefixCls}-footer`}>{footer(mergedData.value)}</Panel>}
         </div>
       );
 
-      if (horizonScroll.value) {
+      if (horizonScroll.value || isAutoHeight.value) {
         return (
           <VCResizeObserver
             onResize={onFullTableResize}

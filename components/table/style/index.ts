@@ -14,6 +14,7 @@ import genRtlStyle from './rtl';
 import genSelectionStyle from './selection';
 import genSizeStyle from './size';
 import genResizeStyle from './resize';
+import genDragSortStyle from './drag-sort';
 import genSorterStyle from './sorter';
 import genStickyStyle from './sticky';
 import genSummaryStyle from './summary';
@@ -73,6 +74,7 @@ export interface TableToken extends FullToken<'Table'> {
 const genTableStyle: GenerateStyle<TableToken, CSSObject> = token => {
   const {
     componentCls,
+    antCls,
     fontWeightStrong,
     tablePaddingVertical,
     tablePaddingHorizontal,
@@ -255,6 +257,76 @@ const genTableStyle: GenerateStyle<TableToken, CSSObject> = token => {
         background: tableFooterBg,
       },
     },
+
+    // ========================== Auto Height ===========================
+    [`${componentCls}-wrapper-auto-height`]: {
+      height: '100%',
+      display: 'flex',
+      flexDirection: 'column',
+
+      [`${antCls}-spin-nested-loading`]: {
+        flex: 1,
+        minHeight: 0,
+        display: 'flex',
+        flexDirection: 'column',
+      },
+
+      [`${antCls}-spin-container`]: {
+        flex: 1,
+        minHeight: 0,
+        display: 'flex',
+        flexDirection: 'column',
+      },
+
+      [componentCls]: {
+        flex: 1,
+        minHeight: 0,
+      },
+
+      [`${componentCls}-container`]: {
+        flex: 1,
+        minHeight: 0,
+      },
+
+      [`${componentCls}-tbody-virtual-holder`]: {
+        position: 'relative',
+      },
+    },
+
+    // ======================== Vertical Layout =========================
+    [`${componentCls}-wrapper ${componentCls}-vertical-layout`]: {
+      [`${componentCls}-thead > tr > th`]: {
+        textAlign: 'center',
+        whiteSpace: 'nowrap',
+      },
+      [`${componentCls}-thead > tr > th${componentCls}-cell-vertical-field`]: {
+        position: 'sticky',
+        left: 0,
+        zIndex: 3,
+        textAlign: 'start',
+        background: tableHeaderBg,
+        color: tableHeaderTextColor,
+        fontWeight: fontWeightStrong,
+      },
+      [`${componentCls}-tbody > tr > td`]: {
+        verticalAlign: 'middle',
+        textAlign: 'center',
+      },
+      [`${componentCls}-tbody > tr > td${componentCls}-cell-vertical-field`]: {
+        position: 'sticky',
+        left: 0,
+        zIndex: 2,
+        textAlign: 'start',
+        background: tableHeaderBg,
+        color: tableHeaderTextColor,
+        fontWeight: fontWeightStrong,
+        whiteSpace: 'nowrap',
+      },
+      // Keep field column header-like on row hover
+      [`${componentCls}-tbody > tr:hover > td${componentCls}-cell-vertical-field`]: {
+        background: tableHeaderBg,
+      },
+    },
   };
 };
 
@@ -372,6 +444,7 @@ export default genComponentStyleHook('Table', token => {
     genEllipsisStyle(tableToken),
     genSizeStyle(tableToken),
     genResizeStyle(tableToken),
+    genDragSortStyle(tableToken),
     genRtlStyle(tableToken),
   ];
 });

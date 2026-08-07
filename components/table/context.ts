@@ -1,6 +1,6 @@
 import type { ComputedRef, InjectionKey } from 'vue';
 import { computed, inject, provide } from 'vue';
-import type { ColumnType } from './interface';
+import type { ColumnType, Key } from './interface';
 
 export type ContextSlots = {
   emptyText?: (...args: any[]) => any;
@@ -29,8 +29,24 @@ export const useInjectSlots = () => {
   return inject(SlotsContextKey, computed(() => ({})) as SlotsContextProps);
 };
 
+export type DragPlace = 'before' | 'after';
+
 type ContextProps = {
   onResizeColumn: (w: number, column: ColumnType<any>) => void;
+  onResizeRow?: (height: number, record: any, index: number, rowKey?: Key) => void;
+  /** Physical column drag (header). Keys are rendered column keys. */
+  onDragColumnSort?: (fromKey: Key, toKey: Key, place: DragPlace) => void;
+  /** Physical row drag. Keys are rendered row keys. */
+  onDragRowSort?: (fromKey: Key, toKey: Key, place: DragPlace) => void;
+  /** Validate whether fromRow can drop onto toRow (tree sibling check). */
+  canDropRow?: (fromKey: Key, toKey: Key) => boolean;
+  /** Table-level column resize switch */
+  resizable?: boolean;
+  rowResizable?: boolean;
+  rowHeights?: Record<string, number>;
+  minRowHeight?: number;
+  columnDraggable?: boolean;
+  rowDraggable?: boolean;
 };
 
 const ContextKey: InjectionKey<ContextProps> = Symbol('ContextProps');
@@ -40,5 +56,17 @@ export const useProvideTableContext = (props: ContextProps) => {
 };
 
 export const useInjectTableContext = () => {
-  return inject(ContextKey, { onResizeColumn: () => {} } as ContextProps);
+  return inject(ContextKey, {
+    onResizeColumn: () => {},
+    onResizeRow: () => {},
+    onDragColumnSort: () => {},
+    onDragRowSort: () => {},
+    canDropRow: () => true,
+    resizable: false,
+    rowResizable: false,
+    rowHeights: {},
+    minRowHeight: 39,
+    columnDraggable: false,
+    rowDraggable: false,
+  } as ContextProps);
 };

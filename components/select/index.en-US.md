@@ -113,6 +113,20 @@ Select component to select value from options.
 | key      |             | string       | -       |
 | label    | Group label | string\|slot | -       |
 
+### PersonSelect
+
+A wrapped Select for picking people, with avatar + name in options and selected value. Also available as `Select.PersonSelect`. Other APIs are the same as Select.
+
+| Property | Description | Type | Default | Version |
+| --- | --- | --- | --- | --- |
+| options | Person options. Default fields: `value` / `label` / `avatar` | `Array<{ value, label, avatar? }>` | `[]` |  |
+| avatarKey | Avatar field name on option | string | `avatar` |  |
+| showOptionValue | Whether to show value as secondary text in dropdown | boolean | true |  |
+| showSearch | Whether searchable (filters by label and value by default) | boolean | true |  |
+| placeholder | Placeholder text | string | `请选择人员` |  |
+| value(v-model) | Current selected value | same as Select | - |  |
+| mode | Set to `multiple` for multi select | `'multiple'` \| `'tags'` | - |  |
+
 ## FAQ
 
 ### The dropdown is closed when click `dropdownRender` area?

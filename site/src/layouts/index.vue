@@ -1,5 +1,4 @@
 <template>
-  <TopAd :is-c-n="isZhCN" />
   <Header />
   <div v-if="headers.length" class="toc-affix" :style="y > 102 ? 'position:fixed; top: 16px;' : ''">
     <a-anchor style="width: 160px" :items="headers">
@@ -8,33 +7,6 @@
         {{ item.title }}
       </template>
     </a-anchor>
-    <a v-if="isAdVisible" :href="'https://mentorbook.ai'" target="_blank" style="">
-      <img
-        :src="isZhCN ? '/MPU_176x250_bf_zh.svg' : '/MPU_176x250_bf_en.svg'"
-        style="width: 152px; display: block; margin-top: 16px"
-      />
-    </a>
-    <a class="pireel-card" href="https://github.com/pireel/pireel" target="_blank" rel="noopener">
-      <span class="pireel-logo">
-        <span class="pireel-play" />
-        Pireel
-      </span>
-      <span class="pireel-desc">
-        {{ isZhCN ? '开源 AI 视频剪辑智能体' : 'Open-source AI video editing agent' }}
-      </span>
-      <span class="pireel-timeline">
-        <span class="pireel-track">
-          <i class="pireel-clip-amber" />
-          <i class="pireel-clip-teal" />
-          <i class="pireel-clip-coral" />
-        </span>
-        <span class="pireel-track">
-          <i class="pireel-clip-dim-long" />
-          <i class="pireel-clip-dim-short" />
-        </span>
-        <span class="pireel-marker" />
-      </span>
-    </a>
   </div>
   <div class="main-wrapper">
     <a-row>
@@ -48,7 +20,6 @@
           wrapper-class-name="drawer-wrapper"
           width="60%"
         >
-          <surelyVueVue />
           <Menu :menus="dataSource" :active-menu-item="activeMenuItem" :is-zh-c-n="isZhCN" />
         </a-drawer>
         <div class="drawer-handle" @click="handleClickShowButton">
@@ -60,10 +31,6 @@
         <a-col :xxxl="4" :xxl="4" :xl="5" :lg="6" :md="6" :sm="24" :xs="24" class="main-menu">
           <a-affix>
             <section class="main-menu-inner">
-              <!-- <Sponsors :is-c-n="isZhCN" /> -->
-              <div>
-                <surelyVueVue />
-              </div>
               <Menu :menus="dataSource" :active-menu-item="activeMenuItem" :is-zh-c-n="isZhCN" />
             </section>
           </a-affix>
@@ -127,16 +94,11 @@ import Menu from './Menu.vue';
 import PrevAndNext from './PrevAndNext.vue';
 import Demo from './Demo.vue';
 import useMenus from '../hooks/useMenus';
-import TopAd from '../components/rice/top_rice.vue';
-import Sponsors from '../components/rice/sponsors.vue';
-import RightBottomAd from '../components/rice/right_bottom_rice.vue';
 import { CloseOutlined, MenuOutlined, LinkOutlined } from '@ant-design/icons-vue';
 import ThemeIcon from './icons/ThemeIcon.vue';
 import ThemeEditorIcon from './icons/ThemeEditorIcon';
 import DarkIcon from './icons/Dark';
 import CompactIcon from './icons/Compact';
-import surelyVueVue from '../components/surelyVue.vue';
-import WWAdsVue from '../components/rice/WWAds.vue';
 import { useWindowScroll } from '@vueuse/core';
 import type { GlobalConfig } from '../type';
 
@@ -146,9 +108,6 @@ const rSpecial = /[\s~`!@#$%^&*()\-_+=[\]{}|\\;:"'<>,.?/]+/g;
 export default defineComponent({
   name: 'Layout',
   components: {
-    TopAd,
-    Sponsors,
-    RightBottomAd,
     Demo,
     Header,
     Footer,
@@ -160,8 +119,6 @@ export default defineComponent({
     ThemeEditorIcon,
     DarkIcon,
     CompactIcon,
-    surelyVueVue,
-    WWAdsVue,
     LinkOutlined,
   },
   setup() {
@@ -200,9 +157,6 @@ export default defineComponent({
         route.path.indexOf('/components') === 0 && route.path.indexOf('/components/overview') !== 0
       );
     });
-    const isTablePage = computed(() => {
-      return route.path.indexOf('/components/table') === 0;
-    });
     const matchCom = computed(() => {
       return route.matched[route.matched.length - 1]?.components?.default;
     });
@@ -231,36 +185,6 @@ export default defineComponent({
       let tempHeaders = (pageData.value?.headers || []).filter((h: Header) => h.level === 2);
       if (isDemo.value) {
         tempHeaders = [...demos.value];
-        if (isTablePage.value) {
-          tempHeaders.push(
-            ...[
-              {
-                title: '大数据渲染',
-                enTitle: 'Virtualized Table',
-                href: 'https://surelyvue.com/doc/performance',
-                target: '_blank',
-              },
-              {
-                title: '行拖拽排序',
-                enTitle: 'Row Drag Sort',
-                href: 'https://surelyvue.com/doc/dragable#drag-row',
-                target: '_blank',
-              },
-              {
-                title: '列拖拽排序',
-                enTitle: 'Column Drag Sort',
-                href: 'https://surelyvue.com/doc/dragable#drag-column',
-                target: '_blank',
-              },
-              {
-                title: '更多高性能示例',
-                enTitle: 'More high-performance examples ',
-                href: 'https://surelyvue.com',
-                target: '_blank',
-              },
-            ],
-          );
-        }
         tempHeaders.push({ title: 'API', href: '#api' });
       }
 
@@ -277,12 +201,6 @@ export default defineComponent({
         'main-container': true,
         'main-container-component': isDemo.value,
       };
-    });
-    const isAdVisible = computed(() => {
-      const now = new Date();
-      const startDate = new Date('2025-11-24T00:00:00');
-      const endDate = new Date('2025-11-30T23:59:59');
-      return now >= startDate && now <= endDate;
     });
     const handleClickShowButton = () => {
       visible.value = !visible.value;
@@ -302,7 +220,6 @@ export default defineComponent({
       pageData,
       dataSource,
       handleClickShowButton,
-      isAdVisible,
       iconStyle: {
         // color: '#fff',
         fontSize: '20px',
@@ -316,154 +233,6 @@ export default defineComponent({
 .toc-affix {
   background-color: rgba(0, 0, 0, 0);
   backdrop-filter: blur(10px);
-}
-
-.toc-affix .pireel-card {
-  position: relative;
-  display: block;
-  width: 100%;
-  box-sizing: border-box;
-  margin-top: 16px;
-  padding: 12px 12px 10px;
-  overflow: hidden;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 12px;
-  color: #fff;
-  background: radial-gradient(130% 100% at 100% 0%, rgba(255, 178, 36, 0.24), transparent 55%),
-    radial-gradient(120% 120% at 0% 100%, rgba(45, 212, 191, 0.2), transparent 55%), #0d0f15;
-  box-shadow: 0 8px 24px -10px rgba(0, 0, 0, 0.55);
-  transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
-
-  &:hover {
-    transform: translateY(-2px);
-    border-color: rgba(255, 178, 36, 0.55);
-    box-shadow: 0 14px 30px -10px rgba(0, 0, 0, 0.65);
-    color: #fff;
-  }
-
-  .pireel-logo {
-    display: flex;
-    align-items: center;
-    gap: 7px;
-    font-size: 17px;
-    font-weight: 700;
-    letter-spacing: 0.3px;
-  }
-
-  .pireel-play {
-    flex: none;
-    position: relative;
-    width: 22px;
-    height: 22px;
-    border-radius: 7px;
-    background: linear-gradient(135deg, #ffb224, #ff6b6b);
-
-    &::before {
-      content: '';
-      position: absolute;
-      top: 50%;
-      left: 55%;
-      transform: translate(-50%, -50%);
-      border: 5px solid transparent;
-      border-left: 8px solid #fff;
-      border-right: none;
-    }
-  }
-
-  .pireel-desc {
-    display: block;
-    margin-top: 8px;
-    font-size: 12px;
-    line-height: 1.6;
-    color: rgba(255, 255, 255, 0.72);
-  }
-
-  .pireel-timeline {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-    margin-top: 12px;
-    padding-top: 10px;
-    border-top: 1px dashed rgba(255, 255, 255, 0.14);
-  }
-
-  .pireel-track {
-    display: flex;
-    gap: 4px;
-
-    i {
-      height: 8px;
-      border-radius: 2px;
-    }
-  }
-
-  .pireel-clip-amber {
-    width: 44px;
-    background: #ffb224;
-  }
-
-  .pireel-clip-teal {
-    width: 26px;
-    background: #2dd4bf;
-  }
-
-  .pireel-clip-coral {
-    width: 38px;
-    background: #ff6b6b;
-  }
-
-  .pireel-clip-dim-long {
-    width: 58px;
-    background: rgba(45, 212, 191, 0.35);
-  }
-
-  .pireel-clip-dim-short {
-    width: 30px;
-    background: rgba(255, 255, 255, 0.22);
-  }
-
-  .pireel-marker {
-    position: absolute;
-    top: 6px;
-    bottom: -2px;
-    left: 2%;
-    width: 2px;
-    border-radius: 1px;
-    background: #fff;
-    box-shadow: 0 0 8px rgba(255, 255, 255, 0.9);
-    animation: pireel-sweep 4.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-
-    &::before {
-      content: '';
-      position: absolute;
-      top: -4px;
-      left: -2px;
-      width: 6px;
-      height: 6px;
-      border-radius: 2px;
-      background: #fff;
-    }
-  }
-}
-
-@keyframes pireel-sweep {
-  0% {
-    left: 2%;
-  }
-  50% {
-    left: 96%;
-  }
-  100% {
-    left: 2%;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .toc-affix .pireel-card .pireel-marker {
-    animation: none;
-    left: 40%;
-  }
 }
 
 .toc-affix :deep(.ant-anchor) {

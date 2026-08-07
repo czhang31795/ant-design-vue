@@ -165,6 +165,25 @@ The following APIs are shared by DatePicker, RangePicker.
 | --- | --- | --- | --- | --- |
 | format | To set the date format, refer to [dayjs](https://day.js.org/) | [formatType](#formattype) | `YYYY-wo` |  |
 
+### YearQuarterMonthPicker
+
+A wrapped picker to select year / quarter / month in one panel. Also available as `DatePicker.YearQuarterMonthPicker`.
+
+| Property | Description | Type | Default | Version |
+| --- | --- | --- | --- | --- |
+| value(v-model) | Date value | [dayjs](https://day.js.org/) | - |  |
+| periodType(v-model) | Selection granularity | `year` \| `quarter` \| `month` | `month` |  |
+| placeholder | Placeholder of input | string | `选择年 / 季 / 月` |  |
+| allowClear | Show clear button | boolean | true |  |
+| disabled | Disabled state | boolean | false |  |
+| inputReadOnly | Make input readOnly | boolean | true |  |
+
+| Event  | Description                     | Arguments                              |
+| ------ | ------------------------------- | -------------------------------------- |
+| change | Callback when selection changes | function(date, periodType, dateString) |
+
+Display format follows `periodType`: year `YYYY`, quarter `YYYY-[Q]Q`, month `YYYY-MM`.
+
 ### RangePicker
 
 | Property | Description | Type | Default | Version |

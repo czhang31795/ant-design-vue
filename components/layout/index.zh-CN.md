@@ -56,6 +56,15 @@ coverDark: https://mdn.alipayobjects.com/huamei_7uahnr/afts/img/A*HdS6Q5vUCDcAAA
 - `Content`：内容部分，自带默认样式，其下可嵌套任何元素，只能放在 `Layout` 中。
 - `Footer`：底部布局，自带默认样式，其下可嵌套任何元素，只能放在 `Layout` 中。
 
+### 导航模式预设
+
+文档提供对齐 ProComponents ProLayout 的三种导航模式预设 demo，便于按业务习惯选型与复制：
+
+- **侧栏（side）**：完整菜单在左侧，右侧为顶栏与内容区。
+- **顶部（top）**：Logo 与菜单在顶部。
+- **混合（mix）**：顶部一级菜单 + 左侧子菜单（`splitMenus` 语义）。
+- **Pro 风格**：对齐 Ant Design Pro 后台壳（顶栏 Logo / 浅色侧栏 / 灰底内容卡片）。
+
 > 注意：采用 flex 布局实现，请注意[浏览器兼容性](http://caniuse.com/#search=flex)问题。
 
 ## API

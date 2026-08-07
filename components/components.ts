@@ -49,13 +49,18 @@ export { default as Comment } from './comment';
 export type { ConfigProviderProps } from './config-provider';
 export { default as ConfigProvider } from './config-provider';
 
-export type { DatePickerProps } from './date-picker';
+export type {
+  DatePickerProps,
+  YearQuarterMonthPickerProps,
+  YearQuarterMonthPeriodType,
+} from './date-picker';
 export {
   default as DatePicker,
   MonthPicker,
   WeekPicker,
   RangePicker,
   QuarterPicker,
+  YearQuarterMonthPicker,
 } from './date-picker';
 
 export type { DescriptionsProps } from './descriptions';
@@ -161,6 +166,8 @@ export { default as Row } from './row';
 
 export type { SelectProps } from './select';
 export { default as Select, SelectOptGroup, SelectOption } from './select';
+export type { PersonSelectProps, PersonOptionType } from './select/PersonSelect';
+export { default as PersonSelect } from './select/PersonSelect';
 
 export type {
   SkeletonProps,
@@ -184,6 +191,9 @@ export { default as Slider } from './slider';
 
 export type { SpaceProps } from './space';
 export { default as Space, Compact } from './space';
+
+export type { SplitterProps, PanelProps as SplitterPanelProps } from './splitter';
+export { default as Splitter, SplitterPanel } from './splitter';
 
 export type { SpinProps } from './spin';
 export { default as Spin } from './spin';

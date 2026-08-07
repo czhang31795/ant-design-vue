@@ -1,6 +1,7 @@
 <template>
   <demo-sort :cols="1">
     <Basic />
+    <CustomHeader />
     <Ajax />
     <Bordered />
     <Ellipsis />
@@ -12,6 +13,9 @@
     <FixedColumnsHeader />
     <FixedColumns />
     <FixedHeader />
+    <AutoHeight />
+    <VirtualList />
+    <VirtualTree />
     <GroupingColumns />
     <MultipleSorter />
     <NestedTable />
@@ -25,6 +29,11 @@
     <RowSelection />
     <Sticky />
     <ResizableColumn />
+    <ResizableRow />
+    <VerticalLayout />
+    <DragSort />
+    <DragSortTree />
+    <DragSortVertical />
     <Size />
     <Stripe />
     <Summary />
@@ -37,6 +46,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import Ajax from './ajax.vue';
 import Basic from './basic.vue';
+import CustomHeader from './custom-header.vue';
 import Bordered from './bordered.vue';
 import ColspanRowspan from './colspan-rowspan.vue';
 import CustomFilterPanel from './custom-filter-panel.vue';
@@ -47,6 +57,9 @@ import Expand from './expand.vue';
 import FixedColumnsHeader from './fixed-columns-header.vue';
 import FixedColumns from './fixed-columns.vue';
 import FixedHeader from './fixed-header.vue';
+import AutoHeight from './auto-height.vue';
+import VirtualList from './virtual-list.vue';
+import VirtualTree from './virtual-tree.vue';
 import GroupingColumns from './grouping-columns.vue';
 import Head from './head.vue';
 import NestedTable from './nested-table.vue';
@@ -62,6 +75,11 @@ import MultipleSorter from './multiple-sorter.vue';
 import Summary from './summary.vue';
 import Sticky from './sticky.vue';
 import ResizableColumn from './resizable-column.vue';
+import ResizableRow from './resizable-row.vue';
+import VerticalLayout from './vertical-layout.vue';
+import DragSort from './drag-sort.vue';
+import DragSortTree from './drag-sort-tree.vue';
+import DragSortVertical from './drag-sort-vertical.vue';
 import Responsive from './responsive.vue';
 import filterSearchVue from './filter-search.vue';
 import filterInTreeVue from './filter-in-tree.vue';
@@ -76,6 +94,7 @@ export default defineComponent({
     filterInTreeVue,
     filterSearchVue,
     Basic,
+    CustomHeader,
     Ellipsis,
     Ajax,
     Bordered,
@@ -88,6 +107,9 @@ export default defineComponent({
     FixedColumnsHeader,
     FixedColumns,
     FixedHeader,
+    AutoHeight,
+    VirtualList,
+    VirtualTree,
     GroupingColumns,
     Head,
     NestedTable,
@@ -102,6 +124,11 @@ export default defineComponent({
     Summary,
     Sticky,
     ResizableColumn,
+    ResizableRow,
+    VerticalLayout,
+    DragSort,
+    DragSortTree,
+    DragSortVertical,
     Responsive,
   },
 });

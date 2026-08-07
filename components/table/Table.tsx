@@ -46,7 +46,16 @@ import { initDefaultProps } from '../_util/props-util';
 import { useProvideSlots, useProvideTableContext } from './context';
 import type { ContextSlots } from './context';
 import useColumns from './hooks/useColumns';
-import { convertChildrenToColumns } from './util';
+import useTranspose from './hooks/useTranspose';
+import { convertChildrenToColumns, getColumnKey } from './util';
+import {
+  areSiblingKeys,
+  hasGroupColumns,
+  reorderByKeys,
+  reorderTreeSiblings,
+  findSiblingInfo,
+} from './utils/dragSort';
+import type { DragPlace } from './context';
 
 import {
   stringType,
@@ -115,6 +124,25 @@ export interface TableProps<RecordType = DefaultRecordType>
   scroll?: RcTableProps<RecordType>['scroll'] & {
     scrollToFirstRowOnChange?: boolean;
   };
+  /** Enable vertical virtual scroll with fixed row height */
+  virtual?: boolean;
+  /** Fixed row height used by virtual scroll */
+  virtualItemHeight?: number;
+  /** Enable column resize for all numeric-width columns */
+  resizable?: boolean;
+  /** Enable row height drag resize (not compatible with virtual) */
+  rowResizable?: boolean;
+  /** Controlled row heights map, keyed by rowKey */
+  rowHeights?: Record<string, number>;
+  /** Minimum row height when rowResizable */
+  minRowHeight?: number;
+  /** Table layout: vertical = transposed field/record view */
+  layout?: 'horizontal' | 'vertical';
+  onResizeRow?: (height: number, record: DefaultRecordType, index: number) => void;
+  /** Enable column drag reorder */
+  columnDraggable?: boolean;
+  /** Enable row drag reorder (not compatible with virtual) */
+  rowDraggable?: boolean;
   sortDirections?: SortOrder[];
   showSorterTooltip?: boolean | TooltipProps;
 }
@@ -179,6 +207,16 @@ export const tableProps = () => {
         scrollToFirstRowOnChange?: boolean;
       }
     >(),
+    virtual: booleanType(),
+    virtualItemHeight: Number,
+    resizable: booleanType(),
+    rowResizable: booleanType(),
+    rowHeights: objectType<Record<string, number>>(),
+    minRowHeight: Number,
+    layout: stringType<'horizontal' | 'vertical'>(),
+    onResizeRow: functionType<(height: number, record: DefaultRecordType, index: number) => void>(),
+    columnDraggable: booleanType(),
+    rowDraggable: booleanType(),
     sortDirections: arrayType<SortOrder[]>(),
     showSorterTooltip: someType<boolean | TooltipProps>([Boolean, Object], true),
     transformCellText: functionType<TableProps['transformCellText']>(),
@@ -205,11 +243,6 @@ const InternalTable = defineComponent({
     );
 
     useProvideSlots(computed(() => props.contextSlots));
-    useProvideTableContext({
-      onResizeColumn: (w, col) => {
-        emit('resizeColumn', w, col);
-      },
-    });
     const screens = useBreakpoint();
 
     const mergedColumns = computed(() => {
@@ -273,6 +306,12 @@ const InternalTable = defineComponent({
 
       return record => (record as any)?.[props.rowKey as string];
     });
+
+    const isVerticalLayout = computed(() => props.layout === 'vertical');
+    const effectiveRowResizable = computed(
+      () => !!props.rowResizable && !props.virtual && !isVerticalLayout.value,
+    );
+    const verticalColumnWidths = reactive<Record<string, number>>({});
 
     const [getRecordByKey] = useLazyKVMap(rawData, childrenColumnName, getRowKey);
 
@@ -439,6 +478,213 @@ const InternalTable = defineComponent({
       return mergedData.value.slice((current - 1) * pageSize, current * pageSize);
     });
 
+    const transposed = useTranspose(isVerticalLayout, mergedColumns, pageData, getRowKey, {
+      prefixCls,
+      fieldColumnWidth: 120,
+      recordColumnWidth: 160,
+      columnWidths: computed(() => verticalColumnWidths),
+    });
+
+    const renderColumns = computed(() =>
+      isVerticalLayout.value ? transposed.value.columns : mergedColumns.value,
+    );
+
+    const renderData = computed(() =>
+      isVerticalLayout.value ? transposed.value.dataSource : pageData.value,
+    );
+
+    const hasGroupedColumns = computed(() => hasGroupColumns(mergedColumns.value as any[]));
+    const effectiveColumnDraggable = computed(
+      () => !!props.columnDraggable && !hasGroupedColumns.value,
+    );
+    const effectiveRowDraggable = computed(() => !!props.rowDraggable && !props.virtual);
+
+    const getUserColumnKey = (column: ColumnType, index: number) =>
+      getColumnKey(column, `col-${index}`);
+
+    const emitDragColumn = (
+      fromIndex: number,
+      toIndex: number,
+      column: ColumnType,
+      columns: ColumnsType,
+    ) => {
+      emit('dragColumn', { fromIndex, toIndex, column, columns });
+    };
+
+    const emitDragRow = (
+      fromIndex: number,
+      toIndex: number,
+      record: DefaultRecordType,
+      dataSource: DefaultRecordType[],
+    ) => {
+      emit('dragRow', { fromIndex, toIndex, record, dataSource });
+    };
+
+    const onDragColumnSort = (
+      fromKey: string | number,
+      toKey: string | number,
+      place: DragPlace,
+    ) => {
+      if (!effectiveColumnDraggable.value && !isVerticalLayout.value) {
+        return;
+      }
+      // Vertical: dragging record columns => reorder dataSource (dragRow)
+      if (isVerticalLayout.value) {
+        if (!effectiveRowDraggable.value && !props.rowDraggable) {
+          // still allow when rowDraggable or columnDraggable — vertical record drag maps to rows
+        }
+        if (!props.columnDraggable && !props.rowDraggable) {
+          return;
+        }
+        const result = reorderByKeys(
+          pageData.value.slice(),
+          fromKey,
+          toKey,
+          place,
+          (record, index) => getRowKey.value(record, index),
+        );
+        if (!result) {
+          return;
+        }
+        emitDragRow(result.fromIndex, result.toIndex, result.item, result.list);
+        return;
+      }
+
+      if (!effectiveColumnDraggable.value) {
+        return;
+      }
+      const cols = mergedColumns.value.slice() as ColumnType[];
+      const result = reorderByKeys(cols, fromKey, toKey, place, (column, index) =>
+        getUserColumnKey(column, index),
+      );
+      if (!result) {
+        return;
+      }
+      emitDragColumn(result.fromIndex, result.toIndex, result.item, result.list);
+    };
+
+    const onDragRowSort = (fromKey: string | number, toKey: string | number, place: DragPlace) => {
+      // Vertical: dragging field rows => reorder columns (dragColumn)
+      if (isVerticalLayout.value) {
+        if (!props.columnDraggable && !props.rowDraggable) {
+          return;
+        }
+        const cols = mergedColumns.value.slice() as ColumnType[];
+        const result = reorderByKeys(cols, fromKey, toKey, place, (column, index) =>
+          getUserColumnKey(column, index),
+        );
+        if (!result) {
+          return;
+        }
+        emitDragColumn(result.fromIndex, result.toIndex, result.item, result.list);
+        return;
+      }
+
+      if (!effectiveRowDraggable.value) {
+        return;
+      }
+
+      if (expandType.value === 'nest') {
+        const fromInfo = findSiblingInfo(
+          rawData.value as DefaultRecordType[],
+          fromKey,
+          getRowKey.value,
+          childrenColumnName.value,
+        );
+        const toInfo = findSiblingInfo(
+          rawData.value as DefaultRecordType[],
+          toKey,
+          getRowKey.value,
+          childrenColumnName.value,
+        );
+        const next = reorderTreeSiblings(
+          rawData.value as DefaultRecordType[],
+          fromKey,
+          toKey,
+          getRowKey.value,
+          childrenColumnName.value,
+          place,
+        );
+        if (!next || !fromInfo || !toInfo) {
+          return;
+        }
+        let targetIndex = toInfo.index + (place === 'after' ? 1 : 0);
+        if (fromInfo.index < targetIndex) {
+          targetIndex -= 1;
+        }
+        emitDragRow(fromInfo.index, targetIndex, fromInfo.siblings[fromInfo.index], next);
+        return;
+      }
+
+      const result = reorderByKeys(
+        (rawData.value as DefaultRecordType[]).slice(),
+        fromKey,
+        toKey,
+        place,
+        (record, index) => getRowKey.value(record, index),
+      );
+      if (!result) {
+        return;
+      }
+      emitDragRow(result.fromIndex, result.toIndex, result.item, result.list);
+    };
+
+    const canDropRow = (fromKey: string | number, toKey: string | number) => {
+      if (isVerticalLayout.value) {
+        return true;
+      }
+      if (expandType.value !== 'nest') {
+        return true;
+      }
+      return areSiblingKeys(
+        rawData.value as DefaultRecordType[],
+        fromKey,
+        toKey,
+        getRowKey.value,
+        childrenColumnName.value,
+      );
+    };
+
+    useProvideTableContext({
+      onResizeColumn: (w, col) => {
+        if (isVerticalLayout.value && col?.key != null) {
+          verticalColumnWidths[String(col.key)] = w;
+        }
+        emit('resizeColumn', w, col);
+      },
+      onResizeRow: (height, record, index) => {
+        emit('resizeRow', height, record, index);
+      },
+      onDragColumnSort,
+      onDragRowSort,
+      canDropRow,
+      get resizable() {
+        return !!props.resizable;
+      },
+      get rowResizable() {
+        return effectiveRowResizable.value;
+      },
+      get rowHeights() {
+        return props.rowHeights || {};
+      },
+      get minRowHeight() {
+        return props.minRowHeight ?? 39;
+      },
+      get columnDraggable() {
+        // Vertical: column headers are record columns — enable when either drag flag is on
+        if (isVerticalLayout.value) {
+          return !!(props.columnDraggable || props.rowDraggable);
+        }
+        return effectiveColumnDraggable.value;
+      },
+      get rowDraggable() {
+        if (isVerticalLayout.value) {
+          return !!(props.columnDraggable || props.rowDraggable);
+        }
+        return effectiveRowDraggable.value;
+      },
+    });
+
     watchEffect(
       () => {
         nextTick(() => {
@@ -587,44 +833,133 @@ const InternalTable = defineComponent({
         };
       }
 
+      const isAutoHeight = props.scroll?.y === 'auto';
+      const mergedVirtualItemHeight =
+        props.virtualItemHeight ??
+        (mergedSize.value === 'small' ? 39 : mergedSize.value === 'middle' ? 47 : 54);
+
+      if (process.env.NODE_ENV !== 'production') {
+        if (props.virtual) {
+          devWarning(
+            mergedColumns.value.every(col => !(col as ColumnType).fixed),
+            'Table',
+            '`virtual` does not support fixed columns currently.',
+          );
+        }
+        if (props.virtual && props.rowResizable) {
+          devWarning(false, 'Table', '`rowResizable` is ignored when `virtual` is enabled.');
+        }
+        if (props.virtual && props.rowDraggable) {
+          devWarning(false, 'Table', '`rowDraggable` is ignored when `virtual` is enabled.');
+        }
+        if (props.columnDraggable && hasGroupedColumns.value) {
+          devWarning(
+            false,
+            'Table',
+            '`columnDraggable` does not support grouped columns (`column.children`).',
+          );
+        }
+        if (isVerticalLayout.value) {
+          devWarning(!props.virtual, 'Table', '`layout="vertical"` does not support `virtual`.');
+          devWarning(
+            !props.rowSelection,
+            'Table',
+            '`layout="vertical"` does not support `rowSelection`.',
+          );
+          devWarning(
+            !props.expandedRowRender,
+            'Table',
+            '`layout="vertical"` does not support `expandedRowRender`.',
+          );
+          devWarning(
+            !props.rowResizable,
+            'Table',
+            '`layout="vertical"` does not support `rowResizable`.',
+          );
+          devWarning(
+            expandType.value !== 'nest',
+            'Table',
+            '`layout="vertical"` does not support tree data.',
+          );
+        }
+      }
+
       const wrapperClassNames = classNames(
         `${prefixCls.value}-wrapper`,
         {
           [`${prefixCls.value}-wrapper-rtl`]: direction.value === 'rtl',
+          [`${prefixCls.value}-wrapper-auto-height`]: isAutoHeight,
+          [`${prefixCls.value}-wrapper-vertical`]: isVerticalLayout.value,
+          [`${prefixCls.value}-wrapper-resizable`]: !!props.resizable || isVerticalLayout.value,
+          [`${prefixCls.value}-wrapper-row-resizable`]: effectiveRowResizable.value,
         },
         attrs.class,
         hashId.value,
       );
-      const tableProps = omit(props, ['columns']);
+      const tableProps = omit(props, [
+        'columns',
+        'resizable',
+        'rowResizable',
+        'rowHeights',
+        'minRowHeight',
+        'layout',
+        'onResizeRow',
+        'columnDraggable',
+        'rowDraggable',
+      ]);
+      // Prefer fixed layout for resizable / vertical so column widths stay predictable
+      const mergedTableLayout =
+        props.tableLayout ||
+        (props.resizable || isVerticalLayout.value ? 'fixed' : props.tableLayout);
+      // max-content keeps table width = sum(columns), so drag delta maps 1:1 to column width
+      const mergedScroll =
+        props.resizable || isVerticalLayout.value
+          ? { ...(props.scroll || {}), x: 'max-content' as const }
+          : props.scroll;
       return wrapSSR(
-        <div class={wrapperClassNames} style={attrs.style as CSSProperties}>
+        <div
+          class={wrapperClassNames}
+          style={[
+            attrs.style as CSSProperties,
+            isAutoHeight
+              ? ({ height: '100%', display: 'flex', flexDirection: 'column' } as CSSProperties)
+              : null,
+          ]}
+        >
           <Spin spinning={false} {...spinProps}>
             {topPaginationNode}
             <RcTable
               {...attrs}
               {...tableProps}
-              expandedRowKeys={props.expandedRowKeys as any}
-              defaultExpandedRowKeys={props.defaultExpandedRowKeys as any}
-              expandIconColumnIndex={expandIconColumnIndex.value}
+              tableLayout={mergedTableLayout}
+              scroll={mergedScroll}
+              expandedRowKeys={isVerticalLayout.value ? undefined : (props.expandedRowKeys as any)}
+              defaultExpandedRowKeys={
+                isVerticalLayout.value ? undefined : (props.defaultExpandedRowKeys as any)
+              }
+              expandIconColumnIndex={isVerticalLayout.value ? -1 : expandIconColumnIndex.value}
               indentSize={indentSize.value}
               expandIcon={expandIcon}
-              columns={mergedColumns.value}
+              columns={renderColumns.value}
               direction={direction.value}
               prefixCls={prefixCls.value}
+              virtual={isVerticalLayout.value ? false : props.virtual}
+              virtualItemHeight={mergedVirtualItemHeight}
               class={classNames({
                 [`${prefixCls.value}-middle`]: mergedSize.value === 'middle',
                 [`${prefixCls.value}-small`]: mergedSize.value === 'small',
                 [`${prefixCls.value}-bordered`]: bordered,
-                [`${prefixCls.value}-empty`]: rawData.value.length === 0,
+                [`${prefixCls.value}-empty`]: renderData.value.length === 0,
+                [`${prefixCls.value}-vertical-layout`]: isVerticalLayout.value,
               })}
-              data={pageData.value}
-              rowKey={getRowKey.value}
-              rowClassName={internalRowClassName}
+              data={renderData.value}
+              rowKey={isVerticalLayout.value ? 'key' : getRowKey.value}
+              rowClassName={isVerticalLayout.value ? undefined : internalRowClassName}
               // Internal
               internalHooks={INTERNAL_HOOKS}
               internalRefs={internalRefs}
               onUpdateInternalRefs={updateInternalRefs}
-              transformColumns={transformColumns}
+              transformColumns={isVerticalLayout.value ? undefined : transformColumns}
               transformCellText={transformCellText.value}
               v-slots={{
                 ...slots,

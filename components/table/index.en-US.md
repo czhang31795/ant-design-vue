@@ -101,6 +101,15 @@ Specify `dataSource` of Table as an array of data.
 | rowKey | Row's unique key, could be a string or function that returns a string | string\|Function(record, index):string | `key` |  |
 | rowSelection | Row selection [config](#rowselection) | object | null |  |
 | scroll | Whether the table can be scrollable, [config](#scroll) | object | - |  |
+| virtual | Enable vertical virtual scroll (fixed row height). Requires `scroll.y`. Fixed columns, dynamic row height and cell merge are not supported yet | boolean | - |  |
+| virtualItemHeight | Row height for virtual scroll. Inferred from `size` when omitted | number | - |  |
+| resizable | Table-level column resize for leaf columns with numeric `width`; set column `resizable: false` to opt out | boolean | - |  |
+| rowResizable | Enable row height drag resize (not compatible with `virtual`); use controlled `rowHeights` | boolean | - |  |
+| rowHeights | Row height map keyed by `rowKey` | Record&lt;string, number&gt; | - |  |
+| minRowHeight | Minimum height when row resizing | number | 39 |  |
+| columnDraggable | Enable column drag reorder (controlled via `@dragColumn`). Grouped columns are not supported | boolean | - |  |
+| rowDraggable | Enable row drag reorder (controlled via `@dragRow`). Not compatible with `virtual`; tree data only supports sibling reorder | boolean | - |  |
+| layout | `vertical` transposes the table (fields on the left, each column is a record). Not supported with virtual / tree / rowSelection / rowResizable / expandedRowRender. In vertical mode, dragging record columns reorders rows and dragging field rows reorders columns | `horizontal` \| `vertical` | `horizontal` |  |
 | showExpandColumn | Show expand column | boolean | true | 3.0 |
 | showHeader | Whether to show table header | boolean | `true` |  |
 | showSorterTooltip | The header show next sorter direction tooltip. It will be set as the property of Tooltip if its type is object | boolean \| [Tooltip props](/components/tooltip/#api) | true | 3.0 |
@@ -119,7 +128,10 @@ Specify `dataSource` of Table as an array of data.
 | change | Callback executed when pagination, filters or sorter is changed | Function(pagination, filters, sorter, { action, currentDataSource }) |  |
 | expand | Callback executed when the row expand icon is clicked | Function(expanded, record) |  |
 | expandedRowsChange | Callback executed when the expanded rows change | Function(expandedRows) |  |
-| resizeColumn | Triggered when the column is dragged | Function(width, column) |  |
+| resizeColumn | Triggered when a column is resized | Function(width, column) |
+| dragColumn | Triggered when column reorder finishes; write back `columns` | Function({ fromIndex, toIndex, column, columns }) |
+| dragRow | Triggered when row reorder finishes; write back `dataSource` (full tree for nest data) | Function({ fromIndex, toIndex, record, dataSource }) |  |
+| resizeRow | Triggered when a row height is resized | Function(height, record, index) |  |
 
 #### customRow usage
 
@@ -176,7 +188,8 @@ One of the Table `columns` prop for describing the table's columns, Column has t
 | key | Unique key of this column, you can ignore this prop if you've set a unique `dataIndex` | string | - |  |
 | maxWidth | Drag the maximum width of the column, it will be affected by the automatic adjustment and distribution of the table width | number | - | 3.0 |
 | minWidth | Drag the minimum width of the column, it will be affected by the automatic adjustment and distribution of the table width | number | 50 | 3.0 |
-| resizable | Whether the width can be adjusted by dragging, at this time width must be number type | boolean | - | 3.0 |
+| resizable | Whether the width can be adjusted by dragging; `width` must be a number. Table-level `resizable` can enable this for all numeric-width columns | boolean | - | 3.0 |
+| draggable | Whether this column can be drag-reordered when table `columnDraggable` is enabled | boolean | - |  |
 | responsive | The list of breakpoints at which to display this column. Always visible if not set. | [Breakpoint](#breakpoint)\[] | - | 3.0 |
 | rowScope | Set scope attribute for all cells in this column | `row` \| `rowgroup` | - | 4.0 |
 | sortDirections | supported sort way, could be `'ascend'`, `'descend'` | Array | `['ascend', 'descend']` | 1.5.0 |
@@ -238,7 +251,7 @@ Properties for row selection.
 | --- | --- | --- | --- |
 | scrollToFirstRowOnChange | Whether to scroll to the top of the table when paging, sorting, filtering changes | boolean | - |
 | x | Set horizontal scrolling, can also be used to specify the width of the scroll area, could be number, percent value, true and ['max-content'](https://developer.mozilla.org/zh-CN/docs/Web/CSS/width#max-content) | string \| number \| true | - |
-| y | Set vertical scrolling, can also be used to specify the height of the scroll area, could be string or number | string \| number | - |
+| y | Set vertical scrolling, can also be used to specify the height of the scroll area; use `auto` to fill the remaining parent height (parent must have a definite height) | string \| number \| `auto` | - |
 
 ### selection
 

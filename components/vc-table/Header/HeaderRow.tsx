@@ -1,6 +1,7 @@
 import { defineComponent } from 'vue';
 import Cell from '../Cell';
 import { useInjectTable } from '../context/TableContext';
+import { useInjectTableContext } from '../../table/context';
 import type {
   CellType,
   StickyOffsets,
@@ -12,6 +13,7 @@ import type {
 import { getCellFixedInfo } from '../utils/fixUtil';
 import { getColumnsKey } from '../utils/valueUtil';
 import DragHandleVue from './DragHandle';
+import ColumnDragHandle, { isColumnDraggable } from './ColumnDragHandle';
 
 export interface RowProps<RecordType = DefaultRecordType> {
   cells: readonly CellType<RecordType>[];
@@ -36,6 +38,7 @@ export default defineComponent<RowProps>({
   ] as any,
   setup(props: RowProps) {
     const tableContext = useInjectTable();
+    const tableResizeContext = useInjectTableContext();
     return () => {
       const { prefixCls, direction } = tableContext;
       const {
@@ -70,28 +73,51 @@ export default defineComponent<RowProps>({
               direction,
             );
 
-            let additionalProps;
+            let additionalProps: Record<string, any> = {};
             if (column && column.customHeaderCell) {
-              additionalProps = cell.column.customHeaderCell(column);
+              additionalProps = {
+                ...additionalProps,
+                ...(cell.column.customHeaderCell(column) || {}),
+              };
             }
             const col: ColumnType<any> = column;
+            const colKey = columnsKey[cellIndex];
+            const canColumnDrag = !!tableResizeContext.columnDraggable && isColumnDraggable(col);
+            additionalProps = {
+              ...additionalProps,
+              'data-col-key': colKey != null ? String(colKey) : undefined,
+              'data-col-draggable': canColumnDrag ? 'true' : 'false',
+            };
+            const canResize =
+              col.resizable === true ||
+              (tableResizeContext.resizable &&
+                col.resizable !== false &&
+                typeof col.width === 'number');
             return (
               <Cell
                 {...cell}
                 cellType="header"
+                class={column?.className}
                 ellipsis={column.ellipsis}
                 align={column.align}
                 component={CellComponent}
                 prefixCls={prefixCls}
-                key={columnsKey[cellIndex]}
+                key={colKey}
                 {...fixedInfo}
                 additionalProps={additionalProps}
                 rowType="header"
                 column={column}
                 v-slots={{
-                  default: () => column.title,
+                  default: () => (
+                    <>
+                      {canColumnDrag ? (
+                        <ColumnDragHandle prefixCls={prefixCls} column={col} columnKey={colKey} />
+                      ) : null}
+                      {column.title}
+                    </>
+                  ),
                   dragHandle: () =>
-                    col.resizable ? (
+                    canResize ? (
                       <DragHandleVue
                         prefixCls={prefixCls}
                         width={col.width as number}

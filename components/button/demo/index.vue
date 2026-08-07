@@ -1,6 +1,7 @@
 <template>
   <demo-sort>
     <basic />
+    <color-variant />
     <disabled />
     <ghost />
     <icon />
@@ -13,6 +14,7 @@
 </template>
 <script lang="ts">
 import Basic from './basic.vue';
+import ColorVariant from './color-variant.vue';
 import Disabled from './disabled.vue';
 import Ghost from './ghost.vue';
 import Icon from './icon.vue';
@@ -30,6 +32,7 @@ export default defineComponent({
   US,
   components: {
     Basic,
+    ColorVariant,
     Disabled,
     Ghost,
     Icon,

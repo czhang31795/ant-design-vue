@@ -205,7 +205,7 @@ const routes = [
         meta: { enTitle: 'Change Log', title: '更新日志', category: 'docs' },
         component: () => import('../../../CHANGELOG.en-US.md'),
       },
-      { path: '', redirect: '/docs/vue/introduce/' },
+      { path: '', redirect: '/docs/vue/introduce-cn/' },
     ],
   },
   {
@@ -217,7 +217,7 @@ const routes = [
     component: () => import('../views/theme-editor/index.vue'),
   },
   { path: '/debugger', component: () => import('../../debugger') },
-  { path: '/:lang(.*)', redirect: '/components/overview' },
+  { path: '/:lang(.*)', redirect: '/components/overview-cn' },
 ];
 
 export default createRouter({

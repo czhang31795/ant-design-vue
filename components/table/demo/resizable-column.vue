@@ -8,17 +8,19 @@ title:
 
 ## zh-CN
 
-设置 resizable 开启拖动列
+设置表级 `resizable` 后，所有带数字 `width` 的列可拖拽调宽；也可在列上单独设置 `resizable`。列级 `resizable: false` 可关闭。
 
-鼠标 hover 到 Name、 Age 分割线上体验一下吧
+鼠标 hover 到列分割线上拖拽体验。
 
 ## en-US
 
-set resizable for drag column
+Set table-level `resizable` to enable drag resize for all columns with numeric `width`. Per-column `resizable` still works; set `resizable: false` to opt out.
+
+Hover the column border and drag to resize.
 </docs>
 
 <template>
-  <a-table :columns="columns" :data-source="data" @resizeColumn="handleResizeColumn">
+  <a-table resizable :columns="columns" :data-source="data" @resizeColumn="handleResizeColumn">
     <template #headerCell="{ column }">
       <template v-if="column.key === 'name'">
         <span>
@@ -50,11 +52,6 @@ set resizable for drag column
           <a>Invite 一 {{ record.name }}</a>
           <a-divider type="vertical" />
           <a>Delete</a>
-          <a-divider type="vertical" />
-          <a class="ant-dropdown-link">
-            More actions
-            <down-outlined />
-          </a>
         </span>
       </template>
     </template>
@@ -62,7 +59,7 @@ set resizable for drag column
 </template>
 <script lang="ts" setup>
 import { ref } from 'vue';
-import { SmileOutlined, DownOutlined } from '@ant-design/icons-vue';
+import { SmileOutlined } from '@ant-design/icons-vue';
 import type { TableColumnsType } from 'ant-design-vue';
 
 const data = [
@@ -93,14 +90,12 @@ const columns = ref<TableColumnsType>([
   {
     dataIndex: 'name',
     key: 'name',
-    resizable: true,
     width: 150,
   },
   {
     title: 'Age',
     dataIndex: 'age',
     key: 'age',
-    resizable: true,
     width: 100,
     minWidth: 100,
     maxWidth: 200,
@@ -109,15 +104,19 @@ const columns = ref<TableColumnsType>([
     title: 'Address',
     dataIndex: 'address',
     key: 'address',
+    width: 200,
   },
   {
     title: 'Tags',
     key: 'tags',
     dataIndex: 'tags',
+    width: 180,
+    resizable: false,
   },
   {
     title: 'Action',
     key: 'action',
+    width: 160,
   },
 ]);
 function handleResizeColumn(w, col) {

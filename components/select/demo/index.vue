@@ -16,6 +16,7 @@
     <HideSelected />
     <CustomDropdownMenu />
     <OptionLabelProp />
+    <SelectPerson />
     <BigData />
     <fieldNamesVue />
     <placementVue />
@@ -38,6 +39,7 @@ import Suffix from './suffix.vue';
 import HideSelected from './hide-selected.vue';
 import CustomDropdownMenu from './custom-dropdown-menu.vue';
 import OptionLabelProp from './option-label-prop.vue';
+import SelectPerson from './select-person.vue';
 import BigData from './big-data.vue';
 import Responsive from './responsive.vue';
 import fieldNamesVue from './field-names.vue';
@@ -68,6 +70,7 @@ export default defineComponent({
     HideSelected,
     CustomDropdownMenu,
     OptionLabelProp,
+    SelectPerson,
     BigData,
     Responsive,
   },

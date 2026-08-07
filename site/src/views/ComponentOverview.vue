@@ -99,41 +99,18 @@ export default defineComponent({
     }
 
     const menuItems = computed(() => {
-      return [
-        {
-          children: [
-            {
-              category: 'Components',
-              cols: 1,
-              cover: 'https://gw.alipayobjects.com/zos/alicdn/f-SbcX2Lx/Table.svg',
-              coverDark: 'https://gw.alipayobjects.com/zos/alicdn/f-SbcX2Lx/Table.svg',
-              path: 'https://surelyvue.com/',
-              subtitle: '更强大的表格',
-              title: 'Surely Table',
-              type: 'Advanced And Powerful',
-              target: '_blank',
-            },
-          ],
-          enTitle: 'Advanced And Powerful',
-          title: '更强大',
-          order: 0,
-        },
-      ].concat(
-        dataSource.value
-          .filter(i => i.order > -1)
-          .map(group => {
-            const components = group.children.filter(
-              (component: any) =>
-                !search.value.trim() ||
-                component.title.toLowerCase().includes(search.value.trim().toLowerCase()) ||
-                (component.subtitle || '')
-                  .toLowerCase()
-                  .includes(search.value.trim().toLowerCase()),
-            );
-            return { ...group, children: components };
-          })
-          .filter(i => i.children.length),
-      );
+      return dataSource.value
+        .filter(i => i.order > -1)
+        .map(group => {
+          const components = group.children.filter(
+            (component: any) =>
+              !search.value.trim() ||
+              component.title.toLowerCase().includes(search.value.trim().toLowerCase()) ||
+              (component.subtitle || '').toLowerCase().includes(search.value.trim().toLowerCase()),
+          );
+          return { ...group, children: components };
+        })
+        .filter(i => i.children.length);
     });
     onMounted(() => {
       inputRef.value.focus();

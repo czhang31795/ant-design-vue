@@ -12,18 +12,6 @@
           {{ isZhCN ? '组件总览' : 'Components Overview' }}
         </router-link>
       </a-menu-item>
-      <a-menu-item-group v-if="isZhCN" key="advanced" title="高级组件">
-        <a-menu-item key="surely-table">
-          <a
-            href="https://www.surelyvue.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            style="position: relative"
-          >
-            Surely Table
-          </a>
-        </a-menu-item>
-      </a-menu-item-group>
       <template v-for="m in menus">
         <template v-if="m.children">
           <a-menu-item-group :key="m.order" :title="isZhCN ? m.title : m.enTitle">

@@ -4,11 +4,13 @@ import type { ExtractPropTypes, PropType } from 'vue';
 import type { SizeType } from '../config-provider';
 import { eventType } from '../_util/type';
 import type { MouseEventHandler } from '../_util/EventInterface';
+import type { ButtonColorType, ButtonVariantType } from './buttonHelpers';
 
 export type ButtonType = 'link' | 'default' | 'primary' | 'ghost' | 'dashed' | 'text';
 export type ButtonShape = 'default' | 'circle' | 'round';
 
 export type ButtonHTMLType = 'submit' | 'button' | 'reset';
+export type { ButtonColorType, ButtonVariantType };
 
 export type LegacyButtonType = ButtonType | 'danger';
 export function convertLegacyProps(type?: LegacyButtonType): ButtonProps {
@@ -21,6 +23,8 @@ export function convertLegacyProps(type?: LegacyButtonType): ButtonProps {
 export const buttonProps = () => ({
   prefixCls: String,
   type: String as PropType<ButtonType>,
+  color: String as PropType<ButtonColorType>,
+  variant: String as PropType<ButtonVariantType>,
   htmlType: { type: String as PropType<ButtonHTMLType>, default: 'button' },
   shape: { type: String as PropType<ButtonShape> },
   size: {

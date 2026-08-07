@@ -106,6 +106,15 @@ coverDark: https://mdn.alipayobjects.com/huamei_7uahnr/afts/img/A*Sv8XQ50NB40AAA
 | rowKey | 表格行 key 的取值，可以是字符串或一个函数 | string\|Function(record):string | 'key' |  |
 | rowSelection | 列表项是否可选择，[配置项](#rowselection) | object | null |  |
 | scroll | 表格是否可滚动，也可以指定滚动区域的宽、高，[配置项](#scroll) | object | - |  |
+| virtual | 开启纵向虚拟滚动（固定行高），需配合 `scroll.y`。暂不支持固定列、动态行高、单元格合并 | boolean | - |  |
+| virtualItemHeight | 虚拟滚动的行高，不传时按 `size` 推导 | number | - |  |
+| resizable | 表级开启列宽拖拽：所有 `width` 为 number 的叶子列可拖；列上 `resizable: false` 可关闭 | boolean | - |  |
+| rowResizable | 开启行高拖拽（与 `virtual` 互斥），需配合受控 `rowHeights` | boolean | - |  |
+| rowHeights | 行高映射，key 为 `rowKey` | Record&lt;string, number&gt; | - |  |
+| minRowHeight | 行高拖拽时的最小高度 | number | 39 |  |
+| columnDraggable | 开启列拖拽排序（受控，配合 `@dragColumn` 写回 `columns`）。不支持分组表头 | boolean | - |  |
+| rowDraggable | 开启行拖拽排序（受控，配合 `@dragRow` 写回 `dataSource`）。与 `virtual` 互斥；树形仅支持同级重排 | boolean | - |  |
+| layout | 表格布局，`vertical` 为转置竖表（左字段、右记录列）。暂不支持 virtual / 树形 / rowSelection / rowResizable / expandedRowRender。竖表下拖记录列=行序、拖字段行=列序 | `horizontal` \| `vertical` | `horizontal` |  |
 | showExpandColumn | 设置是否展示行展开列 | boolean | true | 3.0 |
 | showHeader | 是否显示表头 | boolean | true |  |
 | showSorterTooltip | 表头是否显示下一次排序的 tooltip 提示。当参数类型为对象时，将被设置为 Tooltip 的属性 | boolean \| [Tooltip props](/components/tooltip/) | true | 3.0 |
@@ -124,7 +133,10 @@ coverDark: https://mdn.alipayobjects.com/huamei_7uahnr/afts/img/A*Sv8XQ50NB40AAA
 | change | 分页、排序、筛选变化时触发 | Function(pagination, filters, sorter, { action, currentDataSource }) |
 | expand | 点击展开图标时触发 | Function(expanded, record) |
 | expandedRowsChange | 展开的行变化时触发 | Function(expandedRows) |
-| resizeColumn | 拖动列时触发 | Function(width, column) |
+| resizeColumn | 拖动列宽时触发 | Function(width, column) |
+| resizeRow | 拖动行高时触发 | Function(height, record, index) |
+| dragColumn | 列拖拽排序完成时触发，请写回 `columns` | Function({ fromIndex, toIndex, column, columns }) |
+| dragRow | 行拖拽排序完成时触发，请写回 `dataSource`；树形返回完整树 | Function({ fromIndex, toIndex, record, dataSource }) |
 
 #### customRow 用法
 
@@ -180,7 +192,8 @@ coverDark: https://mdn.alipayobjects.com/huamei_7uahnr/afts/img/A*Sv8XQ50NB40AAA
 | key | Vue 需要的 key，如果已经设置了唯一的 `dataIndex`，可以忽略这个属性 | string | - |  |
 | maxWidth | 拖动列最大宽度，会受到表格自动调整分配宽度影响 | number | - | 3.0 |
 | minWidth | 拖动列最小宽度，会受到表格自动调整分配宽度影响 | number | 50 | 3.0 |
-| resizable | 是否可拖动调整宽度，此时 width 必须是 number 类型 | boolean | - | 3.0 |
+| resizable | 是否可拖动调整宽度，此时 width 必须是 number 类型。表级也可设置 `resizable` 批量开启 | boolean | - | 3.0 |
+| draggable | 是否允许该列参与拖拽排序（需开启表级 `columnDraggable`），默认允许 | boolean | - |  |
 | responsive | 响应式 breakpoint 配置列表。未设置则始终可见。 | [Breakpoint](#breakpoint)\[] | - | 3.0 |
 | rowScope | 设置列范围 | `row` \| `rowgroup` | - | 4.0 |
 | showSorterTooltip | 表头显示下一次排序的 tooltip 提示, 覆盖 table 中 `showSorterTooltip` | boolean \| [Tooltip props](/components/tooltip/#api) | true |  |
@@ -243,7 +256,7 @@ type Breakpoint = 'xxxl' | 'xxl' | 'xl' | 'lg' | 'md' | 'sm' | 'xs';
 | --- | --- | --- | --- |
 | scrollToFirstRowOnChange | 当分页、排序、筛选变化后是否滚动到表格顶部 | boolean | - |
 | x | 设置横向滚动，也可用于指定滚动区域的宽，可以设置为像素值，百分比，true 和 ['max-content'](https://developer.mozilla.org/zh-CN/docs/Web/CSS/width#max-content) | string \| number \| true | - |
-| y | 设置纵向滚动，也可用于指定滚动区域的高，可以设置为像素值 | string \| number | - |
+| y | 设置纵向滚动，也可用于指定滚动区域的高，可以设置为像素值；设为 `auto` 时表格体自动填满父容器剩余高度（父容器需有确定高度） | string \| number \| `auto` | - |
 
 ### selection
 

@@ -93,7 +93,8 @@ export default defineComponent({
     watch(
       () => route.path,
       val => {
-        i18n.locale.value = isZhCN(val) ? 'zh-CN' : 'en-US';
+        // 默认中文；仅路径不以 -cn 结尾（且非根路径重定向前的瞬时状态除外）时用英文
+        i18n.locale.value = isZhCN(val) || val === '/' ? 'zh-CN' : 'en-US';
       },
       { immediate: true },
     );

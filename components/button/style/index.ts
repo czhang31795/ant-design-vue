@@ -2,6 +2,7 @@ import type { CSSInterpolation, CSSObject } from '../../_util/cssinjs';
 import type { FullToken, GenerateStyle } from '../../theme/internal';
 import { genComponentStyleHook, mergeToken } from '../../theme/internal';
 import genGroupStyle from './group';
+import genVariantStyle from './variant';
 import { genFocusStyle } from '../../style';
 import { genCompactItemStyle } from '../../style/compact-item';
 import { genCompactItemVerticalStyle } from '../../style/compact-item-vertical';
@@ -514,6 +515,9 @@ export default genComponentStyleHook('Button', token => {
 
     // Group (type, ghost, danger, disabled, loading)
     genTypeButtonStyle(buttonToken),
+
+    // color + variant (antd-react 5.21+)
+    genVariantStyle(buttonToken),
 
     // Button Group
     genGroupStyle(buttonToken),
