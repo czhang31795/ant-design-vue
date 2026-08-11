@@ -61,6 +61,10 @@ export {
   RangePicker,
   QuarterPicker,
   YearQuarterMonthPicker,
+  formatYearQuarterMonth,
+  YEAR_FORMAT,
+  QUARTER_FORMAT,
+  MONTH_FORMAT,
 } from './date-picker';
 
 export type { DescriptionsProps } from './descriptions';
@@ -99,13 +103,20 @@ export { default as Image, ImagePreviewGroup } from './image';
 export type { InputNumberProps } from './input-number';
 export { default as InputNumber } from './input-number';
 
-export type { LayoutProps, SiderProps } from './layout';
+export type {
+  LayoutProps,
+  SiderProps,
+  ProLayoutProps,
+  ProLayoutBreadcrumbItem,
+  ProLayoutMode,
+} from './layout';
 export {
   default as Layout,
   LayoutHeader,
   LayoutSider,
   LayoutFooter,
   LayoutContent,
+  ProLayout,
 } from './layout';
 
 export type { ListProps, ListItemProps, ListItemMetaProps } from './list';

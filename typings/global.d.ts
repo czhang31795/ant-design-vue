@@ -65,6 +65,8 @@ declare module 'vue' {
 
     ADatePicker: typeof import('ant-design-vue')['DatePicker'];
 
+    AYearQuarterMonthPicker: typeof import('ant-design-vue')['YearQuarterMonthPicker'];
+
     ADescriptions: typeof import('ant-design-vue')['Descriptions'];
 
     ADescriptionsItem: typeof import('ant-design-vue')['DescriptionsItem'];
@@ -110,6 +112,8 @@ declare module 'vue' {
     ALayoutHeader: typeof import('ant-design-vue')['LayoutHeader'];
 
     ALayoutSider: typeof import('ant-design-vue')['LayoutSider'];
+
+    AProLayout: typeof import('ant-design-vue')['ProLayout'];
 
     AList: typeof import('ant-design-vue')['List'];
 
@@ -168,6 +172,8 @@ declare module 'vue' {
     ASelectOptGroup: typeof import('ant-design-vue')['SelectOptGroup'];
 
     ASelectOption: typeof import('ant-design-vue')['SelectOption'];
+
+    APersonSelect: typeof import('ant-design-vue')['PersonSelect'];
 
     ASkeleton: typeof import('ant-design-vue')['Skeleton'];
 

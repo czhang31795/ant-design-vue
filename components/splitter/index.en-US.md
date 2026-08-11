@@ -47,6 +47,7 @@ Split panels freely by dragging.
 | max | Maximum size threshold | number \| string | - |  |
 | resizable | Whether drag resize is enabled | boolean | true |  |
 | collapsible | Quick collapse. Object form supports start/end sides and `showCollapsibleIcon` | boolean \| `{ start?: boolean; end?: boolean; showCollapsibleIcon?: boolean \| 'auto' }` | false |  |
+| destroyOnHidden | Destroy panel DOM when collapsed | boolean | false |  |
 
 `collapsible.showCollapsibleIcon`:
 

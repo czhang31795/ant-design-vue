@@ -9,51 +9,42 @@ title:
 
 ## zh-CN
 
-对应 ProComponents `layout="top"`：Logo 与菜单置于顶部，适合一级导航较少的业务系统。菜单数据与侧栏 / 混合模式一致，便于切换布局。
+使用 `ProLayout` 的 `layout="top"`：Logo 与菜单置于顶部，适合一级导航较少的业务系统。
+
+```ts
+import { ProLayout } from '@czxingyu/ant-design-vue';
+```
 
 ## en-US
 
-Corresponds to ProComponents `layout="top"`: logo and menu in the header, suitable when there are few top-level nav items. Menu data matches the side / mix presets.
+Use `ProLayout` with `layout="top"`: logo and menu in the header, suitable when there are few top-level nav items.
+
+```ts
+import { ProLayout } from '@czxingyu/ant-design-vue';
+```
 
 </docs>
 <template>
-  <a-layout class="nav-layout" style="min-height: 100vh">
-    <a-layout-header class="nav-header">
-      <div class="nav-logo">
-        <img src="https://gw.alipayobjects.com/zos/rmsportal/KDpgvguMpGfqaHPjicRK.svg" alt="logo" />
-        <span class="nav-logo-title">Ant Design Vue</span>
-      </div>
-      <a-menu
-        v-model:selectedKeys="selectedKeys"
-        theme="light"
-        mode="horizontal"
-        :items="menuData"
-        :style="{
-          flex: 1,
-          minWidth: 0,
-          lineHeight: '62px',
-          borderBottom: 'none',
-          background: 'transparent',
-        }"
-      />
-      <div class="nav-header-actions">Admin</div>
-    </a-layout-header>
-    <a-layout-content class="nav-content">
-      <a-breadcrumb style="margin-bottom: 16px">
-        <a-breadcrumb-item>首页</a-breadcrumb-item>
-        <a-breadcrumb-item>{{ currentLabel }}</a-breadcrumb-item>
-      </a-breadcrumb>
-      <div class="nav-content-inner">
-        <p>
-          当前模式：
-          <strong>top</strong>
-          （顶部导航）
-        </p>
-        <p>选中菜单：{{ selectedKeys[0] }} · {{ currentLabel }}</p>
-      </div>
-    </a-layout-content>
-    <a-layout-footer class="nav-footer">Ant Design Vue ©2024</a-layout-footer>
-  </a-layout>
+  <a-pro-layout
+    layout="top"
+    v-model:selected-keys="selectedKeys"
+    title="Ant Design Vue"
+    :menu="menuData"
+    :breadcrumb="[{ title: '首页' }, { title: currentLabel }]"
+  >
+    <template #headerRight>
+      <span>Admin</span>
+    </template>
+    <template #footer>Ant Design Vue ©2024</template>
+    <div class="demo-panel">
+      <p>
+        当前模式：
+        <strong>top</strong>
+        （顶部导航）
+      </p>
+      <p>选中菜单：{{ selectedKeys[0] }} · {{ currentLabel }}</p>
+    </div>
+  </a-pro-layout>
 </template>
 <script lang="ts" setup>
 import { computed, h, ref } from 'vue';
@@ -126,66 +117,9 @@ const currentLabel = computed(
 );
 </script>
 <style scoped>
-#components-layout-demo-nav-top .nav-layout {
-  background: #f5f6f8;
-}
-#components-layout-demo-nav-top .nav-header {
-  display: flex;
-  align-items: center;
-  padding-inline: 24px 40px;
-  height: 64px;
-  line-height: 64px;
-  background: #fff;
-  border-bottom: 1px solid #f0f0f0;
-}
-#components-layout-demo-nav-top .nav-logo {
-  display: flex;
-  align-items: center;
-  margin-right: 24px;
-  flex-shrink: 0;
-}
-#components-layout-demo-nav-top .nav-logo img {
-  width: 32px;
-  height: 32px;
-}
-#components-layout-demo-nav-top .nav-logo-title {
-  margin-left: 10px;
-  color: rgba(0, 0, 0, 0.88);
-  font-weight: 600;
-  font-size: 16px;
-}
-#components-layout-demo-nav-top .nav-header-actions {
-  margin-left: 16px;
-  color: rgba(0, 0, 0, 0.65);
-  flex-shrink: 0;
-}
-#components-layout-demo-nav-top .nav-content {
-  padding: 24px 48px;
-  background: #fff;
-}
-#components-layout-demo-nav-top .nav-content-inner {
+.demo-panel {
   min-height: 280px;
   padding: 24px;
   background: #fff;
-}
-#components-layout-demo-nav-top .nav-footer {
-  text-align: center;
-  background: #fff;
-}
-[data-theme='dark'] #components-layout-demo-nav-top .nav-layout {
-  background: #141414;
-}
-[data-theme='dark'] #components-layout-demo-nav-top .nav-header,
-[data-theme='dark'] #components-layout-demo-nav-top .nav-content,
-[data-theme='dark'] #components-layout-demo-nav-top .nav-content-inner,
-[data-theme='dark'] #components-layout-demo-nav-top .nav-footer {
-  background: #141414;
-}
-[data-theme='dark'] #components-layout-demo-nav-top .nav-header {
-  border-bottom-color: #303030;
-}
-[data-theme='dark'] #components-layout-demo-nav-top .nav-logo-title,
-[data-theme='dark'] #components-layout-demo-nav-top .nav-header-actions {
-  color: rgba(255, 255, 255, 0.85);
 }
 </style>

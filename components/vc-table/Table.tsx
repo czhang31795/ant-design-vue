@@ -795,7 +795,11 @@ export default defineComponent({
 
     const bodyColGroup = () => (
       <ColGroup
-        colWidths={flattenColumns.value.map(({ width }) => width)}
+        colWidths={flattenColumns.value.map((column, index) => {
+          // Prefer measured widths so body ColGroup matches FixedHolder header
+          const measured = colWidths.value[index];
+          return measured ?? column.width;
+        })}
         columns={flattenColumns.value}
       />
     );

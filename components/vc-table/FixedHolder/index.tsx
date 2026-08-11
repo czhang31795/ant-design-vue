@@ -153,18 +153,27 @@ export default defineComponent<FixedHeaderProps<DefaultRecordType>>({
       } = props;
       const { isSticky } = tableContext;
       const scrollBarSize = combinationScrollBarSize.value;
-      let headerMinWidth: string | number | undefined;
+      let headerTableWidth: string | undefined;
       if (!maxContentScroll && scrollXMinWidth != null && scrollXMinWidth !== '') {
         if (typeof scrollXMinWidth === 'number') {
-          headerMinWidth = scrollXMinWidth + scrollBarSize;
+          headerTableWidth = `${scrollXMinWidth + scrollBarSize}px`;
         } else if (
           typeof scrollXMinWidth === 'string' &&
           /^\d+(\.\d+)?(px)?$/.test(scrollXMinWidth)
         ) {
-          headerMinWidth = `${Number.parseFloat(scrollXMinWidth) + scrollBarSize}px`;
-        } else {
-          headerMinWidth = scrollXMinWidth;
+          headerTableWidth = `${Number.parseFloat(scrollXMinWidth) + scrollBarSize}px`;
         }
+      }
+      const tableStyle: Record<string, string> = {
+        tableLayout: 'fixed',
+        // Lock to body scroll.x + scrollbar when scroll.x is numeric; avoid width:100% stretch mismatch
+        width: headerTableWidth || '100%',
+      };
+      if (headerTableWidth) {
+        tableStyle.minWidth = headerTableWidth;
+      }
+      if (!(noData || mergedColumnWidth.value)) {
+        tableStyle.visibility = 'hidden';
       }
       return (
         <div
@@ -177,14 +186,7 @@ export default defineComponent<FixedHeaderProps<DefaultRecordType>>({
             [stickyClassName]: !!stickyClassName,
           })}
         >
-          <table
-            style={{
-              tableLayout: 'fixed',
-              width: '100%',
-              minWidth: headerMinWidth,
-              visibility: noData || mergedColumnWidth.value ? null : 'hidden',
-            }}
-          >
+          <table style={tableStyle}>
             {(!noData || !maxContentScroll || allFlattenColumnsWithWidth.value) && (
               <ColGroup
                 colWidths={

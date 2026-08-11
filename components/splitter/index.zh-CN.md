@@ -48,6 +48,7 @@ tag: New
 | max | 最大阈值，支持数字 px 或 `'百分比%'` | number \| string | - |  |
 | resizable | 是否开启拖拽伸缩 | boolean | true |  |
 | collapsible | 快速折叠。传对象时可分别控制两侧，并用 `showCollapsibleIcon` 控制图标显示 | boolean \| `{ start?: boolean; end?: boolean; showCollapsibleIcon?: boolean \| 'auto' }` | false |  |
+| destroyOnHidden | 折叠后是否销毁面板 Dom | boolean | false |  |
 
 `collapsible.showCollapsibleIcon`：
 

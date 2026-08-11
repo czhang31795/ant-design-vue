@@ -26,29 +26,6 @@
         </template>
       </a-popover>
     </a-row>
-    <a-modal
-      title="新版发布，邀您体验"
-      :open="visibleAlertBanner"
-      :footer="null"
-      @update:open="visibleAlertBanner = false"
-    >
-      <ul>
-        <li class="alert-list-item">
-          <strong>Ant Design Vue 4</strong>
-          ：五大新组件，全新 Design Token
-        </li>
-        <li class="alert-list-item">
-          <strong>Surely Table</strong>
-          ：支持高性能编辑模式了
-          <a target="_blank" href="https://www.surelyvue.com/">立即体验</a>
-        </li>
-        <li class="alert-list-item">
-          <strong>Admin Pro</strong>
-          ：已同步更新 v4 版本
-          <a target="_blank" href="https://store.antdv.com/pro/preview/workplace">立即体验</a>
-        </li>
-      </ul>
-    </a-modal>
   </header>
 </template>
 <script lang="ts">
@@ -71,9 +48,6 @@ export default defineComponent({
   },
   setup() {
     const route = useRoute();
-    const cancelButtonProps: any = {
-      style: { display: 'none' },
-    };
     const globalConfig = inject<GlobalConfig>(GLOBAL_CONFIG);
     const isHome = computed(() => {
       return ['', 'index', 'index-cn'].includes(route.path);
@@ -131,13 +105,6 @@ export default defineComponent({
     watch(globalConfig?.blocked, val => {
       visibleAdblockBanner.value = val;
     });
-    // const alertKey = 'ant-design-vue-4-alert';
-    const visibleAlertBanner = ref(false);
-    // watch(visibleAlertBanner, () => {
-    //   if (!visibleAlertBanner.value) {
-    //     localStorage.setItem(alertKey, version);
-    //   }
-    // });
     return {
       isZhCN: globalConfig.isZhCN,
       isMobile: globalConfig.isMobile,
@@ -151,8 +118,6 @@ export default defineComponent({
       colProps,
       menuOpen,
       onTriggerSearching,
-      visibleAlertBanner,
-      cancelButtonProps,
     };
   },
 });
@@ -184,8 +149,5 @@ export default defineComponent({
   position: absolute;
   top: 15px;
   right: 15px;
-}
-.alert-list-item {
-  padding: 8px 0;
 }
 </style>

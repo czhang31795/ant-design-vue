@@ -10,6 +10,28 @@
 
 ---
 
+## 4.3.2
+
+- 🌟 Layout adds [ProLayout](/components/layout/#prolayout) (`a-pro-layout`) with built-in Pro shell styles
+- 🐞 Fix Table header/body column misalignment when using `scroll.x` with fixed header / `scroll.y=auto`
+
+## 4.3.1
+
+- 🐞 Fix missing PersonSelect / YearQuarterMonthPicker CSS assets in the npm package that broke Vite dependency optimization
+
+## 4.3.0
+
+- 🌟 Add [Splitter](/components/splitter) panel component with horizontal / vertical layout, collapse, lazy render, and controlled sizes
+- 🌟 Select adds [PersonSelect](/components/select/#personselect) for picking people with avatar + name
+- 🌟 DatePicker adds [YearQuarterMonthPicker](/components/date-picker/#yearquartermonthpicker) to select year / quarter / month in one panel
+- 🌟 Button supports `color` + `variant` combinations; `type` remains available as sugar
+- 🌟 Table supports vertical virtual scroll (`virtual`) and `scroll.y=auto` to fill parent height
+- 🌟 Table supports table-level column resize (`resizable`) and row height resize (`rowResizable`)
+- 🌟 Table supports column / row drag sort (`columnDraggable` / `rowDraggable`, including same-level tree reorder)
+- 🌟 Table supports vertical layout (`layout="vertical"`)
+- 🌟 Layout docs add side / top / mix navigation preset demos
+- 📖 Documentation site defaults to Chinese and removes advanced-component promo entries
+
 ## 4.2.6
 
 - 🐞 Fix Modal component aria-hidden error problem under chrome [#7823](https://github.com/vueComponent/ant-design-vue/issues/7823)

@@ -8,17 +8,31 @@ title:
 
 ## zh-CN
 
-使用封装好的 `YearQuarterMonthPicker`，同一个面板内可选择年、季度或月份。展示格式：年 `YYYY`、季 `YYYY-[Q]Q`、月 `YYYY-MM`。
+使用封装好的 `YearQuarterMonthPicker`（模板中为 `a-year-quarter-month-picker`），同一个面板内可选择年、季度或月份。展示格式：年 `YYYY`、季 `YYYY-[Q]Q`、月 `YYYY-MM`。
+
+全量引入后可直接使用标签；按需引入时：
+
+```ts
+import { YearQuarterMonthPicker, formatYearQuarterMonth } from '@czxingyu/ant-design-vue';
+import type { YearQuarterMonthPeriodType } from '@czxingyu/ant-design-vue';
+```
 
 ## en-US
 
-Use `YearQuarterMonthPicker` to select year, quarter, or month in one panel. Formats: year `YYYY`, quarter `YYYY-[Q]Q`, month `YYYY-MM`.
+Use `YearQuarterMonthPicker` (`a-year-quarter-month-picker` in template) to select year, quarter, or month in one panel. Formats: year `YYYY`, quarter `YYYY-[Q]Q`, month `YYYY-MM`.
+
+After full import you can use the tag directly; for on-demand import:
+
+```ts
+import { YearQuarterMonthPicker, formatYearQuarterMonth } from '@czxingyu/ant-design-vue';
+import type { YearQuarterMonthPeriodType } from '@czxingyu/ant-design-vue';
+```
 
 </docs>
 
 <template>
   <a-space direction="vertical" :size="12">
-    <YearQuarterMonthPicker
+    <a-year-quarter-month-picker
       v-model:value="value"
       v-model:period-type="periodType"
       style="width: 280px"
@@ -37,16 +51,25 @@ Use `YearQuarterMonthPicker` to select year, quarter, or month in one panel. For
 <script lang="ts" setup>
 import { computed, ref } from 'vue';
 import dayjs, { type Dayjs } from 'dayjs';
-import YearQuarterMonthPicker, {
-  formatYearQuarterMonth,
-  type YearQuarterMonthPeriodType,
-} from '../YearQuarterMonthPicker';
+
+type PeriodType = 'year' | 'quarter' | 'month';
 
 const value = ref<Dayjs>(dayjs().month(6).startOf('month'));
-const periodType = ref<YearQuarterMonthPeriodType>('month');
-const text = computed(() => formatYearQuarterMonth(value.value, periodType.value));
+const periodType = ref<PeriodType>('month');
+const text = computed(() => {
+  if (!value.value) {
+    return '';
+  }
+  if (periodType.value === 'year') {
+    return value.value.format('YYYY');
+  }
+  if (periodType.value === 'quarter') {
+    return value.value.format('YYYY-[Q]Q');
+  }
+  return value.value.format('YYYY-MM');
+});
 
-const onChange = (_val: Dayjs | null, type: YearQuarterMonthPeriodType, dateString: string) => {
+const onChange = (_val: Dayjs | null, type: PeriodType, dateString: string) => {
   console.log('change', type, dateString);
 };
 </script>

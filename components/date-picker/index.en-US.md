@@ -14,13 +14,14 @@ By clicking the input box, you can select a date from a popup calendar.
 
 ## API
 
-There are five kinds of picker:
+There are several kinds of picker:
 
 - DatePicker
 - DatePicker\[picker="month"]
 - DatePicker\[picker="week"]
 - DatePicker\[picker="year"]
 - DatePicker\[picker="quarter"]
+- YearQuarterMonthPicker
 - RangePicker
 
 ### Localization
@@ -167,13 +168,17 @@ The following APIs are shared by DatePicker, RangePicker.
 
 ### YearQuarterMonthPicker
 
-A wrapped picker to select year / quarter / month in one panel. Also available as `DatePicker.YearQuarterMonthPicker`.
+A wrapped picker to select year / quarter / month in one panel. Template tag is `a-year-quarter-month-picker`. Also available as `DatePicker.YearQuarterMonthPicker`.
+
+```ts
+import { YearQuarterMonthPicker, formatYearQuarterMonth } from '@czxingyu/ant-design-vue';
+```
 
 | Property | Description | Type | Default | Version |
 | --- | --- | --- | --- | --- |
 | value(v-model) | Date value | [dayjs](https://day.js.org/) | - |  |
 | periodType(v-model) | Selection granularity | `year` \| `quarter` \| `month` | `month` |  |
-| placeholder | Placeholder of input | string | `选择年 / 季 / 月` |  |
+| placeholder | Placeholder of input | string | `Select year / quarter / month` |  |
 | allowClear | Show clear button | boolean | true |  |
 | disabled | Disabled state | boolean | false |  |
 | inputReadOnly | Make input readOnly | boolean | true |  |

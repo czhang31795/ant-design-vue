@@ -42,6 +42,7 @@ const columns = [
   {
     title: 'Address',
     dataIndex: 'address',
+    width: 500,
   },
 ];
 

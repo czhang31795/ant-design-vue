@@ -32,14 +32,14 @@ coverDark: https://mdn.alipayobjects.com/huamei_7uahnr/afts/img/A*Lp1kTYmSsgoAAA
 
 通过设置 Button 的属性来产生不同的按钮样式，推荐顺序为：`type` / `color` + `variant` -> `shape` -> `size` -> `loading` -> `disabled`。
 
-同时设置 `color` 与 `variant` 时会覆盖 `type` 的语义（`type` 仍可作为语法糖保留）。
+同时设置 `color` 与 `variant` 时会覆盖 `type` 的语义（`type` 仍可作为语法糖保留）。仅设置一侧时：缺省 `color` 在 `variant=solid` 时为 `primary`，否则为 `default`；缺省 `variant` 为 `outlined`。
 
 按钮的属性说明如下：
 
 | 属性 | 说明 | 类型 | 默认值 | 版本 |
 | --- | --- | --- | --- | --- |
 | block | 将按钮宽度调整为其父宽度的选项 | boolean | `false` |  |
-| color | 设置按钮颜色，与 `variant` 组合使用 | `default` \| `primary` \| `danger` \| PresetColors | - |  |
+| color | 设置按钮颜色，与 `variant` 组合使用 | `default` \| `primary` \| `danger` \| `link` \| PresetColors | - |  |
 | danger | 设置危险按钮 | boolean | `false` | 2.2.0 |
 | disabled | 按钮失效状态 | boolean | `false` |  |
 | ghost | 幽灵属性，使按钮背景透明 | boolean | `false` |  |

@@ -169,7 +169,11 @@ coverDark: https://mdn.alipayobjects.com/huamei_7uahnr/afts/img/A*3OpRQKcygo8AAA
 
 ### YearQuarterMonthPicker
 
-在同一面板中选择年 / 季 / 月的封装组件。也可通过 `DatePicker.YearQuarterMonthPicker` 访问。
+在同一面板中选择年 / 季 / 月的封装组件。模板标签为 `a-year-quarter-month-picker`，也可通过 `DatePicker.YearQuarterMonthPicker` 访问。
+
+```ts
+import { YearQuarterMonthPicker, formatYearQuarterMonth } from '@czxingyu/ant-design-vue';
+```
 
 | 参数 | 说明 | 类型 | 默认值 | 版本 |
 | --- | --- | --- | --- | --- |

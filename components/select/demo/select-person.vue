@@ -8,11 +8,23 @@ title:
 
 ## zh-CN
 
-使用封装好的 `PersonSelect`，下拉项与回填内容同时展示头像和姓名。也可通过 `Select.PersonSelect` 访问。
+使用封装好的 `PersonSelect`（模板中为 `a-person-select`），下拉项与回填内容同时展示头像和姓名。也可通过 `Select.PersonSelect` 访问。
+
+全量引入后可直接使用标签；按需引入时：
+
+```ts
+import { PersonSelect } from '@czxingyu/ant-design-vue';
+```
 
 ## en-US
 
-Use `PersonSelect` to show avatar and name in both dropdown options and the selected value. Also available as `Select.PersonSelect`.
+Use `PersonSelect` (`a-person-select` in template) to show avatar and name in both dropdown options and the selected value. Also available as `Select.PersonSelect`.
+
+After full import you can use the tag directly; for on-demand import:
+
+```ts
+import { PersonSelect } from '@czxingyu/ant-design-vue';
+```
 
 </docs>
 
@@ -20,12 +32,12 @@ Use `PersonSelect` to show avatar and name in both dropdown options and the sele
   <a-space direction="vertical" style="width: 100%" :size="16">
     <div>
       <div class="demo-label">单选</div>
-      <PersonSelect v-model:value="singleValue" style="width: 100%" :options="personOptions" />
+      <a-person-select v-model:value="singleValue" style="width: 100%" :options="personOptions" />
     </div>
 
     <div>
       <div class="demo-label">多选</div>
-      <PersonSelect
+      <a-person-select
         v-model:value="multipleValue"
         mode="multiple"
         style="width: 100%"
@@ -37,7 +49,6 @@ Use `PersonSelect` to show avatar and name in both dropdown options and the sele
 
 <script lang="ts" setup>
 import { ref } from 'vue';
-import PersonSelect from '../PersonSelect';
 
 const personOptions = [
   {

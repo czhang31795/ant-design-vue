@@ -115,7 +115,11 @@ coverDark: https://mdn.alipayobjects.com/huamei_7uahnr/afts/img/A*5oPiTqPxGAUAAA
 
 ### PersonSelect
 
-选择人员的封装组件，内置头像 + 姓名的下拉项与回填展示。也可通过 `Select.PersonSelect` 访问。其余 API 与 Select 一致。
+选择人员的封装组件，内置头像 + 姓名的下拉项与回填展示。模板标签为 `a-person-select`，也可通过 `Select.PersonSelect` 访问。其余 API 与 Select 一致。
+
+```ts
+import { PersonSelect } from '@czxingyu/ant-design-vue';
+```
 
 | 参数 | 说明 | 类型 | 默认值 | 版本 |
 | --- | --- | --- | --- | --- |

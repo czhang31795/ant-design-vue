@@ -10,6 +10,28 @@
 
 ---
 
+## 4.3.2
+
+- 🌟 Layout 新增 [ProLayout](/components/layout-cn/#prolayout)（`a-pro-layout`），内置 Pro 风格壳样式，业务侧无需再复制大段 CSS
+- 🐞 修复 Table 在 `scroll.x` + 固定表头 / `scroll.y=auto` 时表头与表体列错位
+
+## 4.3.1
+
+- 🐞 修复 PersonSelect、YearQuarterMonthPicker 样式文件未打进 npm 包，导致 Vite 依赖预构建失败
+
+## 4.3.0
+
+- 🌟 新增 [Splitter](/components/splitter-cn) 分割面板组件，支持水平 / 垂直布局、折叠、懒渲染与尺寸受控
+- 🌟 Select 新增 [PersonSelect](/components/select-cn/#personselect)，内置头像 + 姓名的人员选择展示
+- 🌟 DatePicker 新增 [YearQuarterMonthPicker](/components/date-picker-cn/#yearquartermonthpicker)，支持年 / 季 / 月同屏选择
+- 🌟 Button 支持 `color` 与 `variant` 组合丰富按钮样式，`type` 仍可作为语法糖使用
+- 🌟 Table 支持纵向虚拟滚动（`virtual`），以及 `scroll.y=auto` 自适应父容器高度
+- 🌟 Table 支持表级列宽拖拽（`resizable`）与行高拖拽（`rowResizable`）
+- 🌟 Table 支持列 / 行拖拽排序（`columnDraggable` / `rowDraggable`，含树形同级重排）
+- 🌟 Table 支持竖表布局（`layout="vertical"`）
+- 🌟 Layout 文档新增侧栏 / 顶栏 / 混合导航模式预设示例
+- 📖 文档站默认使用中文，并移除高级组件等外部推广入口
+
 ## 4.2.6
 
 - 🐞 修复 Modal 组件在 chrome 下，aria-hidden 报错问题 [#7823](https://github.com/vueComponent/ant-design-vue/issues/7823)

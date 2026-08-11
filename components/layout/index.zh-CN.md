@@ -56,14 +56,51 @@ coverDark: https://mdn.alipayobjects.com/huamei_7uahnr/afts/img/A*HdS6Q5vUCDcAAA
 - `Content`：内容部分，自带默认样式，其下可嵌套任何元素，只能放在 `Layout` 中。
 - `Footer`：底部布局，自带默认样式，其下可嵌套任何元素，只能放在 `Layout` 中。
 
-### 导航模式预设
+### ProLayout
 
-文档提供对齐 ProComponents ProLayout 的三种导航模式预设 demo，便于按业务习惯选型与复制：
+对齐 ProComponents 的后台壳布局，通过 `layout` 切换三种导航模式，样式已内置：
 
-- **侧栏（side）**：完整菜单在左侧，右侧为顶栏与内容区。
-- **顶部（top）**：Logo 与菜单在顶部。
-- **混合（mix）**：顶部一级菜单 + 左侧子菜单（`splitMenus` 语义）。
-- **Pro 风格**：对齐 Ant Design Pro 后台壳（顶栏 Logo / 浅色侧栏 / 灰底内容卡片）。
+- **side**：Logo + 完整菜单在左侧，右侧为顶栏与内容区。
+- **top**：Logo 与菜单在顶部。
+- **mix**：顶部一级菜单 + 左侧子菜单（`splitMenus`）。
+
+```ts
+import { ProLayout } from '@czxingyu/ant-design-vue';
+```
+
+```vue
+<a-pro-layout layout="side" :menu="menu" v-model:selected-keys="selectedKeys">
+  <router-view />
+</a-pro-layout>
+```
+
+| 参数 | 说明 | 类型 | 默认值 |
+| --- | --- | --- | --- |
+| layout | 导航模式 | `side` \| `top` \| `mix` | `side` |
+| title | 标题文案 | string | `Ant Design Pro` |
+| logo | Logo 地址 | string | - |
+| menu | 菜单数据（同 Menu `items`） | `ItemType[]` | `[]` |
+| collapsed(v-model) | 侧栏收起（side / mix） | boolean | false |
+| selectedKeys(v-model) | 选中菜单 | string\[] | - |
+| openKeys(v-model) | 展开菜单（side） | string\[] | - |
+| siderWidth | 侧栏宽度 | number | 208 |
+| headerTitle | 侧栏模式下顶栏左侧标题 | string | - |
+| pageTitle | 内容区标题 | string | - |
+| breadcrumb | 内容区面包屑 | `{ title, path? }[]` | - |
+| splitMenus | mix 模式下是否拆分一二级菜单 | boolean | true |
+
+| 事件      | 说明       | 回调参数        |
+| --------- | ---------- | --------------- |
+| menuClick | 点击菜单项 | 同 Menu `click` |
+
+| 插槽        | 说明                                      |
+| ----------- | ----------------------------------------- |
+| default     | 主内容                                    |
+| headerRight | 顶栏右侧（搜索、用户等）                  |
+| headerLeft  | 侧栏模式下顶栏左侧（覆盖 headerTitle）    |
+| logo        | 自定义 Logo 区                            |
+| pageHeader  | 自定义页头（覆盖 pageTitle / breadcrumb） |
+| footer      | 页脚                                      |
 
 > 注意：采用 flex 布局实现，请注意[浏览器兼容性](http://caniuse.com/#search=flex)问题。
 

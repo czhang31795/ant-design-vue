@@ -58,7 +58,6 @@ export default defineComponent({
   setup(props) {
     let startX = 0;
     let baseWidth = 0;
-    let lastWidth = 0;
     let columnLeft = 0;
     let dragging = false;
     let proxyEl: HTMLDivElement | null = null;
@@ -161,7 +160,6 @@ export default defineComponent({
       }
       e.preventDefault();
       const w = calcWidth(e);
-      lastWidth = w;
       syncProxy(w);
     };
 
@@ -171,7 +169,6 @@ export default defineComponent({
       }
       dragging = false;
       const w = calcWidth(e);
-      lastWidth = w;
       onResizeColumn(w, getColumn());
       removeEvents();
       cleanupDraggingUI();
@@ -195,7 +192,6 @@ export default defineComponent({
         propWidth && Math.abs(measured - propWidth) <= 2
           ? propWidth
           : Math.round(measured) || propWidth;
-      lastWidth = baseWidth;
       columnLeft = thRect.left;
       startX = getPageX(e);
       dragging = true;

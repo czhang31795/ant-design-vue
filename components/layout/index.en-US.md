@@ -55,14 +55,51 @@ Style of a navigation should conform to its level.
 - `Content`: The content layout with the default style, in which any element can be nested, and must be placed in `Layout`.
 - `Footer`: The bottom layout with the default style, in which any element can be nested, and must be placed in `Layout`.
 
-### Navigation mode presets
+### ProLayout
 
-Demos aligned with ProComponents ProLayout navigation modes are provided for quick reuse:
+Admin shell aligned with ProComponents. Switch navigation modes with `layout`; styles are built in:
 
-- **Side**: Full menu on the left; header and content on the right.
-- **Top**: Logo and menu in the header.
-- **Mix**: Level-1 menus on top and children in the sider (`splitMenus`).
-- **Pro style**: Ant Design Pro admin shell (header logo / light sider / gray content cards).
+- **side**: Logo + full menu on the left; header and content on the right.
+- **top**: Logo and menu in the header.
+- **mix**: Level-1 menus on top and children in the sider (`splitMenus`).
+
+```ts
+import { ProLayout } from '@czxingyu/ant-design-vue';
+```
+
+```vue
+<a-pro-layout layout="side" :menu="menu" v-model:selected-keys="selectedKeys">
+  <router-view />
+</a-pro-layout>
+```
+
+| Property | Description | Type | Default |
+| --- | --- | --- | --- |
+| layout | Navigation mode | `side` \| `top` \| `mix` | `side` |
+| title | Title text | string | `Ant Design Pro` |
+| logo | Logo url | string | - |
+| menu | Menu items (same as Menu `items`) | `ItemType[]` | `[]` |
+| collapsed(v-model) | Collapse sider (side / mix) | boolean | false |
+| selectedKeys(v-model) | Selected menu keys | string\[] | - |
+| openKeys(v-model) | Open menu keys (side) | string\[] | - |
+| siderWidth | Sider width | number | 208 |
+| headerTitle | Header left title in side mode | string | - |
+| pageTitle | Content page title | string | - |
+| breadcrumb | Content breadcrumb | `{ title, path? }[]` | - |
+| splitMenus | Split level-1 / children in mix mode | boolean | true |
+
+| Event     | Description       | Arguments            |
+| --------- | ----------------- | -------------------- |
+| menuClick | Menu item clicked | Same as Menu `click` |
+
+| Slot        | Description                                      |
+| ----------- | ------------------------------------------------ |
+| default     | Main content                                     |
+| headerRight | Header right area                                |
+| headerLeft  | Header left in side mode (overrides headerTitle) |
+| logo        | Custom logo                                      |
+| pageHeader  | Custom page header                               |
+| footer      | Footer                                           |
 
 > Based on `flex layout`, please pay attention to the [compatibility](http://caniuse.com/#search=flex).
 

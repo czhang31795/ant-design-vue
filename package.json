@@ -1,8 +1,8 @@
 {
-  "name": "ant-design-vue",
-  "version": "4.2.6",
+  "name": "@czxingyu/ant-design-vue",
+  "version": "4.3.2",
   "title": "Ant Design Vue",
-  "description": "An enterprise-class UI design language and Vue-based implementation",
+  "description": "Fork of ant-design-vue with internal enhancements (Splitter, PersonSelect, Table virtual/drag, etc.)",
   "keywords": [
     "vue",
     "vue3",
@@ -46,6 +46,7 @@
     "pub-with-ci": "npm run version & npm run collect-token-statistic & npm run token-meta && node antd-tools/cli/run.js pub-with-ci",
     "prepublishOnly": "node antd-tools/cli/run.js guard",
     "pre-publish": "npm run generator-webtypes",
+    "publish:npm": "npm run compile && npm run dist && npm publish --with-antd-tools --access public",
     "prettier": "prettier -c --write **/*",
     "pretty-quick": "pretty-quick",
     "dist": "node --max_old_space_size=8192 antd-tools/cli/run.js dist",
@@ -74,17 +75,16 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/vueComponent/ant-design-vue.git"
+    "url": "https://github.com/czhang31795/ant-design-vue.git"
   },
   "license": "MIT",
-  "funding": {
-    "type": "opencollective",
-    "url": "https://opencollective.com/ant-design-vue"
-  },
   "bugs": {
-    "url": "https://github.com/vueComponent/ant-design-vue/issues"
+    "url": "https://github.com/czhang31795/ant-design-vue/issues"
   },
-  "homepage": "https://www.antdv.com/",
+  "homepage": "https://github.com/czhang31795/ant-design-vue",
+  "publishConfig": {
+    "access": "public"
+  },
   "peerDependencies": {
     "vue": ">=3.2.0"
   },

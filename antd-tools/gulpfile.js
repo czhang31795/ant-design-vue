@@ -149,7 +149,7 @@ function compile(modules) {
   rimraf.sync(modules !== false ? libDir : esDir);
 
   const assets = gulp
-    .src(['components/**/*.@(png|svg)'])
+    .src(['components/**/*.@(png|svg|css)'])
     .pipe(gulp.dest(modules === false ? esDir : libDir));
   let error = 0;
 

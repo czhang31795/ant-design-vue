@@ -15,6 +15,8 @@ export default {
           : 'vue/dist/vue.esm-bundler.js',
       'ant-design-vue/es': path.resolve(__dirname, '../components'),
       'ant-design-vue': path.resolve(__dirname, '../components'),
+      '@czxingyu/ant-design-vue/es': path.resolve(__dirname, '../components'),
+      '@czxingyu/ant-design-vue': path.resolve(__dirname, '../components'),
       '@': path.resolve(__dirname, './src'),
     },
   },
