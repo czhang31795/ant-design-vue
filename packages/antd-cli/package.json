@@ -10,7 +10,7 @@
     "antd"
   ],
   "bin": {
-    "antd-cli": "./bin/antd-cli.js"
+    "antd-cli": "bin/antd-cli.js"
   },
   "files": [
     "bin",
@@ -41,7 +41,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/czhang31795/ant-design-vue.git",
+    "url": "git+https://github.com/czhang31795/ant-design-vue.git",
     "directory": "packages/antd-cli"
   },
   "publishConfig": {
