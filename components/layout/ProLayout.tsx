@@ -23,22 +23,27 @@ type MenuNode = {
   label?: any;
   title?: any;
   icon?: any;
-  children?: MenuNode[];
+  children?: ItemType[];
   type?: string;
 };
 
-const isMenuNode = (item: ItemType | null | undefined): item is MenuNode =>
-  !!item && typeof item === 'object' && !('type' in item && (item as MenuNode).type === 'divider');
+const asMenuNode = (item: ItemType | null | undefined): MenuNode | null => {
+  if (!item || typeof item !== 'object') return null;
+  const node = item as MenuNode;
+  if (node.type === 'divider') return null;
+  return node;
+};
 
 const getItemKey = (item: MenuNode) => (item.key !== undefined ? String(item.key) : undefined);
 
 const findMenuNode = (items: ItemType[] = [], key?: string): MenuNode | undefined => {
   if (!key) return undefined;
   for (const raw of items) {
-    if (!isMenuNode(raw)) continue;
-    if (getItemKey(raw) === key) return raw;
-    if (raw.children?.length) {
-      const found = findMenuNode(raw.children as ItemType[], key);
+    const node = asMenuNode(raw);
+    if (!node) continue;
+    if (getItemKey(node) === key) return node;
+    if (node.children?.length) {
+      const found = findMenuNode(node.children, key);
       if (found) return found;
     }
   }
@@ -48,23 +53,23 @@ const findMenuNode = (items: ItemType[] = [], key?: string): MenuNode | undefine
 const findTopKeyBySelected = (items: ItemType[] = [], selectedKey?: string): string | undefined => {
   if (!selectedKey) return undefined;
   for (const raw of items) {
-    if (!isMenuNode(raw)) continue;
-    const key = getItemKey(raw);
+    const node = asMenuNode(raw);
+    if (!node) continue;
+    const key = getItemKey(node);
     if (!key) continue;
     if (key === selectedKey) return key;
-    if (raw.children?.length && findMenuNode(raw.children as ItemType[], selectedKey)) {
+    if (node.children?.length && findMenuNode(node.children, selectedKey)) {
       return key;
     }
   }
   return undefined;
 };
 
-const getFirstSelectableKey = (item?: MenuNode): string | undefined => {
+const getFirstSelectableKey = (item?: MenuNode | null): string | undefined => {
   if (!item) return undefined;
   if (item.children?.length) {
     for (const child of item.children) {
-      if (!isMenuNode(child)) continue;
-      const nested = getFirstSelectableKey(child);
+      const nested = getFirstSelectableKey(asMenuNode(child));
       if (nested) return nested;
     }
   }
@@ -73,28 +78,29 @@ const getFirstSelectableKey = (item?: MenuNode): string | undefined => {
 
 const toTopMenus = (items: ItemType[] = []): ItemType[] =>
   items.reduce<ItemType[]>((result, raw) => {
-    if (!isMenuNode(raw)) {
-      result.push(raw);
+    const node = asMenuNode(raw);
+    if (!node) {
+      if (raw) result.push(raw);
       return result;
     }
-    const { children: _children, ...rest } = raw;
+    const { children: _children, ...rest } = node;
     result.push(rest as ItemType);
     return result;
   }, []);
 
 const proLayoutProps = () => ({
-  layout: stringType<ProLayoutMode>('side'),
+  layout: stringType<ProLayoutMode>('mix'),
   title: stringType('Ant Design Pro'),
   logo: stringType('https://gw.alipayobjects.com/zos/rmsportal/KDpgvguMpGfqaHPjicRK.svg'),
   collapsed: booleanType(),
   menu: someType<ItemType[]>([Array], []),
   selectedKeys: someType<string[]>([Array]),
   openKeys: someType<string[]>([Array]),
-  siderWidth: someType<number>([Number], 208),
+  siderWidth: someType<number>([Number], 256),
   headerTitle: stringType(),
   pageTitle: stringType(),
   breadcrumb: someType<ProLayoutBreadcrumbItem[]>([Array]),
-  splitMenus: booleanType(true),
+  splitMenus: booleanType(false),
   'onUpdate:collapsed': Function as PropType<(v: boolean) => void>,
   'onUpdate:selectedKeys': Function as PropType<(v: string[]) => void>,
   'onUpdate:openKeys': Function as PropType<(v: string[]) => void>,
@@ -107,12 +113,12 @@ const ProLayout = defineComponent({
   name: 'AProLayout',
   inheritAttrs: false,
   props: initDefaultProps(proLayoutProps(), {
-    layout: 'side',
+    layout: 'mix',
     title: 'Ant Design Pro',
     logo: 'https://gw.alipayobjects.com/zos/rmsportal/KDpgvguMpGfqaHPjicRK.svg',
-    siderWidth: 208,
+    siderWidth: 256,
     menu: [],
-    splitMenus: true,
+    splitMenus: false,
   }),
   setup(props, { attrs, slots, emit }) {
     const innerCollapsed = ref(!!props.collapsed);
@@ -150,7 +156,8 @@ const ProLayout = defineComponent({
       },
     });
 
-    const layoutMode = computed<ProLayoutMode>(() => props.layout || 'side');
+    const layoutMode = computed<ProLayoutMode>(() => props.layout || 'mix');
+    const isSplitMix = computed(() => layoutMode.value === 'mix' && !!props.splitMenus);
 
     const activeTopKey = computed(() => {
       const selected = selectedKeys.value[0];
@@ -159,16 +166,19 @@ const ProLayout = defineComponent({
 
     const topMenus = computed(() => toTopMenus(props.menu));
 
-    const sideMenus = computed<ItemType[]>(() => {
-      if (layoutMode.value !== 'mix' || !props.splitMenus) return [];
-      const top = findMenuNode(props.menu, activeTopKey.value);
-      return (top?.children as ItemType[]) || [];
+    /** mix+splitMenus：侧栏为当前一级的子菜单；其余有侧栏的模式用完整菜单 */
+    const siderMenuItems = computed<ItemType[]>(() => {
+      if (isSplitMix.value) {
+        const top = findMenuNode(props.menu, activeTopKey.value);
+        return (top?.children as ItemType[]) || [];
+      }
+      return props.menu;
     });
 
     const showSider = computed(() => {
       if (layoutMode.value === 'top') return false;
-      if (layoutMode.value === 'mix') return sideMenus.value.length > 0;
-      return true;
+      if (isSplitMix.value) return siderMenuItems.value.length > 0;
+      return layoutMode.value === 'side' || layoutMode.value === 'mix';
     });
 
     const syncMixSelection = (topKey: string) => {
@@ -185,9 +195,9 @@ const ProLayout = defineComponent({
     };
 
     watch(
-      [activeTopKey, () => props.menu, layoutMode],
+      [activeTopKey, () => props.menu, layoutMode, () => props.splitMenus],
       () => {
-        if (layoutMode.value === 'mix' && props.splitMenus && activeTopKey.value) {
+        if (isSplitMix.value && activeTopKey.value) {
           syncMixSelection(activeTopKey.value);
         }
       },
@@ -196,7 +206,7 @@ const ProLayout = defineComponent({
 
     const onTopMenuClick: MenuProps['onClick'] = info => {
       const key = String(info.key);
-      if (layoutMode.value === 'mix' && props.splitMenus) {
+      if (isSplitMix.value) {
         syncMixSelection(key);
       } else {
         selectedKeys.value = [key];
@@ -207,6 +217,10 @@ const ProLayout = defineComponent({
     const onSideMenuClick: MenuProps['onClick'] = info => {
       selectedKeys.value = [String(info.key)];
       emit('menuClick', info);
+    };
+
+    const toggleCollapsed = () => {
+      mergedCollapsed.value = !mergedCollapsed.value;
     };
 
     const renderLogo = (collapsed = false) => (
@@ -222,14 +236,12 @@ const ProLayout = defineComponent({
       </div>
     );
 
-    const renderCollapseBtn = () => (
+    const renderSiderCollapseBtn = () => (
       <button
         type="button"
         class="ant-pro-layout-collapse-btn"
         aria-label={mergedCollapsed.value ? '展开侧栏' : '收起侧栏'}
-        onClick={() => {
-          mergedCollapsed.value = !mergedCollapsed.value;
-        }}
+        onClick={toggleCollapsed}
       >
         {mergedCollapsed.value ? <RightOutlined /> : <LeftOutlined />}
       </button>
@@ -261,7 +273,7 @@ const ProLayout = defineComponent({
     const renderContent = () => (
       <Content class="ant-pro-layout-content">
         {renderPageHeader()}
-        {slots.default?.()}
+        <div class="ant-pro-layout-content-children">{slots.default?.()}</div>
       </Content>
     );
 
@@ -270,14 +282,14 @@ const ProLayout = defineComponent({
       return <Footer class="ant-pro-layout-footer">{slots.footer()}</Footer>;
     };
 
-    const renderSiderMenu = (items: ItemType[], withOpenKeys = false) => (
+    const renderSiderMenu = (items: ItemType[], withOpenKeys = true) => (
       <Menu
+        class="ant-pro-layout-sider-menu"
         selectedKeys={selectedKeys.value}
         openKeys={withOpenKeys ? openKeys.value : undefined}
         theme="light"
         mode="inline"
         items={items}
-        style={layoutMode.value === 'mix' ? { height: '100%', borderRight: 0 } : undefined}
         onUpdate:selectedKeys={(val: string[]) => {
           selectedKeys.value = val;
         }}
@@ -295,10 +307,15 @@ const ProLayout = defineComponent({
     const renderSider = () => {
       if (!showSider.value) return null;
       const isSide = layoutMode.value === 'side';
+      // split mix 侧栏多为叶子菜单，无需 openKeys；其余用完整树
+      const withOpenKeys = !isSplitMix.value;
       return (
         <Sider
           collapsed={mergedCollapsed.value}
-          class="ant-pro-layout-sider"
+          class={[
+            'ant-pro-layout-sider',
+            layoutMode.value === 'mix' ? 'ant-pro-layout-sider-mix' : undefined,
+          ]}
           collapsible
           trigger={null}
           width={props.siderWidth}
@@ -308,17 +325,22 @@ const ProLayout = defineComponent({
           }}
         >
           {isSide ? renderLogo(mergedCollapsed.value) : null}
-          {renderSiderMenu(isSide ? props.menu : sideMenus.value, isSide)}
-          {renderCollapseBtn()}
+          {renderSiderMenu(siderMenuItems.value, withOpenKeys)}
+          {renderSiderCollapseBtn()}
         </Sider>
       );
     };
 
     const renderHeader = () => {
       const mode = layoutMode.value;
-      const showTopMenu = mode === 'top' || mode === 'mix';
+      const showTopMenu = mode === 'top' || isSplitMix.value;
       return (
-        <Header class="ant-pro-layout-header">
+        <Header
+          class={[
+            'ant-pro-layout-header',
+            mode === 'mix' ? 'ant-pro-layout-header-mix' : undefined,
+          ]}
+        >
           {mode !== 'side' ? renderLogo(false) : null}
           {mode === 'side' ? (
             <div class="ant-pro-layout-header-left">
@@ -334,7 +356,7 @@ const ProLayout = defineComponent({
             <Menu
               class="ant-pro-layout-top-menu"
               selectedKeys={
-                mode === 'mix' && props.splitMenus
+                isSplitMix.value
                   ? activeTopKey.value
                     ? [activeTopKey.value]
                     : []
@@ -342,16 +364,18 @@ const ProLayout = defineComponent({
               }
               theme="light"
               mode="horizontal"
-              items={mode === 'mix' && props.splitMenus ? topMenus.value : props.menu}
+              items={isSplitMix.value ? topMenus.value : props.menu}
               disabledOverflow
               onUpdate:selectedKeys={(val: string[]) => {
-                if (!(mode === 'mix' && props.splitMenus)) {
+                if (!isSplitMix.value) {
                   selectedKeys.value = val;
                 }
               }}
               onClick={onTopMenuClick}
             />
-          ) : null}
+          ) : (
+            <div class="ant-pro-layout-header-spacer" />
+          )}
           <div class="ant-pro-layout-header-right">{slots.headerRight?.()}</div>
         </Header>
       );
@@ -359,7 +383,12 @@ const ProLayout = defineComponent({
 
     return () => {
       const mode = layoutMode.value;
-      const rootClass = ['ant-pro-layout', `ant-pro-layout-${mode}`, attrs.class];
+      const rootClass = [
+        'ant-pro-layout',
+        `ant-pro-layout-${mode}`,
+        isSplitMix.value ? 'ant-pro-layout-split-menus' : undefined,
+        attrs.class,
+      ];
 
       if (mode === 'top') {
         return (

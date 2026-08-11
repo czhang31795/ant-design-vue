@@ -9,7 +9,7 @@ title:
 
 ## zh-CN
 
-使用 `ProLayout` 的 `layout="mix"`：顶部仅展示一级菜单，选中后其子菜单出现在左侧。无子菜单的一级不显示侧栏。
+`layout="mix"` + `splitMenus`：顶部仅展示一级菜单，选中后其子菜单出现在左侧。无子菜单的一级不显示侧栏。
 
 ```ts
 import { ProLayout } from '@czxingyu/ant-design-vue';
@@ -17,7 +17,7 @@ import { ProLayout } from '@czxingyu/ant-design-vue';
 
 ## en-US
 
-Use `ProLayout` with `layout="mix"`: level-1 menus on top, children in the sider. Level-1 items without children hide the sider.
+`layout="mix"` with `splitMenus`: level-1 menus on top, children in the sider. Level-1 items without children hide the sider.
 
 ```ts
 import { ProLayout } from '@czxingyu/ant-design-vue';
@@ -27,6 +27,7 @@ import { ProLayout } from '@czxingyu/ant-design-vue';
 <template>
   <a-pro-layout
     layout="mix"
+    split-menus
     v-model:collapsed="collapsed"
     v-model:selected-keys="selectedKeys"
     title="Ant Design Vue"
@@ -60,8 +61,6 @@ import {
   UnorderedListOutlined,
   UserOutlined,
 } from '@ant-design/icons-vue';
-import type { ItemType } from 'ant-design-vue';
-
 const collapsed = ref(false);
 const selectedKeys = ref<string[]>(['list-table']);
 
@@ -178,5 +177,6 @@ const breadcrumb = computed(() => [
   min-height: 280px;
   padding: 24px;
   background: #fff;
+  border-radius: 8px;
 }
 </style>

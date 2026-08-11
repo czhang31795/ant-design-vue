@@ -57,36 +57,37 @@ Style of a navigation should conform to its level.
 
 ### ProLayout
 
-Admin shell aligned with ProComponents. Switch navigation modes with `layout`; styles are built in:
+Admin shell aligned with Ant Design Pro v6 / ProComponents. Switch modes with `layout`; styles are built in:
 
+- **mix** (default, matches [Pro preview](https://preview.pro.ant.design/welcome)): full-width header with logo + actions; sider below with the full menu (`splitMenus=false`).
+- **mix + splitMenus**: level-1 menus on top; sider shows children of the active level-1 item.
 - **side**: Logo + full menu on the left; header and content on the right.
 - **top**: Logo and menu in the header.
-- **mix**: Level-1 menus on top and children in the sider (`splitMenus`).
 
 ```ts
 import { ProLayout } from '@czxingyu/ant-design-vue';
 ```
 
 ```vue
-<a-pro-layout layout="side" :menu="menu" v-model:selected-keys="selectedKeys">
+<a-pro-layout layout="mix" :menu="menu" v-model:selected-keys="selectedKeys">
   <router-view />
 </a-pro-layout>
 ```
 
 | Property | Description | Type | Default |
 | --- | --- | --- | --- |
-| layout | Navigation mode | `side` \| `top` \| `mix` | `side` |
+| layout | Navigation mode | `side` \| `top` \| `mix` | `mix` |
 | title | Title text | string | `Ant Design Pro` |
 | logo | Logo url | string | - |
 | menu | Menu items (same as Menu `items`) | `ItemType[]` | `[]` |
 | collapsed(v-model) | Collapse sider (side / mix) | boolean | false |
 | selectedKeys(v-model) | Selected menu keys | string\[] | - |
-| openKeys(v-model) | Open menu keys (side) | string\[] | - |
-| siderWidth | Sider width | number | 208 |
+| openKeys(v-model) | Open menu keys (when sider shows full tree) | string\[] | - |
+| siderWidth | Sider width | number | 256 |
 | headerTitle | Header left title in side mode | string | - |
 | pageTitle | Content page title | string | - |
 | breadcrumb | Content breadcrumb | `{ title, path? }[]` | - |
-| splitMenus | Split level-1 / children in mix mode | boolean | true |
+| splitMenus | Split level-1 / children in mix mode; when `false`, sider shows the full menu (Pro preview default) | boolean | false |
 
 | Event     | Description       | Arguments            |
 | --------- | ----------------- | -------------------- |

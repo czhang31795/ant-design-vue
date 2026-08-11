@@ -121,5 +121,6 @@ const currentLabel = computed(
   min-height: 280px;
   padding: 24px;
   background: #fff;
+  border-radius: 8px;
 }
 </style>

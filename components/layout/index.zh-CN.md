@@ -58,36 +58,37 @@ coverDark: https://mdn.alipayobjects.com/huamei_7uahnr/afts/img/A*HdS6Q5vUCDcAAA
 
 ### ProLayout
 
-对齐 ProComponents 的后台壳布局，通过 `layout` 切换三种导航模式，样式已内置：
+对齐 Ant Design Pro v6 / ProComponents 的后台壳布局，通过 `layout` 切换三种导航模式，样式已内置：
 
+- **mix**（默认，对齐 [Pro 预览](https://preview.pro.ant.design/welcome)）：顶栏全宽 Logo + 操作区，侧栏在下方放完整菜单（`splitMenus=false`）。
+- **mix + splitMenus**：顶部一级菜单，侧栏仅展示当前一级的子菜单。
 - **side**：Logo + 完整菜单在左侧，右侧为顶栏与内容区。
 - **top**：Logo 与菜单在顶部。
-- **mix**：顶部一级菜单 + 左侧子菜单（`splitMenus`）。
 
 ```ts
 import { ProLayout } from '@czxingyu/ant-design-vue';
 ```
 
 ```vue
-<a-pro-layout layout="side" :menu="menu" v-model:selected-keys="selectedKeys">
+<a-pro-layout layout="mix" :menu="menu" v-model:selected-keys="selectedKeys">
   <router-view />
 </a-pro-layout>
 ```
 
 | 参数 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
-| layout | 导航模式 | `side` \| `top` \| `mix` | `side` |
+| layout | 导航模式 | `side` \| `top` \| `mix` | `mix` |
 | title | 标题文案 | string | `Ant Design Pro` |
 | logo | Logo 地址 | string | - |
 | menu | 菜单数据（同 Menu `items`） | `ItemType[]` | `[]` |
 | collapsed(v-model) | 侧栏收起（side / mix） | boolean | false |
 | selectedKeys(v-model) | 选中菜单 | string\[] | - |
-| openKeys(v-model) | 展开菜单（side） | string\[] | - |
-| siderWidth | 侧栏宽度 | number | 208 |
+| openKeys(v-model) | 展开菜单（完整侧栏树时） | string\[] | - |
+| siderWidth | 侧栏宽度 | number | 256 |
 | headerTitle | 侧栏模式下顶栏左侧标题 | string | - |
 | pageTitle | 内容区标题 | string | - |
 | breadcrumb | 内容区面包屑 | `{ title, path? }[]` | - |
-| splitMenus | mix 模式下是否拆分一二级菜单 | boolean | true |
+| splitMenus | mix 模式下是否拆分一二级菜单；`false` 时侧栏展示完整菜单（对齐 Pro 预览默认） | boolean | false |
 
 | 事件      | 说明       | 回调参数        |
 | --------- | ---------- | --------------- |

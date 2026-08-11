@@ -9,7 +9,7 @@ title:
 
 ## zh-CN
 
-完整后台页示例：在 `layout="side"` 上组合页头、统计卡片等内容。三种导航模式共用同一组件，仅切换 `layout`。
+对齐 Ant Design Pro v6 默认壳层：`layout="mix"` + `splitMenus=false`（顶栏 Logo，侧栏完整菜单）。
 
 ```ts
 import { ProLayout } from '@czxingyu/ant-design-vue';
@@ -17,7 +17,7 @@ import { ProLayout } from '@czxingyu/ant-design-vue';
 
 ## en-US
 
-Full admin page example on `layout="side"` with page header and stat cards. All three nav modes share one component via `layout`.
+Aligned with Ant Design Pro v6 default shell: `layout="mix"` with `splitMenus=false` (logo in header, full menu in sider).
 
 ```ts
 import { ProLayout } from '@czxingyu/ant-design-vue';
@@ -26,17 +26,19 @@ import { ProLayout } from '@czxingyu/ant-design-vue';
 </docs>
 <template>
   <a-pro-layout
-    layout="side"
+    layout="mix"
+    :split-menus="false"
     v-model:collapsed="collapsed"
     v-model:selected-keys="selectedKeys"
     v-model:open-keys="openKeys"
     title="Ant Design Pro"
     :menu="menuData"
-    page-title="分析页"
-    :breadcrumb="[{ title: 'Dashboard' }, { title: '分析页' }]"
+    page-title="欢迎使用 Ant Design Pro"
+    :breadcrumb="[{ title: '欢迎' }]"
   >
     <template #headerRight>
       <span class="ant-pro-layout-header-action"><search-outlined /></span>
+      <span class="ant-pro-layout-header-action"><question-circle-outlined /></span>
       <span class="ant-pro-layout-header-action"><bell-outlined /></span>
       <span class="ant-pro-layout-header-account">
         <a-avatar
@@ -69,6 +71,7 @@ import {
   BellOutlined,
   DashboardOutlined,
   FormOutlined,
+  QuestionCircleOutlined,
   SearchOutlined,
   SmileOutlined,
   TableOutlined,
@@ -76,7 +79,7 @@ import {
 } from '@ant-design/icons-vue';
 
 const collapsed = ref(false);
-const selectedKeys = ref<string[]>(['analysis']);
+const selectedKeys = ref<string[]>(['welcome']);
 const openKeys = ref<string[]>(['dashboard']);
 
 const menuData = [
