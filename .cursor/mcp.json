@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "antd-vue": {
+      "command": "node",
+      "args": ["packages/antd-cli/dist/mcp.js"]
+    }
+  }
+}

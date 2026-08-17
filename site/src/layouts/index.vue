@@ -161,11 +161,16 @@ export default defineComponent({
       return route.matched[route.matched.length - 1]?.components?.default;
     });
     const isZhCN = globalConfig.isZhCN;
-    const pageData = computed(() =>
-      isDemo.value
-        ? matchCom.value[isZhCN.value ? 'CN' : 'US']?.pageData
-        : (matchCom.value as any)?.pageData,
-    );
+    const readPageData = (comp: any) => comp?.pageData || comp?.__vccOpts?.pageData;
+    const pageData = computed(() => {
+      const matched = matchCom.value as any;
+      if (!matched) {
+        return undefined;
+      }
+      return isDemo.value
+        ? readPageData(matched[isZhCN.value ? 'CN' : 'US'])
+        : readPageData(matched);
+    });
     const slugifyTitle = (str: string) => {
       return (
         str

@@ -135,10 +135,12 @@ export default defineComponent({
       const tdComponent = getComponent(['body', 'cell'], 'td');
       const columnsKey = getColumnsKey(flattenColumns);
       const { start, end, offsetY, totalHeight } = range.value;
-      // Prefer measured widths, fall back to column.width (avoid empty ColGroup when measure is pending)
+      // Numeric column.width wins so resizable updates are not overwritten by MeasureCell
       const mergedColWidths = flattenColumns.map((column, index) => {
         const measured = colWidths?.[index];
-        return measured ?? column.width;
+        return typeof column.width === 'number' && !Number.isNaN(column.width)
+          ? column.width
+          : measured ?? column.width;
       });
       // Fill scrollport so header (width:100% + scrollbar col) and body share the same column box;
       // keep scroll.x as minWidth for horizontal overflow.

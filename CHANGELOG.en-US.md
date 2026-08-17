@@ -10,6 +10,18 @@
 
 ---
 
+## 4.3.5
+
+- 🐞 Fix Table resizable columns not applying width after drag (ColGroup now prefers declared `width` over measured width)
+
+## 4.3.4
+
+- 🐞 Fix ProLayout sider parent item not using the primary color when a child is selected
+
+## 4.3.3
+
+- 🐞 Fix ProLayout not rendering the sider when `layout="mix"` and `splitMenus=false`, which pushed the full menu into the header (Pro default shell: logo in header, full menu in sider, `openKeys` honored)
+
 ## 4.3.2
 
 - 🌟 Layout adds [ProLayout](/components/layout/#prolayout) (`a-pro-layout`) with built-in Pro shell styles

@@ -68,7 +68,7 @@ Admin shell aligned with Ant Design Pro v6 / ProComponents. Switch modes with `l
 import { ProLayout } from '@czxingyu/ant-design-vue';
 ```
 
-```vue
+```html
 <a-pro-layout layout="mix" :menu="menu" v-model:selected-keys="selectedKeys">
   <router-view />
 </a-pro-layout>

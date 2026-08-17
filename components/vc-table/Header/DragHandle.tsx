@@ -176,7 +176,7 @@ export default defineComponent({
     };
 
     const handleStart = (e: HandleEvent, eventsFor: typeof events.mouse) => {
-      if (e instanceof MouseEvent && e.which !== 1) {
+      if (e instanceof MouseEvent && e.button !== 0) {
         return;
       }
       const handle = getHandleEl();

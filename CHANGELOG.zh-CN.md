@@ -10,6 +10,18 @@
 
 ---
 
+## 4.3.5
+
+- 🐞 修复 Table 可伸缩列拖拽后宽度不生效（ColGroup 优先使用声明 `width`，避免被实测宽度覆盖）
+
+## 4.3.4
+
+- 🐞 修复 ProLayout 侧栏选中子菜单时，父级标题未显示主题色高亮
+
+## 4.3.3
+
+- 🐞 修复 ProLayout 在 `layout="mix"` 且 `splitMenus=false` 时侧栏不渲染、完整菜单被塞进顶栏的问题（对齐 Pro 默认壳：顶栏 Logo，侧栏完整菜单，`openKeys` 生效）
+
 ## 4.3.2
 
 - 🌟 Layout 新增 [ProLayout](/components/layout-cn/#prolayout)（`a-pro-layout`），内置 Pro 风格壳样式，业务侧无需再复制大段 CSS

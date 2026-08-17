@@ -1,2 +1,6 @@
 #!/usr/bin/env node
-require('../dist/index.js');
+if (process.argv[2] === 'mcp') {
+  require('../dist/mcp.js');
+} else {
+  require('../dist/index.js');
+}

@@ -21,6 +21,17 @@ import { useRoute } from 'vue-router';
 // import GoogleAds from '../components/rice/GoogleAds.vue';
 
 const showAd = location.host.indexOf('antdv.com') > -1;
+
+function splitDocHtml(html: string): [string, string] {
+  if (!html) {
+    return ['', ''];
+  }
+  const match = /<h2\b[^>]*\bid=["']api["'][^>]*>/i.exec(html);
+  if (!match) {
+    return [html, ''];
+  }
+  return [html.slice(0, match.index), html.slice(match.index)];
+}
 export default defineComponent({
   name: 'Demo',
   components: {
@@ -34,13 +45,14 @@ export default defineComponent({
       return props?.pageData?.html || '';
     });
     const description = computed(() => {
-      return docHtml.value.split('<h2 id="api">API <a class="header-anchor" href="#api">')[0];
+      return splitDocHtml(docHtml.value)[0];
     });
     const api = computed(() => {
-      return `
-      <h2 id="api"><span>API</span><a href="#api" class="anchor">#</a></h2>
-      ${docHtml.value.split('<h2 id="api">API <a class="header-anchor" href="#api">')[1]}
-      `;
+      const [, rest] = splitDocHtml(docHtml.value);
+      if (rest) {
+        return rest;
+      }
+      return '<h2 id="api"><span>API</span><a href="#api" class="anchor">#</a></h2>';
     });
     return { frontmatter, description, api, route, showAd, docHtml };
   },

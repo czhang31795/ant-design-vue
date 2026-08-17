@@ -14,6 +14,13 @@ import tsToJs from './utils/tsToJs';
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const debug = require('debug')('vitepress:md');
 const cache = new LRUCache<string, MarkdownCompileResult>({ max: 1024 });
+// Bump when transform rules change so stale in-memory results are not reused.
+const CACHE_VERSION = 'doc-v2';
+
+function isDemoSource(file: string) {
+  const id = file.replace(/\\/g, '/').split('?')[0];
+  return /\/demo\//.test(id) || /\/examples\/App\.vue$/.test(id);
+}
 
 interface MarkdownCompileResult {
   vueSrc: string;
@@ -29,7 +36,7 @@ export function createMarkdownToVueRenderFn(
   return async (src: string, file: string): Promise<MarkdownCompileResult> => {
     const relativePath = slash(path.relative(root, file));
 
-    const cached = cache.get(src);
+    const cached = cache.get(`${CACHE_VERSION}:${file}:${src}`);
     if (cached) {
       debug(`[cache hit] ${relativePath}`);
       return cached;
@@ -56,16 +63,19 @@ export function createMarkdownToVueRenderFn(
       // TODO use git timestamp?
       lastUpdated: Math.round(fs.statSync(file).mtimeMs),
     };
-    const newContent = data.vueCode
-      ? await genComponentCode(md, data, pageData)
-      : await genDocCode(content, pageData);
+    // Only live demo files (components/*/demo/*.vue) should become demo-box SFCs.
+    // Component API docs must keep pageData even if they contain a ```vue snippet.
+    const newContent =
+      data.vueCode && isDemoSource(file)
+        ? await genComponentCode(md, data, pageData)
+        : await genDocCode(content, pageData);
 
     debug(`[render] ${file} in ${Date.now() - start}ms.`);
     const result = {
       vueSrc: newContent?.trim(),
       pageData,
     };
-    cache.set(src, result);
+    cache.set(`${CACHE_VERSION}:${file}:${src}`, result);
     return result;
   };
 }

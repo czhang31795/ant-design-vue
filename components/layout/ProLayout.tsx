@@ -158,6 +158,10 @@ const ProLayout = defineComponent({
 
     const layoutMode = computed<ProLayoutMode>(() => props.layout || 'mix');
     const isSplitMix = computed(() => layoutMode.value === 'mix' && !!props.splitMenus);
+    /** side，以及 mix 未拆分（nav-pro）：侧栏渲染完整菜单树，并绑定 openKeys */
+    const useFullSiderMenu = computed(
+      () => layoutMode.value === 'side' || (layoutMode.value === 'mix' && !props.splitMenus),
+    );
 
     const activeTopKey = computed(() => {
       const selected = selectedKeys.value[0];
@@ -166,19 +170,25 @@ const ProLayout = defineComponent({
 
     const topMenus = computed(() => toTopMenus(props.menu));
 
-    /** mix+splitMenus：侧栏为当前一级的子菜单；其余有侧栏的模式用完整菜单 */
+    /**
+     * mix + splitMenus=false：侧栏 = 完整 menu（顶栏不放 Menu）
+     * mix + splitMenus=true：侧栏 = 当前一级的 children
+     * side：侧栏 = 完整 menu
+     */
     const siderMenuItems = computed<ItemType[]>(() => {
-      if (isSplitMix.value) {
-        const top = findMenuNode(props.menu, activeTopKey.value);
-        return (top?.children as ItemType[]) || [];
-      }
-      return props.menu;
+      if (layoutMode.value !== 'mix') return props.menu || [];
+      if (!props.splitMenus) return props.menu || [];
+      const top = findMenuNode(props.menu, activeTopKey.value);
+      return (top?.children as ItemType[]) || [];
     });
 
     const showSider = computed(() => {
       if (layoutMode.value === 'top') return false;
-      if (isSplitMix.value) return siderMenuItems.value.length > 0;
-      return layoutMode.value === 'side' || layoutMode.value === 'mix';
+      if (layoutMode.value === 'mix') {
+        if (!props.splitMenus) return true;
+        return siderMenuItems.value.length > 0;
+      }
+      return true;
     });
 
     const syncMixSelection = (topKey: string) => {
@@ -307,8 +317,6 @@ const ProLayout = defineComponent({
     const renderSider = () => {
       if (!showSider.value) return null;
       const isSide = layoutMode.value === 'side';
-      // split mix 侧栏多为叶子菜单，无需 openKeys；其余用完整树
-      const withOpenKeys = !isSplitMix.value;
       return (
         <Sider
           collapsed={mergedCollapsed.value}
@@ -325,7 +333,10 @@ const ProLayout = defineComponent({
           }}
         >
           {isSide ? renderLogo(mergedCollapsed.value) : null}
-          {renderSiderMenu(siderMenuItems.value, withOpenKeys)}
+          {renderSiderMenu(
+            useFullSiderMenu.value ? props.menu || [] : siderMenuItems.value,
+            useFullSiderMenu.value,
+          )}
           {renderSiderCollapseBtn()}
         </Sider>
       );
@@ -333,7 +344,7 @@ const ProLayout = defineComponent({
 
     const renderHeader = () => {
       const mode = layoutMode.value;
-      const showTopMenu = mode === 'top' || isSplitMix.value;
+      const showTopMenu = mode === 'top' || (mode === 'mix' && !!props.splitMenus);
       return (
         <Header
           class={[

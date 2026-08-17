@@ -7,6 +7,18 @@ export interface ColGroupProps<RecordType> {
   columCount?: number;
 }
 
+function resolveColWidth<RecordType>(
+  measured: number | string | undefined,
+  column?: ColumnType<RecordType>,
+) {
+  const declared = column?.width;
+  // Explicit numeric width wins over MeasureCell — otherwise resizable updates are ignored
+  if (typeof declared === 'number' && !Number.isNaN(declared)) {
+    return declared;
+  }
+  return measured ?? declared;
+}
+
 function ColGroup<RecordType>({ colWidths, columns, columCount }: ColGroupProps<RecordType>) {
   const cols = [];
   const len = columCount || columns.length;
@@ -15,8 +27,8 @@ function ColGroup<RecordType>({ colWidths, columns, columCount }: ColGroupProps<
   // Skip if rest col do not have any useful info
   let mustInsert = false;
   for (let i = len - 1; i >= 0; i -= 1) {
-    const width = colWidths[i];
     const column = columns && columns[i];
+    const width = resolveColWidth(colWidths[i], column);
     const additionalProps = column && column[INTERNAL_COL_DEFINE];
 
     if (width || additionalProps || mustInsert) {

@@ -279,8 +279,17 @@
   display: none !important;
 }
 
-.ant-pro-layout-sider .ant-menu-submenu-selected > .ant-menu-submenu-title {
-  color: rgba(0, 0, 0, 0.95) !important;
+/* 子级选中时，父级标题/图标用主色，对齐 Pro BaseMenu */
+.ant-pro-layout-sider .ant-menu-submenu-selected > .ant-menu-submenu-title,
+.ant-pro-layout-sider .ant-menu-submenu-selected > .ant-menu-submenu-title:hover {
+  color: #1677ff !important;
+  background: transparent !important;
+}
+
+.ant-pro-layout-sider .ant-menu-submenu-selected > .ant-menu-submenu-title .ant-menu-item-icon,
+.ant-pro-layout-sider .ant-menu-submenu-selected > .ant-menu-submenu-title .anticon,
+.ant-pro-layout-sider .ant-menu-submenu-selected > .ant-menu-submenu-title .ant-menu-submenu-arrow {
+  color: inherit !important;
 }
 
 .ant-pro-layout-sider .ant-menu-sub.ant-menu-inline {
@@ -435,6 +444,15 @@
 [data-theme='dark'] .ant-pro-layout-sider .ant-menu-item-selected {
   color: rgba(255, 255, 255, 0.95) !important;
   background: rgba(255, 255, 255, 0.08) !important;
+}
+
+[data-theme='dark'] .ant-pro-layout-sider .ant-menu-submenu-selected > .ant-menu-submenu-title,
+[data-theme='dark']
+  .ant-pro-layout-sider
+  .ant-menu-submenu-selected
+  > .ant-menu-submenu-title:hover {
+  color: #1677ff !important;
+  background: transparent !important;
 }
 
 [data-theme='dark'] .ant-pro-layout-collapse-btn {

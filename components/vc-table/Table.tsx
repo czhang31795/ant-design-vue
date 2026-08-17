@@ -796,9 +796,11 @@ export default defineComponent({
     const bodyColGroup = () => (
       <ColGroup
         colWidths={flattenColumns.value.map((column, index) => {
-          // Prefer measured widths so body ColGroup matches FixedHolder header
+          // Numeric column.width is the source of truth (resizable). Measured is fallback.
           const measured = colWidths.value[index];
-          return measured ?? column.width;
+          return typeof column.width === 'number' && !Number.isNaN(column.width)
+            ? column.width
+            : measured ?? column.width;
         })}
         columns={flattenColumns.value}
       />

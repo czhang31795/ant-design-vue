@@ -3,7 +3,22 @@ import path from 'node:path';
 import type { ComponentsIndex } from '../indexer/types';
 
 export function getPackageRoot(): string {
-  // dist/index.js -> package root
+  let dir = __dirname;
+  while (true) {
+    const pkgFile = path.join(dir, 'package.json');
+    if (fs.existsSync(pkgFile)) {
+      try {
+        const pkg = JSON.parse(fs.readFileSync(pkgFile, 'utf8')) as { name?: string };
+        if (pkg.name === '@czxingyu/antd-cli') return dir;
+      } catch {
+        /* ignore invalid package.json */
+      }
+    }
+    const parent = path.dirname(dir);
+    if (parent === dir) break;
+    dir = parent;
+  }
+  // dist/index.js -> package root (fallback)
   return path.resolve(__dirname, '..');
 }
 

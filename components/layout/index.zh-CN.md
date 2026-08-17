@@ -69,7 +69,7 @@ coverDark: https://mdn.alipayobjects.com/huamei_7uahnr/afts/img/A*HdS6Q5vUCDcAAA
 import { ProLayout } from '@czxingyu/ant-design-vue';
 ```
 
-```vue
+```html
 <a-pro-layout layout="mix" :menu="menu" v-model:selected-keys="selectedKeys">
   <router-view />
 </a-pro-layout>

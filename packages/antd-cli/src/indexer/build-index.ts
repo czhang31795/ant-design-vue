@@ -7,20 +7,6 @@ const CLI_ROOT = path.resolve(__dirname, '../..');
 const REPO_ROOT = path.resolve(CLI_ROOT, '../..');
 const COMPONENTS_DIR = path.join(REPO_ROOT, 'components');
 const OUT_FILE = path.join(CLI_ROOT, 'data', 'components-index.json');
-const REFS_DIR = path.join(CLI_ROOT, 'skills', 'antd-page-gen', 'references');
-
-const PRIORITY_COMPONENTS = [
-  'layout',
-  'form',
-  'table',
-  'select',
-  'button',
-  'modal',
-  'drawer',
-  'date-picker',
-  'input',
-  'message',
-];
 
 function readLibVersion(): string {
   const pkg = JSON.parse(fs.readFileSync(path.join(REPO_ROOT, 'package.json'), 'utf8'));
@@ -127,63 +113,6 @@ function buildComponent(name: string): ComponentEntry | null {
   };
 }
 
-function writePriorityRefs(components: ComponentEntry[]) {
-  fs.mkdirSync(REFS_DIR, { recursive: true });
-  const byName = new Map(components.map(c => [c.name, c]));
-
-  for (const name of PRIORITY_COMPONENTS) {
-    const c = byName.get(name);
-    if (!c) continue;
-    const demoList = c.demos
-      .slice(0, 12)
-      .map(d => `- \`${d.id}\`${d.titleZh ? ` — ${d.titleZh}` : ''}`)
-      .join('\n');
-    const apiPreview =
-      c.api.length > 4000
-        ? `${c.api.slice(
-            0,
-            4000,
-          )}\n\n…(truncated, use \`antd-cli components get ${name} --section api\`)`
-        : c.api;
-    const md = `# ${c.title || c.name}${c.subtitle ? ` ${c.subtitle}` : ''}
-
-> 自动生成自组件库文档，细节请用 \`antd-cli components get ${name}\` / \`antd-cli demos get ${name}/<id>\`。
-
-## 摘要
-
-${c.summary || '_无_'}
-
-## 何时使用
-
-${c.whenToUse || '_无_'}
-
-## API（摘要）
-
-${apiPreview || '_无_'}
-
-${c.extras ? `${c.extras}\n` : ''}## Demos
-
-${demoList || '_无_'}
-
-\`\`\`bash
-antd-cli components get ${name} --json
-antd-cli demos list ${name} --json
-antd-cli demos get ${name}/<demo-id> --json
-\`\`\`
-`;
-    fs.writeFileSync(path.join(REFS_DIR, `${name}.md`), md, 'utf8');
-  }
-
-  // index for references
-  const indexMd = `# 高频页面组件 References
-
-以下摘要供生成页面时快速查阅，完整 API / 源码请走 CLI。
-
-${PRIORITY_COMPONENTS.map(n => `- [${n}](./${n}.md)`).join('\n')}
-`;
-  fs.writeFileSync(path.join(REFS_DIR, 'README.md'), indexMd, 'utf8');
-}
-
 function main() {
   const names = fs
     .readdirSync(COMPONENTS_DIR, { withFileTypes: true })
@@ -206,14 +135,12 @@ function main() {
 
   fs.mkdirSync(path.dirname(OUT_FILE), { recursive: true });
   fs.writeFileSync(OUT_FILE, JSON.stringify(index, null, 2), 'utf8');
-  writePriorityRefs(components);
 
   console.log(
     `Indexed ${components.length} components → ${path.relative(REPO_ROOT, OUT_FILE)} (lib ${
       index.libVersion
     })`,
   );
-  console.log(`Wrote priority refs → ${path.relative(REPO_ROOT, REFS_DIR)}`);
 }
 
 main();

@@ -1,10 +1,10 @@
 {
   "name": "@czxingyu/antd-cli",
-  "version": "4.3.2",
-  "description": "Agent-friendly CLI to discover @czxingyu/ant-design-vue components, APIs and demos",
+  "version": "4.3.8",
+  "description": "MCP + setup for @czxingyu/ant-design-vue: AI queries real component APIs/demos; humans use the docs site",
   "keywords": [
     "ant-design-vue",
-    "cli",
+    "mcp",
     "agent",
     "skills",
     "antd"
@@ -21,13 +21,17 @@
   ],
   "scripts": {
     "index": "tsx src/indexer/build-index.ts",
-    "build": "npm run index && tsup src/index.ts --format cjs --outDir dist --clean --sourcemap",
+    "build": "npm run index && tsup src/index.ts src/mcp.ts --format cjs --outDir dist --clean --sourcemap --external @modelcontextprotocol/sdk --external zod",
     "dev": "tsx src/index.ts",
+    "mcp": "tsx src/mcp.ts",
+    "smoke:mcp": "node scripts/smoke-mcp.cjs",
     "prepublishOnly": "npm run build"
   },
   "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.25.0",
     "cac": "^6.7.14",
-    "gray-matter": "^4.0.3"
+    "gray-matter": "^4.0.3",
+    "zod": "^3.25.76"
   },
   "devDependencies": {
     "@types/node": "^20.11.0",
