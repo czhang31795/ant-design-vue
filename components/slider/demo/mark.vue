@@ -18,52 +18,52 @@ Using `marks` property to mark a graduated slider, use `value` to specify the po
 <template>
   <div id="components-slider-demo-mark">
     <h4>included=true</h4>
-    <a-slider v-model:value="value1" :marks="marks">
+    <xy-slider v-model:value="value1" :marks="marks">
       <template #mark="{ label, point }">
         <template v-if="point === 100">
           <strong>{{ label }}</strong>
         </template>
         <template v-else>{{ label }}</template>
       </template>
-    </a-slider>
-    <a-slider v-model:value="value2" range :marks="marks">
+    </xy-slider>
+    <xy-slider v-model:value="value2" range :marks="marks">
       <template #mark="{ label, point }">
         <template v-if="point === 100">
           <strong>{{ label }}</strong>
         </template>
         <template v-else>{{ label }}</template>
       </template>
-    </a-slider>
+    </xy-slider>
 
     <h4>included=false</h4>
-    <a-slider v-model:value="value3" :marks="marks" :included="false">
+    <xy-slider v-model:value="value3" :marks="marks" :included="false">
       <template #mark="{ label, point }">
         <template v-if="point === 100">
           <strong>{{ label }}</strong>
         </template>
         <template v-else>{{ label }}</template>
       </template>
-    </a-slider>
+    </xy-slider>
 
     <h4>marks & step</h4>
-    <a-slider v-model:value="value4" :marks="marks" :step="10">
+    <xy-slider v-model:value="value4" :marks="marks" :step="10">
       <template #mark="{ label, point }">
         <template v-if="point === 100">
           <strong>{{ label }}</strong>
         </template>
         <template v-else>{{ label }}</template>
       </template>
-    </a-slider>
+    </xy-slider>
 
     <h4>step=null</h4>
-    <a-slider v-model:value="value5" :marks="marks" :step="null">
+    <xy-slider v-model:value="value5" :marks="marks" :step="null">
       <template #mark="{ label, point }">
         <template v-if="point === 100">
           <strong>{{ label }}</strong>
         </template>
         <template v-else>{{ label }}</template>
       </template>
-    </a-slider>
+    </xy-slider>
   </div>
 </template>
 <script lang="ts" setup>
@@ -89,7 +89,7 @@ const marks = ref<Record<number, any>>({
 #components-slider-demo-mark h4 {
   margin: 0 0 16px;
 }
-#components-slider-demo-mark .ant-slider-with-marks {
+#components-slider-demo-mark .xy-slider-with-marks {
   margin-bottom: 44px;
 }
 </style>

@@ -17,7 +17,7 @@ Lookup-Patterns - Certain Category.
 
 <template>
   <div class="certain-category-search-wrapper" style="width: 250px">
-    <a-auto-complete
+    <xy-auto-complete
       v-model:value="value"
       class="certain-category-search"
       popup-class-name="certain-category-search-dropdown"
@@ -58,8 +58,8 @@ Lookup-Patterns - Certain Category.
           </div>
         </template>
       </template>
-      <a-input-search placeholder="input here" size="large"></a-input-search>
-    </a-auto-complete>
+      <xy-input-search placeholder="input here" size="large"></xy-input-search>
+    </xy-auto-complete>
   </div>
 </template>
 
@@ -110,25 +110,25 @@ const value = ref('');
 </script>
 
 <style scoped>
-.certain-category-search-dropdown .ant-select-dropdown-menu-item-group-title {
+.certain-category-search-dropdown .xy-select-dropdown-menu-item-group-title {
   color: #666;
   font-weight: bold;
 }
 
-.certain-category-search-dropdown .ant-select-dropdown-menu-item-group {
+.certain-category-search-dropdown .xy-select-dropdown-menu-item-group {
   border-bottom: 1px solid #f6f6f6;
 }
 
-.certain-category-search-dropdown .ant-select-dropdown-menu-item {
+.certain-category-search-dropdown .xy-select-dropdown-menu-item {
   padding-left: 16px;
 }
 
-.certain-category-search-dropdown .ant-select-dropdown-menu-item.show-all {
+.certain-category-search-dropdown .xy-select-dropdown-menu-item.show-all {
   text-align: center;
   cursor: default;
 }
 
-.certain-category-search-dropdown .ant-select-dropdown-menu {
+.certain-category-search-dropdown .xy-select-dropdown-menu {
   max-height: 300px;
 }
 </style>

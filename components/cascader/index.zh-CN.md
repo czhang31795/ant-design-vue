@@ -18,7 +18,7 @@ coverDark: https://mdn.alipayobjects.com/huamei_7uahnr/afts/img/A*5-ArSLl5UBsAAA
 ## API
 
 ```html
-<a-cascader :options="options" v-model:value="value" />
+<xy-cascader :options="options" v-model:value="value" />
 ```
 
 | 参数 | 说明 | 类型 | 默认值 | Version |

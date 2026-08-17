@@ -18,13 +18,13 @@ The vertical Slider.
 <template>
   <div style="height: 300px">
     <div style="display: inline-block; height: 300px; margin-left: 70px">
-      <a-slider v-model:value="value1" vertical />
+      <xy-slider v-model:value="value1" vertical />
     </div>
     <div style="display: inline-block; height: 300px; margin-left: 70px">
-      <a-slider v-model:value="value2" vertical range :step="10" />
+      <xy-slider v-model:value="value2" vertical range :step="10" />
     </div>
     <div style="display: inline-block; height: 300px; margin-left: 70px">
-      <a-slider v-model:value="value3" vertical range :marks="marks" />
+      <xy-slider v-model:value="value3" vertical range :marks="marks" />
     </div>
   </div>
 </template>
@@ -46,7 +46,7 @@ const marks = ref<Record<number, any>>({
 });
 </script>
 <style scoped>
-.code-box-demo .ant-slider {
+.code-box-demo .xy-slider {
   margin-bottom: 16px;
 }
 </style>

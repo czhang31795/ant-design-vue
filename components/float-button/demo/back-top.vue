@@ -26,6 +26,6 @@ title:
     <div>Scroll to bottom</div>
     <div>Scroll to bottom</div>
     <div>Scroll to bottom</div>
-    <a-back-top />
+    <xy-back-top />
   </div>
 </template>

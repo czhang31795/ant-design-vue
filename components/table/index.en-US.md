@@ -20,7 +20,7 @@ Specify `dataSource` of Table as an array of data.
 
 ```html
 <template>
-  <a-table :dataSource="dataSource" :columns="columns" />
+  <xy-table :dataSource="dataSource" :columns="columns" />
 </template>
 <script>
   export default {

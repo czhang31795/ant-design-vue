@@ -17,7 +17,7 @@ Load more list with `loadMore` slot.
 </docs>
 
 <template>
-  <a-list
+  <xy-list
     class="demo-loadmore-list"
     :loading="initLoading"
     item-layout="horizontal"
@@ -28,31 +28,31 @@ Load more list with `loadMore` slot.
         v-if="!initLoading && !loading"
         :style="{ textAlign: 'center', marginTop: '12px', height: '32px', lineHeight: '32px' }"
       >
-        <a-button @click="onLoadMore">loading more</a-button>
+        <xy-button @click="onLoadMore">loading more</xy-button>
       </div>
     </template>
     <template #renderItem="{ item }">
-      <a-list-item>
+      <xy-list-item>
         <template #actions>
           <a key="list-loadmore-edit">edit</a>
           <a key="list-loadmore-more">more</a>
         </template>
-        <a-skeleton avatar :title="false" :loading="!!item.loading" active>
-          <a-list-item-meta
+        <xy-skeleton avatar :title="false" :loading="!!item.loading" active>
+          <xy-list-item-meta
             description="Ant Design, a design language for background applications, is refined by Ant UED Team"
           >
             <template #title>
               <a href="https://www.antdv.com/">{{ item.name.last }}</a>
             </template>
             <template #avatar>
-              <a-avatar :src="item.picture.large" />
+              <xy-avatar :src="item.picture.large" />
             </template>
-          </a-list-item-meta>
+          </xy-list-item-meta>
           <div>content</div>
-        </a-skeleton>
-      </a-list-item>
+        </xy-skeleton>
+      </xy-list-item>
     </template>
-  </a-list>
+  </xy-list>
 </template>
 <script lang="ts" setup>
 import { onMounted, ref, nextTick } from 'vue';

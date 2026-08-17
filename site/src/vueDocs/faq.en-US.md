@@ -16,11 +16,11 @@ The language pack provided by the component does not affect date formatting. You
 
 ### `Select Dropdown DatePicker TimePicker Popover Popconfirm` disappear when I click another popup component inside it, How to resolve it?
 
-Use `<a-select :getPopupContainer="trigger => trigger.parentNode">` to render component inside Popover. (Or other getXxxxContainer props)
+Use `<xy-select :getPopupContainer="trigger => trigger.parentNode">` to render component inside Popover. (Or other getXxxxContainer props)
 
 ### `Select Dropdown DatePicker TimePicker Popover Popconfirm` scroll with the page?
 
-Use `<a-select :getPopupContainer="trigger => trigger.parentNode">` to render component inside the scroll area. (Or other getXxxxContainer props).
+Use `<xy-select :getPopupContainer="trigger => trigger.parentNode">` to render component inside the scroll area. (Or other getXxxxContainer props).
 
 ### How to modify the default theme of Ant Design Vue?
 

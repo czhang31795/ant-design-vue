@@ -16,9 +16,9 @@ Static method for `message`, `notification`, `modal`.
 </docs>
 
 <template>
-  <a-app>
+  <xy-app>
     <my-page />
-  </a-app>
+  </xy-app>
 </template>
 
 <script lang="ts" setup>

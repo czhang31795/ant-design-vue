@@ -65,7 +65,7 @@ export default function useTranspose<RecordType extends DefaultRecordType = Defa
     const prefix =
       typeof options?.prefixCls === 'object' && options.prefixCls && 'value' in options.prefixCls
         ? options.prefixCls.value
-        : (options?.prefixCls as string) || 'ant-table';
+        : (options?.prefixCls as string) || 'xy-table';
     const fieldCellClass = `${prefix}-cell-vertical-field`;
 
     const transposedColumns: ColumnsType<DefaultRecordType> = [

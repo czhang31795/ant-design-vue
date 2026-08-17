@@ -16,7 +16,7 @@ Simple table with actions.
 </docs>
 
 <template>
-  <a-table :columns="columns" :data-source="data">
+  <xy-table :columns="columns" :data-source="data">
     <template #headerCell="{ column }">
       <template v-if="column.key === 'name'">
         <span>
@@ -34,29 +34,29 @@ Simple table with actions.
       </template>
       <template v-else-if="column.key === 'tags'">
         <span>
-          <a-tag
+          <xy-tag
             v-for="tag in record.tags"
             :key="tag"
             :color="tag === 'loser' ? 'volcano' : tag.length > 5 ? 'geekblue' : 'green'"
           >
             {{ tag.toUpperCase() }}
-          </a-tag>
+          </xy-tag>
         </span>
       </template>
       <template v-else-if="column.key === 'action'">
         <span>
           <a>Invite 一 {{ record.name }}</a>
-          <a-divider type="vertical" />
+          <xy-divider type="vertical" />
           <a>Delete</a>
-          <a-divider type="vertical" />
-          <a class="ant-dropdown-link">
+          <xy-divider type="vertical" />
+          <a class="xy-dropdown-link">
             More actions
             <down-outlined />
           </a>
         </span>
       </template>
     </template>
-  </a-table>
+  </xy-table>
 </template>
 <script lang="ts" setup>
 import { SmileOutlined, DownOutlined } from '@ant-design/icons-vue';

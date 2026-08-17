@@ -16,7 +16,7 @@ Anchor target scroll to screen center.
 </docs>
 
 <template>
-  <a-anchor
+  <xy-anchor
     :target-offset="targetOffset"
     :items="[
       {
@@ -47,7 +47,7 @@ Anchor target scroll to screen center.
         ],
       },
     ]"
-  ></a-anchor>
+  ></xy-anchor>
 </template>
 
 <script lang="ts" setup>

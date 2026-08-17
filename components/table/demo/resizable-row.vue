@@ -17,7 +17,7 @@ Enable `rowResizable` to drag the bottom edge of a row to change its height. Per
 </docs>
 
 <template>
-  <a-table
+  <xy-table
     row-resizable
     :min-row-height="40"
     :row-heights="rowHeights"

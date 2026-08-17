@@ -15,9 +15,9 @@ export type ListItemMetaProps = Partial<ExtractPropTypes<ReturnType<typeof listI
 
 export default defineComponent({
   compatConfig: { MODE: 3 },
-  name: 'AListItemMeta',
+  name: 'XyListItemMeta',
   props: listItemMetaProps(),
-  displayName: 'AListItemMeta', // 兼容历史函数式组件
+  displayName: 'XyListItemMeta', // 兼容历史函数式组件
   __ANT_LIST_ITEM_META: true,
   slots: Object as CustomSlotsType<{
     avatar: any;

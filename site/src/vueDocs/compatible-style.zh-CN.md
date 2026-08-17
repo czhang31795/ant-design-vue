@@ -12,17 +12,17 @@ Ant Design Vue 的 CSS-in-JS 默认通过 `:where` 选择器降低 CSS Selector 
 ```html
 // `hashPriority` 默认为 `low`，配置为 `high` 后， // 会移除 `:where` 选择器封装
 <template>
-  <a-style-provider hash-priority="high">
+  <xy-style-provider hash-priority="high">
     <MyApp />
-  </a-style-provider>
+  </xy-style-provider>
 </template>
 ```
 
 切换后，样式将从 `:where` 切换为类选择器：
 
 ```diff
---  :where(.css-bAMboO).ant-btn {
-++  .css-bAMboO.ant-btn {
+--  :where(.css-bAMboO).xy-btn {
+++  .css-bAMboO.xy-btn {
       color: #fff;
     }
 ```
@@ -40,9 +40,9 @@ Ant Design Vue 的 CSS-in-JS 默认通过 `:where` 选择器降低 CSS Selector 
 ```html
 // `transformers` 提供预处理功能将样式进行转换
 <template>
-  <a-style-provider :transformers="[legacyLogicalPropertiesTransformer]">
+  <xy-style-provider :transformers="[legacyLogicalPropertiesTransformer]">
     <MyApp />
-  </a-style-provider>
+  </xy-style-provider>
 </template>
 
 <script lang="ts" setup>
@@ -53,7 +53,7 @@ Ant Design Vue 的 CSS-in-JS 默认通过 `:where` 选择器降低 CSS Selector 
 切换后，样式将降级 CSS 逻辑属性：
 
 ```diff
-.ant-modal-root {
+.xy-modal-root {
 -- inset: 0;
 ++ top: 0;
 ++ right: 0;

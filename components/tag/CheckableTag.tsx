@@ -19,7 +19,7 @@ export type CheckableTagProps = Partial<ExtractPropTypes<ReturnType<typeof check
 
 const CheckableTag = defineComponent({
   compatConfig: { MODE: 3 },
-  name: 'ACheckableTag',
+  name: 'XyCheckableTag',
   inheritAttrs: false,
   props: checkableTagProps(),
   // emits: ['update:checked', 'change', 'click'],

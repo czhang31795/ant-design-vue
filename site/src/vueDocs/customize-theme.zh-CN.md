@@ -19,15 +19,15 @@ Ant Design Vue 设计规范和技术上支持灵活的样式定制，以满足�
 
 ```html
 <template>
-  <a-config-provider
+  <xy-config-provider
     :theme="{
       token: {
         colorPrimary: '#00b96b',
       },
     }"
   >
-    <a-button />
-  </a-config-provider>
+    <xy-button />
+  </xy-config-provider>
 </template>
 ```
 
@@ -41,13 +41,13 @@ Ant Design Vue 设计规范和技术上支持灵活的样式定制，以满足�
 
 ```html
 <template>
-  <a-config-provider
+  <xy-config-provider
     :theme="{
       algorithm: theme.darkAlgorithm,
     }"
   >
-    <a-button />
-  </a-config-provider>
+    <xy-button />
+  </xy-config-provider>
 </template>
 
 <script setup>
@@ -61,7 +61,7 @@ Ant Design Vue 设计规范和技术上支持灵活的样式定制，以满足�
 
 ```html
 <template>
-  <a-config-provider
+  <xy-config-provider
     :theme="{
       components: {
         Radio: {
@@ -70,9 +70,9 @@ Ant Design Vue 设计规范和技术上支持灵活的样式定制，以满足�
       },
     }"
   >
-    <a-radio>Radio</a-radio>
-    <a-checkbox>Checkbox</a-checkbox>
-  </a-config-provider>
+    <xy-radio>Radio</xy-radio>
+    <xy-checkbox>Checkbox</xy-checkbox>
+  </xy-config-provider>
 </template>
 ```
 
@@ -94,24 +94,24 @@ Ant Design Vue 设计规范和技术上支持灵活的样式定制，以满足�
 
 ```html
 <template>
-  <a-config-provider
+  <xy-config-provider
     :theme="{
       token: {
         colorPrimary: '#1677ff',
       },
     }"
   >
-    <a-button />
-    <a-config-provider
+    <xy-button />
+    <xy-config-provider
       :theme="{
         token: {
           colorPrimary: '#1890ff',
         },
       }"
     >
-      <a-button />
-    </a-config-provider>
-  </a-config-provider>
+      <xy-button />
+    </xy-config-provider>
+  </xy-config-provider>
 </template>
 ```
 
@@ -121,7 +121,7 @@ Ant Design Vue 设计规范和技术上支持灵活的样式定制，以满足�
 
 ```html
 <template>
-  <a-button :style="{ backgroundColor: token.colorPrimary }">Button</a-button>
+  <xy-button :style="{ backgroundColor: token.colorPrimary }">Button</xy-button>
 </template>
 
 <script setup>

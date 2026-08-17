@@ -18,14 +18,14 @@ Lazy mode: size updates only after the drag ends.
 
 <template>
   <div class="demo-splitter">
-    <a-splitter lazy>
-      <a-splitter-panel default-size="40%">
+    <xy-splitter lazy>
+      <xy-splitter-panel default-size="40%">
         <div class="demo-panel">First</div>
-      </a-splitter-panel>
-      <a-splitter-panel>
+      </xy-splitter-panel>
+      <xy-splitter-panel>
         <div class="demo-panel">Second</div>
-      </a-splitter-panel>
-    </a-splitter>
+      </xy-splitter-panel>
+    </xy-splitter>
   </div>
 </template>
 

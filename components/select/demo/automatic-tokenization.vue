@@ -17,7 +17,7 @@ Try to copy `Lucy,Jack` to the input. Only available in tags and multiple mode.
 </docs>
 
 <template>
-  <a-select
+  <xy-select
     v-model:value="value"
     mode="tags"
     style="width: 100%"
@@ -25,7 +25,7 @@ Try to copy `Lucy,Jack` to the input. Only available in tags and multiple mode.
     placeholder="Automatic tokenization"
     :options="options"
     @change="handleChange"
-  ></a-select>
+  ></xy-select>
 </template>
 <script lang="ts" setup>
 import { ref, watch } from 'vue';

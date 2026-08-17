@@ -70,9 +70,9 @@ import { ProLayout } from '@czxingyu/ant-design-vue';
 ```
 
 ```html
-<a-pro-layout layout="mix" :menu="menu" v-model:selected-keys="selectedKeys">
+<xy-pro-layout layout="mix" :menu="menu" v-model:selected-keys="selectedKeys">
   <router-view />
-</a-pro-layout>
+</xy-pro-layout>
 ```
 
 | 参数 | 说明 | 类型 | 默认值 |

@@ -15,7 +15,7 @@ title:
 You can use your own custom icons by setting the property `icon` for `Steps.Step`.
 </docs>
 <template>
-  <a-steps :items="items"></a-steps>
+  <xy-steps :items="items"></xy-steps>
 </template>
 <script lang="ts" setup>
 import { h } from 'vue';

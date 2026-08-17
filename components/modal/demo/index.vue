@@ -62,7 +62,7 @@ export default defineComponent({
 });
 </script>
 <style>
-[id^='components-modal-demo'] .ant-btn {
+[id^='components-modal-demo'] .xy-btn {
   margin-right: 8px;
 }
 </style>

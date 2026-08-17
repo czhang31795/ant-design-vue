@@ -18,7 +18,7 @@ There are two built-in themes: `light` and `dark`. The default value is `light`.
 
 <template>
   <div>
-    <a-switch
+    <xy-switch
       :checked="theme === 'dark'"
       checked-children="Dark"
       un-checked-children="Light"
@@ -26,7 +26,7 @@ There are two built-in themes: `light` and `dark`. The default value is `light`.
     />
     <br />
     <br />
-    <a-menu
+    <xy-menu
       v-model:openKeys="openKeys"
       v-model:selectedKeys="selectedKeys"
       style="width: 256px"

@@ -18,14 +18,14 @@ Separate trigger button and result.
 <template>
   <span>
     {{ text }} &nbsp;
-    <a-cascader
+    <xy-cascader
       v-model:value="value"
       placeholder="Please select"
       :options="options"
       @change="onChange"
     >
       <a href="#">Change city</a>
-    </a-cascader>
+    </xy-cascader>
   </span>
 </template>
 <script lang="ts" setup>

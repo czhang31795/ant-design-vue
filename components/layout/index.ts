@@ -1,4 +1,5 @@
 import type { App } from 'vue';
+import { registerComponent } from '../_util/registerComponent';
 import Layout, { Header, Footer, Content } from './layout';
 import Sider from './Sider';
 import ProLayout from './ProLayout';
@@ -21,12 +22,12 @@ export default Object.assign(Layout, {
   Sider,
   ProLayout,
   install: (app: App) => {
-    app.component(Layout.name, Layout);
-    app.component(Header.name, Header);
-    app.component(Footer.name, Footer);
-    app.component(Sider.name, Sider);
-    app.component(Content.name, Content);
-    app.component(ProLayout.name as string, ProLayout);
+    registerComponent(app, Layout);
+    registerComponent(app, Header);
+    registerComponent(app, Footer);
+    registerComponent(app, Sider);
+    registerComponent(app, Content);
+    registerComponent(app, ProLayout);
     return app;
   },
 });

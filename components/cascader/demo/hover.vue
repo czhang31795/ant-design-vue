@@ -16,7 +16,7 @@ Hover to expand sub menu, click to select option.
 
 </docs>
 <template>
-  <a-cascader
+  <xy-cascader
     v-model:value="value"
     :options="options"
     expand-trigger="hover"

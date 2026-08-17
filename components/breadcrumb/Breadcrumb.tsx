@@ -55,7 +55,7 @@ function defaultItemRender(opt: {
 
 export default defineComponent({
   compatConfig: { MODE: 3 },
-  name: 'ABreadcrumb',
+  name: 'XyBreadcrumb',
   inheritAttrs: false,
   props: breadcrumbProps(),
   slots: Object as CustomSlotsType<{

@@ -153,7 +153,7 @@ describe('Table.filter', () => {
       }),
     );
 
-    let dropdown = wrapper.find({ name: 'ADropdown' });
+    let dropdown = wrapper.find({ name: 'XyDropdown' });
     expect(dropdown.props().visible).toBe(true);
 
     wrapper.setProps({
@@ -165,7 +165,7 @@ describe('Table.filter', () => {
       ],
     });
     Vue.nextTick(() => {
-      dropdown = wrapper.find({ name: 'ADropdown' });
+      dropdown = wrapper.find({ name: 'XyDropdown' });
       expect(dropdown.props().visible).toBe(false);
       done();
     });
@@ -185,7 +185,7 @@ describe('Table.filter', () => {
       }),
     );
 
-    wrapper.findAll('.ant-dropdown-trigger')[0].trigger('click');
+    wrapper.findAll('.xy-dropdown-trigger')[0].trigger('click');
 
     expect(handleChange).toBeCalledWith(true);
   });
@@ -307,16 +307,16 @@ describe('Table.filter', () => {
       }),
     );
     await asyncExpect(() => {
-      $$('.ant-dropdown-trigger')[0].click();
+      $$('.xy-dropdown-trigger')[0].click();
     });
     await asyncExpect(() => {
-      $$('.ant-dropdown-menu-submenu-title')[0].dispatchEvent(new MouseEvent('mouseenter'));
+      $$('.xy-dropdown-menu-submenu-title')[0].dispatchEvent(new MouseEvent('mouseenter'));
     }, 0);
     await asyncExpect(() => {
-      $$('.ant-dropdown-menu-submenu-title')[1].dispatchEvent(new MouseEvent('mouseenter'));
+      $$('.xy-dropdown-menu-submenu-title')[1].dispatchEvent(new MouseEvent('mouseenter'));
     }, 500);
     await asyncExpect(() => {
-      const menuItem = $$('.ant-dropdown-menu-item');
+      const menuItem = $$('.xy-dropdown-menu-item');
       menuItem[menuItem.length - 1].click();
     }, 500);
 
@@ -443,13 +443,13 @@ describe('Table.filter', () => {
       attachTo: 'body',
     });
     await asyncExpect(() => {
-      wrapper.find('.ant-dropdown-trigger').trigger('click');
+      wrapper.find('.xy-dropdown-trigger').trigger('click');
     }, 0);
     await asyncExpect(() => {
-      $$('.ant-dropdown-menu-item')[0].click();
+      $$('.xy-dropdown-menu-item')[0].click();
     }, 500);
     await asyncExpect(() => {
-      wrapper.find('.ant-dropdown-trigger').trigger('click');
+      wrapper.find('.xy-dropdown-trigger').trigger('click');
     }, 500);
     await asyncExpect(() => {
       expect(handleChange).toBeCalled();

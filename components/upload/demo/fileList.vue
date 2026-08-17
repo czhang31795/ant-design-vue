@@ -24,17 +24,17 @@ You can gain full control over filelist by configuring `fileList`. You can accom
 </docs>
 
 <template>
-  <a-upload
+  <xy-upload
     action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
     :multiple="true"
     :file-list="fileList"
     @change="handleChange"
   >
-    <a-button>
+    <xy-button>
       <upload-outlined></upload-outlined>
       Upload
-    </a-button>
-  </a-upload>
+    </xy-button>
+  </xy-upload>
 </template>
 <script lang="ts" setup>
 import { UploadOutlined } from '@ant-design/icons-vue';

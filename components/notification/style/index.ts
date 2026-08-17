@@ -25,7 +25,7 @@ export interface NotificationToken extends FullToken<'Notification'> {
 const genNotificationStyle: GenerateStyle<NotificationToken> = token => {
   const {
     iconCls,
-    componentCls, // .ant-notification
+    componentCls, // .xy-notification
     boxShadowSecondary,
     fontSizeLG,
     notificationMarginBottom,

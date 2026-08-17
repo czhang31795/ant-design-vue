@@ -1,4 +1,5 @@
 import type { App, Plugin } from 'vue';
+import { registerComponent } from '../_util/registerComponent';
 import Collapse, { collapseProps } from './Collapse';
 import CollapsePanel, { collapsePanelProps } from './CollapsePanel';
 export type { CollapseProps } from './Collapse';
@@ -8,8 +9,8 @@ Collapse.Panel = CollapsePanel;
 
 /* istanbul ignore next */
 Collapse.install = function (app: App) {
-  app.component(Collapse.name, Collapse);
-  app.component(CollapsePanel.name, CollapsePanel);
+  registerComponent(app, Collapse);
+  registerComponent(app, CollapsePanel);
   return app;
 };
 

@@ -14,17 +14,17 @@ describe('Progress', () => {
       sync: false,
     });
     await asyncExpect(() => {
-      expect(wrapper.findAll('.ant-progress-status-success')).toHaveLength(0);
+      expect(wrapper.findAll('.xy-progress-status-success')).toHaveLength(0);
     });
 
     wrapper.setProps({ percent: 50, success: { percent: 100 } });
     await asyncExpect(() => {
-      expect(wrapper.findAll('.ant-progress-status-success')).toHaveLength(1);
+      expect(wrapper.findAll('.xy-progress-status-success')).toHaveLength(1);
     });
 
     wrapper.setProps({ percent: 100, success: { percent: 0 } });
     await asyncExpect(() => {
-      expect(wrapper.findAll('.ant-progress-status-success')).toHaveLength(0);
+      expect(wrapper.findAll('.xy-progress-status-success')).toHaveLength(0);
     });
   });
 
@@ -200,7 +200,7 @@ describe('Progress', () => {
         return <Progress percent={100} />;
       },
     });
-    expect(wrapper.findAll('.ant-progress-status-success')).toHaveLength(1);
+    expect(wrapper.findAll('.xy-progress-status-success')).toHaveLength(1);
   });
 
   // https://github.com/ant-design/ant-design/issues/15950
@@ -210,7 +210,7 @@ describe('Progress', () => {
         return <Progress percent={100} status={undefined} />;
       },
     });
-    expect(wrapper.findAll('.ant-progress-status-success')).toHaveLength(1);
+    expect(wrapper.findAll('.xy-progress-status-success')).toHaveLength(1);
   });
 
   // // https://github.com/ant-design/ant-design/pull/15951#discussion_r273062969
@@ -221,7 +221,7 @@ describe('Progress', () => {
   //       return <Progress percent={100} status="invalid" />;
   //     },
   //   });
-  //   expect(wrapper.findAll('.ant-progress-status-success')).toHaveLength(1);
+  //   expect(wrapper.findAll('.xy-progress-status-success')).toHaveLength(1);
   //   errorSpy.mockRestore();
   // });
 
@@ -240,10 +240,10 @@ describe('Progress', () => {
         return <Progress steps={5} percent={60} />;
       },
     });
-    expect(wrapper.findAll('.ant-progress-steps-item-active').length).toBe(3);
+    expect(wrapper.findAll('.xy-progress-steps-item-active').length).toBe(3);
     wrapper.setProps({ percent: 40 });
     await asyncExpect(() => {
-      expect(wrapper.findAll('.ant-progress-steps-item-active').length).toBe(2);
+      expect(wrapper.findAll('.xy-progress-steps-item-active').length).toBe(2);
     });
   });
 
@@ -253,13 +253,13 @@ describe('Progress', () => {
         return <Progress steps={5} percent={60} strokeColor="#1890ff" />;
       },
     });
-    expect(wrapper.findAll('.ant-progress-steps-item')[0].element.style.backgroundColor).toBe(
+    expect(wrapper.findAll('.xy-progress-steps-item')[0].element.style.backgroundColor).toBe(
       'rgb(24, 144, 255)',
     );
     wrapper.setProps({ percent: 40 });
     await asyncExpect(() => {
-      expect(wrapper.findAll('.ant-progress-steps-item')[2].element.style.backgroundColor).toBe('');
-      expect(wrapper.findAll('.ant-progress-steps-item')[1].element.style.backgroundColor).toBe(
+      expect(wrapper.findAll('.xy-progress-steps-item')[2].element.style.backgroundColor).toBe('');
+      expect(wrapper.findAll('.xy-progress-steps-item')[1].element.style.backgroundColor).toBe(
         'rgb(24, 144, 255)',
       );
     });
@@ -267,7 +267,7 @@ describe('Progress', () => {
 
   it('steps should support trailColor', () => {
     const wrapper = mount(<Progress steps={5} percent={20} trailColor="#1890ee" />);
-    expect(wrapper.findAll('.ant-progress-steps-item')[1].element.style.backgroundColor).toBe(
+    expect(wrapper.findAll('.xy-progress-steps-item')[1].element.style.backgroundColor).toBe(
       'rgb(24, 144, 238)',
     );
   });
@@ -278,14 +278,14 @@ describe('Progress', () => {
         return <Progress steps={9} percent={22.22} />;
       },
     });
-    expect(wrapper.findAll('.ant-progress-steps-item-active').length).toBe(2);
+    expect(wrapper.findAll('.xy-progress-steps-item-active').length).toBe(2);
     wrapper.setProps({ percent: 33.33 });
     await asyncExpect(() => {
-      expect(wrapper.findAll('.ant-progress-steps-item-active').length).toBe(3);
+      expect(wrapper.findAll('.xy-progress-steps-item-active').length).toBe(3);
     });
     wrapper.setProps({ percent: 44.44 });
     await asyncExpect(() => {
-      expect(wrapper.findAll('.ant-progress-steps-item-active').length).toBe(4);
+      expect(wrapper.findAll('.xy-progress-steps-item-active').length).toBe(4);
     });
   });
 

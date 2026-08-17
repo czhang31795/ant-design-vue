@@ -17,7 +17,7 @@ You can set different preview image.
 </docs>
 
 <template>
-  <a-image
+  <xy-image
     :width="200"
     src="https://www.antdv.com/logo.png"
     :preview="{

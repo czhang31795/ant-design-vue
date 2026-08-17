@@ -17,5 +17,5 @@ Complex combination with avatar and multiple paragraphs.
 </docs>
 
 <template>
-  <a-skeleton avatar :paragraph="{ rows: 4 }" />
+  <xy-skeleton avatar :paragraph="{ rows: 4 }" />
 </template>

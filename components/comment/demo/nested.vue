@@ -17,7 +17,7 @@ Comments can be nested.
 </docs>
 
 <template>
-  <a-comment>
+  <xy-comment>
     <template #actions>
       <span key="comment-nested-reply-to">Reply to</span>
     </template>
@@ -25,7 +25,7 @@ Comments can be nested.
       <a>Han Solo</a>
     </template>
     <template #avatar>
-      <a-avatar src="https://joeschmoe.io/api/v1/random" alt="Han Solo" />
+      <xy-avatar src="https://joeschmoe.io/api/v1/random" alt="Han Solo" />
     </template>
     <template #content>
       <p>
@@ -33,7 +33,7 @@ Comments can be nested.
         resources (Sketch and Axure).
       </p>
     </template>
-    <a-comment>
+    <xy-comment>
       <template #actions>
         <span>Reply to</span>
       </template>
@@ -41,7 +41,7 @@ Comments can be nested.
         <a>Han Solo</a>
       </template>
       <template #avatar>
-        <a-avatar src="https://joeschmoe.io/api/v1/random" alt="Han Solo" />
+        <xy-avatar src="https://joeschmoe.io/api/v1/random" alt="Han Solo" />
       </template>
       <template #content>
         <p>
@@ -49,7 +49,7 @@ Comments can be nested.
           resources (Sketch and Axure).
         </p>
       </template>
-      <a-comment>
+      <xy-comment>
         <template #actions>
           <span>Reply to</span>
         </template>
@@ -57,7 +57,7 @@ Comments can be nested.
           <a>Han Solo</a>
         </template>
         <template #avatar>
-          <a-avatar src="https://joeschmoe.io/api/v1/random" alt="Han Solo" />
+          <xy-avatar src="https://joeschmoe.io/api/v1/random" alt="Han Solo" />
         </template>
         <template #content>
           <p>
@@ -65,8 +65,8 @@ Comments can be nested.
             resources (Sketch and Axure).
           </p>
         </template>
-      </a-comment>
-      <a-comment>
+      </xy-comment>
+      <xy-comment>
         <template #actions>
           <span>Reply to</span>
         </template>
@@ -74,7 +74,7 @@ Comments can be nested.
           <a>Han Solo</a>
         </template>
         <template #avatar>
-          <a-avatar src="https://joeschmoe.io/api/v1/random" alt="Han Solo" />
+          <xy-avatar src="https://joeschmoe.io/api/v1/random" alt="Han Solo" />
         </template>
         <template #content>
           <p>
@@ -82,7 +82,7 @@ Comments can be nested.
             resources (Sketch and Axure).
           </p>
         </template>
-      </a-comment>
-    </a-comment>
-  </a-comment>
+      </xy-comment>
+    </xy-comment>
+  </xy-comment>
 </template>

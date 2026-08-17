@@ -17,14 +17,14 @@ Update content with unique key, or use reactive data.
 </docs>
 
 <template>
-  <a-button type="primary" @click="openNotification">
+  <xy-button type="primary" @click="openNotification">
     Open the notification box (update by key)
-  </a-button>
+  </xy-button>
   <br />
   <br />
-  <a-button type="primary" @click="openNotification2">
+  <xy-button type="primary" @click="openNotification2">
     Open the notification box (update by reactive)
-  </a-button>
+  </xy-button>
 </template>
 <script lang="ts" setup>
 import { notification } from 'ant-design-vue';

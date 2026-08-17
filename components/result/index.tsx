@@ -1,4 +1,5 @@
 import type { App, VNodeTypes, Plugin, ExtractPropTypes, PropType } from 'vue';
+import { registerComponent } from '../_util/registerComponent';
 import { defineComponent, computed } from 'vue';
 import PropTypes from '../_util/vue-types';
 import CheckCircleFilled from '@ant-design/icons-vue/CheckCircleFilled';
@@ -63,7 +64,7 @@ const renderExtra = (prefixCls: string, extra: VNodeTypes) =>
 
 const Result = defineComponent({
   compatConfig: { MODE: 3 },
-  name: 'AResult',
+  name: 'XyResult',
   inheritAttrs: false,
   props: resultProps(),
   slots: Object as CustomSlotsType<{
@@ -109,7 +110,7 @@ Result.PRESENTED_IMAGE_500 = ExceptionMap[500];
 
 /* istanbul ignore next */
 Result.install = function (app: App) {
-  app.component(Result.name, Result);
+  registerComponent(app, Result);
   return app;
 };
 

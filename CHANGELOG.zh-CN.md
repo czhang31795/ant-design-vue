@@ -10,6 +10,11 @@
 
 ---
 
+## 4.3.6
+
+- 💥 组件标签前缀由 `a-` 改为 `xy-`（例如 `<xy-button>`、`<xy-table>`），不再注册 `a-xx`
+- 💥 默认样式前缀 `prefixCls` 由 `ant` 改为 `xy`（class 为 `xy-btn`、`xy-table`），可与官方 `ant-design-vue` 同页共存。图标 class 仍为 `anticon`
+
 ## 4.3.5
 
 - 🐞 修复 Table 可伸缩列拖拽后宽度不生效（ColGroup 优先使用声明 `width`，避免被实测宽度覆盖）

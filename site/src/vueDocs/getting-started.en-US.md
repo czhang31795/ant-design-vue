@@ -90,7 +90,7 @@ In this way, component sub-components, such as Button and ButtonGroup, need to b
 
 ```html
 <template>
-  <a-button>Add</a-button>
+  <xy-button>Add</xy-button>
 </template>
 <script>
   import { Button } from 'ant-design-vue';
@@ -98,8 +98,8 @@ In this way, component sub-components, such as Button and ButtonGroup, need to b
 
   export default {
     components: {
-      AButton: Button,
-      AButtonGroup: ButtonGroup,
+      XyButton: Button,
+      XyButtonGroup: ButtonGroup,
     },
   };
 </script>

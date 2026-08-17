@@ -1,4 +1,5 @@
 import type { App, PropType, ExtractPropTypes } from 'vue';
+import { registerComponent } from '../_util/registerComponent';
 import { computed, watch, shallowRef, defineComponent } from 'vue';
 import classNames from '../_util/classNames';
 import PropTypes from '../_util/vue-types';
@@ -101,7 +102,7 @@ export type MentionsProps = Partial<ExtractPropTypes<ReturnType<typeof mentionsP
 
 const Mentions = defineComponent({
   compatConfig: { MODE: 3 },
-  name: 'AMentions',
+  name: 'XyMentions',
   inheritAttrs: false,
   props: mentionsProps(),
   slots: Object as CustomSlotsType<{
@@ -285,7 +286,7 @@ const Mentions = defineComponent({
 export const MentionsOption = defineComponent({
   compatConfig: { MODE: 3 },
   ...optionOptions,
-  name: 'AMentionsOption',
+  name: 'XyMentionsOption',
   props: optionProps,
 });
 
@@ -293,8 +294,8 @@ export default Object.assign(Mentions, {
   Option: MentionsOption,
   getMentions,
   install: (app: App) => {
-    app.component(Mentions.name, Mentions);
-    app.component(MentionsOption.name, MentionsOption);
+    registerComponent(app, Mentions);
+    registerComponent(app, MentionsOption);
     return app;
   },
 });

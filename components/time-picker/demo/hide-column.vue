@@ -17,7 +17,7 @@ While part of `format` is omitted, the corresponding column in panel will disapp
 </docs>
 
 <template>
-  <a-time-picker v-model:value="value" format="HH:mm" />
+  <xy-time-picker v-model:value="value" format="HH:mm" />
 </template>
 <script lang="ts" setup>
 import { ref } from 'vue';

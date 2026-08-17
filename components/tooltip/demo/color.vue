@@ -18,17 +18,17 @@ We preset a series of colorful Tooltip styles for use in different situations.
 
 <template>
   <div id="components-a-tooltip-demo-color">
-    <a-divider orientation="left">Presets</a-divider>
+    <xy-divider orientation="left">Presets</xy-divider>
     <div>
-      <a-tooltip v-for="color in colors" :key="color" title="prompt text" :color="color">
-        <a-button>{{ color }}</a-button>
-      </a-tooltip>
+      <xy-tooltip v-for="color in colors" :key="color" title="prompt text" :color="color">
+        <xy-button>{{ color }}</xy-button>
+      </xy-tooltip>
     </div>
-    <a-divider orientation="left">Custom</a-divider>
+    <xy-divider orientation="left">Custom</xy-divider>
     <div>
-      <a-tooltip v-for="color in customColors" :key="color" title="prompt text" :color="color">
-        <a-button>{{ color }}</a-button>
-      </a-tooltip>
+      <xy-tooltip v-for="color in customColors" :key="color" title="prompt text" :color="color">
+        <xy-button>{{ color }}</xy-button>
+      </xy-tooltip>
     </div>
   </div>
 </template>
@@ -53,7 +53,7 @@ const customColors = ['#f50', '#2db7f5', '#87d068', '#108ee9'];
 </script>
 
 <style scoped>
-:deep(#components-a-tooltip-demo-color) .ant-btn {
+:deep(#components-a-tooltip-demo-color) .xy-btn {
   margin-right: 8px;
   margin-bottom: 8px;
 }

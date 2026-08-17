@@ -17,7 +17,7 @@ Steps with progress dot style.
 
 <template>
   <div>
-    <a-steps
+    <xy-steps
       progress-dot
       :current="1"
       :items="[
@@ -34,9 +34,9 @@ Steps with progress dot style.
           description: 'This is a description.',
         },
       ]"
-    ></a-steps>
-    <a-divider />
-    <a-steps
+    ></xy-steps>
+    <xy-divider />
+    <xy-steps
       progress-dot
       :current="1"
       direction="vertical"
@@ -62,6 +62,6 @@ Steps with progress dot style.
           description: 'This is a description.',
         },
       ]"
-    ></a-steps>
+    ></xy-steps>
   </div>
 </template>

@@ -222,13 +222,13 @@ describe('Locale Provider', () => {
       );
       await sleep();
       const currentConfirmNode =
-        document.querySelectorAll('.ant-modal-confirm')[
-          document.querySelectorAll('.ant-modal-confirm').length - 1
+        document.querySelectorAll('.xy-modal-confirm')[
+          document.querySelectorAll('.xy-modal-confirm').length - 1
         ];
       let cancelButtonText = currentConfirmNode.querySelectorAll(
-        '.ant-btn:not(.ant-btn-primary) span',
+        '.xy-btn:not(.xy-btn-primary) span',
       )[0].innerHTML;
-      let okButtonText = currentConfirmNode.querySelectorAll('.ant-btn-primary span')[0].innerHTML;
+      let okButtonText = currentConfirmNode.querySelectorAll('.xy-btn-primary span')[0].innerHTML;
       if (locale.locale === 'zh-cn') {
         cancelButtonText = cancelButtonText.replace(' ', '');
         okButtonText = okButtonText.replace(' ', '');

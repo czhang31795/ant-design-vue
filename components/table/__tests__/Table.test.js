@@ -85,16 +85,16 @@ describe('Table', () => {
       sync: false,
     });
     await sleep();
-    expect(wrapper.findAll('.ant-spin')).toHaveLength(0);
-    expect(wrapper.find('.ant-table-placeholder').text()).not.toEqual('');
+    expect(wrapper.findAll('.xy-spin')).toHaveLength(0);
+    expect(wrapper.find('.xy-table-placeholder').text()).not.toEqual('');
 
     loading.spinning = true;
     wrapper.setProps({ loading: { ...loading } });
     await sleep();
-    expect(wrapper.findAll('.ant-spin')).toHaveLength(0);
+    expect(wrapper.findAll('.xy-spin')).toHaveLength(0);
 
     await sleep(500);
-    expect(wrapper.findAll('.ant-spin')).toHaveLength(1);
+    expect(wrapper.findAll('.xy-spin')).toHaveLength(1);
   });
 
   it('align column should not override cell style', done => {

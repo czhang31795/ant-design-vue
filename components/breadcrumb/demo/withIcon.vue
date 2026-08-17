@@ -17,16 +17,16 @@ The icon should be placed in front of the text.
 </docs>
 
 <template>
-  <a-breadcrumb>
-    <a-breadcrumb-item href="">
+  <xy-breadcrumb>
+    <xy-breadcrumb-item href="">
       <home-outlined />
-    </a-breadcrumb-item>
-    <a-breadcrumb-item href="">
+    </xy-breadcrumb-item>
+    <xy-breadcrumb-item href="">
       <user-outlined />
       <span>Application List</span>
-    </a-breadcrumb-item>
-    <a-breadcrumb-item>Application</a-breadcrumb-item>
-  </a-breadcrumb>
+    </xy-breadcrumb-item>
+    <xy-breadcrumb-item>Application</xy-breadcrumb-item>
+  </xy-breadcrumb>
 </template>
 <script lang="ts" setup>
 import { HomeOutlined, UserOutlined } from '@ant-design/icons-vue';

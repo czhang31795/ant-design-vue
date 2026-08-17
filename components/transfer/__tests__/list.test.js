@@ -2,7 +2,7 @@ import { mount } from '@vue/test-utils';
 import List from '../list';
 
 const listCommonProps = {
-  prefixCls: 'ant-transfer-list',
+  prefixCls: 'xy-transfer-list',
   dataSource: [
     {
       key: 'a',
@@ -43,7 +43,7 @@ describe('List', () => {
     expect(
       wrapper
         .findComponent({
-          name: 'ACheckbox',
+          name: 'XyCheckbox',
         })
         .props().checked,
     ).toBeTruthy();

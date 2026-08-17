@@ -17,22 +17,22 @@ Controlled size. Dragging is disabled when either side sets `resizable` to false
 </docs>
 
 <template>
-  <a-space direction="vertical" style="width: 100%">
-    <a-space>
-      <a-button @click="enabled = !enabled">{{ enabled ? '禁用拖拽' : '启用拖拽' }}</a-button>
-      <a-button @click="reset">重置</a-button>
-    </a-space>
+  <xy-space direction="vertical" style="width: 100%">
+    <xy-space>
+      <xy-button @click="enabled = !enabled">{{ enabled ? '禁用拖拽' : '启用拖拽' }}</xy-button>
+      <xy-button @click="reset">重置</xy-button>
+    </xy-space>
     <div class="demo-splitter">
-      <a-splitter @resize="onResize">
-        <a-splitter-panel :size="sizes[0]" :resizable="enabled" min="20%">
+      <xy-splitter @resize="onResize">
+        <xy-splitter-panel :size="sizes[0]" :resizable="enabled" min="20%">
           <div class="demo-panel">First</div>
-        </a-splitter-panel>
-        <a-splitter-panel :size="sizes[1]" :resizable="enabled">
+        </xy-splitter-panel>
+        <xy-splitter-panel :size="sizes[1]" :resizable="enabled">
           <div class="demo-panel">Second</div>
-        </a-splitter-panel>
-      </a-splitter>
+        </xy-splitter-panel>
+      </xy-splitter>
     </div>
-  </a-space>
+  </xy-space>
 </template>
 
 <script lang="ts" setup>

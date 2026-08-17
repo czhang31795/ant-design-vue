@@ -18,7 +18,7 @@ Customize render list with Table component.
 
 <template>
   <div>
-    <a-transfer
+    <xy-transfer
       v-model:target-keys="targetKeys"
       :data-source="mockData"
       :disabled="disabled"
@@ -37,7 +37,7 @@ Customize render list with Table component.
           onItemSelect,
         }"
       >
-        <a-table
+        <xy-table
           :row-selection="
             getRowSelection({
               disabled: listDisabled,
@@ -60,14 +60,14 @@ Customize render list with Table component.
           "
         />
       </template>
-    </a-transfer>
-    <a-switch
+    </xy-transfer>
+    <xy-switch
       v-model:checked="disabled"
       un-checked-children="disabled"
       checked-children="disabled"
       style="margin-top: 16px"
     />
-    <a-switch
+    <xy-switch
       v-model:checked="showSearch"
       un-checked-children="showSearch"
       checked-children="showSearch"

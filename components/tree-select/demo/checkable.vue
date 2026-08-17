@@ -16,7 +16,7 @@ Multiple and checkable.
 
 </docs>
 <template>
-  <a-tree-select
+  <xy-tree-select
     v-model:value="value"
     style="width: 100%"
     :tree-data="treeData"

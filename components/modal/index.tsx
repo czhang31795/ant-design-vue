@@ -1,4 +1,5 @@
 import type { App, Plugin } from 'vue';
+import { registerComponent } from '../_util/registerComponent';
 import type { ModalFunc, ModalFuncProps } from './Modal';
 import Modal from './Modal';
 import confirm, { withWarn, withInfo, withSuccess, withError, withConfirm } from './confirm';
@@ -42,7 +43,7 @@ Modal.destroyAll = function destroyAllFn() {
 
 /* istanbul ignore next */
 Modal.install = function (app: App) {
-  app.component(Modal.name, Modal);
+  registerComponent(app, Modal);
   return app;
 };
 

@@ -17,7 +17,7 @@ Custom arrows display
 </docs>
 
 <template>
-  <a-carousel arrows>
+  <xy-carousel arrows>
     <template #prevArrow>
       <div class="custom-slick-arrow" style="left: 10px; z-index: 1">
         <left-circle-outlined />
@@ -32,7 +32,7 @@ Custom arrows display
     <div><h3>2</h3></div>
     <div><h3>3</h3></div>
     <div><h3>4</h3></div>
-  </a-carousel>
+  </xy-carousel>
 </template>
 
 <script lang="ts" setup>

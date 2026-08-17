@@ -23,7 +23,7 @@ coverDark: https://mdn.alipayobjects.com/huamei_7uahnr/afts/img/A*WERTQ6qvgEYAAA
 ## API
 
 ```html
-<a-auto-complete v-model:value="value" :options="options" />
+<xy-auto-complete v-model:value="value" :options="options" />
 ```
 
 | 参数 | 说明 | 类型 | 默认值 | 版本 |

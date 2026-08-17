@@ -16,7 +16,7 @@ A simple step bar in the vertical direction.
 </docs>
 
 <template>
-  <a-steps
+  <xy-steps
     direction="vertical"
     :current="1"
     :items="[
@@ -33,7 +33,7 @@ A simple step bar in the vertical direction.
         description,
       },
     ]"
-  ></a-steps>
+  ></xy-steps>
 </template>
 <script lang="ts" setup>
 const description = 'This is a description.';

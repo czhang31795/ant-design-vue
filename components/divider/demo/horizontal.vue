@@ -20,17 +20,17 @@ Divider is `horizontal` by default. You can add text within Divider.
     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nonne merninisti licere mihi ista
     probare, quae sunt a te dicta? Refert tamen, quo modo.
   </p>
-  <a-divider />
+  <xy-divider />
   <p>
     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nonne merninisti licere mihi ista
     probare, quae sunt a te dicta? Refert tamen, quo modo.
   </p>
-  <a-divider>With Text</a-divider>
+  <xy-divider>With Text</xy-divider>
   <p>
     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nonne merninisti licere mihi ista
     probare, quae sunt a te dicta? Refert tamen, quo modo.
   </p>
-  <a-divider dashed />
+  <xy-divider dashed />
   <p>
     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nonne merninisti licere mihi ista
     probare, quae sunt a te dicta? Refert tamen, quo modo.

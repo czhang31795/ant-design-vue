@@ -17,10 +17,10 @@ Customized description content.
 </docs>
 
 <template>
-  <a-spin tip="Loading...">
-    <a-alert
+  <xy-spin tip="Loading...">
+    <xy-alert
       message="Alert message title"
       description="Further details about the context of this alert."
-    ></a-alert>
-  </a-spin>
+    ></xy-alert>
+  </xy-spin>
 </template>

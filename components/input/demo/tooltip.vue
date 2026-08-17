@@ -16,21 +16,21 @@ You can use the Input in conjunction with [Tooltip](/components/tooltip/) compon
 
 </docs>
 <template>
-  <a-tooltip :trigger="['focus']" placement="topLeft" overlay-class-name="numeric-input">
+  <xy-tooltip :trigger="['focus']" placement="topLeft" overlay-class-name="numeric-input">
     <template v-if="inputValue" #title>
       <span class="numeric-input-title">
         {{ formatValue }}
       </span>
     </template>
 
-    <a-input
+    <xy-input
       v-model:value="inputValue"
       placeholder="Input a number"
       :max-length="25"
       style="width: 120px"
       @blur="onBlur"
     />
-  </a-tooltip>
+  </xy-tooltip>
 </template>
 <script lang="ts" setup>
 import { computed, ref, watch } from 'vue';
@@ -84,7 +84,7 @@ watch(inputValue, (val, preVal) => {
 <style>
 /* to prevent the arrow overflow the popup container,
 or the height is not enough when content is empty */
-.numeric-input .ant-tooltip-inner {
+.numeric-input .xy-tooltip-inner {
   min-width: 32px;
   min-height: 37px;
 }

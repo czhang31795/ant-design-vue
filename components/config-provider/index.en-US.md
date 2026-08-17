@@ -15,9 +15,9 @@ This component provides a configuration to all Vue components underneath itself 
 
 ```html
 <template>
-  <a-config-provider :getPopupContainer="getPopupContainer">
+  <xy-config-provider :getPopupContainer="getPopupContainer">
     <app />
-  </a-config-provider>
+  </xy-config-provider>
 </template>
 <script>
   export default {
@@ -39,9 +39,9 @@ This component provides a configuration to all Vue components underneath itself 
 Some components use dynamic style to support wave effect. You can config `csp` prop if Content Security Policy (CSP) is enabled:
 
 ```html
-<a-config-provider :csp="{ nonce: 'YourNonceCode' }">
-  <a-button>My Button</a-button>
-</a-config-provider>
+<xy-config-provider :csp="{ nonce: 'YourNonceCode' }">
+  <xy-button>My Button</xy-button>
+</xy-config-provider>
 ```
 
 ## API
@@ -59,7 +59,7 @@ Some components use dynamic style to support wave effect. You can config `csp` p
 | input | Set Input common props | { autocomplete?: string } | - | 3.0 |
 | locale | language package setting, you can find the packages in [ant-design-vue/es/locale](http://unpkg.com/ant-design-vue/es/locale/) | object | - | 1.5.0 |
 | pageHeader | Unify the ghost of pageHeader ,Ref [pageHeader]\(&lt;(/components/page-header)> | { ghost:boolean } | 'true' | 1.5.0 |
-| prefixCls | set prefix class | string | ant |  |
+| prefixCls | Set the CSS class prefix. Default `xy` so this library can coexist with official `ant-design-vue` (`ant`). CSS-in-JS follows this value automatically. | string | xy |  |
 | renderEmpty | set empty content of components. Ref [Empty](/components/empty/) | slot-scope \| Function(componentName: string): VNode | - |  |
 | space | Set Space `size`, ref [Space](/components/space) | { size: `small` \| `middle` \| `large` \| `number` } | - | 3.0 |
 | transformCellText | Table data can be changed again before rendering. The default configuration of general user empty data. | Function({ text, column, record, index }) => any | - | 1.5.4 |
@@ -72,7 +72,7 @@ Setting `Modal`、`Message`、`Notification` rootPrefixCls.
 
 ```jsx
 ConfigProvider.config({
-  prefixCls: 'ant',
+  prefixCls: 'xy',
 });
 ```
 
@@ -80,7 +80,7 @@ or
 
 ```jsx
 // some cinfig support reactively, you can change prefixCls.value = 'other'
-const prefixCls = ref('ant');
+const prefixCls = ref('xy');
 ConfigProvider.config({
   prefixCls,
 });

@@ -2,7 +2,7 @@
 
 exports[`PageHeader pageHeader should not render blank dom 1`] = `
 <div
-  class="ant-page-header ant-page-header-ghost"
+  class="xy-page-header xy-page-header-ghost"
 >
   <!---->
   <!---->
@@ -13,19 +13,19 @@ exports[`PageHeader pageHeader should not render blank dom 1`] = `
 
 exports[`PageHeader pageHeader should support class 1`] = `
 <div
-  class="ant-page-header ant-page-header-ghost not-works"
+  class="xy-page-header xy-page-header-ghost not-works"
 >
   <!---->
   <div
-    class="ant-page-header-heading"
+    class="xy-page-header-heading"
   >
     <div
-      class="ant-page-header-heading-left"
+      class="xy-page-header-heading-left"
     >
       <!---->
       <!---->
       <span
-        class="ant-page-header-heading-title"
+        class="xy-page-header-heading-title"
         title="Page Title"
       >
         Page Title

@@ -17,7 +17,7 @@ The most basic usage.
 </docs>
 
 <template>
-  <a-watermark content="Ant Design Vue">
+  <xy-watermark content="Ant Design Vue">
     <div style="height: 500px" />
-  </a-watermark>
+  </xy-watermark>
 </template>

@@ -17,7 +17,7 @@ title:
 </docs>
 
 <template>
-  <a-button @click="showConfirm">Confirm</a-button>
+  <xy-button @click="showConfirm">Confirm</xy-button>
 </template>
 <script lang="ts" setup>
 import { ExclamationCircleOutlined } from '@ant-design/icons-vue';

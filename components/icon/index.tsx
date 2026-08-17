@@ -6,6 +6,6 @@ const Icon = () => {
   return null;
 };
 
-Icon.displayName = 'AIcon';
+Icon.displayName = 'XyIcon';
 
 export default withInstall(Icon);

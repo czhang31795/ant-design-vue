@@ -17,7 +17,7 @@ The default trigger mode is `hover`, you can change it to `contextMenu`.
 </docs>
 
 <template>
-  <a-dropdown :trigger="['contextmenu']">
+  <xy-dropdown :trigger="['contextmenu']">
     <div
       :style="{
         textAlign: 'center',
@@ -30,11 +30,11 @@ The default trigger mode is `hover`, you can change it to `contextMenu`.
       Right Click on here
     </div>
     <template #overlay>
-      <a-menu>
-        <a-menu-item key="1">1st menu item</a-menu-item>
-        <a-menu-item key="2">2nd menu item</a-menu-item>
-        <a-menu-item key="3">3rd menu item</a-menu-item>
-      </a-menu>
+      <xy-menu>
+        <xy-menu-item key="1">1st menu item</xy-menu-item>
+        <xy-menu-item key="2">2nd menu item</xy-menu-item>
+        <xy-menu-item key="3">3rd menu item</xy-menu-item>
+      </xy-menu>
     </template>
-  </a-dropdown>
+  </xy-dropdown>
 </template>

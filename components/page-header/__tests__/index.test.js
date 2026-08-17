@@ -22,7 +22,7 @@ describe('PageHeader', () => {
         return <PageHeader title="Page Title" breadcrumb={{ routes }} />;
       },
     });
-    expect(wrapper.findAll('.ant-page-header-back')).toHaveLength(0);
+    expect(wrapper.findAll('.xy-page-header-back')).toHaveLength(0);
   });
 
   it('pageHeader should have breadcrumb', () => {
@@ -37,8 +37,8 @@ describe('PageHeader', () => {
         return <PageHeader title="Page Title" breadcrumb={{ routes }} />;
       },
     });
-    expect(wrapper.findAll('.ant-breadcrumb')).toHaveLength(1);
-    expect(wrapper.findAll('.ant-page-header-back')).toHaveLength(0);
+    expect(wrapper.findAll('.xy-breadcrumb')).toHaveLength(1);
+    expect(wrapper.findAll('.xy-page-header-back')).toHaveLength(0);
   });
 
   it('pageHeader should no contain back', () => {
@@ -47,7 +47,7 @@ describe('PageHeader', () => {
         return <PageHeader title="Page Title" backIcon={false} />;
       },
     });
-    expect(wrapper.findAll('.ant-page-header-back')).toHaveLength(0);
+    expect(wrapper.findAll('.xy-page-header-back')).toHaveLength(0);
   });
 
   it('pageHeader should contain back it back', () => {
@@ -60,7 +60,7 @@ describe('PageHeader', () => {
       },
       { sync: false },
     );
-    expect(wrapper.findAll('.ant-page-header-back')).toHaveLength(1);
+    expect(wrapper.findAll('.xy-page-header-back')).toHaveLength(1);
   });
 
   it('pageHeader onBack transfer', () => {
@@ -73,7 +73,7 @@ describe('PageHeader', () => {
       },
       { sync: false },
     );
-    wrapper.find('div.ant-page-header-back-button').trigger('click');
+    wrapper.find('div.xy-page-header-back-button').trigger('click');
     expect(callback).toHaveBeenCalled();
   });
 
@@ -115,13 +115,13 @@ describe('PageHeader', () => {
         return <PageHeader title="Title" breadcrumb={{ routes }} />;
       },
     });
-    expect(wrapper.findAll('.ant-breadcrumb')).toHaveLength(1);
+    expect(wrapper.findAll('.xy-breadcrumb')).toHaveLength(1);
 
     const wrapperBack = mount({
       render() {
         return <PageHeader title="Title" breadcrumb={{ routes }} onBack={() => {}} />;
       },
     });
-    expect(wrapperBack.findAll('.ant-breadcrumb')).toHaveLength(1);
+    expect(wrapperBack.findAll('.xy-breadcrumb')).toHaveLength(1);
   });
 });

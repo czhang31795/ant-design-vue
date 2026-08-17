@@ -1,5 +1,6 @@
 import { defineComponent, computed } from 'vue';
 import type { App as TypeApp, Plugin } from 'vue';
+import { registerComponent } from '../_util/registerComponent';
 import { initDefaultProps } from '../_util/props-util';
 import classNames from '../_util/classNames';
 import { objectType } from '../_util/type';
@@ -29,7 +30,7 @@ const useApp = () => {
 };
 
 const App = defineComponent({
-  name: 'AApp',
+  name: 'XyApp',
   props: initDefaultProps(AppProps(), {}),
   setup(props, { slots }) {
     const { prefixCls } = useConfigInject('app', props);
@@ -74,7 +75,7 @@ const App = defineComponent({
 App.useApp = useApp;
 
 App.install = function (app: TypeApp) {
-  app.component(App.name, App);
+  registerComponent(app, App);
 };
 
 export default App as typeof App &

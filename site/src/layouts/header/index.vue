@@ -1,10 +1,10 @@
 <template>
   <header id="header" :class="headerClassName">
-    <a-row :style="{ flexFlow: 'nowrap', height: 64, position: 'relative' }">
-      <a-col v-bind="colProps[0]">
+    <xy-row :style="{ flexFlow: 'nowrap', height: 64, position: 'relative' }">
+      <xy-col v-bind="colProps[0]">
         <Logo />
-      </a-col>
-      <a-col v-bind="colProps[1]" class="menu-row">
+      </xy-col>
+      <xy-col v-bind="colProps[1]" class="menu-row">
         <SearchBox
           key="search"
           :is-zh-c-n="isZhCN"
@@ -12,8 +12,8 @@
           @triggerFocus="onTriggerSearching"
         />
         <Menu v-if="!isMobile" />
-      </a-col>
-      <a-popover
+      </xy-col>
+      <xy-popover
         v-model:open="menuOpen"
         overlay-class-name="popover-menu"
         placement="bottomRight"
@@ -24,8 +24,8 @@
         <template #content>
           <Menu :is-mobile="isMobile" />
         </template>
-      </a-popover>
-    </a-row>
+      </xy-popover>
+    </xy-row>
   </header>
 </template>
 <script lang="ts">

@@ -1,6 +1,6 @@
 {
   "name": "@czxingyu/antd-cli",
-  "version": "4.3.8",
+  "version": "4.3.9",
   "description": "MCP + setup for @czxingyu/ant-design-vue: AI queries real component APIs/demos; humans use the docs site",
   "keywords": [
     "ant-design-vue",

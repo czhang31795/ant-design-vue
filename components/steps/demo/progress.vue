@@ -17,7 +17,7 @@ Steps with progress.
 </docs>
 
 <template>
-  <a-steps
+  <xy-steps
     v-model:current="current"
     :percent="60"
     :items="[
@@ -35,8 +35,8 @@ Steps with progress.
         description,
       },
     ]"
-  ></a-steps>
-  <a-steps
+  ></xy-steps>
+  <xy-steps
     v-model:current="current"
     :percent="60"
     size="small"
@@ -55,7 +55,7 @@ Steps with progress.
         description,
       },
     ]"
-  ></a-steps>
+  ></xy-steps>
 </template>
 <script lang="ts" setup>
 import { ref } from 'vue';

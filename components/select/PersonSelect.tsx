@@ -1,4 +1,5 @@
 import type { App, ExtractPropTypes } from 'vue';
+import { registerComponent } from '../_util/registerComponent';
 import { computed, defineComponent, ref } from 'vue';
 import omit from '../_util/omit';
 import { booleanType, functionType, someType, stringType } from '../_util/type';
@@ -48,7 +49,7 @@ function defaultFilterOption(input: string, option: PersonOptionType) {
 }
 
 const PersonSelect = defineComponent({
-  name: 'APersonSelect',
+  name: 'XyPersonSelect',
   inheritAttrs: false,
   props: initDefaultProps(personSelectProps(), {
     avatarKey: 'avatar',
@@ -97,24 +98,24 @@ const PersonSelect = defineComponent({
           {...attrs}
           {...selectPropsValue}
           ref={selectRef}
-          class={['ant-person-select', attrs.class]}
+          class={['xy-person-select', attrs.class]}
           optionLabelProp="label"
           filterOption={mergedFilterOption.value as any}
           onUpdate:value={(val: SelectValue) => emit('update:value', val)}
           v-slots={{
             option: (option: PersonOptionType) => (
-              <div class="ant-person-select-option">
+              <div class="xy-person-select-option">
                 <Avatar size={24} src={getAvatar(option)} />
-                <span class="ant-person-select-option-name">{option.label}</span>
+                <span class="xy-person-select-option-name">{option.label}</span>
                 {props.showOptionValue ? (
-                  <span class="ant-person-select-option-id">{option.value}</span>
+                  <span class="xy-person-select-option-id">{option.value}</span>
                 ) : null}
               </div>
             ),
             optionLabel: (option: PersonOptionType) => (
-              <span class="ant-person-select-option ant-person-select-option-selected">
+              <span class="xy-person-select-option xy-person-select-option-selected">
                 <Avatar size={20} src={getAvatar(option)} />
-                <span class="ant-person-select-option-name">{option.label}</span>
+                <span class="xy-person-select-option-name">{option.label}</span>
               </span>
             ),
             ...(isMultiple.value
@@ -130,7 +131,7 @@ const PersonSelect = defineComponent({
                     onClose: (e?: Event) => void;
                     option: PersonOptionType;
                   }) => (
-                    <Tag class="ant-person-select-tag" closable={closable} onClose={onClose as any}>
+                    <Tag class="xy-person-select-tag" closable={closable} onClose={onClose as any}>
                       <Avatar size={16} src={getAvatar(option)} />
                       <span>{label}</span>
                     </Tag>
@@ -145,7 +146,7 @@ const PersonSelect = defineComponent({
 });
 
 PersonSelect.install = (app: App) => {
-  app.component(PersonSelect.name as string, PersonSelect);
+  registerComponent(app, PersonSelect);
   return app;
 };
 

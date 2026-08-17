@@ -976,7 +976,7 @@ const InternalTable = defineComponent({
 });
 
 const Table = defineComponent({
-  name: 'ATable',
+  name: 'XyTable',
   inheritAttrs: false,
   props: initDefaultProps(tableProps(), {
     rowKey: 'key',

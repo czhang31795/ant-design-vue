@@ -9,6 +9,7 @@ import type {
   CSSProperties,
   InjectionKey,
 } from 'vue';
+import { registerComponent } from '../_util/registerComponent';
 import {
   onBeforeMount,
   ref,
@@ -49,7 +50,7 @@ export type DescriptionsItemProp = Partial<
 
 export const DescriptionsItem = defineComponent({
   compatConfig: { MODE: 3 },
-  name: 'ADescriptionsItem',
+  name: 'XyDescriptionsItem',
   props: descriptionsItemProp(),
   setup(_, { slots }) {
     return () => slots.default?.();
@@ -160,7 +161,7 @@ export const descriptionsContext: InjectionKey<DescriptionsContextProp> =
 
 const Descriptions = defineComponent({
   compatConfig: { MODE: 3 },
-  name: 'ADescriptions',
+  name: 'XyDescriptions',
   inheritAttrs: false,
   props: descriptionsProps(),
   slots: Object as CustomSlotsType<{
@@ -254,8 +255,8 @@ const Descriptions = defineComponent({
 });
 
 Descriptions.install = function (app: App) {
-  app.component(Descriptions.name, Descriptions);
-  app.component(Descriptions.Item.name, Descriptions.Item);
+  registerComponent(app, Descriptions);
+  registerComponent(app, Descriptions.Item);
   return app;
 };
 export default Descriptions as typeof Descriptions &

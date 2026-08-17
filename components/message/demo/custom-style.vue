@@ -17,7 +17,7 @@ The `style` and `class` are available to customize Message.
 </docs>
 
 <template>
-  <a-button @click="success">Customized style</a-button>
+  <xy-button @click="success">Customized style</xy-button>
 </template>
 <script lang="ts" setup>
 import { message } from 'ant-design-vue';

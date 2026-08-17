@@ -17,7 +17,7 @@ You can customize icons for different nodes.
 </docs>
 
 <template>
-  <a-tree v-model:selectedKeys="selectedKeys" :tree-data="treeData" show-icon default-expand-all>
+  <xy-tree v-model:selectedKeys="selectedKeys" :tree-data="treeData" show-icon default-expand-all>
     <template #switcherIcon="{ switcherCls }"><down-outlined :class="switcherCls" /></template>
     <template #icon="{ key, selected }">
       <template v-if="key === '0-0'">
@@ -31,7 +31,7 @@ You can customize icons for different nodes.
         <frown-outlined v-else />
       </template>
     </template>
-  </a-tree>
+  </xy-tree>
 </template>
 <script lang="ts" setup>
 import { ref } from 'vue';

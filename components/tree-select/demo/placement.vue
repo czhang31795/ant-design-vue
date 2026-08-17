@@ -17,15 +17,15 @@ You can manually specify the position of the popup via `placement`.
 </docs>
 
 <template>
-  <a-radio-group v-model:value="placement">
-    <a-radio-button value="topLeft">topLeft</a-radio-button>
-    <a-radio-button value="topRight">topRight</a-radio-button>
-    <a-radio-button value="bottomLeft">bottomLeft</a-radio-button>
-    <a-radio-button value="bottomRight">bottomRight</a-radio-button>
-  </a-radio-group>
+  <xy-radio-group v-model:value="placement">
+    <xy-radio-button value="topLeft">topLeft</xy-radio-button>
+    <xy-radio-button value="topRight">topRight</xy-radio-button>
+    <xy-radio-button value="bottomLeft">bottomLeft</xy-radio-button>
+    <xy-radio-button value="bottomRight">bottomRight</xy-radio-button>
+  </xy-radio-group>
   <br />
   <br />
-  <a-tree-select
+  <xy-tree-select
     v-model:value="value"
     show-search
     :dropdown-style="{ maxHeight: '400px', overflow: 'auto', minWidth: '300px' }"
@@ -41,7 +41,7 @@ You can manually specify the position of the popup via `placement`.
       <b v-if="val === 'parent 1-1'" style="color: #08c">sss</b>
       <template v-else>{{ label }}</template>
     </template>
-  </a-tree-select>
+  </xy-tree-select>
 </template>
 <script lang="ts" setup>
 import { ref } from 'vue';

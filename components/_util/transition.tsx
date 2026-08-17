@@ -82,7 +82,7 @@ export interface CSSMotionProps extends Partial<BaseTransitionProps<Element>> {
 }
 
 const collapseMotion = (
-  name = 'ant-motion-collapse',
+  name = 'xy-motion-collapse',
   style: Ref<CSSProperties>,
   className: Ref<string>,
 ): CSSMotionProps => {

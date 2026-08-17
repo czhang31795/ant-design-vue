@@ -53,11 +53,11 @@ describe('Mentions', () => {
     await sleep();
     wrapper.find('textarea').trigger('focus');
     await sleep();
-    expect(wrapper.find('.ant-mentions').classes('ant-mentions-focused')).toBeTruthy();
+    expect(wrapper.find('.xy-mentions').classes('xy-mentions-focused')).toBeTruthy();
     expect(onFocus).toHaveBeenCalled();
     wrapper.find('textarea').trigger('blur');
     await sleep(500);
-    expect(wrapper.classes()).not.toContain('ant-mentions-focused');
+    expect(wrapper.classes()).not.toContain('xy-mentions-focused');
     expect(onBlur).toHaveBeenCalled();
   });
 
@@ -73,8 +73,8 @@ describe('Mentions', () => {
     await sleep(100);
     triggerInput(wrapper, '@');
     await sleep(100);
-    expect($$('.ant-mentions-dropdown-menu-item').length).toBeTruthy();
-    expect($$('.ant-spin')).toBeTruthy();
+    expect($$('.xy-mentions-dropdown-menu-item').length).toBeTruthy();
+    expect($$('.xy-spin')).toBeTruthy();
   });
 
   it('notExist', async () => {

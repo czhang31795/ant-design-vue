@@ -11,7 +11,7 @@ parseAndWrite({
   // default match lang
   test: /en-US\.md/,
   outputDir: path.resolve(rootPath, './vetur'),
-  tagPrefix: 'a-',
+  tagPrefix: 'xy-',
 })
   .then(result => {
     // eslint-disable-next-line no-console

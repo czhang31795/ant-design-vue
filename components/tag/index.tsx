@@ -1,4 +1,5 @@
 import type { HTMLAttributes, App, PropType, ExtractPropTypes, Plugin, CSSProperties } from 'vue';
+import { registerComponent } from '../_util/registerComponent';
 import { shallowRef, defineComponent, watchEffect, computed } from 'vue';
 import classNames from '../_util/classNames';
 import PropTypes from '../_util/vue-types';
@@ -37,7 +38,7 @@ export type TagProps = HTMLAttributes & Partial<ExtractPropTypes<ReturnType<type
 
 const Tag = defineComponent({
   compatConfig: { MODE: 3 },
-  name: 'ATag',
+  name: 'XyTag',
   inheritAttrs: false,
   props: tagProps(),
   // emits: ['update:visible', 'close'],
@@ -162,8 +163,8 @@ const Tag = defineComponent({
 Tag.CheckableTag = CheckableTag;
 
 Tag.install = function (app: App) {
-  app.component(Tag.name, Tag);
-  app.component(CheckableTag.name, CheckableTag);
+  registerComponent(app, Tag);
+  registerComponent(app, CheckableTag);
   return app;
 };
 

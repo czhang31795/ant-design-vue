@@ -1,4 +1,5 @@
 import type { App, Plugin } from 'vue';
+import { registerComponent } from '../_util/registerComponent';
 import Breadcrumb from './Breadcrumb';
 import BreadcrumbItem from './BreadcrumbItem';
 import BreadcrumbSeparator from './BreadcrumbSeparator';
@@ -12,9 +13,9 @@ Breadcrumb.Separator = BreadcrumbSeparator;
 
 /* istanbul ignore next */
 Breadcrumb.install = function (app: App) {
-  app.component(Breadcrumb.name, Breadcrumb);
-  app.component(BreadcrumbItem.name, BreadcrumbItem);
-  app.component(BreadcrumbSeparator.name, BreadcrumbSeparator);
+  registerComponent(app, Breadcrumb);
+  registerComponent(app, BreadcrumbItem);
+  registerComponent(app, BreadcrumbSeparator);
   return app;
 };
 

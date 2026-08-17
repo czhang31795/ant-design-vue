@@ -1,8 +1,8 @@
 <template>
   <footer id="footer">
     <div class="footer-wrap">
-      <a-row>
-        <a-col :md="6" :sm="24" :xs="24">
+      <xy-row>
+        <xy-col :md="6" :sm="24" :xs="24">
           <div class="footer-center">
             <h2>Ant Design</h2>
             <div>
@@ -35,8 +35,8 @@
               </a>
             </div>
           </div>
-        </a-col>
-        <a-col :md="6" :sm="24" :xs="24">
+        </xy-col>
+        <xy-col :md="6" :sm="24" :xs="24">
           <div class="footer-center">
             <h2>{{ isCN ? '社区' : 'Community' }}</h2>
             <div v-if="isCN">
@@ -59,8 +59,8 @@
               </a>
             </div>
           </div>
-        </a-col>
-        <!-- <a-col :md="6" :sm="24" :xs="24">
+        </xy-col>
+        <!-- <xy-col :md="6" :sm="24" :xs="24">
           <div class="footer-center">
             <h2>{{ isCN ? '友情链接' : 'Links' }}</h2>
             <div>
@@ -76,8 +76,8 @@
               <a href="https://antdv.formilyjs.org/" target="_blank">@formily/antdv</a>
             </div>
           </div>
-        </a-col> -->
-        <a-col :md="12" :sm="24" :xs="24">
+        </xy-col> -->
+        <xy-col :md="12" :sm="24" :xs="24">
           <div class="footer-center">
             <h2>
               <img
@@ -103,8 +103,8 @@
               <span>{{ isCN ? 'AI 音乐生成器' : 'AI Music Generator' }}</span>
             </div>
           </div>
-        </a-col>
-      </a-row>
+        </xy-col>
+      </xy-row>
     </div>
   </footer>
 </template>

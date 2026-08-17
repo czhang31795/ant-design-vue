@@ -17,7 +17,7 @@ Standard header, suitable for use in scenarios that require a brief description.
 </docs>
 
 <template>
-  <a-page-header
+  <xy-page-header
     style="border: 1px solid rgb(235, 237, 240)"
     title="Title"
     sub-title="This is a subtitle"

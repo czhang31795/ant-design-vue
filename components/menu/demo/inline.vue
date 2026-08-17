@@ -16,7 +16,7 @@ Vertical menu with inline submenus.
 
 </docs>
 <template>
-  <a-menu
+  <xy-menu
     id="dddddd"
     v-model:openKeys="openKeys"
     v-model:selectedKeys="selectedKeys"
@@ -24,7 +24,7 @@ Vertical menu with inline submenus.
     mode="inline"
     :items="items"
     @click="handleClick"
-  ></a-menu>
+  ></xy-menu>
 </template>
 <script lang="ts" setup>
 import { reactive, ref, watch, VueElement, h } from 'vue';

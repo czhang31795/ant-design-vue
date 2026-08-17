@@ -81,7 +81,7 @@ export default defineComponent({
 </script>
 
 <style>
-#components-select-demo .ant-select {
+#components-select-demo .xy-select {
   margin: 0 8px 10px 0;
 }
 </style>

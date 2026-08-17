@@ -15,14 +15,14 @@ Custom Color.
 </docs>
 
 <template>
-  <a-space>
-    <a-qrcode value="http://www.antdv.com" :color="token.colorSuccessText" />
-    <a-qrcode
+  <xy-space>
+    <xy-qrcode value="http://www.antdv.com" :color="token.colorSuccessText" />
+    <xy-qrcode
       value="http://www.antdv.com"
       :color="token.colorInfoText"
       :bg-color="token.colorBgLayout"
     />
-  </a-space>
+  </xy-space>
 </template>
 
 <script lang="ts" setup>

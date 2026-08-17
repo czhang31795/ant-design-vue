@@ -15,15 +15,15 @@ Use `rowClassName` Customize the table with Striped.
 </docs>
 
 <template>
-  <a-table
-    class="ant-table-striped"
+  <xy-table
+    class="xy-table-striped"
     size="middle"
     :columns="columns"
     :data-source="data"
     :row-class-name="(_record, index) => (index % 2 === 1 ? 'table-striped' : null)"
   />
-  <a-table
-    class="ant-table-striped"
+  <xy-table
+    class="xy-table-striped"
     size="middle"
     :columns="columns"
     :data-source="data"
@@ -67,10 +67,10 @@ const data = [
 </script>
 
 <style scoped>
-[data-doc-theme='light'] .ant-table-striped :deep(.table-striped) td {
+[data-doc-theme='light'] .xy-table-striped :deep(.table-striped) td {
   background-color: #fafafa;
 }
-[data-doc-theme='dark'] .ant-table-striped :deep(.table-striped) td {
+[data-doc-theme='dark'] .xy-table-striped :deep(.table-striped) td {
   background-color: rgb(29, 29, 29);
 }
 </style>

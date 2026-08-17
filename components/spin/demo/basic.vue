@@ -17,5 +17,5 @@ A simple loading status.
 </docs>
 
 <template>
-  <a-spin />
+  <xy-spin />
 </template>

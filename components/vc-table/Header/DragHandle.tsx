@@ -120,7 +120,7 @@ export default defineComponent({
     const calcWidth = (e: HandleEvent) => clampWidth(baseWidth + (getPageX(e) - startX));
 
     const createProxy = (th: HTMLElement) => {
-      const prefix = props.prefixCls || 'ant-table';
+      const prefix = props.prefixCls || 'xy-table';
       const container =
         (th.closest(`.${prefix}-container`) as HTMLElement | null) ||
         (th.closest(`.${prefix}-content`) as HTMLElement | null) ||
@@ -139,7 +139,7 @@ export default defineComponent({
         height: `${rect.height}px`,
         width: '2px',
         marginLeft: '-1px',
-        backgroundColor: 'var(--ant-color-primary, #1677ff)',
+        backgroundColor: 'var(--xy-color-primary, #1677ff)',
         zIndex: '1100',
         pointerEvents: 'none',
         left: `${th.getBoundingClientRect().right}px`,
@@ -196,7 +196,7 @@ export default defineComponent({
       startX = getPageX(e);
       dragging = true;
 
-      const prefix = props.prefixCls || 'ant-table';
+      const prefix = props.prefixCls || 'xy-table';
       wrapperEl = th.closest(`.${prefix}-wrapper`) as HTMLElement | null;
       wrapperEl?.classList.add(`${prefix}-wrapper-resizing`);
       handle?.classList.add('dragging');

@@ -16,7 +16,7 @@ For 3.0+, You could pass `v-slot:option` to custom option.
 </docs>
 
 <template>
-  <a-auto-complete
+  <xy-auto-complete
     v-model:value="value"
     style="width: 200px"
     placeholder="input here"
@@ -27,7 +27,7 @@ For 3.0+, You could pass `v-slot:option` to custom option.
       {{ val.split('@')[0] }} @
       <span style="font-weight: bold">{{ val.split('@')[1] }}</span>
     </template>
-  </a-auto-complete>
+  </xy-auto-complete>
 </template>
 
 <script lang="ts" setup>

@@ -92,7 +92,7 @@ app.config.globalProperties.$message = message;
 
 ```html
 <template>
-  <a-button>Add</a-button>
+  <xy-button>Add</xy-button>
 </template>
 <script>
   import { Button } from 'ant-design-vue';
@@ -100,8 +100,8 @@ app.config.globalProperties.$message = message;
 
   export default {
     components: {
-      AButton: Button,
-      AButtonGroup: ButtonGroup,
+      XyButton: Button,
+      XyButtonGroup: ButtonGroup,
     },
   };
 </script>

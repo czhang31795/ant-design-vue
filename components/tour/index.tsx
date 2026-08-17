@@ -16,7 +16,7 @@ import getPlacements from '../_util/placements';
 export { TourProps, TourStepProps };
 
 const Tour = defineComponent({
-  name: 'ATour',
+  name: 'XyTour',
   inheritAttrs: false,
   props: tourProps(),
   setup(props, { attrs, emit, slots }) {

@@ -16,15 +16,19 @@ For letter type Avatar, when the letters are too long to display, the font size 
 </docs>
 
 <template>
-  <a-avatar size="large" :style="{ backgroundColor: color, verticalAlign: 'middle' }" :gap="gap">
+  <xy-avatar size="large" :style="{ backgroundColor: color, verticalAlign: 'middle' }" :gap="gap">
     {{ avatarValue }}
-  </a-avatar>
-  <a-button size="small" :style="{ margin: '0 16px', verticalAlign: 'middle' }" @click="changeUser">
+  </xy-avatar>
+  <xy-button
+    size="small"
+    :style="{ margin: '0 16px', verticalAlign: 'middle' }"
+    @click="changeUser"
+  >
     ChangeUser
-  </a-button>
-  <a-button size="small" :style="{ verticalAlign: 'middle' }" @click="changeGap">
+  </xy-button>
+  <xy-button size="small" :style="{ verticalAlign: 'middle' }" @click="changeGap">
     ChangeGap
-  </a-button>
+  </xy-button>
 </template>
 
 <script lang="ts" setup>

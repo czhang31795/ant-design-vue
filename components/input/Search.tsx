@@ -18,7 +18,7 @@ import inputProps from './inputProps';
 
 export default defineComponent({
   compatConfig: { MODE: 3 },
-  name: 'AInputSearch',
+  name: 'XyInputSearch',
   inheritAttrs: false,
   props: {
     ...inputProps(),

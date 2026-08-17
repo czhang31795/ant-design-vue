@@ -51,7 +51,7 @@ describe('Input.Search', () => {
         return <Search placeholder="input search text" enterButton disabled />;
       },
     });
-    expect(wrapper.findAll('.ant-btn-primary[disabled]')).toHaveLength(1);
+    expect(wrapper.findAll('.xy-btn-primary[disabled]')).toHaveLength(1);
   });
 
   // it('should trigger onSearch when click search icon', () => {

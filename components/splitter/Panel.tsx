@@ -5,7 +5,7 @@ import { someType, stringType } from '../_util/type';
 import { panelProps } from './interface';
 
 const Panel = defineComponent({
-  name: 'ASplitterPanel',
+  name: 'XySplitterPanel',
   inheritAttrs: false,
   props: {
     ...panelProps(),
@@ -29,7 +29,7 @@ const Panel = defineComponent({
     });
 
     return () => {
-      const prefixCls = props.prefixCls || 'ant-splitter';
+      const prefixCls = props.prefixCls || 'xy-splitter';
       return (
         <div
           {...attrs}

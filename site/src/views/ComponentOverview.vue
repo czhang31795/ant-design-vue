@@ -11,13 +11,13 @@
         }}
       </p>
     </section>
-    <a-divider></a-divider>
-    <a-affix :offset-top="32" @change="handleAffixChange">
+    <xy-divider></xy-divider>
+    <xy-affix :offset-top="32" @change="handleAffixChange">
       <div
         class="components-overview-affix"
         :class="{ 'components-overview-affixed': searchBarAffixed }"
       >
-        <a-input
+        <xy-input
           ref="inputRef"
           v-model:value="search"
           :placeholder="$t('app.components.overview.search')"
@@ -28,21 +28,21 @@
           <template #suffix>
             <SearchOutlined />
           </template>
-        </a-input>
+        </xy-input>
       </div>
-    </a-affix>
-    <a-divider></a-divider>
+    </xy-affix>
+    <xy-divider></xy-divider>
     <template v-for="group in menuItems" :key="group.title">
       <div class="components-overview">
-        <h2 class="ant-typography components-overview-group-title">
-          <a-space align="center">
+        <h2 class="xy-typography components-overview-group-title">
+          <xy-space align="center">
             {{ isZhCN ? group.title : group.enTitle }}
-            <a-tag style="display: block">{{ group.children.length }}</a-tag>
-          </a-space>
+            <xy-tag style="display: block">{{ group.children.length }}</xy-tag>
+          </xy-space>
         </h2>
-        <a-row :gutter="[24, 24]">
+        <xy-row :gutter="[24, 24]">
           <template v-for="component in group.children" :key="component.title">
-            <a-col :xs="24" :sm="12" :lg="8" :xl="6">
+            <xy-col :xs="24" :sm="12" :lg="8" :xl="6">
               <component
                 :is="component.target ? 'a' : 'router-link'"
                 v-bind="
@@ -51,7 +51,7 @@
                     : { to: getLocalizedPathname(component.path, isZhCN) }
                 "
               >
-                <a-card size="small" class="components-overview-card">
+                <xy-card size="small" class="components-overview-card">
                   <template #title>
                     <div class="components-overview-title">
                       {{ component.title }}
@@ -64,11 +64,11 @@
                       :alt="component.title"
                     />
                   </div>
-                </a-card>
+                </xy-card>
               </component>
-            </a-col>
+            </xy-col>
           </template>
-        </a-row>
+        </xy-row>
       </div>
     </template>
   </section>

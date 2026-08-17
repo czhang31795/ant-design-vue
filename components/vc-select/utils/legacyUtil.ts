@@ -19,7 +19,7 @@ function convertNodeToOption<OptionType extends BaseOptionType = DefaultOptionTy
     key,
     value: value !== undefined ? value : key,
     children: child,
-    disabled: disabled || disabled === '', // support <a-select-option disabled />
+    disabled: disabled || disabled === '', // support <xy-select-option disabled />
     ...(restProps as any),
   };
 }

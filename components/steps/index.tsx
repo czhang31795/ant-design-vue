@@ -1,4 +1,5 @@
 import type { App, ExtractPropTypes } from 'vue';
+import { registerComponent } from '../_util/registerComponent';
 import { computed, defineComponent } from 'vue';
 import CloseOutlined from '@ant-design/icons-vue/CloseOutlined';
 import CheckOutlined from '@ant-design/icons-vue/CheckOutlined';
@@ -54,7 +55,7 @@ export type StepProps = Partial<ExtractPropTypes<ReturnType<typeof stepProps>>>;
 
 const Steps = defineComponent({
   compatConfig: { MODE: 3 },
-  name: 'ASteps',
+  name: 'XySteps',
   inheritAttrs: false,
   props: initDefaultProps(stepsProps(), {
     current: 0,
@@ -156,14 +157,14 @@ const Steps = defineComponent({
 export const Step = defineComponent({
   compatConfig: { MODE: 3 },
   ...(VcStep as any),
-  name: 'AStep',
+  name: 'XyStep',
   props: VcStepProps(),
 });
 export default Object.assign(Steps, {
   Step,
   install: (app: App) => {
-    app.component(Steps.name, Steps);
-    app.component(Step.name, Step);
+    registerComponent(app, Steps);
+    registerComponent(app, Step);
     return app;
   },
 });

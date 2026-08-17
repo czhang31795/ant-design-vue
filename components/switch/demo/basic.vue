@@ -17,7 +17,7 @@ The most basic usage.
 </docs>
 
 <template>
-  <a-switch v-model:checked="checked" />
+  <xy-switch v-model:checked="checked" />
 </template>
 <script lang="ts" setup>
 import { ref } from 'vue';

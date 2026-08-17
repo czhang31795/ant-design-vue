@@ -86,25 +86,25 @@ const BasicLayout = defineComponent({
 const Layout = generator({
   suffixCls: 'layout',
   tagName: 'section',
-  name: 'ALayout',
+  name: 'XyLayout',
 })(BasicLayout);
 
 const Header = generator({
   suffixCls: 'layout-header',
   tagName: 'header',
-  name: 'ALayoutHeader',
+  name: 'XyLayoutHeader',
 })(Basic);
 
 const Footer = generator({
   suffixCls: 'layout-footer',
   tagName: 'footer',
-  name: 'ALayoutFooter',
+  name: 'XyLayoutFooter',
 })(Basic);
 
 const Content = generator({
   suffixCls: 'layout-content',
   tagName: 'main',
-  name: 'ALayoutContent',
+  name: 'XyLayoutContent',
 })(Basic);
 
 export { Header, Footer, Content };

@@ -152,7 +152,7 @@ export interface ModalLocale {
 
 export default defineComponent({
   compatConfig: { MODE: 3 },
-  name: 'AModal',
+  name: 'XyModal',
   inheritAttrs: false,
   props: initDefaultProps(modalProps(), {
     width: 520,

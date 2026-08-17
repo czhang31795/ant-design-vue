@@ -19,9 +19,9 @@ Use `useBreakpoint` Hook provide personalized layout.
 <template>
   Current break point:
   <template v-for="(value, key) in screens">
-    <a-tag v-if="!!value" :key="key" color="blue">
+    <xy-tag v-if="!!value" :key="key" color="blue">
       {{ key }}
-    </a-tag>
+    </xy-tag>
   </template>
 </template>
 <script lang="ts" setup>

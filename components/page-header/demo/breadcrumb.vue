@@ -17,7 +17,7 @@ With breadcrumbs, it is suitable for deeper pages, allowing users to navigate qu
 </docs>
 
 <template>
-  <a-page-header
+  <xy-page-header
     style="border: 1px solid rgb(235, 237, 240)"
     title="Title"
     :breadcrumb="{ routes }"

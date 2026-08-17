@@ -17,7 +17,7 @@ Enable vertical virtual scroll with `virtual` for large datasets. `scroll.y` is 
 </docs>
 
 <template>
-  <a-table
+  <xy-table
     virtual
     :virtual-item-height="54"
     :columns="columns"

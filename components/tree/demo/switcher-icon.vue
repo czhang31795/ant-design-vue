@@ -17,14 +17,14 @@ customize collapse/expand icon of tree node
 </docs>
 
 <template>
-  <a-tree
+  <xy-tree
     v-model:expandedKeys="expandedKeys"
     v-model:selectedKeys="selectedKeys"
     show-line
     :tree-data="treeData"
   >
     <template #switcherIcon="{ switcherCls }"><down-outlined :class="switcherCls" /></template>
-  </a-tree>
+  </xy-tree>
 </template>
 <script lang="ts" setup>
 import { ref } from 'vue';

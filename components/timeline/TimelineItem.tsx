@@ -20,7 +20,7 @@ export type TimelineItemProps = Partial<ExtractPropTypes<ReturnType<typeof timel
 
 export default defineComponent({
   compatConfig: { MODE: 3 },
-  name: 'ATimelineItem',
+  name: 'XyTimelineItem',
   props: initDefaultProps(timelineItemProps(), {
     color: 'blue',
     pending: false,

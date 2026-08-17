@@ -21,7 +21,7 @@ import { useInjectDisabled } from '../config-provider/DisabledContext';
 
 export default defineComponent({
   compatConfig: { MODE: 3 },
-  name: 'AInput',
+  name: 'XyInput',
   inheritAttrs: false,
   props: inputProps(),
   setup(props, { slots, attrs, expose, emit }) {

@@ -29,22 +29,22 @@ import { PersonSelect } from '@czxingyu/ant-design-vue';
 </docs>
 
 <template>
-  <a-space direction="vertical" style="width: 100%" :size="16">
+  <xy-space direction="vertical" style="width: 100%" :size="16">
     <div>
       <div class="demo-label">单选</div>
-      <a-person-select v-model:value="singleValue" style="width: 100%" :options="personOptions" />
+      <xy-person-select v-model:value="singleValue" style="width: 100%" :options="personOptions" />
     </div>
 
     <div>
       <div class="demo-label">多选</div>
-      <a-person-select
+      <xy-person-select
         v-model:value="multipleValue"
         mode="multiple"
         style="width: 100%"
         :options="personOptions"
       />
     </div>
-  </a-space>
+  </xy-space>
 </template>
 
 <script lang="ts" setup>

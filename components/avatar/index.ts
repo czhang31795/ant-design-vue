@@ -1,4 +1,5 @@
 import type { App, Plugin } from 'vue';
+import { registerComponent } from '../_util/registerComponent';
 import Avatar from './Avatar';
 import Group from './Group';
 export { avatarProps } from './Avatar';
@@ -9,8 +10,8 @@ Avatar.Group = Group;
 
 /* istanbul ignore next */
 Avatar.install = function (app: App) {
-  app.component(Avatar.name, Avatar);
-  app.component(Group.name, Group);
+  registerComponent(app, Avatar);
+  registerComponent(app, Group);
   return app;
 };
 export { Group as AvatarGroup };

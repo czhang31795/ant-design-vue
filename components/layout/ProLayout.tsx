@@ -1,4 +1,5 @@
 import type { App, ExtractPropTypes, PropType, VNodeChild } from 'vue';
+import { registerComponent } from '../_util/registerComponent';
 import { computed, defineComponent, ref, watch } from 'vue';
 import LeftOutlined from '@ant-design/icons-vue/LeftOutlined';
 import RightOutlined from '@ant-design/icons-vue/RightOutlined';
@@ -110,7 +111,7 @@ const proLayoutProps = () => ({
 export type ProLayoutProps = Partial<ExtractPropTypes<ReturnType<typeof proLayoutProps>>>;
 
 const ProLayout = defineComponent({
-  name: 'AProLayout',
+  name: 'XyProLayout',
   inheritAttrs: false,
   props: initDefaultProps(proLayoutProps(), {
     layout: 'mix',
@@ -234,12 +235,12 @@ const ProLayout = defineComponent({
     };
 
     const renderLogo = (collapsed = false) => (
-      <div class={['ant-pro-layout-logo', collapsed ? 'ant-pro-layout-logo-collapsed' : undefined]}>
+      <div class={['xy-pro-layout-logo', collapsed ? 'xy-pro-layout-logo-collapsed' : undefined]}>
         {slots.logo?.() || (
           <>
             {props.logo ? <img src={props.logo} alt="logo" /> : null}
             {!collapsed && props.title ? (
-              <span class="ant-pro-layout-logo-title">{props.title}</span>
+              <span class="xy-pro-layout-logo-title">{props.title}</span>
             ) : null}
           </>
         )}
@@ -249,7 +250,7 @@ const ProLayout = defineComponent({
     const renderSiderCollapseBtn = () => (
       <button
         type="button"
-        class="ant-pro-layout-collapse-btn"
+        class="xy-pro-layout-collapse-btn"
         aria-label={mergedCollapsed.value ? '展开侧栏' : '收起侧栏'}
         onClick={toggleCollapsed}
       >
@@ -261,7 +262,7 @@ const ProLayout = defineComponent({
       const showPageHeader = !!(props.pageTitle || props.breadcrumb?.length || slots.pageHeader);
       if (!showPageHeader) return null;
       return (
-        <div class="ant-pro-layout-page-header">
+        <div class="xy-pro-layout-page-header">
           {slots.pageHeader?.() || (
             <>
               {props.breadcrumb?.length ? (
@@ -271,9 +272,7 @@ const ProLayout = defineComponent({
                   ))}
                 </Breadcrumb>
               ) : null}
-              {props.pageTitle ? (
-                <h1 class="ant-pro-layout-page-title">{props.pageTitle}</h1>
-              ) : null}
+              {props.pageTitle ? <h1 class="xy-pro-layout-page-title">{props.pageTitle}</h1> : null}
             </>
           )}
         </div>
@@ -281,20 +280,20 @@ const ProLayout = defineComponent({
     };
 
     const renderContent = () => (
-      <Content class="ant-pro-layout-content">
+      <Content class="xy-pro-layout-content">
         {renderPageHeader()}
-        <div class="ant-pro-layout-content-children">{slots.default?.()}</div>
+        <div class="xy-pro-layout-content-children">{slots.default?.()}</div>
       </Content>
     );
 
     const renderFooter = () => {
       if (!slots.footer) return null;
-      return <Footer class="ant-pro-layout-footer">{slots.footer()}</Footer>;
+      return <Footer class="xy-pro-layout-footer">{slots.footer()}</Footer>;
     };
 
     const renderSiderMenu = (items: ItemType[], withOpenKeys = true) => (
       <Menu
-        class="ant-pro-layout-sider-menu"
+        class="xy-pro-layout-sider-menu"
         selectedKeys={selectedKeys.value}
         openKeys={withOpenKeys ? openKeys.value : undefined}
         theme="light"
@@ -321,8 +320,8 @@ const ProLayout = defineComponent({
         <Sider
           collapsed={mergedCollapsed.value}
           class={[
-            'ant-pro-layout-sider',
-            layoutMode.value === 'mix' ? 'ant-pro-layout-sider-mix' : undefined,
+            'xy-pro-layout-sider',
+            layoutMode.value === 'mix' ? 'xy-pro-layout-sider-mix' : undefined,
           ]}
           collapsible
           trigger={null}
@@ -347,17 +346,14 @@ const ProLayout = defineComponent({
       const showTopMenu = mode === 'top' || (mode === 'mix' && !!props.splitMenus);
       return (
         <Header
-          class={[
-            'ant-pro-layout-header',
-            mode === 'mix' ? 'ant-pro-layout-header-mix' : undefined,
-          ]}
+          class={['xy-pro-layout-header', mode === 'mix' ? 'xy-pro-layout-header-mix' : undefined]}
         >
           {mode !== 'side' ? renderLogo(false) : null}
           {mode === 'side' ? (
-            <div class="ant-pro-layout-header-left">
+            <div class="xy-pro-layout-header-left">
               {slots.headerLeft?.() ||
                 (props.headerTitle ? (
-                  <div class="ant-pro-layout-header-title">{props.headerTitle}</div>
+                  <div class="xy-pro-layout-header-title">{props.headerTitle}</div>
                 ) : (
                   <span />
                 ))}
@@ -365,7 +361,7 @@ const ProLayout = defineComponent({
           ) : null}
           {showTopMenu ? (
             <Menu
-              class="ant-pro-layout-top-menu"
+              class="xy-pro-layout-top-menu"
               selectedKeys={
                 isSplitMix.value
                   ? activeTopKey.value
@@ -385,9 +381,9 @@ const ProLayout = defineComponent({
               onClick={onTopMenuClick}
             />
           ) : (
-            <div class="ant-pro-layout-header-spacer" />
+            <div class="xy-pro-layout-header-spacer" />
           )}
-          <div class="ant-pro-layout-header-right">{slots.headerRight?.()}</div>
+          <div class="xy-pro-layout-header-right">{slots.headerRight?.()}</div>
         </Header>
       );
     };
@@ -395,9 +391,9 @@ const ProLayout = defineComponent({
     return () => {
       const mode = layoutMode.value;
       const rootClass = [
-        'ant-pro-layout',
-        `ant-pro-layout-${mode}`,
-        isSplitMix.value ? 'ant-pro-layout-split-menus' : undefined,
+        'xy-pro-layout',
+        `xy-pro-layout-${mode}`,
+        isSplitMix.value ? 'xy-pro-layout-split-menus' : undefined,
         attrs.class,
       ];
 
@@ -415,9 +411,9 @@ const ProLayout = defineComponent({
         return (
           <Layout class={rootClass} style={attrs.style as any}>
             {renderHeader()}
-            <Layout class="ant-pro-layout-body" hasSider={showSider.value}>
+            <Layout class="xy-pro-layout-body" hasSider={showSider.value}>
               {renderSider()}
-              <Layout class="ant-pro-layout-main">
+              <Layout class="xy-pro-layout-main">
                 {renderContent()}
                 {renderFooter()}
               </Layout>
@@ -430,7 +426,7 @@ const ProLayout = defineComponent({
       return (
         <Layout class={rootClass} style={attrs.style as any} hasSider>
           {renderSider()}
-          <Layout class="ant-pro-layout-main">
+          <Layout class="xy-pro-layout-main">
             {renderHeader()}
             {renderContent()}
             {renderFooter()}
@@ -442,7 +438,7 @@ const ProLayout = defineComponent({
 });
 
 ProLayout.install = (app: App) => {
-  app.component(ProLayout.name as string, ProLayout);
+  registerComponent(app, ProLayout);
   return app;
 };
 

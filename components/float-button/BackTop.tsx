@@ -25,7 +25,7 @@ import { useInjectFloatButtonGroupContext } from './context';
 
 const BackTop = defineComponent({
   compatConfig: { MODE: 3 },
-  name: 'ABackTop',
+  name: 'XyBackTop',
   inheritAttrs: false,
   props: initDefaultProps(backTopProps(), {
     visibilityHeight: 400,

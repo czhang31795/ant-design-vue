@@ -18,7 +18,7 @@ Use `oneWay` to makes Transfer to one way style.
 
 <template>
   <div>
-    <a-transfer
+    <xy-transfer
       v-model:target-keys="targetKeys"
       v-model:selected-keys="selectedKeys"
       :data-source="mockData"
@@ -30,7 +30,7 @@ Use `oneWay` to makes Transfer to one way style.
       @selectChange="handleSelectChange"
       @scroll="handleScroll"
     />
-    <a-switch
+    <xy-switch
       v-model:checked="disabled"
       un-checked-children="enabled"
       checked-children="disabled"

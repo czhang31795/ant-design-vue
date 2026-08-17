@@ -348,7 +348,7 @@ const InternalTabs = defineComponent({
 
 export default defineComponent({
   compatConfig: { MODE: 3 },
-  name: 'ATabs',
+  name: 'XyTabs',
   inheritAttrs: false,
   props: initDefaultProps(tabsProps(), {
     tabPosition: 'top',

@@ -30,6 +30,6 @@ When part of the page is waiting for asynchronous data or during a rendering pro
 ```jsx
 import { h } from 'vue';
 Spin.setDefaultIndicator({
-  indicator: h('i', { class: 'anticon anticon-loading anticon-spin ant-spin-dot' }),
+  indicator: h('i', { class: 'anticon anticon-loading anticon-spin xy-spin-dot' }),
 });
 ```

@@ -17,7 +17,7 @@ Implement a customized column search example via `customFilterDropdown`.
 </docs>
 
 <template>
-  <a-table :data-source="data" :columns="columns">
+  <xy-table :data-source="data" :columns="columns">
     <template #headerCell="{ column }">
       <template v-if="column.key === 'name'">
         <span style="color: #1890ff">Name</span>
@@ -27,7 +27,7 @@ Implement a customized column search example via `customFilterDropdown`.
       #customFilterDropdown="{ setSelectedKeys, selectedKeys, confirm, clearFilters, column }"
     >
       <div style="padding: 8px">
-        <a-input
+        <xy-input
           ref="searchInput"
           :placeholder="`Search ${column.dataIndex}`"
           :value="selectedKeys[0]"
@@ -35,7 +35,7 @@ Implement a customized column search example via `customFilterDropdown`.
           @change="e => setSelectedKeys(e.target.value ? [e.target.value] : [])"
           @pressEnter="handleSearch(selectedKeys, confirm, column.dataIndex)"
         />
-        <a-button
+        <xy-button
           type="primary"
           size="small"
           style="width: 90px; margin-right: 8px"
@@ -43,10 +43,10 @@ Implement a customized column search example via `customFilterDropdown`.
         >
           <template #icon><SearchOutlined /></template>
           Search
-        </a-button>
-        <a-button size="small" style="width: 90px" @click="handleReset(clearFilters)">
+        </xy-button>
+        <xy-button size="small" style="width: 90px" @click="handleReset(clearFilters)">
           Reset
-        </a-button>
+        </xy-button>
       </div>
     </template>
     <template #customFilterIcon="{ filtered }">
@@ -70,7 +70,7 @@ Implement a customized column search example via `customFilterDropdown`.
         </template>
       </span>
     </template>
-  </a-table>
+  </xy-table>
 </template>
 
 <script lang="ts" setup>

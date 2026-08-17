@@ -18,14 +18,14 @@ Use vertical layout.
 
 <template>
   <div class="demo-splitter">
-    <a-splitter layout="vertical">
-      <a-splitter-panel>
+    <xy-splitter layout="vertical">
+      <xy-splitter-panel>
         <div class="demo-panel">First</div>
-      </a-splitter-panel>
-      <a-splitter-panel>
+      </xy-splitter-panel>
+      <xy-splitter-panel>
         <div class="demo-panel">Second</div>
-      </a-splitter-panel>
-    </a-splitter>
+      </xy-splitter-panel>
+    </xy-splitter>
   </div>
 </template>
 

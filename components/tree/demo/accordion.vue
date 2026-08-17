@@ -16,7 +16,7 @@ Nodes of the same level can only be expanded one
 
 </docs>
 <template>
-  <a-tree
+  <xy-tree
     v-model:selectedKeys="selectedKeys"
     :expanded-keys="expandedKeys"
     :tree-data="treeData"
@@ -26,7 +26,7 @@ Nodes of the same level can only be expanded one
       <span v-if="key === '0-0-1-0'" style="color: #1890ff">{{ title }}</span>
       <template v-else>{{ title }}</template>
     </template>
-  </a-tree>
+  </xy-tree>
 </template>
 <script lang="ts" setup>
 import { ref, watch } from 'vue';

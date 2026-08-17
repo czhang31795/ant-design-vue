@@ -17,7 +17,7 @@ Setting `v-model` makes Steps clickable.
 
 <template>
   <div>
-    <a-steps
+    <xy-steps
       v-model:current="current"
       :items="[
         {
@@ -33,9 +33,9 @@ Setting `v-model` makes Steps clickable.
           description,
         },
       ]"
-    ></a-steps>
-    <a-divider />
-    <a-steps
+    ></xy-steps>
+    <xy-divider />
+    <xy-steps
       v-model:current="current"
       direction="vertical"
       :items="[
@@ -52,7 +52,7 @@ Setting `v-model` makes Steps clickable.
           description,
         },
       ]"
-    ></a-steps>
+    ></xy-steps>
   </div>
 </template>
 <script lang="ts" setup>

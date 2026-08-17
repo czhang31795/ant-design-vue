@@ -17,9 +17,9 @@ A small `Spin` use in loading text, default `Spin` use in loading card-level blo
 </docs>
 
 <template>
-  <a-space>
-    <a-spin size="small" />
-    <a-spin />
-    <a-spin size="large" />
-  </a-space>
+  <xy-space>
+    <xy-spin size="small" />
+    <xy-spin />
+    <xy-spin size="large" />
+  </xy-space>
 </template>

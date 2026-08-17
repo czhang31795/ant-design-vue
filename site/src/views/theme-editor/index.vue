@@ -1,14 +1,14 @@
 <template>
   <Header />
   <div class="theme-editor">
-    <a-config-provider :theme="{ inherit: false }">
+    <xy-config-provider :theme="{ inherit: false }">
       <div class="theme-editor-header">
-        <a-typography-title :level="5" :style="{ margin: 0 }">
+        <xy-typography-title :level="5" :style="{ margin: 0 }">
           {{ locale.title }}
-        </a-typography-title>
+        </xy-typography-title>
 
         <div>
-          <a-modal
+          <xy-modal
             v-model:open="editModelOpen"
             :title="locale.editModelTitle"
             :width="600"
@@ -19,7 +19,7 @@
             <Suspense>
               <template #fallback>
                 <div :style="{ textAlign: 'center', width: '100%', padding: '24px 0' }">
-                  <a-spin :tip="locale.initialEditor" />
+                  <xy-spin :tip="locale.initialEditor" />
                 </div>
               </template>
               <template #default>
@@ -30,16 +30,16 @@
                 />
               </template>
             </Suspense>
-          </a-modal>
-          <a-button class="theme-editor-header-actions" @click="handleExport">
+          </xy-modal>
+          <xy-button class="theme-editor-header-actions" @click="handleExport">
             {{ locale.export }}
-          </a-button>
-          <a-button class="theme-editor-header-actions" @click="handleEditConfig">
+          </xy-button>
+          <xy-button class="theme-editor-header-actions" @click="handleEditConfig">
             {{ locale.edit }}
-          </a-button>
-          <a-button type="primary" class="theme-editor-header-actions" @click="handleSave">
+          </xy-button>
+          <xy-button type="primary" class="theme-editor-header-actions" @click="handleSave">
             {{ locale.save }}
-          </a-button>
+          </xy-button>
         </div>
       </div>
       <ThemeEditor
@@ -48,7 +48,7 @@
         :locale="lang === 'cn' ? zhCN : enUS"
         @themeChange="handleThemeChange"
       />
-    </a-config-provider>
+    </xy-config-provider>
   </div>
 </template>
 

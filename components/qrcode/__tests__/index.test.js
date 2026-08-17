@@ -9,7 +9,7 @@ describe('QRCode test', () => {
         return <QRCode value="test" />;
       },
     });
-    expect(wrapper.find('.ant-qrcode')).toBeTruthy();
+    expect(wrapper.find('.xy-qrcode')).toBeTruthy();
     expect(wrapper.find('canvas')).toBeTruthy();
     expect(wrapper).toMatchSnapshot();
   });
@@ -20,7 +20,7 @@ describe('QRCode test', () => {
         return <QRCode value="test" icon="test" />;
       },
     });
-    expect(wrapper.find('.ant-qrcode')).toBeTruthy();
+    expect(wrapper.find('.xy-qrcode')).toBeTruthy();
     expect(wrapper.find('image')).toBeTruthy();
   });
 
@@ -41,7 +41,7 @@ describe('QRCode test', () => {
         return <QRCode value="test" status="expired" onRefresh={refresh} />;
       },
     });
-    await wrapper.find('.ant-btn-link').trigger('click');
+    await wrapper.find('.xy-btn-link').trigger('click');
     expect(refresh).toHaveBeenCalled();
   });
 
@@ -64,7 +64,7 @@ describe('QRCode test', () => {
       },
     });
     await wrapper.find('button').trigger('click');
-    expect(wrapper.find('.ant-spin-spinning')).toBeTruthy();
+    expect(wrapper.find('.xy-spin-spinning')).toBeTruthy();
   });
 
   it('support bordered', () => {

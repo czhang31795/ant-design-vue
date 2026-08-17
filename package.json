@@ -1,6 +1,6 @@
 {
   "name": "@czxingyu/ant-design-vue",
-  "version": "4.3.5",
+  "version": "4.3.6",
   "title": "Ant Design Vue",
   "description": "Fork of ant-design-vue with internal enhancements (Splitter, PersonSelect, Table virtual/drag, etc.)",
   "keywords": [

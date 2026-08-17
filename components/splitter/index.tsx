@@ -1,4 +1,5 @@
 import type { App, Plugin } from 'vue';
+import { registerComponent } from '../_util/registerComponent';
 import Panel from './Panel';
 import Splitter from './Splitter';
 
@@ -7,8 +8,8 @@ export type { SplitterProps, PanelProps } from './interface';
 const SplitterComponent = Object.assign(Splitter, {
   Panel,
   install(app: App) {
-    app.component(Splitter.name as string, Splitter);
-    app.component(Panel.name as string, Panel);
+    registerComponent(app, Splitter);
+    registerComponent(app, Panel);
     return app;
   },
 });

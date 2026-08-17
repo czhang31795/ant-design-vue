@@ -1,5 +1,6 @@
 import type { Dayjs } from 'dayjs';
 import type { App } from 'vue';
+import { registerComponent } from '../_util/registerComponent';
 import dayjsGenerateConfig from '../vc-picker/generate/dayjs';
 import type {
   PickerProps,
@@ -40,12 +41,12 @@ export default Object.assign(DatePicker, {
   QuarterPicker,
   YearQuarterMonthPicker,
   install: (app: App) => {
-    app.component(DatePicker.name, DatePicker);
-    app.component(RangePicker.name, RangePicker);
-    app.component(MonthPicker.name, MonthPicker);
-    app.component(WeekPicker.name, WeekPicker);
-    app.component(QuarterPicker.name, QuarterPicker);
-    app.component(YearQuarterMonthPicker.name as string, YearQuarterMonthPicker);
+    registerComponent(app, DatePicker);
+    registerComponent(app, RangePicker);
+    registerComponent(app, MonthPicker);
+    registerComponent(app, WeekPicker);
+    registerComponent(app, QuarterPicker);
+    registerComponent(app, YearQuarterMonthPicker);
     return app;
   },
 });

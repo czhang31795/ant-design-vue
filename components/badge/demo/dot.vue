@@ -17,12 +17,12 @@ If count equals 0, it won't display the dot.
 </docs>
 
 <template>
-  <a-badge dot>
+  <xy-badge dot>
     <notification-outlined style="font-size: 16px" />
-  </a-badge>
-  <a-badge dot>
+  </xy-badge>
+  <xy-badge dot>
     <a href="#">Link something</a>
-  </a-badge>
+  </xy-badge>
 </template>
 <script lang="ts" setup>
 import { NotificationOutlined } from '@ant-design/icons-vue';

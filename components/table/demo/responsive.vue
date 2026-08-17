@@ -16,7 +16,7 @@ Responsive columns.
 </docs>
 
 <template>
-  <a-table :columns="columns" :row-key="record => record.key" :data-source="data">
+  <xy-table :columns="columns" :row-key="record => record.key" :data-source="data">
     <template #bodyCell="{ column, record }">
       <template v-if="column.key === 'name'">
         <a>
@@ -24,7 +24,7 @@ Responsive columns.
         </a>
       </template>
     </template>
-  </a-table>
+  </xy-table>
 </template>
 <script lang="ts" setup>
 import type { ColumnsType } from 'ant-design-vue/es/table/interface';

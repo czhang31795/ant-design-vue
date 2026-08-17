@@ -16,10 +16,10 @@ Basic usage example.
 
 </docs>
 <template>
-  <a-space direction="vertical">
-    <a-input v-model:value="value" placeholder="Basic usage" />
-    <a-input v-model:value.lazy="value1" autofocus placeholder="Lazy usage" />
-  </a-space>
+  <xy-space direction="vertical">
+    <xy-input v-model:value="value" placeholder="Basic usage" />
+    <xy-input v-model:value.lazy="value1" autofocus placeholder="Lazy usage" />
+  </xy-space>
 </template>
 <script lang="ts" setup>
 import { watch, ref } from 'vue';

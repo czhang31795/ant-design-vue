@@ -17,21 +17,21 @@ The height of the input field for the select defaults to 32px. If size is set to
 </docs>
 
 <template>
-  <a-radio-group v-model:value="size">
-    <a-radio-button value="large">Large</a-radio-button>
-    <a-radio-button value="middle">Middle</a-radio-button>
-    <a-radio-button value="small">Small</a-radio-button>
-  </a-radio-group>
+  <xy-radio-group v-model:value="size">
+    <xy-radio-button value="large">Large</xy-radio-button>
+    <xy-radio-button value="middle">Middle</xy-radio-button>
+    <xy-radio-button value="small">Small</xy-radio-button>
+  </xy-radio-group>
   <br />
   <br />
-  <a-space direction="vertical">
-    <a-select
+  <xy-space direction="vertical">
+    <xy-select
       v-model:value="value1"
       :size="size"
       style="width: 200px"
       :options="options"
-    ></a-select>
-    <a-select
+    ></xy-select>
+    <xy-select
       v-model:value="value2"
       :options="options"
       mode="multiple"
@@ -39,16 +39,16 @@ The height of the input field for the select defaults to 32px. If size is set to
       placeholder="Please select"
       style="width: 200px"
       @popupScroll="popupScroll"
-    ></a-select>
-    <a-select
+    ></xy-select>
+    <xy-select
       v-model:value="value3"
       :options="options"
       mode="tags"
       :size="size"
       placeholder="Please select"
       style="width: 200px"
-    ></a-select>
-  </a-space>
+    ></xy-select>
+  </xy-space>
 </template>
 <script lang="ts" setup>
 import { ref } from 'vue';

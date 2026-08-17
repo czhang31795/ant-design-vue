@@ -16,7 +16,7 @@ Drag treeNode to insert after the other treeNode or insert into the other parent
 
 </docs>
 <template>
-  <a-tree
+  <xy-tree
     class="draggable-tree"
     draggable
     block-node

@@ -18,7 +18,7 @@ Change the type of the FloatButton with `type`.
 </docs>
 
 <template>
-  <a-float-button
+  <xy-float-button
     type="primary"
     :style="{
       right: '24px',
@@ -27,9 +27,9 @@ Change the type of the FloatButton with `type`.
     <template #icon>
       <QuestionCircleOutlined />
     </template>
-  </a-float-button>
+  </xy-float-button>
 
-  <a-float-button
+  <xy-float-button
     type="default"
     :style="{
       right: '94px',
@@ -38,7 +38,7 @@ Change the type of the FloatButton with `type`.
     <template #icon>
       <QuestionCircleOutlined />
     </template>
-  </a-float-button>
+  </xy-float-button>
 </template>
 
 <script lang="ts" setup>

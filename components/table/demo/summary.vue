@@ -17,29 +17,29 @@ Set summary content by `summary` prop. Sync column fixed status with `a-table-su
 </docs>
 
 <template>
-  <a-table :columns="columns" :data-source="data" :pagination="false" bordered>
+  <xy-table :columns="columns" :data-source="data" :pagination="false" bordered>
     <template #summary>
-      <a-table-summary-row>
-        <a-table-summary-cell>Total</a-table-summary-cell>
-        <a-table-summary-cell>
-          <a-typography-text type="danger">{{ totals.totalBorrow }}</a-typography-text>
-        </a-table-summary-cell>
-        <a-table-summary-cell>
-          <a-typography-text>{{ totals.totalRepayment }}</a-typography-text>
-        </a-table-summary-cell>
-      </a-table-summary-row>
-      <a-table-summary-row>
-        <a-table-summary-cell>Balance</a-table-summary-cell>
-        <a-table-summary-cell :col-span="2">
-          <a-typography-text type="danger">
+      <xy-table-summary-row>
+        <xy-table-summary-cell>Total</xy-table-summary-cell>
+        <xy-table-summary-cell>
+          <xy-typography-text type="danger">{{ totals.totalBorrow }}</xy-typography-text>
+        </xy-table-summary-cell>
+        <xy-table-summary-cell>
+          <xy-typography-text>{{ totals.totalRepayment }}</xy-typography-text>
+        </xy-table-summary-cell>
+      </xy-table-summary-row>
+      <xy-table-summary-row>
+        <xy-table-summary-cell>Balance</xy-table-summary-cell>
+        <xy-table-summary-cell :col-span="2">
+          <xy-typography-text type="danger">
             {{ totals.totalBorrow - totals.totalRepayment }}
-          </a-typography-text>
-        </a-table-summary-cell>
-      </a-table-summary-row>
+          </xy-typography-text>
+        </xy-table-summary-cell>
+      </xy-table-summary-row>
     </template>
-  </a-table>
+  </xy-table>
   <br />
-  <a-table
+  <xy-table
     :columns="fixedColumns"
     :data-source="fixedData"
     :pagination="false"
@@ -47,14 +47,14 @@ Set summary content by `summary` prop. Sync column fixed status with `a-table-su
     bordered
   >
     <template #summary>
-      <a-table-summary fixed>
-        <a-table-summary-row>
-          <a-table-summary-cell :index="0">Summary</a-table-summary-cell>
-          <a-table-summary-cell :index="1">This is a summary content</a-table-summary-cell>
-        </a-table-summary-row>
-      </a-table-summary>
+      <xy-table-summary fixed>
+        <xy-table-summary-row>
+          <xy-table-summary-cell :index="0">Summary</xy-table-summary-cell>
+          <xy-table-summary-cell :index="1">This is a summary content</xy-table-summary-cell>
+        </xy-table-summary-row>
+      </xy-table-summary>
     </template>
-  </a-table>
+  </xy-table>
 </template>
 
 <script lang="ts" setup>

@@ -23,7 +23,7 @@ coverDark: https://mdn.alipayobjects.com/huamei_7uahnr/afts/img/A*-p-wQLik200AAA
 // import 'dayjs/locale/zh-cn';
 // dayjs.locale('zh-cn');
 
-<a-calendar v-model:value="value" @panelChange="onPanelChange" @select="onSelect"></a-calendar>
+<xy-calendar v-model:value="value" @panelChange="onPanelChange" @select="onSelect"></xy-calendar>
 ```
 
 | 参数 | 说明 | 类型 | 默认值 | 版本 |
@@ -62,6 +62,6 @@ coverDark: https://mdn.alipayobjects.com/huamei_7uahnr/afts/img/A*-p-wQLik200AAA
   };
 </script>
 <template>
-  <a-calendar @select="onSelect" />
+  <xy-calendar @select="onSelect" />
 </template>
 ```

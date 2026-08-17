@@ -1,4 +1,5 @@
 import type { PropType, ExtractPropTypes, CSSProperties, Plugin, App } from 'vue';
+import { registerComponent } from '../_util/registerComponent';
 import { defineComponent, computed, ref, watch, Fragment } from 'vue';
 import PropTypes from '../_util/vue-types';
 import { filterEmpty } from '../_util/props-util';
@@ -36,7 +37,7 @@ function getNumberSize(size: SpaceSize) {
 
 const Space = defineComponent({
   compatConfig: { MODE: 3 },
-  name: 'ASpace',
+  name: 'XySpace',
   inheritAttrs: false,
   props: spaceProps(),
   slots: Object as CustomSlotsType<{
@@ -149,8 +150,8 @@ const Space = defineComponent({
 Space.Compact = Compact;
 
 Space.install = function (app: App) {
-  app.component(Space.name, Space);
-  app.component(Compact.name, Compact);
+  registerComponent(app, Space);
+  registerComponent(app, Compact);
   return app;
 };
 

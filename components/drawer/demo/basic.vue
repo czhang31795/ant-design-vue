@@ -17,8 +17,8 @@ Basic drawer.
 </docs>
 
 <template>
-  <a-button type="primary" @click="showDrawer">Open</a-button>
-  <a-drawer
+  <xy-button type="primary" @click="showDrawer">Open</xy-button>
+  <xy-drawer
     v-model:open="open"
     class="custom-class"
     root-class-name="root-class-name"
@@ -31,7 +31,7 @@ Basic drawer.
     <p>Some contents...</p>
     <p>Some contents...</p>
     <p>Some contents...</p>
-  </a-drawer>
+  </xy-drawer>
 </template>
 <script lang="ts" setup>
 import { ref } from 'vue';

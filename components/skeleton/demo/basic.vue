@@ -17,5 +17,5 @@ Simplest Skeleton usage.
 </docs>
 
 <template>
-  <a-skeleton />
+  <xy-skeleton />
 </template>

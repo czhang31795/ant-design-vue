@@ -41,7 +41,7 @@ export type PageHeaderProps = Partial<ExtractPropTypes<ReturnType<typeof pageHea
 
 const PageHeader = defineComponent({
   compatConfig: { MODE: 3 },
-  name: 'APageHeader',
+  name: 'XyPageHeader',
   inheritAttrs: false,
   props: pageHeaderProps(),
   // emits: ['back'],

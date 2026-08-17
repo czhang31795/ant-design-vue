@@ -23,7 +23,7 @@ export type TabPaneProps = Partial<ExtractPropTypes<ReturnType<typeof tabPanePro
 
 export default defineComponent({
   compatConfig: { MODE: 3 },
-  name: 'ATabPane',
+  name: 'XyTabPane',
   inheritAttrs: false,
   __ANT_TAB_PANE: true,
   props: tabPaneProps(),

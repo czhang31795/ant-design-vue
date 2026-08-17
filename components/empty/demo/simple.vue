@@ -16,7 +16,7 @@ You can choose another style of `image` by setting image to `Empty.PRESENTED_IMA
 
 </docs>
 <template>
-  <a-empty :image="simpleImage" />
+  <xy-empty :image="simpleImage" />
 </template>
 <script lang="ts" setup>
 import { Empty } from 'ant-design-vue';

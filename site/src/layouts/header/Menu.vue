@@ -1,14 +1,14 @@
 <template>
   <Navigation @langChange="onLangChange" />
   <template v-if="!isMobile">
-    <a-button
+    <xy-button
       key="lang-button"
       size="small"
       class="header-button header-lang-button"
       @click="onLangChange"
     >
       {{ $t('app.header.lang') }}
-    </a-button>
+    </xy-button>
     <Github />
   </template>
 </template>

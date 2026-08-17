@@ -9,7 +9,7 @@ title:
 </docs>
 
 <template>
-  <a-cascader
+  <xy-cascader
     v-model:value="value"
     multiple
     :options="options"
@@ -17,9 +17,9 @@ title:
     suffix-icon="Shopping Around"
   >
     <template #tagRender="data">
-      <a-tag :key="data.value" color="blue">{{ data.label }}</a-tag>
+      <xy-tag :key="data.value" color="blue">{{ data.label }}</xy-tag>
     </template>
-  </a-cascader>
+  </xy-cascader>
 </template>
 <script lang="ts" setup>
 import { ref } from 'vue';

@@ -37,7 +37,7 @@ const Text: FunctionalComponent<TextProps> = (props, { slots, attrs }) => {
   return <Base {...textProps} v-slots={slots}></Base>;
 };
 
-Text.displayName = 'ATypographyText';
+Text.displayName = 'XyTypographyText';
 Text.inheritAttrs = false;
 Text.props = textProps();
 

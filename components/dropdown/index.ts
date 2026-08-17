@@ -1,4 +1,5 @@
 import type { App, Plugin } from 'vue';
+import { registerComponent } from '../_util/registerComponent';
 import Dropdown from './dropdown';
 import DropdownButton from './dropdown-button';
 import { dropdownProps, dropdownButtonProps } from './props';
@@ -9,8 +10,8 @@ Dropdown.Button = DropdownButton;
 
 /* istanbul ignore next */
 Dropdown.install = function (app: App) {
-  app.component(Dropdown.name, Dropdown);
-  app.component(DropdownButton.name, DropdownButton);
+  registerComponent(app, Dropdown);
+  registerComponent(app, DropdownButton);
   return app;
 };
 

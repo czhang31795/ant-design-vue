@@ -69,9 +69,9 @@ import { ProLayout } from '@czxingyu/ant-design-vue';
 ```
 
 ```html
-<a-pro-layout layout="mix" :menu="menu" v-model:selected-keys="selectedKeys">
+<xy-pro-layout layout="mix" :menu="menu" v-model:selected-keys="selectedKeys">
   <router-view />
-</a-pro-layout>
+</xy-pro-layout>
 ```
 
 | Property | Description | Type | Default |

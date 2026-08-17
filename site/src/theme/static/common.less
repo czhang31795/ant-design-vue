@@ -29,7 +29,7 @@ a {
   padding: 40px 170px 32px 64px;
   background: var(--component-background);
 
-  .ant-row-rtl & {
+  .xy-row-rtl & {
     padding: 0 64px 144px 170px;
   }
 }
@@ -52,16 +52,16 @@ a {
   min-height: 100%;
   padding-bottom: 48px;
 
-  &.ant-menu-inline {
-    .ant-menu-submenu-title h4,
-    > .ant-menu-item,
-    .ant-menu-item a {
+  &.xy-menu-inline {
+    .xy-menu-submenu-title h4,
+    > .xy-menu-item,
+    .xy-menu-item a {
       overflow: hidden;
       font-size: 14px;
       text-overflow: ellipsis;
     }
 
-    > .ant-menu-item-group > .ant-menu-item-group-title {
+    > .xy-menu-item-group > .xy-menu-item-group-title {
       margin-top: 16px;
       margin-bottom: 16px;
       font-size: 13px;
@@ -77,47 +77,47 @@ a {
       }
     }
 
-    > .ant-menu-item,
-    > .ant-menu-submenu > .ant-menu-submenu-title,
-    > .ant-menu-item-group > .ant-menu-item-group-title,
-    > .ant-menu-item-group > .ant-menu-item-group-list > .ant-menu-item,
-    &.ant-menu-inline > .ant-menu-item-group > .ant-menu-item-group-list > .ant-menu-item {
+    > .xy-menu-item,
+    > .xy-menu-submenu > .xy-menu-submenu-title,
+    > .xy-menu-item-group > .xy-menu-item-group-title,
+    > .xy-menu-item-group > .xy-menu-item-group-list > .xy-menu-item,
+    &.xy-menu-inline > .xy-menu-item-group > .xy-menu-item-group-list > .xy-menu-item {
       padding-left: 40px !important;
 
-      .ant-row-rtl & {
+      .xy-row-rtl & {
         padding-right: 40px !important;
         padding-left: 16px !important;
       }
 
-      .ant-menu-title-content {
+      .xy-menu-title-content {
         display: flex;
         align-items: center;
       }
     }
 
     // Nest Category > Type > Article
-    &.ant-menu-inline {
-      .ant-menu-item-group-title {
+    &.xy-menu-inline {
+      .xy-menu-item-group-title {
         padding-left: 60px;
 
-        .ant-row-rtl & {
+        .xy-row-rtl & {
           padding-right: 60px;
           padding-left: 16px;
         }
       }
 
-      .ant-menu-item-group-list > .ant-menu-item {
+      .xy-menu-item-group-list > .xy-menu-item {
         padding-left: 80px !important;
 
-        .ant-row-rtl & {
+        .xy-row-rtl & {
           padding-right: 80px !important;
           padding-left: 16px !important;
         }
       }
     }
 
-    .ant-menu-item-group:first-child {
-      .ant-menu-item-group-title {
+    .xy-menu-item-group:first-child {
+      .xy-menu-item-group-title {
         margin-top: 0;
       }
     }
@@ -159,7 +159,7 @@ a {
   margin-left: 5px;
   color: #aaa;
   font-size: 12px;
-  .ant-row-rtl & {
+  .xy-row-rtl & {
     margin-right: 5px;
     margin-left: 0;
     transform: rotate(180deg);
@@ -168,12 +168,12 @@ a {
 
 // reset menu text color
 .menu-site {
-  .ant-menu-item > a {
+  .xy-menu-item > a {
     color: var(--site-text-color);
   }
 
-  .ant-menu-item-selected > a,
-  .ant-menu-item > a:hover {
+  .xy-menu-item-selected > a,
+  .xy-menu-item > a:hover {
     color: var(--primary-color);
   }
 }
@@ -209,7 +209,7 @@ a {
   flex-direction: column;
   cursor: pointer;
   &-tooltip {
-    .ant-tooltip-inner {
+    .xy-tooltip-inner {
       min-width: 100px;
     }
   }
@@ -241,22 +241,22 @@ a {
 // affix toc
 #header,
 #header #search-box,
-#header #nav.ant-menu,
+#header #nav.xy-menu,
 .main-wrapper,
-.main-wrapper > .ant-row > .main-menu .main-menu-inner > .ant-menu,
+.main-wrapper > .xy-row > .main-menu .main-menu-inner > .xy-menu,
 .main-wrapper
-  > .ant-row
+  > .xy-row
   > .main-menu
   .main-menu-inner
-  > .ant-menu.aside-container.ant-menu-inline
-  > .ant-menu-item-group
-  > .ant-menu-item-group-title::after,
+  > .xy-menu.aside-container.xy-menu-inline
+  > .xy-menu-item-group
+  > .xy-menu-item-group-title::after,
 .main-wrapper .main-container,
 #demo-toc.toc {
   transition: all 0.3s var(--ease-in-out-circ);
 }
 
 // remove margin-bottom from dark theme (why need margin-bottom in dark theme?)
-#header > .ant-row > .ant-col h1 {
+#header > .xy-row > .xy-col h1 {
   margin-bottom: 0;
 }

@@ -17,11 +17,11 @@ This component can be rendered by using `dateCellRender` and `monthCellRender` w
 </docs>
 
 <template>
-  <a-calendar v-model:value="value">
+  <xy-calendar v-model:value="value">
     <template #dateCellRender="{ current }">
       <ul class="events">
         <li v-for="item in getListData(current)" :key="item.content">
-          <a-badge :status="item.type" :text="item.content" />
+          <xy-badge :status="item.type" :text="item.content" />
         </li>
       </ul>
     </template>
@@ -31,7 +31,7 @@ This component can be rendered by using `dateCellRender` and `monthCellRender` w
         <span>Backlog number</span>
       </div>
     </template>
-  </a-calendar>
+  </xy-calendar>
 </template>
 <script lang="ts" setup>
 import { ref } from 'vue';
@@ -81,7 +81,7 @@ const getMonthData = (value: Dayjs) => {
   margin: 0;
   padding: 0;
 }
-.events .ant-badge-status {
+.events .xy-badge-status {
   overflow: hidden;
   white-space: nowrap;
   width: 100%;

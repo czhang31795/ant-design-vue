@@ -1,6 +1,6 @@
 <template>
-  <a-dropdown placement="bottom">
-    <a-button size="small" class="header-button">
+  <xy-dropdown placement="bottom">
+    <xy-button size="small" class="header-button">
       {{ $t('app.header.menu.more') }}
       <DownOutlined
         :style="{
@@ -9,11 +9,11 @@
           verticalAlign: 'middle',
         }"
       />
-    </a-button>
+    </xy-button>
     <template #overlay>
       <Ecosystem />
     </template>
-  </a-dropdown>
+  </xy-dropdown>
 </template>
 <script lang="ts">
 import { computed, defineComponent, inject } from 'vue';

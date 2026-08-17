@@ -18,10 +18,10 @@ A notification box with a icon at the left side.
 
 <template>
   <div>
-    <a-button @click="() => openNotificationWithIcon('success')">Success</a-button>
-    <a-button @click="() => openNotificationWithIcon('info')">Info</a-button>
-    <a-button @click="() => openNotificationWithIcon('warning')">Warning</a-button>
-    <a-button @click="() => openNotificationWithIcon('error')">Error</a-button>
+    <xy-button @click="() => openNotificationWithIcon('success')">Success</xy-button>
+    <xy-button @click="() => openNotificationWithIcon('info')">Info</xy-button>
+    <xy-button @click="() => openNotificationWithIcon('warning')">Warning</xy-button>
+    <xy-button @click="() => openNotificationWithIcon('error')">Error</xy-button>
   </div>
 </template>
 <script lang="ts" setup>

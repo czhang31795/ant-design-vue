@@ -17,7 +17,7 @@ export type DropdownButtonProps = Partial<ExtractPropTypes<ReturnType<typeof dro
 
 export default defineComponent({
   compatConfig: { MODE: 3 },
-  name: 'ADropdownButton',
+  name: 'XyDropdownButton',
   inheritAttrs: false,
   __ANT_BUTTON: true,
   props: initDefaultProps(dropdownButtonProps(), {

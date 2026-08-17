@@ -33,7 +33,7 @@ A basic widget for getting the user input is a text field. Keyboard and mouse ca
 | status | Set validation status | 'error' \| 'warning' | - | 3.3.0 |
 | size | The size of the input box. Note: in the context of a form, the `middle` size is used. Available: `large` `middle` `small` | string | - |  |
 | suffix | The suffix icon for the Input. | string\|slot |  |  |
-| type | The type of input, see: [MDN](https://developer.mozilla.org/docs/Web/HTML/Element/input#Form_%3Cinput%3E_types)(use `<a-textarea />` instead of `type="textarea"`) | string | `text` |  |
+| type | The type of input, see: [MDN](https://developer.mozilla.org/docs/Web/HTML/Element/input#Form_%3Cinput%3E_types)(use `<xy-textarea />` instead of `type="textarea"`) | string | `text` |  |
 | value(v-model) | The input content value | string |  |  |
 
 ### Input Events
@@ -86,10 +86,10 @@ Supports all props of `Input`.
 | size | The size of `Input.Group` specifies the size of the included `Input` fields. Available: `large` `default` `small` | string | `default` |
 
 ```html
-<a-input-group>
-  <a-input />
-  <a-input />
-</a-input-group>
+<xy-input-group>
+  <xy-input />
+  <xy-input />
+</xy-input-group>
 ```
 
 #### Input.Password (Added in 1.14.0)

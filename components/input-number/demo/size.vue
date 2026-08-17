@@ -17,11 +17,11 @@ There are three sizes available to a numeric input box. By default, the size is 
 </docs>
 
 <template>
-  <a-space>
-    <a-input-number v-model:value="value1" size="large" :min="1" :max="100000" />
-    <a-input-number v-model:value="value2" :min="1" :max="100000" />
-    <a-input-number v-model:value="value3" size="small" :min="1" :max="100000" />
-  </a-space>
+  <xy-space>
+    <xy-input-number v-model:value="value1" size="large" :min="1" :max="100000" />
+    <xy-input-number v-model:value="value2" :min="1" :max="100000" />
+    <xy-input-number v-model:value="value3" size="small" :min="1" :max="100000" />
+  </xy-space>
 </template>
 <script lang="ts" setup>
 import { ref } from 'vue';

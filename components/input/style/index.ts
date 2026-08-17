@@ -417,7 +417,7 @@ export const genInputGroupStyle = (token: InputToken): CSSObject => {
         borderInlineEndWidth: token.lineWidth,
       },
 
-      // Undo float for .ant-input-group .ant-input
+      // Undo float for .xy-input-group .xy-input
       [`${componentCls}`]: {
         float: 'none',
       },

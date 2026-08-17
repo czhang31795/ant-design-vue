@@ -19,13 +19,13 @@ Ellipsis cell content via setting `column.ellipsis`.
 </docs>
 
 <template>
-  <a-table :columns="columns" :data-source="data">
+  <xy-table :columns="columns" :data-source="data">
     <template #bodyCell="{ column, text }">
       <template v-if="column.dataIndex === 'name'">
         <a>{{ text }}</a>
       </template>
     </template>
-  </a-table>
+  </xy-table>
 </template>
 <script lang="ts" setup>
 const columns = [

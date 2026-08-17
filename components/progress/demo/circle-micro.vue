@@ -19,7 +19,7 @@ Responsive circular progress bar. When `width` is smaller than 20, progress info
 
 <template>
   <div>
-    <a-progress
+    <xy-progress
       type="circle"
       trail-color="#e6f4ff"
       :percent="60"

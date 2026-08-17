@@ -12,17 +12,17 @@ Ant Design Vue default using CSS-in-JS with `:where` Selector to reduce priority
 ```html
 // Config `hashPriority` to `high` instead of default `low`, which will remove `:where` wrapper
 <template>
-  <a-style-provider hash-priority="high">
+  <xy-style-provider hash-priority="high">
     <MyApp />
-  </a-style-provider>
+  </xy-style-provider>
 </template>
 ```
 
 It will turn `:where` to class selector:
 
 ```diff
---  :where(.css-bAMboO).ant-btn {
-++  .css-bAMboO.ant-btn {
+--  :where(.css-bAMboO).xy-btn {
+++  .css-bAMboO.xy-btn {
       color: #fff;
     }
 ```
@@ -40,9 +40,9 @@ To unify LTR and RTL styles, Ant Design Vue uses CSS logical properties. For exa
 ```html
 // `transformers` provides a way to transform CSS properties
 <template>
-  <a-style-provider :transformers="[legacyLogicalPropertiesTransformer]">
+  <xy-style-provider :transformers="[legacyLogicalPropertiesTransformer]">
     <MyApp />
-  </a-style-provider>
+  </xy-style-provider>
 </template>
 
 <script lang="ts" setup>
@@ -53,7 +53,7 @@ To unify LTR and RTL styles, Ant Design Vue uses CSS logical properties. For exa
 When toggled, styles will downgrade CSS logical properties:
 
 ```diff
-.ant-modal-root {
+.xy-modal-root {
 -- inset: 0;
 ++ top: 0;
 ++ right: 0;

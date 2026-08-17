@@ -18,8 +18,8 @@ Add status to AutoComplete with `status`, which could be `error` or `warning`.
 </docs>
 
 <template>
-  <a-space direction="vertical" style="width: 100%">
-    <a-auto-complete
+  <xy-space direction="vertical" style="width: 100%">
+    <xy-auto-complete
       v-model:value="value"
       :options="options"
       style="width: 200px"
@@ -28,7 +28,7 @@ Add status to AutoComplete with `status`, which could be `error` or `warning`.
       @select="onSelect"
       @search="onSearch"
     />
-    <a-auto-complete
+    <xy-auto-complete
       v-model:value="value1"
       :options="options"
       style="width: 200px"
@@ -39,7 +39,7 @@ Add status to AutoComplete with `status`, which could be `error` or `warning`.
       @search="onSearch"
       @clear="onClear"
     />
-  </a-space>
+  </xy-space>
 </template>
 
 <script lang="ts" setup>

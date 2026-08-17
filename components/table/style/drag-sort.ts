@@ -21,7 +21,7 @@ const genDragSortStyle: GenerateStyle<TableToken, CSSObject> = token => {
 
   // Keep handle size close to expand/checkbox so they share one baseline
   const handleSize = checkboxSize;
-  // Same optical vertical offset as `.ant-table-row-expand-icon`
+  // Same optical vertical offset as `.xy-table-row-expand-icon`
   const handleMarginTop =
     (fontSize * lineHeight - lineWidth * 3) / 2 - Math.ceil((fontSizeSM * 1.4 - lineWidth * 3) / 2);
 

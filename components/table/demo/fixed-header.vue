@@ -19,7 +19,7 @@ Display large amounts of data in scrollable view.
 </docs>
 
 <template>
-  <a-table
+  <xy-table
     :columns="columns"
     :data-source="data"
     :pagination="{ pageSize: 50 }"

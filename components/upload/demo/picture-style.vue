@@ -17,29 +17,29 @@ If uploaded file is a picture, the thumbnail can be shown.
 
 <template>
   <div>
-    <a-upload
+    <xy-upload
       v-model:file-list="fileList"
       action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
       list-type="picture"
     >
-      <a-button>
+      <xy-button>
         <upload-outlined></upload-outlined>
         upload
-      </a-button>
-    </a-upload>
+      </xy-button>
+    </xy-upload>
     <br />
     <br />
-    <a-upload
+    <xy-upload
       v-model:file-list="fileList1"
       action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
       list-type="picture"
       class="upload-list-inline"
     >
-      <a-button>
+      <xy-button>
         <upload-outlined></upload-outlined>
         upload
-      </a-button>
-    </a-upload>
+      </xy-button>
+    </xy-upload>
   </div>
 </template>
 
@@ -82,12 +82,12 @@ const fileList1 = ref<UploadProps['fileList']>([
 </script>
 <style scoped>
 /* tile uploaded pictures */
-.upload-list-inline :deep(.ant-upload-list-item) {
+.upload-list-inline :deep(.xy-upload-list-item) {
   float: left;
   width: 200px;
   margin-right: 8px;
 }
-.upload-list-inline [class*='-upload-list-rtl'] :deep(.ant-upload-list-item) {
+.upload-list-inline [class*='-upload-list-rtl'] :deep(.xy-upload-list-item) {
   float: right;
 }
 </style>

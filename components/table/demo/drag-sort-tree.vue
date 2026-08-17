@@ -17,7 +17,7 @@ With tree data, `rowDraggable` only allows reordering among **siblings under the
 </docs>
 
 <template>
-  <a-table
+  <xy-table
     column-draggable
     row-draggable
     :columns="columns"

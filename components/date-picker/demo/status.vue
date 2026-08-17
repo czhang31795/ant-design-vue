@@ -18,10 +18,10 @@ Add status to DatePicker with `status`, which could be `error` or `warning`.
 </docs>
 
 <template>
-  <a-space direction="vertical" style="width: 100%">
-    <a-date-picker status="error" />
-    <a-date-picker status="warning" />
-    <a-range-picker status="error" />
-    <a-range-picker status="warning" />
-  </a-space>
+  <xy-space direction="vertical" style="width: 100%">
+    <xy-date-picker status="error" />
+    <xy-date-picker status="warning" />
+    <xy-range-picker status="error" />
+    <xy-range-picker status="warning" />
+  </xy-space>
 </template>

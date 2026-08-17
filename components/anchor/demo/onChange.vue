@@ -16,7 +16,7 @@ Listening for anchor link change.
 </docs>
 
 <template>
-  <a-anchor
+  <xy-anchor
     :affix="false"
     :items="[
       {
@@ -48,7 +48,7 @@ Listening for anchor link change.
       },
     ]"
     @change="onChange"
-  ></a-anchor>
+  ></xy-anchor>
 </template>
 
 <script lang="ts" setup>

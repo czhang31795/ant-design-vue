@@ -30,10 +30,10 @@ describe('ProLayout mix / splitMenus', () => {
   it('defaults to mix + splitMenus=false + siderWidth 256', async () => {
     const wrapper = mountPro();
     await sleep();
-    expect(wrapper.find('.ant-pro-layout-mix').exists()).toBe(true);
-    expect(wrapper.find('.ant-pro-layout-top-menu').exists()).toBe(false);
-    expect(wrapper.find('.ant-pro-layout-sider').exists()).toBe(true);
-    expect(wrapper.find('.ant-layout-sider').attributes('style') || '').toContain('256px');
+    expect(wrapper.find('.xy-pro-layout-mix').exists()).toBe(true);
+    expect(wrapper.find('.xy-pro-layout-top-menu').exists()).toBe(false);
+    expect(wrapper.find('.xy-pro-layout-sider').exists()).toBe(true);
+    expect(wrapper.find('.xy-layout-sider').attributes('style') || '').toContain('256px');
     wrapper.unmount();
   });
 
@@ -45,13 +45,13 @@ describe('ProLayout mix / splitMenus', () => {
       openKeys: ['dashboard'],
     });
     await sleep();
-    expect(wrapper.find('.ant-pro-layout-top-menu').exists()).toBe(false);
-    expect(wrapper.find('.ant-pro-layout-sider').exists()).toBe(true);
-    const siderText = wrapper.find('.ant-pro-layout-sider').text();
+    expect(wrapper.find('.xy-pro-layout-top-menu').exists()).toBe(false);
+    expect(wrapper.find('.xy-pro-layout-sider').exists()).toBe(true);
+    const siderText = wrapper.find('.xy-pro-layout-sider').text();
     expect(siderText).toContain('欢迎');
     expect(siderText).toContain('Dashboard');
     expect(siderText).toContain('分析页');
-    expect(wrapper.find('.ant-menu-submenu-open').exists()).toBe(true);
+    expect(wrapper.find('.xy-menu-submenu-open').exists()).toBe(true);
     wrapper.unmount();
   });
 
@@ -62,10 +62,10 @@ describe('ProLayout mix / splitMenus', () => {
       selectedKeys: ['analysis'],
     });
     await sleep();
-    expect(wrapper.find('.ant-pro-layout-top-menu').exists()).toBe(true);
-    expect(wrapper.find('.ant-pro-layout-sider').exists()).toBe(true);
-    const topText = wrapper.find('.ant-pro-layout-top-menu').text();
-    const siderText = wrapper.find('.ant-pro-layout-sider').text();
+    expect(wrapper.find('.xy-pro-layout-top-menu').exists()).toBe(true);
+    expect(wrapper.find('.xy-pro-layout-sider').exists()).toBe(true);
+    const topText = wrapper.find('.xy-pro-layout-top-menu').text();
+    const siderText = wrapper.find('.xy-pro-layout-sider').text();
     expect(topText).toContain('欢迎');
     expect(topText).toContain('Dashboard');
     expect(siderText).toContain('分析页');
@@ -80,8 +80,8 @@ describe('ProLayout mix / splitMenus', () => {
       selectedKeys: ['welcome'],
     });
     await sleep();
-    expect(wrapper.find('.ant-pro-layout-top-menu').exists()).toBe(true);
-    expect(wrapper.find('.ant-pro-layout-sider').exists()).toBe(false);
+    expect(wrapper.find('.xy-pro-layout-top-menu').exists()).toBe(true);
+    expect(wrapper.find('.xy-pro-layout-sider').exists()).toBe(false);
     wrapper.unmount();
   });
 
@@ -92,10 +92,10 @@ describe('ProLayout mix / splitMenus', () => {
       openKeys: ['dashboard'],
     });
     await sleep();
-    expect(wrapper.find('.ant-pro-layout-side').exists()).toBe(true);
-    expect(wrapper.find('.ant-pro-layout-top-menu').exists()).toBe(false);
-    expect(wrapper.find('.ant-pro-layout-sider .ant-pro-layout-logo').exists()).toBe(true);
-    expect(wrapper.find('.ant-pro-layout-sider').text()).toContain('Dashboard');
+    expect(wrapper.find('.xy-pro-layout-side').exists()).toBe(true);
+    expect(wrapper.find('.xy-pro-layout-top-menu').exists()).toBe(false);
+    expect(wrapper.find('.xy-pro-layout-sider .xy-pro-layout-logo').exists()).toBe(true);
+    expect(wrapper.find('.xy-pro-layout-sider').text()).toContain('Dashboard');
     wrapper.unmount();
   });
 
@@ -105,9 +105,9 @@ describe('ProLayout mix / splitMenus', () => {
       selectedKeys: ['welcome'],
     });
     await sleep();
-    expect(wrapper.find('.ant-pro-layout-top').exists()).toBe(true);
-    expect(wrapper.find('.ant-pro-layout-sider').exists()).toBe(false);
-    expect(wrapper.find('.ant-pro-layout-top-menu').exists()).toBe(true);
+    expect(wrapper.find('.xy-pro-layout-top').exists()).toBe(true);
+    expect(wrapper.find('.xy-pro-layout-sider').exists()).toBe(false);
+    expect(wrapper.find('.xy-pro-layout-top-menu').exists()).toBe(true);
     wrapper.unmount();
   });
 });

@@ -18,7 +18,7 @@ Select use virtual scroll which get better performance than 1.x
 
 <template>
   <h2>{{ options.length }} Items</h2>
-  <a-select
+  <xy-select
     v-model:value="value"
     mode="multiple"
     style="width: 100%"

@@ -18,8 +18,8 @@ Add status to DatePicker with `status`, which could be `error` or `warning`.
 </docs>
 
 <template>
-  <a-space direction="vertical" style="width: 100%">
-    <a-tree-select status="error" style="width: 100%" placeholder="Error" />
-    <a-tree-select status="warning" style="width: 100%" multiple placeholder="Warning multiple" />
-  </a-space>
+  <xy-space direction="vertical" style="width: 100%">
+    <xy-tree-select status="error" style="width: 100%" placeholder="Error" />
+    <xy-tree-select status="warning" style="width: 100%" multiple placeholder="Warning multiple" />
+  </xy-space>
 </template>

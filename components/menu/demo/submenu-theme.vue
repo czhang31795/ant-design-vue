@@ -18,7 +18,7 @@ You can config SubMenu theme with `theme` prop to enable different theme color e
 
 <template>
   <div>
-    <a-switch
+    <xy-switch
       :checked="theme === 'dark'"
       checked-children="dark"
       un-checked-children="light"
@@ -26,7 +26,7 @@ You can config SubMenu theme with `theme` prop to enable different theme color e
     />
     <br />
     <br />
-    <a-menu
+    <xy-menu
       :style="{ width: '256px' }"
       :open-keys="openKeys"
       :selected-keys="selectedKeys"

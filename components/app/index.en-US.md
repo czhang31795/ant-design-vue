@@ -12,7 +12,7 @@ Application wrapper for some global usages.
 
 ## When To Use
 
-- Provide reset styles based on `.ant-app` element.
+- Provide reset styles based on `.xy-app` element.
 - You could use static methods of `message/notification/Modal` form `useApp` without writing `contextHolder` manually.
 
 ## API
@@ -33,11 +33,11 @@ App provides upstream and downstream method calls through `provide/inject`, beca
 ```html
 /*myPage.vue*/
 <template>
-  <a-space>
-    <a-button type="primary" @click="showMessage">Open message</a-button>
-    <a-button type="primary" @click="showModal">Open modal</a-button>
-    <a-button type="primary" @click="showNotification">Open notification</a-button>
-  </a-space>
+  <xy-space>
+    <xy-button type="primary" @click="showMessage">Open message</xy-button>
+    <xy-button type="primary" @click="showModal">Open modal</xy-button>
+    <xy-button type="primary" @click="showNotification">Open notification</xy-button>
+  </xy-space>
 </template>
 
 <script setup lang="ts">
@@ -71,12 +71,12 @@ Note: App.useApp must be available under App.
 #### Embedded usage scenarios (if not necessary, try not to do nesting)
 
 ```html
-<a-app>
-  <a-space>
+<xy-app>
+  <xy-space>
     ...
-    <a-app>...</a-app>
-  </a-space>
-</a-app>
+    <xy-app>...</xy-app>
+  </xy-space>
+</xy-app>
 ```
 
 #### Sequence with ConfigProvider
@@ -84,9 +84,9 @@ Note: App.useApp must be available under App.
 The App component can only use the token in the `ConfigProvider`, if you need to use the Token, the ConfigProvider and the App component must appear in pairs.
 
 ```html
-<a-config-provider theme="{{ ... }}">
-  <a-app>...</a-app>
-</a-config-provider>
+<xy-config-provider theme="{{ ... }}">
+  <xy-app>...</xy-app>
+</xy-config-provider>
 ```
 
 #### Global scene (pinia scene)
@@ -115,9 +115,9 @@ export const useGlobalStore = defineStore('global', () => {
 ```html
 // sub page
 <template>
-  <a-space>
-    <a-button type="primary" @click="showMessage">Open message</a-button>
-  </a-space>
+  <xy-space>
+    <xy-button type="primary" @click="showMessage">Open message</xy-button>
+  </xy-space>
 </template>
 
 <script setup>

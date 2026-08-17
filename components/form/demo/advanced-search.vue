@@ -21,30 +21,33 @@ Because the width of label is not fixed, you may need to adjust it by customizin
 </docs>
 <template>
   <div>
-    <a-form
+    <xy-form
       ref="formRef"
       name="advanced_search"
-      class="ant-advanced-search-form"
+      class="xy-advanced-search-form"
       :model="formState"
       @finish="onFinish"
     >
-      <a-row :gutter="24">
+      <xy-row :gutter="24">
         <template v-for="i in 10" :key="i">
-          <a-col v-show="expand || i <= 6" :span="8">
-            <a-form-item
+          <xy-col v-show="expand || i <= 6" :span="8">
+            <xy-form-item
               :name="`field-${i}`"
               :label="`field-${i}`"
               :rules="[{ required: true, message: 'input something' }]"
             >
-              <a-input v-model:value="formState[`field-${i}`]" placeholder="placeholder"></a-input>
-            </a-form-item>
-          </a-col>
+              <xy-input
+                v-model:value="formState[`field-${i}`]"
+                placeholder="placeholder"
+              ></xy-input>
+            </xy-form-item>
+          </xy-col>
         </template>
-      </a-row>
-      <a-row>
-        <a-col :span="24" style="text-align: right">
-          <a-button type="primary" html-type="submit">Search</a-button>
-          <a-button style="margin: 0 8px" @click="() => formRef.resetFields()">Clear</a-button>
+      </xy-row>
+      <xy-row>
+        <xy-col :span="24" style="text-align: right">
+          <xy-button type="primary" html-type="submit">Search</xy-button>
+          <xy-button style="margin: 0 8px" @click="() => formRef.resetFields()">Clear</xy-button>
           <a style="font-size: 12px" @click="expand = !expand">
             <template v-if="expand">
               <UpOutlined />
@@ -54,9 +57,9 @@ Because the width of label is not fixed, you may need to adjust it by customizin
             </template>
             Collapse
           </a>
-        </a-col>
-      </a-row>
-    </a-form>
+        </xy-col>
+      </xy-row>
+    </xy-form>
     <div class="search-result-list">Search Result List</div>
   </div>
 </template>
@@ -74,7 +77,7 @@ const onFinish = (values: any) => {
 </script>
 
 <style scoped>
-#components-form-demo-advanced-search .ant-form {
+#components-form-demo-advanced-search .xy-form {
   max-width: none;
 }
 #components-form-demo-advanced-search .search-result-list {
@@ -86,7 +89,7 @@ const onFinish = (values: any) => {
   text-align: center;
   padding-top: 80px;
 }
-[data-theme='dark'] .ant-advanced-search-form {
+[data-theme='dark'] .xy-advanced-search-form {
   background: rgba(255, 255, 255, 0.04);
   border: 1px solid #434343;
   padding: 24px;

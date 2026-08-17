@@ -1,11 +1,12 @@
 import type { App, Plugin } from 'vue';
+import { registerComponent } from '../_util/registerComponent';
 import Badge from './Badge';
 import Ribbon from './Ribbon';
 export type { BadgeProps } from './Badge';
 
 Badge.install = function (app: App) {
-  app.component(Badge.name, Badge);
-  app.component(Ribbon.name, Ribbon);
+  registerComponent(app, Badge);
+  registerComponent(app, Ribbon);
   return app;
 };
 

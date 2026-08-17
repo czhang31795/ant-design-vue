@@ -17,10 +17,10 @@ Search loading when onSearch.
 </docs>
 <template>
   <div>
-    <a-input-search v-model:value="value" placeholder="input search loading deault" loading />
+    <xy-input-search v-model:value="value" placeholder="input search loading deault" loading />
     <br />
     <br />
-    <a-input-search
+    <xy-input-search
       v-model:value="value"
       placeholder="input search loading with enterButton"
       loading

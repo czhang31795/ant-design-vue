@@ -1,4 +1,5 @@
 import type { App, ExtractPropTypes, ImgHTMLAttributes, Plugin } from 'vue';
+import { registerComponent } from '../_util/registerComponent';
 import { defineComponent, computed } from 'vue';
 import ImageInternal from '../vc-image';
 import { imageProps } from '../vc-image/src/Image';
@@ -14,7 +15,7 @@ export type ImageProps = Partial<
     Omit<ImgHTMLAttributes, 'placeholder' | 'onClick'>
 >;
 const Image = defineComponent({
-  name: 'AImage',
+  name: 'XyImage',
   inheritAttrs: false,
   props: imageProps(),
   setup(props, { slots, attrs }) {
@@ -71,8 +72,8 @@ export { imageProps };
 Image.PreviewGroup = PreviewGroup;
 
 Image.install = function (app: App) {
-  app.component(Image.name, Image);
-  app.component(Image.PreviewGroup.name, Image.PreviewGroup);
+  registerComponent(app, Image);
+  registerComponent(app, Image.PreviewGroup);
   return app;
 };
 

@@ -147,7 +147,7 @@ const defaultItemNamePrefixCls = 'form_item';
 
 export default defineComponent({
   compatConfig: { MODE: 3 },
-  name: 'AFormItem',
+  name: 'XyFormItem',
   inheritAttrs: false,
   __ANT_NEW_FORM_ITEM: true,
   props: formItemProps(),

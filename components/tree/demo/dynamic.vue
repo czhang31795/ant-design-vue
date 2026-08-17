@@ -17,7 +17,7 @@ To load data asynchronously when click to expand a treeNode.
 </docs>
 
 <template>
-  <a-tree
+  <xy-tree
     v-model:expandedKeys="expandedKeys"
     v-model:selectedKeys="selectedKeys"
     :load-data="onLoadData"

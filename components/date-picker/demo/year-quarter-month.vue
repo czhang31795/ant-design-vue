@@ -31,8 +31,8 @@ import type { YearQuarterMonthPeriodType } from '@czxingyu/ant-design-vue';
 </docs>
 
 <template>
-  <a-space direction="vertical" :size="12">
-    <a-year-quarter-month-picker
+  <xy-space direction="vertical" :size="12">
+    <xy-year-quarter-month-picker
       v-model:value="value"
       v-model:period-type="periodType"
       style="width: 280px"
@@ -45,7 +45,7 @@ import type { YearQuarterMonthPeriodType } from '@czxingyu/ant-design-vue';
         （periodType: {{ periodType }}）
       </span>
     </div>
-  </a-space>
+  </xy-space>
 </template>
 
 <script lang="ts" setup>

@@ -180,7 +180,7 @@ export default defineComponent({
             attrs.class,
         ),
         ref: inputRef,
-        key: 'ant-input',
+        key: 'xy-input',
         size: htmlSize,
         type,
         lazy: props.lazy,

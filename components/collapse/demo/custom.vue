@@ -17,7 +17,7 @@ Customize the background, border and margin styles and icon for each panel.
 </docs>
 
 <template>
-  <a-collapse
+  <xy-collapse
     v-model:activeKey="activeKey"
     :bordered="false"
     style="background: rgb(255, 255, 255)"
@@ -25,16 +25,16 @@ Customize the background, border and margin styles and icon for each panel.
     <template #expandIcon="{ isActive }">
       <caret-right-outlined :rotate="isActive ? 90 : 0" />
     </template>
-    <a-collapse-panel key="1" header="This is panel header 1" :style="customStyle">
+    <xy-collapse-panel key="1" header="This is panel header 1" :style="customStyle">
       <p>{{ text }}</p>
-    </a-collapse-panel>
-    <a-collapse-panel key="2" header="This is panel header 2" :style="customStyle">
+    </xy-collapse-panel>
+    <xy-collapse-panel key="2" header="This is panel header 2" :style="customStyle">
       <p>{{ text }}</p>
-    </a-collapse-panel>
-    <a-collapse-panel key="3" header="This is panel header 3" :style="customStyle">
+    </xy-collapse-panel>
+    <xy-collapse-panel key="3" header="This is panel header 3" :style="customStyle">
       <p>{{ text }}</p>
-    </a-collapse-panel>
-  </a-collapse>
+    </xy-collapse-panel>
+  </xy-collapse>
 </template>
 <script lang="ts" setup>
 import { CaretRightOutlined } from '@ant-design/icons-vue';

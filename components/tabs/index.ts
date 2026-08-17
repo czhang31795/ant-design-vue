@@ -1,4 +1,5 @@
 import type { App, Plugin } from 'vue';
+import { registerComponent } from '../_util/registerComponent';
 import Tabs, { TabPane } from './src';
 export type { TabsProps, TabPaneProps } from './src';
 
@@ -6,8 +7,8 @@ Tabs.TabPane = TabPane;
 
 /* istanbul ignore next */
 Tabs.install = function (app: App) {
-  app.component(Tabs.name, Tabs);
-  app.component(TabPane.name, TabPane);
+  registerComponent(app, Tabs);
+  registerComponent(app, TabPane);
   return app;
 };
 

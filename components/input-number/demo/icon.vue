@@ -18,14 +18,14 @@ use `upIcon` `downIcon` custom icon
 
 <template>
   <div>
-    <a-input-number id="inputNumber" v-model:value="value" :min="1" :max="10">
+    <xy-input-number id="inputNumber" v-model:value="value" :min="1" :max="10">
       <template #upIcon>
         <ArrowUpOutlined />
       </template>
       <template #downIcon>
         <ArrowDownOutlined />
       </template>
-    </a-input-number>
+    </xy-input-number>
   </div>
 </template>
 <script lang="ts" setup>

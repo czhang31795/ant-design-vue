@@ -18,7 +18,7 @@ Load options lazily with `loadData`.
 
 </docs>
 <template>
-  <a-cascader
+  <xy-cascader
     v-model:value="value"
     :options="options"
     :load-data="loadData"

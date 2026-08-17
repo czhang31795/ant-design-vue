@@ -16,7 +16,7 @@ The simplest usage.
 
 </docs>
 <template>
-  <a-radio v-model:checked="checked">Radio</a-radio>
+  <xy-radio v-model:checked="checked">Radio</xy-radio>
 </template>
 <script lang="ts" setup>
 import { ref } from 'vue';

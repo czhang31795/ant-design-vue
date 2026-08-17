@@ -15,7 +15,7 @@ title:
 A simple mini version step bar in the vertical direction.
 </docs>
 <template>
-  <a-steps
+  <xy-steps
     direction="vertical"
     size="small"
     :current="1"
@@ -30,7 +30,7 @@ A simple mini version step bar in the vertical direction.
         description,
       },
     ]"
-  ></a-steps>
+  ></xy-steps>
 </template>
 <script lang="ts" setup>
 const description = 'This is a description.';

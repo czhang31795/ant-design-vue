@@ -17,15 +17,15 @@ Embedding content into `Spin` will alter it into loading state.
 </docs>
 
 <template>
-  <a-spin :spinning="spinning">
-    <a-alert
+  <xy-spin :spinning="spinning">
+    <xy-alert
       message="Alert message title"
       description="Further details about the context of this alert."
-    ></a-alert>
-  </a-spin>
+    ></xy-alert>
+  </xy-spin>
   <div class="spin-state">
     Loading state：
-    <a-switch v-model:checked="spinning" />
+    <xy-switch v-model:checked="spinning" />
   </div>
 </template>
 <script lang="ts" setup>

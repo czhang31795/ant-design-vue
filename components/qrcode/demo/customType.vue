@@ -15,8 +15,8 @@ Customize the rendering results by `type`, provide options `canvas` and `svg`.
 </docs>
 
 <template>
-  <a-space>
-    <a-qrcode value="http://www.antdv.com" type="canvas" />
-    <a-qrcode value="http://www.antdv.com" type="svg" />
-  </a-space>
+  <xy-space>
+    <xy-qrcode value="http://www.antdv.com" type="canvas" />
+    <xy-qrcode value="http://www.antdv.com" type="svg" />
+  </xy-space>
 </template>

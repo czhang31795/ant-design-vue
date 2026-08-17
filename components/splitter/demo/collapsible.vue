@@ -18,14 +18,14 @@ Configure `collapsible` to quickly collapse panels. Use `min` to prevent expandi
 
 <template>
   <div class="demo-splitter">
-    <a-splitter>
-      <a-splitter-panel collapsible min="20%">
+    <xy-splitter>
+      <xy-splitter-panel collapsible min="20%">
         <div class="demo-panel">First</div>
-      </a-splitter-panel>
-      <a-splitter-panel collapsible>
+      </xy-splitter-panel>
+      <xy-splitter-panel collapsible>
         <div class="demo-panel">Second</div>
-      </a-splitter-panel>
-    </a-splitter>
+      </xy-splitter-panel>
+    </xy-splitter>
   </div>
 </template>
 

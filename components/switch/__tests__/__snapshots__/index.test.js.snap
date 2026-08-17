@@ -1,9 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Switch should has click wave effect 1`] = `
-<button type="button" role="switch" aria-checked="true" class="ant-switch-checked ant-switch">
-  <div class="ant-switch-handle">
+<button type="button" role="switch" aria-checked="true" class="xy-switch-checked xy-switch">
+  <div class="xy-switch-handle">
     <!---->
-  </div><span class="ant-switch-inner"><span class="ant-switch-inner-checked"><!----></span><span class="ant-switch-inner-unchecked"><!----></span></span>
+  </div><span class="xy-switch-inner"><span class="xy-switch-inner-checked"><!----></span><span class="xy-switch-inner-unchecked"><!----></span></span>
 </button>
 `;

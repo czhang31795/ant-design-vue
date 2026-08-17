@@ -1,5 +1,6 @@
 import type { Dayjs } from 'dayjs';
 import type { App, ExtractPropTypes, PropType } from 'vue';
+import { registerComponent } from '../_util/registerComponent';
 import { computed, defineComponent, ref, watch } from 'vue';
 import dayjs from 'dayjs';
 import quarterOfYear from 'dayjs/plugin/quarterOfYear';
@@ -64,7 +65,7 @@ export type YearQuarterMonthPickerProps = Partial<
 >;
 
 const YqmPanel = defineComponent({
-  name: 'AYearQuarterMonthPanel',
+  name: 'XyYearQuarterMonthPanel',
   props: {
     viewYear: { type: Number, required: true },
     value: { type: Object as PropType<Dayjs | null>, default: null },
@@ -80,34 +81,31 @@ const YqmPanel = defineComponent({
       const selectedYear =
         !!props.value && props.periodType === 'year' && props.value.year() === year;
       return (
-        <div class="ant-picker-yqm-panel" onMousedown={e => e.preventDefault()}>
-          <div class="ant-picker-yqm-header">
+        <div class="xy-picker-yqm-panel" onMousedown={e => e.preventDefault()}>
+          <div class="xy-picker-yqm-header">
             <button
               type="button"
-              class="ant-picker-yqm-nav-btn"
+              class="xy-picker-yqm-nav-btn"
               onClick={() => props.onViewYearChange?.(year - 1)}
             >
               <DoubleLeftOutlined />
             </button>
             <button
               type="button"
-              class={[
-                'ant-picker-yqm-year-btn',
-                selectedYear ? 'ant-picker-yqm-cell-selected' : '',
-              ]}
+              class={['xy-picker-yqm-year-btn', selectedYear ? 'xy-picker-yqm-cell-selected' : '']}
               onClick={() => props.onSelectYear?.()}
             >
               {year}
             </button>
             <button
               type="button"
-              class="ant-picker-yqm-nav-btn"
+              class="xy-picker-yqm-nav-btn"
               onClick={() => props.onViewYearChange?.(year + 1)}
             >
               <DoubleRightOutlined />
             </button>
           </div>
-          <div class="ant-picker-yqm-body">
+          <div class="xy-picker-yqm-body">
             {MONTH_LABELS.map((months, qIndex) => {
               const quarter = qIndex + 1;
               const selectedQuarter =
@@ -116,13 +114,13 @@ const YqmPanel = defineComponent({
                 props.value.year() === year &&
                 props.value.quarter() === quarter;
               return (
-                <div class="ant-picker-yqm-row" key={quarter}>
+                <div class="xy-picker-yqm-row" key={quarter}>
                   <button
                     type="button"
                     class={[
-                      'ant-picker-yqm-cell',
-                      'ant-picker-yqm-quarter',
-                      selectedQuarter ? 'ant-picker-yqm-cell-selected' : '',
+                      'xy-picker-yqm-cell',
+                      'xy-picker-yqm-quarter',
+                      selectedQuarter ? 'xy-picker-yqm-cell-selected' : '',
                     ]}
                     onClick={() => props.onSelectQuarter?.(quarter)}
                   >
@@ -140,9 +138,9 @@ const YqmPanel = defineComponent({
                         type="button"
                         key={monthIndex}
                         class={[
-                          'ant-picker-yqm-cell',
-                          'ant-picker-yqm-month',
-                          selectedMonth ? 'ant-picker-yqm-cell-selected' : '',
+                          'xy-picker-yqm-cell',
+                          'xy-picker-yqm-month',
+                          selectedMonth ? 'xy-picker-yqm-cell-selected' : '',
                         ]}
                         onClick={() => props.onSelectMonth?.(monthIndex)}
                       >
@@ -161,7 +159,7 @@ const YqmPanel = defineComponent({
 });
 
 const YearQuarterMonthPicker = defineComponent({
-  name: 'AYearQuarterMonthPicker',
+  name: 'XyYearQuarterMonthPicker',
   inheritAttrs: false,
   props: initDefaultProps(yearQuarterMonthPickerProps(), {
     periodType: 'month',
@@ -238,8 +236,8 @@ const YearQuarterMonthPicker = defineComponent({
         getPopupContainer={props.getPopupContainer}
         class={[
           attrs.class,
-          'ant-picker-yqm',
-          `ant-picker-yqm-${viewYear.value}-${props.periodType}-${periodText.value}`,
+          'xy-picker-yqm',
+          `xy-picker-yqm-${viewYear.value}-${props.periodType}-${periodText.value}`,
         ]}
         panelRender={panelRender}
         onUpdate:value={(val: Dayjs | null) => emit('update:value', val)}
@@ -250,7 +248,7 @@ const YearQuarterMonthPicker = defineComponent({
 });
 
 YearQuarterMonthPicker.install = (app: App) => {
-  app.component(YearQuarterMonthPicker.name, YearQuarterMonthPicker);
+  registerComponent(app, YearQuarterMonthPicker);
   return app;
 };
 

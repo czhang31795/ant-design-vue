@@ -87,7 +87,7 @@ export default defineComponent({
     let rafId: number;
 
     const resolveContainer = (el: HTMLElement) => {
-      const prefix = props.prefixCls || 'ant-table';
+      const prefix = props.prefixCls || 'xy-table';
       return (
         (el.closest(`.${prefix}-container`) as HTMLElement | null) ||
         (el.closest(`.${prefix}-content`) as HTMLElement | null) ||

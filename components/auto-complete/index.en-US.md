@@ -22,7 +22,7 @@ The differences with Select are:
 ## API
 
 ```html
-<a-auto-complete v-model:value="value" :options="options" />
+<xy-auto-complete v-model:value="value" :options="options" />
 ```
 
 | Property | Description | Type | Default | Version |

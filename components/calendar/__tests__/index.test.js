@@ -14,11 +14,11 @@ describe('Calendar', () => {
   });
 
   function openSelect(wrapper, className) {
-    wrapper.find(className).find('.ant-select-selector').trigger('mousedown');
+    wrapper.find(className).find('.xy-select-selector').trigger('mousedown');
   }
 
   function findSelectItem(wrapper) {
-    return wrapper.findAll('.ant-select-item-option');
+    return wrapper.findAll('.xy-select-item-option');
   }
 
   function clickSelectItem(wrapper, index = 0) {
@@ -36,7 +36,7 @@ describe('Calendar', () => {
       { sync: false },
     );
     await asyncExpect(() => {
-      wrapper.findAll('.ant-picker-cell')[0].trigger('click');
+      wrapper.findAll('.xy-picker-cell')[0].trigger('click');
     }, 0);
     await asyncExpect(() => {
       expect(onSelect).toHaveBeenCalledWith(expect.anything());
@@ -88,7 +88,7 @@ describe('Calendar', () => {
     );
     await asyncExpect(() => {
       wrapper.findAll('[title="2018-02-20"]')[0].trigger('click');
-      expect(wrapper.find('[title="2018-02-20"]').classes()).toContain('ant-picker-cell-disabled');
+      expect(wrapper.find('[title="2018-02-20"]').classes()).toContain('xy-picker-cell-disabled');
       expect(onSelect.mock.calls.length).toBe(0);
     });
   });
@@ -113,13 +113,13 @@ describe('Calendar', () => {
     );
     await asyncExpect(() => {
       expect(wrapper.findAll('[title="2018-01"]')[0].classes()).toContain(
-        'ant-picker-cell-disabled',
+        'xy-picker-cell-disabled',
       );
       expect(wrapper.findAll('[title="2018-02"]')[0].classes()).not.toContain(
-        'ant-picker-cell-disabled',
+        'xy-picker-cell-disabled',
       );
       expect(wrapper.findAll('[title="2018-06"]')[0].classes()).toContain(
-        'ant-picker-cell-disabled',
+        'xy-picker-cell-disabled',
       );
       wrapper.findAll('[title="2018-01"]')[0].trigger('click');
       wrapper.findAll('[title="2018-03"]')[0].trigger('click');
@@ -140,14 +140,14 @@ describe('Calendar', () => {
       { sync: false, attachTo: 'body' },
     );
     await sleep();
-    openSelect(wrapper, '.ant-picker-calendar-year-select');
+    openSelect(wrapper, '.xy-picker-calendar-year-select');
     await sleep(100);
     clickSelectItem(wrapper);
     await sleep();
-    openSelect(wrapper, '.ant-picker-calendar-month-select');
+    openSelect(wrapper, '.xy-picker-calendar-month-select');
     await sleep(100);
     // 2 years and 11 months
-    expect(wrapper.findAll('.ant-select-item-option').length).toBe(13);
+    expect(wrapper.findAll('.xy-select-item-option').length).toBe(13);
   });
 
   it('getDateRange should returns a disabledDate function', async () => {
@@ -224,7 +224,7 @@ describe('Calendar', () => {
       },
       sync: false,
     });
-    wrapper.findAll('.ant-picker-cell')[0].trigger('click');
+    wrapper.findAll('.xy-picker-cell')[0].trigger('click');
 
     expect(onPanelChange).toHaveBeenCalled();
     expect(onPanelChange.mock.calls[0][0].month()).toEqual(date.month() - 1);
@@ -243,12 +243,12 @@ describe('Calendar', () => {
     });
     await sleep(300);
     expect(wrapper.getComponent({ name: 'CalendarHeader' }).props().mode).toBe('month');
-    expect(wrapper.findAll('.ant-picker-date-panel').length).toBe(1);
-    expect(wrapper.findAll('.ant-picker-month-panel').length).toBe(0);
-    await wrapper.findAll('.ant-radio-button-input[value="year"]')[0].trigger('change');
+    expect(wrapper.findAll('.xy-picker-date-panel').length).toBe(1);
+    expect(wrapper.findAll('.xy-picker-month-panel').length).toBe(0);
+    await wrapper.findAll('.xy-radio-button-input[value="year"]')[0].trigger('change');
     await sleep(300);
-    expect(wrapper.findAll('.ant-picker-date-panel').length).toBe(0);
-    expect(wrapper.findAll('.ant-picker-month-panel').length).toBe(1);
+    expect(wrapper.findAll('.xy-picker-date-panel').length).toBe(0);
+    expect(wrapper.findAll('.xy-picker-month-panel').length).toBe(1);
     expect(onPanelChange).toHaveBeenCalled();
     expect(onPanelChange.mock.calls[0][1]).toEqual('year');
   });
@@ -260,7 +260,7 @@ describe('Calendar', () => {
         render() {
           return (
             <Header
-              prefixCls="ant-picker-calendar"
+              prefixCls="xy-picker-calendar"
               onChange={onValueChange}
               generateConfig={generateConfig}
               value={value}
@@ -276,7 +276,7 @@ describe('Calendar', () => {
       },
     );
     await sleep(50);
-    openSelect(wrapper, '.ant-picker-calendar-year-select');
+    openSelect(wrapper, '.xy-picker-calendar-year-select');
     await sleep(50);
     clickSelectItem(wrapper);
     await sleep(50);
@@ -318,7 +318,7 @@ describe('Calendar', () => {
         render() {
           return (
             <Header
-              prefixCls="ant-picker-calendar"
+              prefixCls="xy-picker-calendar"
               generateConfig={generateConfig}
               onChange={onValueChange}
               value={value}
@@ -335,7 +335,7 @@ describe('Calendar', () => {
       },
     );
     await sleep();
-    openSelect(wrapper, '.ant-picker-calendar-month-select');
+    openSelect(wrapper, '.xy-picker-calendar-month-select');
     await sleep(100);
     clickSelectItem(wrapper);
     expect(onValueChange).toHaveBeenCalledWith(value.month(10));
@@ -348,7 +348,7 @@ describe('Calendar', () => {
       render() {
         return (
           <Header
-            prefixCls="ant-picker-calendar"
+            prefixCls="xy-picker-calendar"
             generateConfig={generateConfig}
             onModeChange={onTypeChange}
             locale={{ year: '年', month: '月', locale: 'zh_CN' }}

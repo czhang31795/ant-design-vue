@@ -16,7 +16,7 @@ Customize the anchor highlight.
 </docs>
 
 <template>
-  <a-anchor
+  <xy-anchor
     :affix="false"
     :get-current-anchor="getCurrentAnchor"
     :items="[
@@ -48,7 +48,7 @@ Customize the anchor highlight.
         ],
       },
     ]"
-  ></a-anchor>
+  ></xy-anchor>
 </template>
 
 <script lang="ts" setup>

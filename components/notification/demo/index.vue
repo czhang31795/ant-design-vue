@@ -45,7 +45,7 @@ export default defineComponent({
 });
 </script>
 <style>
-[id^='components-notification-demo-'] .ant-btn {
+[id^='components-notification-demo-'] .xy-btn {
   margin-right: 8px;
 }
 </style>

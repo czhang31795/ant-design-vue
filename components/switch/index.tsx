@@ -58,7 +58,7 @@ export type SwitchProps = Partial<ExtractPropTypes<ReturnType<typeof switchProps
 
 const Switch = defineComponent({
   compatConfig: { MODE: 3 },
-  name: 'ASwitch',
+  name: 'XySwitch',
   __ANT_SWITCH: true,
   inheritAttrs: false,
   props: switchProps(),

@@ -17,7 +17,7 @@ Transfer with a search box.
 </docs>
 
 <template>
-  <a-transfer
+  <xy-transfer
     v-model:target-keys="targetKeys"
     :data-source="mockData"
     show-search

@@ -17,7 +17,7 @@ A circular progress bar.
 </docs>
 
 <template>
-  <a-progress type="circle" :percent="75" />
-  <a-progress type="circle" :percent="70" status="exception" />
-  <a-progress type="circle" :percent="100" />
+  <xy-progress type="circle" :percent="75" />
+  <xy-progress type="circle" :percent="70" status="exception" />
+  <xy-progress type="circle" :percent="100" />
 </template>

@@ -17,7 +17,7 @@ Enable `columnDraggable` / `rowDraggable` and reorder via header/row grips. Writ
 </docs>
 
 <template>
-  <a-table
+  <xy-table
     column-draggable
     row-draggable
     :columns="columns"

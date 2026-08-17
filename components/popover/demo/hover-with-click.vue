@@ -16,7 +16,7 @@ The following example shows how to create a popover which can be hovered and cli
 
 </docs>
 <template>
-  <a-popover
+  <xy-popover
     style="width: 500px"
     title="Hover title"
     trigger="hover"
@@ -26,16 +26,16 @@ The following example shows how to create a popover which can be hovered and cli
     <template #content>
       <div>This is hover content.</div>
     </template>
-    <a-popover title="Click title" trigger="click" :open="clicked" @openChange="handleClickChange">
+    <xy-popover title="Click title" trigger="click" :open="clicked" @openChange="handleClickChange">
       <template #content>
         <div>
           <div>This is click content.</div>
           <a @click="hide">Close</a>
         </div>
       </template>
-      <a-button>Hover and click / 悬停并单击</a-button>
-    </a-popover>
-  </a-popover>
+      <xy-button>Hover and click / 悬停并单击</xy-button>
+    </xy-popover>
+  </xy-popover>
 </template>
 <script lang="ts" setup>
 import { ref } from 'vue';

@@ -17,7 +17,7 @@ Tree data is flattened by expand state before vertical virtualization. The visib
 </docs>
 
 <template>
-  <a-table
+  <xy-table
     virtual
     :virtual-item-height="54"
     :columns="columns"

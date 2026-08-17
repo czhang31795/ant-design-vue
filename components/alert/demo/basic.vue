@@ -17,5 +17,5 @@ The simplest usage for short messages.
 </docs>
 
 <template>
-  <a-alert message="Success Text" type="success" />
+  <xy-alert message="Success Text" type="success" />
 </template>

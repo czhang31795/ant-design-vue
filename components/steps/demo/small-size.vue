@@ -15,7 +15,7 @@ title:
 By setting like this: `<Steps size="small">`, you can get a mini version.
 </docs>
 <template>
-  <a-steps
+  <xy-steps
     :current="1"
     size="small"
     :items="[
@@ -29,5 +29,5 @@ By setting like this: `<Steps size="small">`, you can get a mini version.
         title: 'Waiting',
       },
     ]"
-  ></a-steps>
+  ></xy-steps>
 </template>

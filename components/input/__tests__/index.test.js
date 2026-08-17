@@ -30,7 +30,7 @@ describe('Input', () => {
       props: { allowClear: true, defaultValue: '111', disabled: true },
       sync: false,
     });
-    expect(wrapper.findAll('.ant-input-clear-icon-hidden').length).toBeTruthy();
+    expect(wrapper.findAll('.xy-input-clear-icon-hidden').length).toBeTruthy();
   });
 });
 
@@ -75,7 +75,7 @@ describe('TextArea', () => {
       props: { showCount: true, defaultValue: '111', maxlength: 10 },
       sync: false,
     });
-    expect(wrapper.find('.ant-input-textarea-show-count')).toBeTruthy();
+    expect(wrapper.find('.xy-input-textarea-show-count')).toBeTruthy();
     await asyncExpect(() => {
       expect(wrapper.html()).toMatchSnapshot();
     });

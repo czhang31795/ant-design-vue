@@ -9,7 +9,7 @@ const getValidNumber = (num?: number) => {
 };
 
 export default defineComponent({
-  name: 'ASplitterSplitBar',
+  name: 'XySplitterSplitBar',
   props: {
     index: Number,
     active: booleanType(),

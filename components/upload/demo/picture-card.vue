@@ -17,7 +17,7 @@ After users upload picture, the thumbnail will be shown in list. The upload butt
 
 <template>
   <div class="clearfix">
-    <a-upload
+    <xy-upload
       v-model:file-list="fileList"
       action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
       list-type="picture-card"
@@ -27,10 +27,10 @@ After users upload picture, the thumbnail will be shown in list. The upload butt
         <plus-outlined />
         <div style="margin-top: 8px">Upload</div>
       </div>
-    </a-upload>
-    <a-modal :open="previewVisible" :title="previewTitle" :footer="null" @cancel="handleCancel">
+    </xy-upload>
+    <xy-modal :open="previewVisible" :title="previewTitle" :footer="null" @cancel="handleCancel">
       <img alt="example" style="width: 100%" :src="previewImage" />
-    </a-modal>
+    </xy-modal>
   </div>
 </template>
 <script lang="ts" setup>
@@ -105,12 +105,12 @@ const handlePreview = async (file: UploadProps['fileList'][number]) => {
 </script>
 <style scoped>
 /* you can make up upload button and sample style by using stylesheets */
-.ant-upload-select-picture-card i {
+.xy-upload-select-picture-card i {
   font-size: 32px;
   color: #999;
 }
 
-.ant-upload-select-picture-card .ant-upload-text {
+.xy-upload-select-picture-card .xy-upload-text {
   margin-top: 8px;
   color: #666;
 }

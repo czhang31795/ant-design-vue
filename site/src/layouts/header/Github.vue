@@ -1,12 +1,12 @@
 <template>
-  <a-tooltip placement="bottom">
+  <xy-tooltip placement="bottom">
     <template #title>Github</template>
     <span id="github-btn" class="github-btn" :style="githubIconStyles">
       <a class="gh-btn" href="https://github.com/vueComponent/ant-design-vue" target="_blank">
         <GithubOutlined class="github-icon" />
       </a>
     </span>
-  </a-tooltip>
+  </xy-tooltip>
 </template>
 
 <script lang="ts">
@@ -87,7 +87,7 @@ export default defineComponent({
   }
 }
 
-.ant-row-rtl {
+.xy-row-rtl {
   #github-btn {
     .gh-count {
       display: none !important;

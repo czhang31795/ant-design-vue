@@ -31,7 +31,7 @@ const HackSlot = (_, { slots }) => {
 
 export default defineComponent({
   compatConfig: { MODE: 3 },
-  name: 'AUploadList',
+  name: 'XyUploadList',
   props: initDefaultProps(uploadListProps(), {
     listType: 'text', // or picture
     progress: {

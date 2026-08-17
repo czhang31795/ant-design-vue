@@ -17,9 +17,9 @@ Wrap
 </docs>
 
 <template>
-  <a-space :size="[8, 16]" wrap>
+  <xy-space :size="[8, 16]" wrap>
     <template v-for="_i in 20" :key="_i">
-      <a-button>Button</a-button>
+      <xy-button>Button</xy-button>
     </template>
-  </a-space>
+  </xy-space>
 </template>

@@ -22,7 +22,7 @@ When data is in the form of dates, such as schedules, timetables, prices calenda
 // import 'dayjs/locale/zh-cn';
 // dayjs.locale('zh-cn');
 
-<a-calendar v-model:value @panelChange="onPanelChange" @select="onSelect"></a-calendar>
+<xy-calendar v-model:value @panelChange="onPanelChange" @select="onSelect"></xy-calendar>
 ```
 
 customize the progress dot by setting a scoped slot
@@ -63,6 +63,6 @@ customize the progress dot by setting a scoped slot
   };
 </script>
 <template>
-  <a-calendar @select="onSelect" />
+  <xy-calendar @select="onSelect" />
 </template>
 ```

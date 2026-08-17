@@ -16,7 +16,7 @@ border less.
 </docs>
 
 <template>
-  <a-auto-complete
+  <xy-auto-complete
     v-model:value="value"
     :options="options"
     style="width: 200px"

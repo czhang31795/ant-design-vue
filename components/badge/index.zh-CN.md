@@ -16,13 +16,13 @@ coverDark: https://mdn.alipayobjects.com/huamei_7uahnr/afts/img/A*v8EQT7KoGbcAAA
 ## API
 
 ```html
-<a-badge :count="5">
+<xy-badge :count="5">
   <a href="#" class="head-example" />
-</a-badge>
+</xy-badge>
 ```
 
 ```html
-<a-badge :count="5" />
+<xy-badge :count="5" />
 ```
 
 ### Badge

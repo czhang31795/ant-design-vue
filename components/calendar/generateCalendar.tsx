@@ -12,6 +12,7 @@ import enUS from './locale/en_US';
 import CalendarHeader from './Header';
 import type { CustomSlotsType, VueNode } from '../_util/type';
 import type { App, PropType } from 'vue';
+import { registerComponent } from '../_util/registerComponent';
 import { computed, defineComponent, toRef } from 'vue';
 import useConfigInject from '../config-provider/hooks/useConfigInject';
 import classNames from '../_util/classNames';
@@ -93,7 +94,7 @@ function generateCalendar<
   }
 
   const Calendar = defineComponent<Props>({
-    name: 'ACalendar',
+    name: 'XyCalendar',
     inheritAttrs: false,
     props: {
       prefixCls: String,
@@ -361,7 +362,7 @@ function generateCalendar<
   });
 
   Calendar.install = function (app: App) {
-    app.component(Calendar.name, Calendar);
+    registerComponent(app, Calendar);
     return app;
   };
 

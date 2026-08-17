@@ -17,68 +17,68 @@ You can set `color` and `variant` props at the same time to achieve different bu
 </docs>
 
 <template>
-  <a-flex vertical gap="small">
-    <a-flex wrap="wrap" gap="small">
-      <a-button
+  <xy-flex vertical gap="small">
+    <xy-flex wrap="wrap" gap="small">
+      <xy-button
         v-for="variant in variants"
         :key="`default-${variant}`"
         color="default"
         :variant="variant"
       >
         {{ capitalize(variant) }}
-      </a-button>
-    </a-flex>
-    <a-flex wrap="wrap" gap="small">
-      <a-button
+      </xy-button>
+    </xy-flex>
+    <xy-flex wrap="wrap" gap="small">
+      <xy-button
         v-for="variant in variants"
         :key="`primary-${variant}`"
         color="primary"
         :variant="variant"
       >
         {{ capitalize(variant) }}
-      </a-button>
-    </a-flex>
-    <a-flex wrap="wrap" gap="small">
-      <a-button
+      </xy-button>
+    </xy-flex>
+    <xy-flex wrap="wrap" gap="small">
+      <xy-button
         v-for="variant in variants"
         :key="`danger-${variant}`"
         color="danger"
         :variant="variant"
       >
         {{ capitalize(variant) }}
-      </a-button>
-    </a-flex>
-    <a-flex wrap="wrap" gap="small">
-      <a-button
+      </xy-button>
+    </xy-flex>
+    <xy-flex wrap="wrap" gap="small">
+      <xy-button
         v-for="variant in variants"
         :key="`pink-${variant}`"
         color="pink"
         :variant="variant"
       >
         {{ capitalize(variant) }}
-      </a-button>
-    </a-flex>
-    <a-flex wrap="wrap" gap="small">
-      <a-button
+      </xy-button>
+    </xy-flex>
+    <xy-flex wrap="wrap" gap="small">
+      <xy-button
         v-for="variant in variants"
         :key="`purple-${variant}`"
         color="purple"
         :variant="variant"
       >
         {{ capitalize(variant) }}
-      </a-button>
-    </a-flex>
-    <a-flex wrap="wrap" gap="small">
-      <a-button
+      </xy-button>
+    </xy-flex>
+    <xy-flex wrap="wrap" gap="small">
+      <xy-button
         v-for="variant in variants"
         :key="`cyan-${variant}`"
         color="cyan"
         :variant="variant"
       >
         {{ capitalize(variant) }}
-      </a-button>
-    </a-flex>
-  </a-flex>
+      </xy-button>
+    </xy-flex>
+  </xy-flex>
 </template>
 
 <script lang="ts" setup>

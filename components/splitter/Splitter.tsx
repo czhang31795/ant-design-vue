@@ -19,7 +19,7 @@ function isNumber(val: unknown): val is number {
 }
 
 export default defineComponent({
-  name: 'ASplitter',
+  name: 'XySplitter',
   inheritAttrs: false,
   props: initDefaultProps(splitterProps(), {
     lazy: false,

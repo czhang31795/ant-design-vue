@@ -21,7 +21,7 @@ Not supported yet: `virtual`, tree data, `rowSelection`, `rowResizable`, `expand
 </docs>
 
 <template>
-  <a-table
+  <xy-table
     layout="vertical"
     bordered
     resizable

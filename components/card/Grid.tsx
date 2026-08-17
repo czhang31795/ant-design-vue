@@ -9,7 +9,7 @@ export const cardGridProps = () => ({
 export type CardGridProps = Partial<ExtractPropTypes<ReturnType<typeof cardGridProps>>>;
 export default defineComponent({
   compatConfig: { MODE: 3 },
-  name: 'ACardGrid',
+  name: 'XyCardGrid',
   __ANT_CARD_GRID: true,
   props: cardGridProps(),
   setup(props, { slots }) {

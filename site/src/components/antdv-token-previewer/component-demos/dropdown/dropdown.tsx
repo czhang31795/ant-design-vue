@@ -15,7 +15,7 @@ const Demo = defineComponent({
             overlay: () => menu,
           }}
         >
-          <a class="ant-dropdown-link" onClick={e => e.preventDefault()}>
+          <a class="xy-dropdown-link" onClick={e => e.preventDefault()}>
             Hover me <DownOutlined />
           </a>
         </Dropdown>

@@ -1,4 +1,5 @@
 import type { App, VNode, ExtractPropTypes, CSSProperties, PropType } from 'vue';
+import { registerComponent } from '../_util/registerComponent';
 import { defineComponent, ref } from 'vue';
 import Select, { selectProps } from '../select';
 import { isValidElement, flattenChildren } from '../_util/props-util';
@@ -45,7 +46,7 @@ export const AutoCompleteOptGroup = OptGroup;
 
 const AutoComplete = defineComponent({
   compatConfig: { MODE: 3 },
-  name: 'AAutoComplete',
+  name: 'XyAutoComplete',
   inheritAttrs: false,
   props: autoCompleteProps(),
   // emits: ['change', 'select', 'focus', 'blur'],
@@ -167,9 +168,9 @@ export default Object.assign(AutoComplete, {
   Option,
   OptGroup,
   install(app: App) {
-    app.component(AutoComplete.name, AutoComplete);
-    app.component(Option.displayName, Option);
-    app.component(OptGroup.displayName, OptGroup);
+    registerComponent(app, AutoComplete);
+    registerComponent(app, Option);
+    registerComponent(app, OptGroup);
     return app;
   },
 });

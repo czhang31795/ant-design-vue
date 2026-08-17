@@ -1,12 +1,12 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Collapse should support remove expandIcon 1`] = `
-<div class="ant-collapse ant-collapse-icon-position-start">
-  <div class="ant-collapse-item">
-    <div class="ant-collapse-header" role="button" tabindex="0" aria-expanded="false">
-      <div class="ant-collapse-expand-icon">
+<div class="xy-collapse xy-collapse-icon-position-start">
+  <div class="xy-collapse-item">
+    <div class="xy-collapse-header" role="button" tabindex="0" aria-expanded="false">
+      <div class="xy-collapse-expand-icon">
         <!---->
-      </div><span class="ant-collapse-header-text">header</span>
+      </div><span class="xy-collapse-header-text">header</span>
       <!---->
     </div>
     <!---->

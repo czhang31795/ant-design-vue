@@ -1,4 +1,5 @@
 import type { Plugin, App } from 'vue';
+import { registerComponent } from '../_util/registerComponent';
 import { computed, defineComponent, ref } from 'vue';
 import classNames from '../_util/classNames';
 import type { BaseSelectRef } from '../vc-select';
@@ -33,7 +34,7 @@ export { selectProps };
 const SECRET_COMBOBOX_MODE_DO_NOT_USE = 'SECRET_COMBOBOX_MODE_DO_NOT_USE';
 const Select = defineComponent({
   compatConfig: { MODE: 3 },
-  name: 'ASelect',
+  name: 'XySelect',
   Option,
   OptGroup,
   inheritAttrs: false,
@@ -266,9 +267,9 @@ const Select = defineComponent({
 });
 /* istanbul ignore next */
 Select.install = function (app: App) {
-  app.component(Select.name, Select);
-  app.component(Select.Option.displayName, Select.Option);
-  app.component(Select.OptGroup.displayName, Select.OptGroup);
+  registerComponent(app, Select);
+  registerComponent(app, Select.Option);
+  registerComponent(app, Select.OptGroup);
   return app;
 };
 

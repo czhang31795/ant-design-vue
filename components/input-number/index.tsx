@@ -1,4 +1,5 @@
 import type { ExtractPropTypes, HTMLAttributes, App } from 'vue';
+import { registerComponent } from '../_util/registerComponent';
 import { watch, defineComponent, shallowRef, computed } from 'vue';
 import classNames from '../_util/classNames';
 import UpOutlined from '@ant-design/icons-vue/UpOutlined';
@@ -46,7 +47,7 @@ export type InputNumberProps = Partial<ExtractPropTypes<ReturnType<typeof inputN
 
 const InputNumber = defineComponent({
   compatConfig: { MODE: 3 },
-  name: 'AInputNumber',
+  name: 'XyInputNumber',
   inheritAttrs: false,
   props: inputNumberProps(),
   // emits: ['focus', 'blur', 'change', 'input', 'update:value'],
@@ -244,7 +245,7 @@ const InputNumber = defineComponent({
 
 export default Object.assign(InputNumber, {
   install: (app: App) => {
-    app.component(InputNumber.name, InputNumber);
+    registerComponent(app, InputNumber);
     return app;
   },
 });

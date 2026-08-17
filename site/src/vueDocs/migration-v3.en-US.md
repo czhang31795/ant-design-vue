@@ -77,10 +77,10 @@ Major updates after the 3.0 version refactoring include `Tree` `TreeSelect` `Dat
     2. A Form.Item can only collect the data of one form item. If there are multiple form items, it will cause collection confusion. For example:
 
     ```html
-    <a-form-item>
-      <a-input name="a"></a-input>
-      <a-input name="b"></a-input>
-    </a-form-item>
+    <xy-form-item>
+      <xy-input name="a"></xy-input>
+      <xy-input name="b"></xy-input>
+    </xy-form-item>
     ```
 
     As above Form.Item does not know whether to collect `name="a"` or `name="b"`, you can solve this kind of problem in the following two ways:
@@ -88,10 +88,10 @@ Major updates after the 3.0 version refactoring include `Tree` `TreeSelect` `Dat
     The first is to use multiple `a-form-item`:
 
     ```html
-    <a-form-item>
-      <a-input name="a"></a-input>
-      <a-form-item><a-input name="b"></a-input></a-form-item>
-    </a-form-item>
+    <xy-form-item>
+      <xy-input name="a"></xy-input>
+      <xy-form-item><xy-input name="b"></xy-input></xy-form-item>
+    </xy-form-item>
     ```
 
     The second way is to wrap it with a custom component and call `useInjectFormItemContext` in the custom component, It is equivalent to merging multiple form items into one.
@@ -110,21 +110,21 @@ Major updates after the 3.0 version refactoring include `Tree` `TreeSelect` `Dat
     ```
 
     ```html
-    <a-form-item>
+    <xy-form-item>
       <custom-com>
-        <a-input name="a"></a-input>
-        <a-input name="b"></a-input>
+        <xy-input name="a"></xy-input>
+        <xy-input name="b"></xy-input>
       </custom-com>
-    </a-form-item>
+    </xy-form-item>
     ```
 
     Third, the component library provides an `a-form-item-rest` component, which will prevent data collection. You can put form items that do not need to be collected and verified into this component. It is the same as the first This method is very similar, but it does not generate additional dom nodes.
 
     ```html
-    <a-form-item>
-      <a-input name="a"></a-input>
-      <a-form-item-rest><a-input name="b"></a-input></a-form-item-rest>
-    </a-form-item>
+    <xy-form-item>
+      <xy-input name="a"></xy-input>
+      <xy-form-item-rest><xy-input name="b"></xy-input></xy-form-item-rest>
+    </xy-form-item>
     ```
 
 ## Encounter problems

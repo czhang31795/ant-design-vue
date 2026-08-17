@@ -103,7 +103,7 @@ export default defineComponent({
     });
 
     const createProxy = (th: HTMLElement) => {
-      const prefix = props.prefixCls || 'ant-table';
+      const prefix = props.prefixCls || 'xy-table';
       const container =
         (th.closest(`.${prefix}-container`) as HTMLElement | null) ||
         (th.closest(`.${prefix}-content`) as HTMLElement | null) ||
@@ -121,7 +121,7 @@ export default defineComponent({
         height: `${rect.height}px`,
         width: '2px',
         marginLeft: '-1px',
-        backgroundColor: 'var(--ant-color-primary, #1677ff)',
+        backgroundColor: 'var(--xy-color-primary, #1677ff)',
         zIndex: '1100',
         pointerEvents: 'none',
         left: `${th.getBoundingClientRect().left}px`,
@@ -133,7 +133,7 @@ export default defineComponent({
       if (!wrapperEl) {
         return;
       }
-      const prefix = props.prefixCls || 'ant-table';
+      const prefix = props.prefixCls || 'xy-table';
       const headers = wrapperEl.querySelectorAll(
         `.${prefix}-thead > tr > th`,
       ) as NodeListOf<HTMLElement>;
@@ -192,7 +192,7 @@ export default defineComponent({
       if (!th || !isColumnDraggable(props.column)) {
         return;
       }
-      const prefix = props.prefixCls || 'ant-table';
+      const prefix = props.prefixCls || 'xy-table';
       fromKey = props.columnKey ?? props.column?.key ?? null;
       if (fromKey == null) {
         return;

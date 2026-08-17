@@ -25,7 +25,7 @@ import useStyle from './style';
 
 export default defineComponent({
   compatConfig: { MODE: 3 },
-  name: 'ACheckbox',
+  name: 'XyCheckbox',
   inheritAttrs: false,
   __ANT_CHECKBOX: true,
   props: checkboxProps(),

@@ -17,7 +17,7 @@ export const commentProps = () => ({
   avatar: PropTypes.any,
   /** The main content of the comment */
   content: PropTypes.any,
-  /** Comment prefix defaults to '.ant-comment' */
+  /** Comment prefix defaults to '.xy-comment' */
   prefixCls: String,
   /** A datetime element containing the time to be displayed */
   datetime: PropTypes.any,
@@ -27,7 +27,7 @@ export type CommentProps = Partial<ExtractPropTypes<ReturnType<typeof commentPro
 
 const Comment = defineComponent({
   compatConfig: { MODE: 3 },
-  name: 'AComment',
+  name: 'XyComment',
   inheritAttrs: false,
   props: commentProps(),
   slots: Object as CustomSlotsType<{

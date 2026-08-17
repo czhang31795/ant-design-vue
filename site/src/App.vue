@@ -1,11 +1,11 @@
 <template>
-  <a-style-provider :hash-priority="hashPriority">
-    <a-config-provider :locale="locale" :theme="themeConfig">
+  <xy-style-provider :hash-priority="hashPriority">
+    <xy-config-provider :locale="locale" :theme="themeConfig">
       <SiteToken>
         <router-view />
       </SiteToken>
-    </a-config-provider>
-  </a-style-provider>
+    </xy-config-provider>
+  </xy-style-provider>
 </template>
 
 <script lang="ts">

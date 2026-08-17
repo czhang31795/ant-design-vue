@@ -53,8 +53,8 @@ describe('Upload List', () => {
     const wrapper = mount(Upload, props);
     Vue.nextTick(() => {
       fileList.forEach((file, i) => {
-        const linkNode = wrapper.findAll('.ant-upload-list-item-thumbnail')[i];
-        const imgNode = wrapper.findAll('.ant-upload-list-item-thumbnail img')[i];
+        const linkNode = wrapper.findAll('.xy-upload-list-item-thumbnail')[i];
+        const imgNode = wrapper.findAll('.xy-upload-list-item-thumbnail img')[i];
         expect(linkNode.attributes().href).toBe(file.url);
         expect(imgNode.attributes().src).toBe(file.thumbUrl);
       });
@@ -92,11 +92,11 @@ describe('Upload List', () => {
     };
     const wrapper = mount(Upload, props);
     await sleep();
-    expect(wrapper.findAll('.ant-upload-list-item').length).toBe(2);
-    wrapper.findAll('.ant-upload-list-item')[0].find('.anticon-delete').trigger('click');
+    expect(wrapper.findAll('.xy-upload-list-item').length).toBe(2);
+    wrapper.findAll('.xy-upload-list-item')[0].find('.anticon-delete').trigger('click');
     await sleep(400);
     // wrapper.update();
-    expect(wrapper.findAll('.ant-upload-list-item').length).toBe(1);
+    expect(wrapper.findAll('.xy-upload-list-item').length).toBe(1);
   });
 
   xit('should be uploading when upload a file', done => {

@@ -15,13 +15,13 @@ Badge normally appears in proximity to notifications or user avatars with eye-ca
 ## API
 
 ```html
-<a-badge :count="5">
+<xy-badge :count="5">
   <a href="#" class="head-example" />
-</a-badge>
+</xy-badge>
 ```
 
 ```html
-<a-badge :count="5" />
+<xy-badge :count="5" />
 ```
 
 ### Badge

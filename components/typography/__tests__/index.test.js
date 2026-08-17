@@ -176,7 +176,7 @@ describe('Typography', () => {
         });
 
         await sleep(20);
-        wrapper.find('.ant-typography-expand').trigger('click');
+        wrapper.find('.xy-typography-expand').trigger('click');
         expect(onExpand).toHaveBeenCalled();
         await sleep(20);
 
@@ -197,7 +197,7 @@ describe('Typography', () => {
         });
 
         await sleep(20);
-        expect(wrapper.find('.ant-typography-expand').text()).toEqual('more');
+        expect(wrapper.find('.xy-typography-expand').text()).toEqual('more');
       });
 
       it('can use css ellipsis', async () => {
@@ -209,7 +209,7 @@ describe('Typography', () => {
         });
 
         await sleep(20);
-        expect(wrapper.findAll('.ant-typography-ellipsis-single-line').length).toBeTruthy();
+        expect(wrapper.findAll('.xy-typography-ellipsis-single-line').length).toBeTruthy();
       });
     });
 
@@ -236,7 +236,7 @@ describe('Typography', () => {
             expect(wrapper.findAll('.anticon-copy').length).toBeTruthy();
           }
 
-          wrapper.find('.ant-typography-copy').trigger('click');
+          wrapper.find('.xy-typography-copy').trigger('click');
 
           await asyncExpect(() => {
             expect(copy.lastStr).toEqual(target);
@@ -300,7 +300,7 @@ describe('Typography', () => {
           expect(component.element.style.color).toEqual('red');
           expect(component.classes()).toContain(className);
 
-          wrapper.find('.ant-typography-edit').trigger('click');
+          wrapper.find('.xy-typography-edit').trigger('click');
           await sleep(20);
           expect(onStart).toHaveBeenCalled();
 
@@ -354,7 +354,7 @@ describe('Typography', () => {
         },
       });
       await sleep();
-      wrapper.find('.ant-typography-edit').trigger('click');
+      wrapper.find('.xy-typography-edit').trigger('click');
       await sleep();
       const textareaNode = wrapper.find('textarea').element;
       expect(textareaNode.selectionStart).toBe(7);

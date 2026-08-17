@@ -42,7 +42,7 @@
 
 ```diff
 <template>
-  <a-select
+  <xy-select
 --  dropdownClassName="my-select-popup"
 ++  popupClassName="my-select-popup"
   />
@@ -61,13 +61,13 @@
 
 ```diff
 <template>
--- <a-modal :visible="visible">content</a-modal>
-++ <a-modal :open="visible">content</a-modal>
+-- <xy-modal :visible="visible">content</xy-modal>
+++ <xy-modal :open="visible">content</xy-modal>
 
--- <a-tag :visible="visible">tag</a-tag>
-++ <a-tag v-if="visible">tag</a-tag>
+-- <xy-tag :visible="visible">tag</xy-tag>
+++ <xy-tag v-if="visible">tag</xy-tag>
 
-  <a-table
+  <xy-table
     :data="[]"
     :columns="[
       {
@@ -79,8 +79,8 @@
     ]"
   />
 
--- <a-slider :tooltipVisible="visible" />
-++ <a-slider :tooltip="{ open: visible }" />
+-- <xy-slider :tooltipVisible="visible" />
+++ <xy-slider :tooltip="{ open: visible }" />
 </template>
 
 <script setup>

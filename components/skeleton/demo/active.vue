@@ -17,5 +17,5 @@ Display active animation.
 </docs>
 
 <template>
-  <a-skeleton active />
+  <xy-skeleton active />
 </template>

@@ -18,14 +18,14 @@ Initialize panel size, panel size limits.
 
 <template>
   <div class="demo-splitter">
-    <a-splitter>
-      <a-splitter-panel default-size="40%" min="20%" max="70%">
+    <xy-splitter>
+      <xy-splitter-panel default-size="40%" min="20%" max="70%">
         <div class="demo-panel">First</div>
-      </a-splitter-panel>
-      <a-splitter-panel>
+      </xy-splitter-panel>
+      <xy-splitter-panel>
         <div class="demo-panel">Second</div>
-      </a-splitter-panel>
-    </a-splitter>
+      </xy-splitter-panel>
+    </xy-splitter>
   </div>
 </template>
 

@@ -22,10 +22,10 @@ For example, you can use this pattern when you submit a form.
 
 <template>
   <div>
-    <a-button type="primary" @click="showModal">Open Modal with async logic</a-button>
-    <a-modal v-model:open="open" title="Title" :confirm-loading="confirmLoading" @ok="handleOk">
+    <xy-button type="primary" @click="showModal">Open Modal with async logic</xy-button>
+    <xy-modal v-model:open="open" title="Title" :confirm-loading="confirmLoading" @ok="handleOk">
       <p>{{ modalText }}</p>
-    </a-modal>
+    </xy-modal>
   </div>
 </template>
 <script lang="ts" setup>

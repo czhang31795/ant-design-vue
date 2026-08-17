@@ -23,7 +23,7 @@ Setting `description` prop to show FloatButton with description.
 </docs>
 
 <template>
-  <a-float-button
+  <xy-float-button
     shape="square"
     description="HELP INFO"
     :style="{
@@ -33,17 +33,17 @@ Setting `description` prop to show FloatButton with description.
     <template #icon>
       <FileTextOutlined />
     </template>
-  </a-float-button>
+  </xy-float-button>
 
-  <a-float-button
+  <xy-float-button
     shape="square"
     description="HELP INFO"
     :style="{
       right: '94px',
     }"
-  ></a-float-button>
+  ></xy-float-button>
 
-  <a-float-button
+  <xy-float-button
     shape="square"
     description="HELP"
     :style="{
@@ -53,7 +53,7 @@ Setting `description` prop to show FloatButton with description.
     <template #icon>
       <FileTextOutlined />
     </template>
-  </a-float-button>
+  </xy-float-button>
 </template>
 
 <script lang="ts" setup>

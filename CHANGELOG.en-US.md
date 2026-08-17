@@ -10,6 +10,11 @@
 
 ---
 
+## 4.3.6
+
+- 💥 Component tag prefix changed from `a-` to `xy-` (e.g. `<xy-button>`, `<xy-table>`). `a-xx` is no longer registered.
+- 💥 Default style prefix `prefixCls` changed from `ant` to `xy` (classes are `xy-btn`, `xy-table`) so this fork can coexist with official `ant-design-vue`. Icon classes remain `anticon`.
+
 ## 4.3.5
 
 - 🐞 Fix Table resizable columns not applying width after drag (ColGroup now prefers declared `width` over measured width)

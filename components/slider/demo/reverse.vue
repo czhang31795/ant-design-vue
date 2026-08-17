@@ -17,10 +17,10 @@ Using `reverse` to render slider reversely.
 
 <template>
   <div>
-    <a-slider v-model:value="value1" :reverse="reverse" />
-    <a-slider v-model:value="value2" range :reverse="reverse" />
+    <xy-slider v-model:value="value1" :reverse="reverse" />
+    <xy-slider v-model:value="value2" range :reverse="reverse" />
     Reversed:
-    <a-switch v-model:checked="reverse" size="small" />
+    <xy-switch v-model:checked="reverse" size="small" />
   </div>
 </template>
 <script lang="ts" setup>

@@ -3,7 +3,7 @@ import type { ColumnGroupProps } from '../vc-table/sugar/ColumnGroup';
 import type { CustomSlotsType } from '../_util/type';
 
 export default defineComponent<ColumnGroupProps<any>>({
-  name: 'ATableColumnGroup',
+  name: 'XyTableColumnGroup',
   slots: Object as CustomSlotsType<{
     title?: any;
     default?: any;

@@ -161,7 +161,7 @@ export const configProviderKey: InjectionKey<ConfigProviderInnerProps> = Symbol(
 export const defaultConfigProvider: ConfigProviderInnerProps = {
   getPrefixCls: (suffixCls?: string, customizePrefixCls?: string) => {
     if (customizePrefixCls) return customizePrefixCls;
-    return suffixCls ? `ant-${suffixCls}` : 'ant';
+    return suffixCls ? `xy-${suffixCls}` : 'xy';
   },
   iconPrefixCls: computed(() => defaultIconPrefixCls),
   getPopupContainer: computed(() => () => document.body),

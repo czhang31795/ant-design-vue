@@ -7,7 +7,7 @@ import { updateCSS } from '../vc-util/Dom/dynamicCSS';
 import canUseDom from '../_util/canUseDom';
 import warning from '../_util/warning';
 
-const dynamicStyleMark = `-ant-${Date.now()}-${Math.random()}`;
+const dynamicStyleMark = `-xy-${Date.now()}-${Math.random()}`;
 
 export function getStyle(globalPrefixCls: string, theme: Theme) {
   const variables: Record<string, string> = {};

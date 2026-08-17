@@ -17,7 +17,7 @@ Cascade selection box.
 ## API
 
 ```html
-<a-cascader :options="options" v-model:value="value" />
+<xy-cascader :options="options" v-model:value="value" />
 ```
 
 | Property | Description | Type | Default | Version |

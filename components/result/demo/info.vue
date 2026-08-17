@@ -17,9 +17,9 @@ Show processing results.
 </docs>
 
 <template>
-  <a-result title="Your operation has been executed">
+  <xy-result title="Your operation has been executed">
     <template #extra>
-      <a-button key="console" type="primary">Go Console</a-button>
+      <xy-button key="console" type="primary">Go Console</xy-button>
     </template>
-  </a-result>
+  </xy-result>
 </template>

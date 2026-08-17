@@ -13,7 +13,7 @@ export interface SummaryCellProps {
 }
 
 export default defineComponent({
-  name: 'ATableSummaryCell',
+  name: 'XyTableSummaryCell',
   props: ['index', 'colSpan', 'rowSpan', 'align'],
   setup(props, { attrs, slots }) {
     const tableContext = useInjectTable();

@@ -17,7 +17,7 @@ Replace the title,key and children fields in treeNode with the corresponding fie
 </docs>
 
 <template>
-  <a-tree
+  <xy-tree
     v-model:expandedKeys="expandedKeys"
     v-model:selectedKeys="selectedKeys"
     v-model:checkedKeys="checkedKeys"
@@ -29,7 +29,7 @@ Replace the title,key and children fields in treeNode with the corresponding fie
       <span v-if="key === '0-0-1'" style="color: #1890ff">{{ name }}</span>
       <template v-else>{{ name }}</template>
     </template>
-  </a-tree>
+  </xy-tree>
 </template>
 <script lang="ts" setup>
 import { Ref, ref, watch } from 'vue';

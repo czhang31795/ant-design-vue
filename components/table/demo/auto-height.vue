@@ -18,7 +18,7 @@ Set `scroll.y` to `auto` so the table body fills the remaining height of its par
 
 <template>
   <div style="height: 400px; display: flex; flex-direction: column">
-    <a-table
+    <xy-table
       style="flex: 1; min-height: 0"
       :columns="columns"
       :data-source="data"

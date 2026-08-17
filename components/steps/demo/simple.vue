@@ -15,7 +15,7 @@ title:
 The most basic step bar.
 </docs>
 <template>
-  <a-steps
+  <xy-steps
     :current="1"
     :items="[
       {
@@ -32,7 +32,7 @@ The most basic step bar.
         description,
       },
     ]"
-  ></a-steps>
+  ></xy-steps>
 </template>
 <script lang="ts" setup>
 const description = 'This is a description.';

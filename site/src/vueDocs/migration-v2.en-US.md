@@ -44,8 +44,8 @@ In `ant-design-vue@1.2.0`, we introduced the svg icon ([Why use the svg icon?](h
 The old way of using Icon will be obsolete:
 
 ```html
-<a-icon type="smile" />
-<a-button icon="smile" />
+<xy-icon type="smile" />
+<xy-button icon="smile" />
 ```
 
 In 2.0, an on-demand introduction method will be adopted:
@@ -53,9 +53,9 @@ In 2.0, an on-demand introduction method will be adopted:
 ```html
 <template>
   <smile-outlined />
-  <a-button>
+  <xy-button>
     <template #icon><smile-outlined /></template>
-  </a-button>
+  </xy-button>
 </template>
 <script>
   import SmileOutlined from '@ant-design/icons-vue/SmileOutlined';

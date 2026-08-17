@@ -35,7 +35,7 @@ export type ImageGroupProps = Partial<ExtractPropTypes<ReturnType<typeof preview
 
 const InternalPreviewGroup = defineComponent({
   compatConfig: { MODE: 3 },
-  name: 'AImagePreviewGroup',
+  name: 'XyImagePreviewGroup',
   inheritAttrs: false,
   props: previewGroupProps(),
   setup(props, { attrs, slots }) {

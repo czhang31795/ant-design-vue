@@ -18,8 +18,8 @@ Passing `okButtonProps` and `cancelButtonProps` can customize the ok button and 
 
 <template>
   <div>
-    <a-button type="primary" @click="showModal">Open Modal with customized button props</a-button>
-    <a-modal
+    <xy-button type="primary" @click="showModal">Open Modal with customized button props</xy-button>
+    <xy-modal
       v-model:open="open"
       title="Basic Modal"
       :ok-button-props="{ disabled: true }"
@@ -29,7 +29,7 @@ Passing `okButtonProps` and `cancelButtonProps` can customize the ok button and 
       <p>Some contents...</p>
       <p>Some contents...</p>
       <p>Some contents...</p>
-    </a-modal>
+    </xy-modal>
   </div>
 </template>
 <script lang="ts" setup>

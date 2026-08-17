@@ -1,4 +1,5 @@
 import type { App, Plugin } from 'vue';
+import { registerComponent } from '../_util/registerComponent';
 import Base from './Base';
 import Link from './Link';
 import Paragraph from './Paragraph';
@@ -15,11 +16,11 @@ Typography.Link = Link;
 Typography.Base = Base;
 
 Typography.install = function (app: App) {
-  app.component(Typography.name, Typography);
-  app.component(Typography.Text.displayName, Text);
-  app.component(Typography.Title.displayName, Title);
-  app.component(Typography.Paragraph.displayName, Paragraph);
-  app.component(Typography.Link.displayName, Link);
+  registerComponent(app, Typography);
+  registerComponent(app, Text);
+  registerComponent(app, Title);
+  registerComponent(app, Paragraph);
+  registerComponent(app, Link);
   return app;
 };
 

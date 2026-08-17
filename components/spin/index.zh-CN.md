@@ -31,6 +31,6 @@ coverDark: https://mdn.alipayobjects.com/huamei_7uahnr/afts/img/A*i43_ToFrL8YAAA
   ```jsx
   import { h } from 'vue';
   Spin.setDefaultIndicator({
-    indicator: h('i', { class: 'anticon anticon-loading anticon-spin ant-spin-dot' }),
+    indicator: h('i', { class: 'anticon anticon-loading anticon-spin xy-spin-dot' }),
   });
   ```

@@ -17,8 +17,8 @@ The most basic usage.
 </docs>
 
 <template>
-  <a-space direction="vertical" style="width: 100%">
-    <a-tree-select
+  <xy-space direction="vertical" style="width: 100%">
+    <xy-tree-select
       v-model:value="value"
       show-search
       style="width: 100%"
@@ -35,9 +35,9 @@ The most basic usage.
       tree-node-filter-prop="title"
     >
       <template #suffixIcon><SmileOutlined /></template>
-    </a-tree-select>
+    </xy-tree-select>
 
-    <a-tree-select
+    <xy-tree-select
       v-model:value="value1"
       show-search
       style="width: 100%"
@@ -56,8 +56,8 @@ The most basic usage.
       tree-node-filter-prop="title"
     >
       <template #suffixIcon><SmileOutlined /></template>
-    </a-tree-select>
-  </a-space>
+    </xy-tree-select>
+  </xy-space>
 </template>
 <script lang="ts" setup>
 import { ref, watch } from 'vue';

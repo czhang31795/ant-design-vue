@@ -1,4 +1,5 @@
 import type { App, VNode, PropType } from 'vue';
+import { registerComponent } from '../_util/registerComponent';
 import { provide, defineComponent, reactive, watch } from 'vue';
 import type { ModalLocale } from '../modal/locale';
 import { changeConfirmLocale } from '../modal/locale';
@@ -62,7 +63,7 @@ export const ANT_MARK = 'internalMark';
 
 const LocaleProvider = defineComponent({
   compatConfig: { MODE: 3 },
-  name: 'ALocaleProvider',
+  name: 'XyLocaleProvider',
   props: {
     locale: {
       type: Object as PropType<Locale>,
@@ -103,7 +104,7 @@ const LocaleProvider = defineComponent({
 
 /* istanbul ignore next */
 LocaleProvider.install = function (app: App) {
-  app.component(LocaleProvider.name, LocaleProvider);
+  registerComponent(app, LocaleProvider);
   return app;
 };
 

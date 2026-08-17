@@ -17,7 +17,7 @@ Search Value Hightlight
 </docs>
 
 <template>
-  <a-tree-select
+  <xy-tree-select
     v-model:value="value"
     v-model:searchValue="searchValue"
     show-search
@@ -48,7 +48,7 @@ Search Value Hightlight
         </template>
       </template>
     </template>
-  </a-tree-select>
+  </xy-tree-select>
 </template>
 <script lang="ts" setup>
 import type { TreeSelectProps } from 'ant-design-vue';

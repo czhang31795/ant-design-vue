@@ -17,10 +17,10 @@ Basic slider. When `range` is `true`, display as dual thumb mode. When `disable`
 
 <template>
   <div>
-    <a-slider id="test" v-model:value="value1" :disabled="disabled" />
-    <a-slider v-model:value="value2" range :disabled="disabled" />
+    <xy-slider id="test" v-model:value="value1" :disabled="disabled" />
+    <xy-slider v-model:value="value2" range :disabled="disabled" />
     Disabled:
-    <a-switch v-model:checked="disabled" size="small" />
+    <xy-switch v-model:checked="disabled" size="small" />
   </div>
 </template>
 <script lang="ts" setup>
@@ -30,7 +30,7 @@ const value2 = ref<[number, number]>([20, 50]);
 const disabled = ref<boolean>(false);
 </script>
 <style scoped>
-.code-box-demo .ant-slider {
+.code-box-demo .xy-slider {
   margin-bottom: 16px;
 }
 </style>

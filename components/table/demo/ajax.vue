@@ -24,7 +24,7 @@ Setting `rowSelection.preserveSelectedRowKeys` to keep the `key` when enable sel
 </docs>
 
 <template>
-  <a-table
+  <xy-table
     :columns="columns"
     :row-key="record => record.login.uuid"
     :data-source="dataSource"
@@ -35,7 +35,7 @@ Setting `rowSelection.preserveSelectedRowKeys` to keep the `key` when enable sel
     <template #bodyCell="{ column, text }">
       <template v-if="column.dataIndex === 'name'">{{ text.first }} {{ text.last }}</template>
     </template>
-  </a-table>
+  </xy-table>
 </template>
 <script lang="ts" setup>
 import { computed } from 'vue';
@@ -80,7 +80,7 @@ type APIResult = {
 };
 
 const queryData = async (params: APIParams) => {
-  const res = await axios.get<APIResult>('https://randomuser.me/api?noinfo', { params })
+  const res = await axios.get<APIResult>('https://randomuser.me/api?noinfo', { params });
   return res.data.results;
 };
 

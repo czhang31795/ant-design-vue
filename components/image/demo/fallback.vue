@@ -17,7 +17,7 @@ Load failed to display image placeholder.
 </docs>
 
 <template>
-  <a-image
+  <xy-image
     :width="200"
     :height="200"
     src="https://www.antdv.com/#error"

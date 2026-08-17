@@ -407,7 +407,7 @@ function PickerPanel<DateType>() {
 
       return () => {
         const {
-          prefixCls = 'ant-picker',
+          prefixCls = 'xy-picker',
           locale,
           generateConfig,
           disabledDate,

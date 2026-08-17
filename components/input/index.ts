@@ -1,4 +1,5 @@
 import type { App, Plugin } from 'vue';
+import { registerComponent } from '../_util/registerComponent';
 import Input from './Input';
 import Group from './Group';
 import Search from './Search';
@@ -12,11 +13,11 @@ Input.Password = Password;
 
 /* istanbul ignore next */
 Input.install = function (app: App) {
-  app.component(Input.name, Input);
-  app.component(Input.Group.name, Input.Group);
-  app.component(Input.Search.name, Input.Search);
-  app.component(Input.TextArea.name, Input.TextArea);
-  app.component(Input.Password.name, Input.Password);
+  registerComponent(app, Input);
+  registerComponent(app, Input.Group);
+  registerComponent(app, Input.Search);
+  registerComponent(app, Input.TextArea);
+  registerComponent(app, Input.Password);
   return app;
 };
 

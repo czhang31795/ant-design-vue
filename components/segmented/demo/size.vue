@@ -8,19 +8,19 @@ title:
 
 ## zh-CN
 
-我们为 `<a-segmented />` 组件定义了三种尺寸（大、默认、小），高度分别为 `40px`、`32px` 和 `24px`。
+我们为 `<xy-segmented />` 组件定义了三种尺寸（大、默认、小），高度分别为 `40px`、`32px` 和 `24px`。
 
 ## en-US
 There are three sizes of an a-segmented: `large` (40px), `default` (32px) and `small` (24px).
 </docs>
 <template>
-  <a-segmented v-model:value="value" :options="data" size="large" />
+  <xy-segmented v-model:value="value" :options="data" size="large" />
   <br />
   <br />
-  <a-segmented v-model:value="value2" :options="data" />
+  <xy-segmented v-model:value="value2" :options="data" />
   <br />
   <br />
-  <a-segmented v-model:value="value3" :options="data" size="small" />
+  <xy-segmented v-model:value="value3" :options="data" size="small" />
 </template>
 
 <script lang="ts" setup>

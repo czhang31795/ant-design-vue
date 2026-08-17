@@ -24,13 +24,13 @@ A Solution for displaying large amounts of data with long columns.
 </docs>
 
 <template>
-  <a-table :columns="columns" :data-source="data" :scroll="{ x: 1500, y: 300 }">
+  <xy-table :columns="columns" :data-source="data" :scroll="{ x: 1500, y: 300 }">
     <template #bodyCell="{ column }">
       <template v-if="column.key === 'operation'">
         <a>action</a>
       </template>
     </template>
-  </a-table>
+  </xy-table>
 </template>
 <script lang="ts" setup>
 import type { TableColumnsType } from 'ant-design-vue';

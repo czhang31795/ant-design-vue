@@ -139,7 +139,7 @@ export default defineComponent<ConfirmDialogProps>({
         }
       }
       const okType = props.okType || 'primary';
-      const prefixCls = props.prefixCls || 'ant-modal';
+      const prefixCls = props.prefixCls || 'xy-modal';
       const contentPrefixCls = `${prefixCls}-confirm`;
       const style = attrs.style || {};
       const mergedOkCancel = okCancel ?? type === 'confirm';

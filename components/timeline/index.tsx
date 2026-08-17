@@ -1,4 +1,5 @@
 import type { App, Plugin } from 'vue';
+import { registerComponent } from '../_util/registerComponent';
 import Timeline, { timelineProps } from './Timeline';
 import TimelineItem, { timelineItemProps } from './TimelineItem';
 
@@ -9,8 +10,8 @@ Timeline.Item = TimelineItem;
 
 /* istanbul ignore next */
 Timeline.install = function (app: App) {
-  app.component(Timeline.name, Timeline);
-  app.component(TimelineItem.name, TimelineItem);
+  registerComponent(app, Timeline);
+  registerComponent(app, TimelineItem);
   return app;
 };
 export { TimelineItem, timelineProps, timelineItemProps };

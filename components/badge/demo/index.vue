@@ -46,7 +46,7 @@ export default defineComponent({
 </script>
 
 <style>
-[id^='components-badge-demo-'] .ant-badge:not(.ant-badge-not-a-wrapper) {
+[id^='components-badge-demo-'] .xy-badge:not(.xy-badge-not-a-wrapper) {
   margin-right: 20px;
 }
 [id^='components-badge-demo-'] .head-example {
@@ -57,7 +57,7 @@ export default defineComponent({
   display: inline-block;
   vertical-align: middle;
 }
-[id^='components-badge-demo-'] .ant-badge-not-a-wrapper:not(.ant-badge-status) {
+[id^='components-badge-demo-'] .xy-badge-not-a-wrapper:not(.xy-badge-status) {
   margin-right: 8px;
 }
 </style>

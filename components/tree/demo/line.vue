@@ -20,13 +20,13 @@ Tree with connected line between nodes, turn on by `showLine`, customize the pre
   <div>
     <div style="margin-bottom: 16px">
       showLine:
-      <a-switch v-model:checked="showLine" />
+      <xy-switch v-model:checked="showLine" />
       <br />
       <br />
       showIcon:
-      <a-switch v-model:checked="showIcon" />
+      <xy-switch v-model:checked="showIcon" />
     </div>
-    <a-tree
+    <xy-tree
       :show-line="showLine"
       :show-icon="showIcon"
       :default-expanded-keys="['0-0-0']"
@@ -45,7 +45,7 @@ Tree with connected line between nodes, turn on by `showLine`, customize the pre
         <SmileTwoTone v-if="dataRef.key === '0-0-2'" />
         <component :is="defaultIcon" v-else />
       </template>
-    </a-tree>
+    </xy-tree>
   </div>
 </template>
 <script lang="ts" setup>

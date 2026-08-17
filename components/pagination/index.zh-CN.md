@@ -13,7 +13,7 @@ coverDark: https://mdn.alipayobjects.com/huamei_7uahnr/afts/img/A*WM86SrBC8TsAAA
 ## API
 
 ```html
-<a-pagination @change="onChange" :total="50" />
+<xy-pagination @change="onChange" :total="50" />
 ```
 
 | 参数 | 说明 | 类型 | 默认值 | 版本 |

@@ -15,10 +15,10 @@ A way to download QRCode.
 </docs>
 
 <template>
-  <a-qrcode ref="qrcodeCanvasRef" value="http://www.antdv.com" />
+  <xy-qrcode ref="qrcodeCanvasRef" value="http://www.antdv.com" />
   <br />
   <br />
-  <a-button type="primary" @click="dowloadChange">Downlaod</a-button>
+  <xy-button type="primary" @click="dowloadChange">Downlaod</xy-button>
 </template>
 
 <script lang="ts" setup>

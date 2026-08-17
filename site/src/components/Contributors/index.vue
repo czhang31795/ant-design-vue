@@ -55,11 +55,11 @@ watchEffect(() => {
   <div v-if="contributors.length > 0" class="contributors-list">
     <ul class="acss-1ppw8kl">
       <li v-for="item in contributors" :key="item.login">
-        <a-tooltip :title="`${isZn ? '文档贡献者：' : 'Contributor: '}${item.login}`">
+        <xy-tooltip :title="`${isZn ? '文档贡献者：' : 'Contributor: '}${item.login}`">
           <a :href="item.url" target="_blank">
-            <a-avatar :src="item.avatar" size="small" />
+            <xy-avatar :src="item.avatar" size="small" />
           </a>
-        </a-tooltip>
+        </xy-tooltip>
       </li>
     </ul>
     <span>
@@ -97,7 +97,7 @@ watchEffect(() => {
 }
 
 .acss-1ppw8kl li,
-.acss-1ppw8kl .ant-avatar + .ant-avatar {
+.acss-1ppw8kl .xy-avatar + .xy-avatar {
   -webkit-transition: all 0.3s;
   transition: all 0.3s;
   -webkit-margin-end: -8px;
@@ -105,7 +105,7 @@ watchEffect(() => {
 }
 
 .acss-1ppw8kl:hover li,
-.acss-1ppw8kl:hover .ant-avatar {
+.acss-1ppw8kl:hover .xy-avatar {
   -webkit-margin-end: 0;
   margin-inline-end: 0;
 }

@@ -21,7 +21,7 @@ A simple playground for column count and gutter.
     <div style="margin-bottom: 16px">
       <span style="margin-right: 6px">Horizontal Gutter (px):</span>
       <div style="width: 50%">
-        <a-slider
+        <xy-slider
           v-model:value="state.gutterKey"
           :min="0"
           :max="Object.keys(state.gutters).length - 1"
@@ -31,7 +31,7 @@ A simple playground for column count and gutter.
       </div>
       <span style="margin-right: 6px">Vertical Gutter (px):</span>
       <div style="width: 50%">
-        <a-slider
+        <xy-slider
           v-model:value="state.vgutterKey"
           :min="0"
           :max="Object.keys(state.vgutters).length - 1"
@@ -41,7 +41,7 @@ A simple playground for column count and gutter.
       </div>
       <span style="margin-right: 6px">Column Count:</span>
       <div style="width: 50%">
-        <a-slider
+        <xy-slider
           v-model:value="state.colCountKey"
           :min="0"
           :max="Object.keys(state.colCounts).length - 1"
@@ -50,32 +50,32 @@ A simple playground for column count and gutter.
         />
       </div>
     </div>
-    <a-row :gutter="[state.gutters[state.gutterKey], state.vgutters[state.vgutterKey]]">
-      <a-col
+    <xy-row :gutter="[state.gutters[state.gutterKey], state.vgutters[state.vgutterKey]]">
+      <xy-col
         v-for="item in state.colCounts[state.colCountKey]"
         :key="item.toString()"
         :span="24 / state.colCounts[state.colCountKey]"
       >
         <div>Column</div>
-      </a-col>
-      <a-col
+      </xy-col>
+      <xy-col
         v-for="item in state.colCounts[state.colCountKey]"
         :key="item.toString()"
         :span="24 / state.colCounts[state.colCountKey]"
       >
         <div>Column</div>
-      </a-col>
-    </a-row>
+      </xy-col>
+    </xy-row>
     Another Row:
-    <a-row :gutter="[state.gutters[state.gutterKey], state.vgutters[state.vgutterKey]]">
-      <a-col
+    <xy-row :gutter="[state.gutters[state.gutterKey], state.vgutters[state.vgutterKey]]">
+      <xy-col
         v-for="item in state.colCounts[state.colCountKey]"
         :key="item.toString()"
         :span="24 / state.colCounts[state.colCountKey]"
       >
         <div>Column</div>
-      </a-col>
-    </a-row>
+      </xy-col>
+    </xy-row>
     <pre>{{ rowColHtml }}</pre>
     <br />
     <pre>{{ rowColHtml }}</pre>
@@ -110,21 +110,21 @@ const state = reactive<{
 const rowColHtml = computed(() => {
   const colCount = state.colCounts[state.colCountKey];
   const getter = [state.gutters[state.gutterKey], state.vgutters[state.vgutterKey]];
-  let colCode = '<a-row :gutter="[' + getter + ']">\n';
+  let colCode = '<xy-row :gutter="[' + getter + ']">\n';
   for (let i = 0; i < colCount; i++) {
     const spanNum = 24 / colCount;
-    colCode += '  <a-col :span="' + spanNum + '"/>\n';
+    colCode += '  <xy-col :span="' + spanNum + '"/>\n';
   }
-  colCode += '</a-row>';
+  colCode += '</xy-row>';
   return colCode;
 });
 </script>
 <style scoped>
-:deep(#components-grid-demo-playground) [class~='ant-col'] {
+:deep(#components-grid-demo-playground) [class~='xy-col'] {
   background: transparent;
   border: 0;
 }
-:deep(#components-grid-demo-playground) [class~='ant-col'] > div {
+:deep(#components-grid-demo-playground) [class~='xy-col'] > div {
   height: 120px;
   font-size: 14px;
   line-height: 120px;
@@ -140,7 +140,7 @@ const rowColHtml = computed(() => {
 :deep(#components-grid-demo-playground) pre.demo-code {
   direction: ltr;
 }
-:deep(#components-grid-demo-playground) .ant-col {
+:deep(#components-grid-demo-playground) .xy-col {
   padding: 0;
 }
 </style>

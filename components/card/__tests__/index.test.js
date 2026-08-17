@@ -64,7 +64,7 @@ describe('Card', () => {
         sync: false,
       },
     );
-    wrapper.findAll('.ant-tabs-tab')[1].trigger('click');
+    wrapper.findAll('.xy-tabs-tab')[1].trigger('click');
     expect(onTabChange).toHaveBeenCalledWith('tab2');
   });
 
@@ -78,6 +78,6 @@ describe('Card', () => {
         );
       },
     });
-    expect(wrapper.findAll('.ant-card-actions').length).toBe(0);
+    expect(wrapper.findAll('.xy-card-actions').length).toBe(0);
   });
 });

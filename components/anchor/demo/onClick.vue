@@ -16,7 +16,7 @@ Clicking on an anchor does not record history.
 </docs>
 
 <template>
-  <a-anchor
+  <xy-anchor
     :affix="false"
     :items="[
       {
@@ -48,7 +48,7 @@ Clicking on an anchor does not record history.
       },
     ]"
     @click="handleClick"
-  ></a-anchor>
+  ></xy-anchor>
 </template>
 
 <script lang="ts" setup>

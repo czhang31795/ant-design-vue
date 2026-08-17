@@ -17,8 +17,8 @@ Add copywriting in rate components.
 </docs>
 <template>
   <span>
-    <a-rate v-model:value="value" :tooltips="desc" />
-    <span class="ant-rate-text">{{ desc[value - 1] }}</span>
+    <xy-rate v-model:value="value" :tooltips="desc" />
+    <span class="xy-rate-text">{{ desc[value - 1] }}</span>
   </span>
 </template>
 <script lang="ts" setup>

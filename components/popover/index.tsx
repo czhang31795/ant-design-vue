@@ -22,7 +22,7 @@ export type PopoverProps = Partial<ExtractPropTypes<ReturnType<typeof popoverPro
 
 const Popover = defineComponent({
   compatConfig: { MODE: 3 },
-  name: 'APopover',
+  name: 'XyPopover',
   inheritAttrs: false,
   props: initDefaultProps(popoverProps(), {
     ...tooltipDefaultProps(),

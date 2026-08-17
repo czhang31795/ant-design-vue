@@ -15,21 +15,21 @@ title:
 Provides multiple types of text and link.
 </docs>
 <template>
-  <a-space direction="vertical">
-    <a-typography-text>Ant Design Vue (default)</a-typography-text>
-    <a-typography-text type="secondary">Ant Design Vue (secondary)</a-typography-text>
-    <a-typography-text type="success">Ant Design Vue (success)</a-typography-text>
-    <a-typography-text type="warning">Ant Design Vue (warning)</a-typography-text>
-    <a-typography-text type="danger">Ant Design Vue (danger)</a-typography-text>
-    <a-typography-text disabled>Ant Design Vue (disabled)</a-typography-text>
-    <a-typography-text mark>Ant Design Vue (mark)</a-typography-text>
-    <a-typography-text code>Ant Design Vue (code)</a-typography-text>
-    <a-typography-text keyboard>Ant Design Vue (keyboard)</a-typography-text>
-    <a-typography-text underline>Ant Design Vue (underline)</a-typography-text>
-    <a-typography-text delete>Ant Design Vue (delete)</a-typography-text>
-    <a-typography-text strong>Ant Design Vue (strong)</a-typography-text>
-    <a-typography-link href="https://antdv.com" target="_blank">
+  <xy-space direction="vertical">
+    <xy-typography-text>Ant Design Vue (default)</xy-typography-text>
+    <xy-typography-text type="secondary">Ant Design Vue (secondary)</xy-typography-text>
+    <xy-typography-text type="success">Ant Design Vue (success)</xy-typography-text>
+    <xy-typography-text type="warning">Ant Design Vue (warning)</xy-typography-text>
+    <xy-typography-text type="danger">Ant Design Vue (danger)</xy-typography-text>
+    <xy-typography-text disabled>Ant Design Vue (disabled)</xy-typography-text>
+    <xy-typography-text mark>Ant Design Vue (mark)</xy-typography-text>
+    <xy-typography-text code>Ant Design Vue (code)</xy-typography-text>
+    <xy-typography-text keyboard>Ant Design Vue (keyboard)</xy-typography-text>
+    <xy-typography-text underline>Ant Design Vue (underline)</xy-typography-text>
+    <xy-typography-text delete>Ant Design Vue (delete)</xy-typography-text>
+    <xy-typography-text strong>Ant Design Vue (strong)</xy-typography-text>
+    <xy-typography-link href="https://antdv.com" target="_blank">
       Ant Design Vue (Link)
-    </a-typography-link>
-  </a-space>
+    </xy-typography-link>
+  </xy-space>
 </template>

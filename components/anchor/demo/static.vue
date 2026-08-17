@@ -16,7 +16,7 @@ Do not change state when page is scrolling.
 </docs>
 
 <template>
-  <a-anchor
+  <xy-anchor
     :affix="false"
     :items="[
       {
@@ -47,5 +47,5 @@ Do not change state when page is scrolling.
         ],
       },
     ]"
-  ></a-anchor>
+  ></xy-anchor>
 </template>

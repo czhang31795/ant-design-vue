@@ -6,7 +6,7 @@ export default function convertLegacyToken(mapToken: MapToken) {
 
   const raw = {
     theme: 'default',
-    'ant-prefix': 'ant',
+    'ant-prefix': 'xy',
     'html-selector': 'html',
 
     // -------- Colors -----------

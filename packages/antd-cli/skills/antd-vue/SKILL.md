@@ -40,4 +40,6 @@ description: >-
 
 - Vue 3 SFC，优先 `<script setup lang="ts">`
 - `import { Table, Form, ProLayout } from '@czxingyu/ant-design-vue'`
+- 模板标签前缀是 **`xy-`**（`<xy-table>`、`<xy-button>`、`<xy-pro-layout>`），不要写 `a-`
+- CSS class 前缀默认是 **`xy-`**（`xy-btn`、`xy-table`），不要写 `ant-btn`；图标仍是 `anticon`
 - 不要引入 `ant-design-vue`

@@ -1,5 +1,6 @@
 // @ts-ignore
 import type { App, PropType, Plugin, Ref, VNode, SlotsType } from 'vue';
+import { registerComponent } from './registerComponent';
 
 // https://stackoverflow.com/questions/46176165/ways-to-get-string-literal-type-of-array-values-without-enum-overhead
 export const tuple = <T extends string[]>(...args: T) => args;
@@ -35,10 +36,12 @@ declare type VNodeChildAtom = VNode | string | number | boolean | null | undefin
 // eslint-disable-next-line no-undef
 export type VueNode = VNodeChildAtom | VNodeChildAtom[] | VNode;
 
+export { registerComponent, TAG_PREFIX, NAME_PREFIX } from './registerComponent';
+
 export const withInstall = <T>(comp: T) => {
   const c = comp as any;
   c.install = function (app: App) {
-    app.component(c.displayName || c.name, comp);
+    registerComponent(app, comp);
   };
 
   return comp as T & Plugin;

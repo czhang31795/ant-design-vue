@@ -18,21 +18,21 @@ Complex nested panels with quick collapse and disabled resize.
 
 <template>
   <div class="demo-splitter">
-    <a-splitter>
-      <a-splitter-panel collapsible default-size="30%" :resizable="false">
+    <xy-splitter>
+      <xy-splitter-panel collapsible default-size="30%" :resizable="false">
         <div class="demo-panel">Left</div>
-      </a-splitter-panel>
-      <a-splitter-panel>
-        <a-splitter layout="vertical" style="height: 100%">
-          <a-splitter-panel>
+      </xy-splitter-panel>
+      <xy-splitter-panel>
+        <xy-splitter layout="vertical" style="height: 100%">
+          <xy-splitter-panel>
             <div class="demo-panel">Top</div>
-          </a-splitter-panel>
-          <a-splitter-panel>
+          </xy-splitter-panel>
+          <xy-splitter-panel>
             <div class="demo-panel">Bottom</div>
-          </a-splitter-panel>
-        </a-splitter>
-      </a-splitter-panel>
-    </a-splitter>
+          </xy-splitter-panel>
+        </xy-splitter>
+      </xy-splitter-panel>
+    </xy-splitter>
   </div>
 </template>
 

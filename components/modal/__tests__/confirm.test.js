@@ -44,7 +44,7 @@ describe('Modal.confirm triggers callbacks correctly', () => {
     });
     await sleep();
     // first Modal
-    $$('.ant-btn')[0].click();
+    $$('.xy-btn')[0].click();
     expect(onCancel.mock.calls.length).toBe(1);
     expect(onOk.mock.calls.length).toBe(0);
   });
@@ -58,7 +58,7 @@ describe('Modal.confirm triggers callbacks correctly', () => {
     });
     await sleep();
     // second Modal
-    $$('.ant-btn-primary')[0].click();
+    $$('.xy-btn-primary')[0].click();
     expect(onCancel.mock.calls.length).toBe(0);
     expect(onOk.mock.calls.length).toBe(1);
   });
@@ -67,7 +67,7 @@ describe('Modal.confirm triggers callbacks correctly', () => {
     open();
     await sleep();
     // Third Modal
-    $$('.ant-btn')[0].click();
+    $$('.xy-btn')[0].click();
     expect(errorSpy).not.toHaveBeenCalled();
   });
 
@@ -75,15 +75,15 @@ describe('Modal.confirm triggers callbacks correctly', () => {
     open();
     await sleep();
     // Fourth Modal
-    $$('.ant-btn-primary')[0].click();
+    $$('.xy-btn-primary')[0].click();
     expect(errorSpy).not.toHaveBeenCalled();
   });
 
   it('ok only', async () => {
     open({ okCancel: false });
     await sleep();
-    expect($$('.ant-btn')).toHaveLength(1);
-    expect($$('.ant-btn')[0].innerHTML).toContain('OK');
+    expect($$('.xy-btn')).toHaveLength(1);
+    expect($$('.xy-btn')[0].innerHTML).toContain('OK');
   });
 
   it('allows extra props on buttons', async () => {
@@ -92,9 +92,9 @@ describe('Modal.confirm triggers callbacks correctly', () => {
       cancelButtonProps: { 'data-test': 'baz' },
     });
     await sleep();
-    expect($$('.ant-btn')).toHaveLength(2);
-    expect($$('.ant-btn')[0].attributes['data-test'].value).toBe('baz');
-    expect($$('.ant-btn')[1].disabled).toBe(true);
+    expect($$('.xy-btn')).toHaveLength(2);
+    expect($$('.xy-btn')[0].attributes['data-test'].value).toBe('baz');
+    expect($$('.xy-btn')[1].disabled).toBe(true);
   });
 
   it('trigger onCancel once when click on cancel button', async () => {
@@ -107,7 +107,7 @@ describe('Modal.confirm triggers callbacks correctly', () => {
       onOk,
     });
     await sleep();
-    $$('.ant-btn')[0].click();
+    $$('.xy-btn')[0].click();
     expect(onCancel.mock.calls.length).toBe(1);
     expect(onOk.mock.calls.length).toBe(0);
   });

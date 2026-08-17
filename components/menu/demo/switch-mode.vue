@@ -18,21 +18,21 @@ Show the dynamic switching mode (between `inline` and `vertical`).
 
 <template>
   <div>
-    <a-switch :checked="state.mode === 'vertical'" @change="changeMode" />
+    <xy-switch :checked="state.mode === 'vertical'" @change="changeMode" />
     Change Mode
-    <span class="ant-divider" style="margin: 0 1em" />
-    <a-switch :checked="state.theme === 'dark'" @change="changeTheme" />
+    <span class="xy-divider" style="margin: 0 1em" />
+    <xy-switch :checked="state.theme === 'dark'" @change="changeTheme" />
     Change Theme
     <br />
     <br />
-    <a-menu
+    <xy-menu
       v-model:openKeys="state.openKeys"
       v-model:selectedKeys="state.selectedKeys"
       style="width: 256px"
       :mode="state.mode"
       :items="items"
       :theme="state.theme"
-    ></a-menu>
+    ></xy-menu>
   </div>
 </template>
 <script lang="ts" setup>

@@ -25,7 +25,7 @@ import { ProLayout } from '@czxingyu/ant-design-vue';
 
 </docs>
 <template>
-  <a-pro-layout
+  <xy-pro-layout
     layout="top"
     v-model:selected-keys="selectedKeys"
     title="Ant Design Vue"
@@ -44,7 +44,7 @@ import { ProLayout } from '@czxingyu/ant-design-vue';
       </p>
       <p>选中菜单：{{ selectedKeys[0] }} · {{ currentLabel }}</p>
     </div>
-  </a-pro-layout>
+  </xy-pro-layout>
 </template>
 <script lang="ts" setup>
 import { computed, h, ref } from 'vue';

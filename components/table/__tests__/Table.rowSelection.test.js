@@ -112,19 +112,19 @@ describe('Table.rowSelection', () => {
     checkboxAll.trigger('change');
     const pagers = wrapper.findAllComponents({ name: 'Pager' });
     await asyncExpect(() => {
-      expect(wrapper.findComponent({ name: 'ACheckbox' }).props()).toEqual(
+      expect(wrapper.findComponent({ name: 'XyCheckbox' }).props()).toEqual(
         expect.objectContaining({ checked: true, indeterminate: false }),
       );
     });
     pagers[1].trigger('click');
     await asyncExpect(() => {
-      expect(wrapper.findComponent({ name: 'ACheckbox' }).props()).toEqual(
+      expect(wrapper.findComponent({ name: 'XyCheckbox' }).props()).toEqual(
         expect.objectContaining({ checked: false, indeterminate: false }),
       );
     });
     pagers[0].trigger('click');
     await asyncExpect(() => {
-      expect(wrapper.findComponent({ name: 'ACheckbox' }).props()).toEqual(
+      expect(wrapper.findComponent({ name: 'XyCheckbox' }).props()).toEqual(
         expect.objectContaining({ checked: true, indeterminate: false }),
       );
     });
@@ -231,7 +231,7 @@ describe('Table.rowSelection', () => {
       },
       { sync: false },
     );
-    dropdownWrapper.findAll('.ant-dropdown-menu-item')[0].trigger('click');
+    dropdownWrapper.findAll('.xy-dropdown-menu-item')[0].trigger('click');
 
     expect(handleChange.mock.calls[0][0]).toEqual([0, 1, 2, 3]);
   });
@@ -255,7 +255,7 @@ describe('Table.rowSelection', () => {
       },
       { sync: false },
     );
-    const div = dropdownWrapper.findAll('li.ant-dropdown-menu-item');
+    const div = dropdownWrapper.findAll('li.xy-dropdown-menu-item');
     div[1].trigger('click');
 
     expect(handleSelectInvert).toBeCalledWith([1, 2, 3]);
@@ -291,12 +291,12 @@ describe('Table.rowSelection', () => {
       { sync: false },
     );
     await sleep();
-    expect(dropdownWrapper.findAll('.ant-dropdown-menu-item').length).toBe(4);
+    expect(dropdownWrapper.findAll('.xy-dropdown-menu-item').length).toBe(4);
 
-    dropdownWrapper.findAll('.ant-dropdown-menu-item')[2].trigger('click');
+    dropdownWrapper.findAll('.xy-dropdown-menu-item')[2].trigger('click');
     expect(handleSelectOdd).toBeCalledWith([0, 1, 2, 3]);
 
-    dropdownWrapper.findAll('.ant-dropdown-menu-item')[3].trigger('click');
+    dropdownWrapper.findAll('.xy-dropdown-menu-item')[3].trigger('click');
     expect(handleSelectEven).toBeCalledWith([0, 1, 2, 3]);
   });
 
@@ -323,7 +323,7 @@ describe('Table.rowSelection', () => {
       },
       { sync: false },
     );
-    expect(dropdownWrapper.findAll('.ant-dropdown-menu-item').length).toBe(2);
+    expect(dropdownWrapper.findAll('.xy-dropdown-menu-item').length).toBe(2);
   });
 
   it('handle custom selection onSelect correctly when hide default selection options', () => {
@@ -354,12 +354,12 @@ describe('Table.rowSelection', () => {
       },
       { sync: false },
     );
-    expect(dropdownWrapper.findAll('.ant-dropdown-menu-item').length).toBe(2);
+    expect(dropdownWrapper.findAll('.xy-dropdown-menu-item').length).toBe(2);
 
-    dropdownWrapper.findAll('.ant-dropdown-menu-item')[0].trigger('click');
+    dropdownWrapper.findAll('.xy-dropdown-menu-item')[0].trigger('click');
     expect(handleSelectOdd).toBeCalledWith([0, 1, 2, 3]);
 
-    dropdownWrapper.findAll('.ant-dropdown-menu-item')[1].trigger('click');
+    dropdownWrapper.findAll('.xy-dropdown-menu-item')[1].trigger('click');
     expect(handleSelectEven).toBeCalledWith([0, 1, 2, 3]);
   });
 
@@ -427,7 +427,7 @@ describe('Table.rowSelection', () => {
     wrapper.findAll('input')[1].element.checked = true;
     wrapper.findAll('input')[1].trigger('change');
     await asyncExpect(() => {
-      expect(wrapper.findAll('tbody tr')[0].classes()).toContain('ant-table-row-selected');
+      expect(wrapper.findAll('tbody tr')[0].classes()).toContain('xy-table-row-selected');
     });
   });
 
@@ -456,8 +456,8 @@ describe('Table.rowSelection', () => {
       sync: false,
     });
     await asyncExpect(() => {
-      expect(wrapper.findAllComponents({ name: 'ACheckbox' }).length).toBe(5);
-      const allCheckbox = wrapper.findAllComponents({ name: 'ACheckbox' });
+      expect(wrapper.findAllComponents({ name: 'XyCheckbox' }).length).toBe(5);
+      const allCheckbox = wrapper.findAllComponents({ name: 'XyCheckbox' });
       Array(allCheckbox.length).forEach((_, index) => {
         const checkbox = allCheckbox[index];
         expect(checkbox.vm.checked).toBe(true);
@@ -471,8 +471,8 @@ describe('Table.rowSelection', () => {
       });
     });
     await asyncExpect(() => {
-      expect(wrapper.findAllComponents({ name: 'ACheckbox' }).length).toBe(4);
-      const allCheckbox = wrapper.findAllComponents({ name: 'ACheckbox' });
+      expect(wrapper.findAllComponents({ name: 'XyCheckbox' }).length).toBe(4);
+      const allCheckbox = wrapper.findAllComponents({ name: 'XyCheckbox' });
       Array(allCheckbox.length).forEach((_, index) => {
         const checkbox = allCheckbox[index];
         expect(checkbox.vm.checked).toBe(true);
@@ -556,17 +556,17 @@ describe('Table.rowSelection', () => {
     function clickFilter(indexList) {
       indexList.forEach(index => {
         dropdownWrapper
-          .findAll('.ant-dropdown-menu-item .ant-checkbox-wrapper')
+          .findAll('.xy-dropdown-menu-item .xy-checkbox-wrapper')
           [index].trigger('click');
       });
-      dropdownWrapper.find('.ant-table-filter-dropdown-btns .ant-btn-primary').trigger('click');
+      dropdownWrapper.find('.xy-table-filter-dropdown-btns .xy-btn-primary').trigger('click');
     }
 
     function clickItem() {
       wrapper.findAll(
-        'tbody .ant-table-selection-column .ant-checkbox-input',
+        'tbody .xy-table-selection-column .xy-checkbox-input',
       )[0].element.checked = true;
-      wrapper.findAll('tbody .ant-table-selection-column .ant-checkbox-input')[0].trigger('change');
+      wrapper.findAll('tbody .xy-table-selection-column .xy-checkbox-input')[0].trigger('change');
     }
 
     // Check Jack
@@ -636,13 +636,13 @@ describe('Table.rowSelection', () => {
     checkboxes[1].element.checked = true;
     checkboxes[1].trigger('change');
     await sleep();
-    expect(wrapper.findComponent({ name: 'ACheckbox' }).props()).toEqual(
+    expect(wrapper.findComponent({ name: 'XyCheckbox' }).props()).toEqual(
       expect.objectContaining({ checked: false, indeterminate: true }),
     );
     checkboxes[2].element.checked = true;
     checkboxes[2].trigger('change');
     await asyncExpect(() => {
-      expect(wrapper.findComponent({ name: 'ACheckbox' }).props()).toEqual(
+      expect(wrapper.findComponent({ name: 'XyCheckbox' }).props()).toEqual(
         expect.objectContaining({ checked: true, indeterminate: false }),
       );
     });

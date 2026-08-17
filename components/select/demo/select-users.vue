@@ -17,7 +17,7 @@ A complete multiple select sample with remote search, debounce fetch, ajax callb
 </docs>
 
 <template>
-  <a-select
+  <xy-select
     v-model:value="state.value"
     mode="multiple"
     label-in-value
@@ -29,9 +29,9 @@ A complete multiple select sample with remote search, debounce fetch, ajax callb
     @search="fetchUser"
   >
     <template v-if="state.fetching" #notFoundContent>
-      <a-spin size="small" />
+      <xy-spin size="small" />
     </template>
-  </a-select>
+  </xy-select>
 </template>
 <script lang="ts" setup>
 import { reactive, watch } from 'vue';

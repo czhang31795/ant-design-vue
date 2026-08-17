@@ -19,7 +19,7 @@ Use `stringMode` to support high precision decimals support.
 </docs>
 
 <template>
-  <a-input-number
+  <xy-input-number
     v-model:value="value"
     style="width: 200px"
     :min="0"

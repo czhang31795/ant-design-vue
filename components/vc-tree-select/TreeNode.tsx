@@ -10,6 +10,6 @@ export interface TreeNodeProps extends Omit<DataNode, 'children'> {
 /** This is a placeholder, not real render in dom */
 const TreeNode: FunctionalComponent<TreeNodeProps> & { isTreeSelectNode: boolean } = () => null;
 TreeNode.inheritAttrs = false;
-TreeNode.displayName = 'ATreeSelectNode';
+TreeNode.displayName = 'XyTreeSelectNode';
 TreeNode.isTreeSelectNode = true;
 export default TreeNode;

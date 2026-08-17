@@ -15,7 +15,7 @@ title:
 By using `status` of `Steps`, you can specify the state for current step.
 </docs>
 <template>
-  <a-steps
+  <xy-steps
     v-model:current="current"
     status="error"
     :items="[
@@ -32,7 +32,7 @@ By using `status` of `Steps`, you can specify the state for current step.
         description,
       },
     ]"
-  ></a-steps>
+  ></xy-steps>
 </template>
 <script lang="ts" setup>
 import { ref } from 'vue';

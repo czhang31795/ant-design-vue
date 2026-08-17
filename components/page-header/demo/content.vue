@@ -18,7 +18,7 @@ Show all props provided by PageHeader.
 
 <template>
   <div class="components-page-header-demo-content">
-    <a-page-header
+    <xy-page-header
       title="Title"
       class="site-page-header"
       sub-title="This is a subtitle"
@@ -26,38 +26,38 @@ Show all props provided by PageHeader.
       :breadcrumb="{ routes }"
     >
       <template #tags>
-        <a-tag color="blue">Running</a-tag>
+        <xy-tag color="blue">Running</xy-tag>
       </template>
       <template #extra>
-        <a-button key="3">Operation</a-button>
-        <a-button key="2">Operation</a-button>
-        <a-button key="1" type="primary">Primary</a-button>
-        <a-dropdown key="more">
-          <a-button :style="{ border: 'none', padding: 0 }">
+        <xy-button key="3">Operation</xy-button>
+        <xy-button key="2">Operation</xy-button>
+        <xy-button key="1" type="primary">Primary</xy-button>
+        <xy-dropdown key="more">
+          <xy-button :style="{ border: 'none', padding: 0 }">
             <EllipsisOutlined :style="{ fontSize: '20px', verticalAlign: 'top' }" />
-          </a-button>
+          </xy-button>
           <template #overlay>
-            <a-menu>
-              <a-menu-item>
+            <xy-menu>
+              <xy-menu-item>
                 <a target="_blank" rel="noopener noreferrer" href="http://www.alipay.com/">
                   1st menu item
                 </a>
-              </a-menu-item>
-              <a-menu-item>
+              </xy-menu-item>
+              <xy-menu-item>
                 <a target="_blank" rel="noopener noreferrer" href="http://www.taobao.com/">
                   2nd menu item
                 </a>
-              </a-menu-item>
-              <a-menu-item>
+              </xy-menu-item>
+              <xy-menu-item>
                 <a target="_blank" rel="noopener noreferrer" href="http://www.tmall.com/">
                   3rd menu item
                 </a>
-              </a-menu-item>
-            </a-menu>
+              </xy-menu-item>
+            </xy-menu>
           </template>
-        </a-dropdown>
+        </xy-dropdown>
       </template>
-      <a-row class="content">
+      <xy-row class="content">
         <div style="flex: 1">
           <p>
             Ant Design interprets the color system into two levels: a system-level color system and
@@ -84,8 +84,8 @@ Show all props provided by PageHeader.
             style="width: 100%"
           />
         </div>
-      </a-row>
-    </a-page-header>
+      </xy-row>
+    </xy-page-header>
   </div>
 </template>
 
@@ -133,7 +133,7 @@ const iconLinks: IconLink[] = [
   align-items: center;
 }
 
-#components-page-header-demo-content .ant-page-header-rtl .image {
+#components-page-header-demo-content .xy-page-header-rtl .image {
   margin: 0 60px 0 0;
 }
 
@@ -153,12 +153,12 @@ const iconLinks: IconLink[] = [
   height: 20px;
 }
 
-#components-page-header-demo-content .ant-page-header-rtl .example-link {
+#components-page-header-demo-content .xy-page-header-rtl .example-link {
   float: right;
   margin-right: 0;
   margin-left: 16px;
 }
-#components-page-header-demo-content .ant-page-header-rtl .example-link-icon {
+#components-page-header-demo-content .xy-page-header-rtl .example-link-icon {
   margin-right: 0;
   margin-left: 8px;
 }

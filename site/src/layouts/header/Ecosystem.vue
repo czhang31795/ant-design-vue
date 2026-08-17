@@ -1,39 +1,39 @@
 <template>
-  <a-menu class="ecosystem">
-    <a-menu-item-group key="ecosystem" :title="$t('app.header.menu.ecosystem')">
-      <a-menu-item key="pro">
+  <xy-menu class="ecosystem">
+    <xy-menu-item-group key="ecosystem" :title="$t('app.header.menu.ecosystem')">
+      <xy-menu-item key="pro">
         <a target="_blank" href="https://pro.antdv.com">Pro For Vue2(Free)</a>
-      </a-menu-item>
-      <a-menu-item key="vip">
+      </xy-menu-item>
+      <xy-menu-item key="vip">
         <a target="_blank" href="https://store.antdv.com/pro">Pro For Vue3(VIP)</a>
-      </a-menu-item>
-      <a-menu-item key="design">
+      </xy-menu-item>
+      <xy-menu-item key="design">
         <router-link :to="getLocalizedPathname('/docs/vue/download/', isZhCN)">
           {{ isZhCN ? '设计资源' : 'Design Resources' }}
         </router-link>
-      </a-menu-item>
-      <!-- <a-menu-item key="vscode">
+      </xy-menu-item>
+      <!-- <xy-menu-item key="vscode">
         <a
           target="_blank"
           href="https://marketplace.visualstudio.com/items?itemName=ant-design-vue.vscode-ant-design-vue-helper"
         >
           VS Code Extension
         </a>
-      </a-menu-item> -->
-      <a-menu-item key="awesome">
+      </xy-menu-item> -->
+      <xy-menu-item key="awesome">
         <a target="_blank" href="https://github.com/vueComponent/ant-design-vue-awesome">Awesome</a>
-      </a-menu-item>
-      <a-menu-item key="qq1">
+      </xy-menu-item>
+      <xy-menu-item key="qq1">
         <a>QQ 1群(217490093) 已满</a>
-      </a-menu-item>
-      <a-menu-item key="qq2">
+      </xy-menu-item>
+      <xy-menu-item key="qq2">
         <a>QQ 2群(809774695) 已满</a>
-      </a-menu-item>
-      <a-menu-item key="qq3">
+      </xy-menu-item>
+      <xy-menu-item key="qq3">
         <a>QQ 3群(927828249)</a>
-      </a-menu-item>
-    </a-menu-item-group>
-  </a-menu>
+      </xy-menu-item>
+    </xy-menu-item-group>
+  </xy-menu>
 </template>
 <script lang="ts">
 import { computed, defineComponent, inject } from 'vue';

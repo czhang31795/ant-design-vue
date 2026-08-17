@@ -32,7 +32,7 @@ If there are special needs (only modifying single component language), Please us
 
 ```html
 <template>
-  <a-date-picker v-model:value="value" :locale="locale" />
+  <xy-date-picker v-model:value="value" :locale="locale" />
 </template>
 <script>
   import locale from 'ant-design-vue/es/date-picker/locale/zh_CN';
@@ -50,9 +50,9 @@ If there are special needs (only modifying single component language), Please us
 
 ```html
 <template>
-  <a-config-provider :locale="locale">
-    <a-date-picker v-model:value="value" />
-  </a-config-provider>
+  <xy-config-provider :locale="locale">
+    <xy-date-picker v-model:value="value" />
+  </xy-config-provider>
 </template>
 <script>
   // The default locale is en-US, if you want to use other locale, just set locale in entry file globally.

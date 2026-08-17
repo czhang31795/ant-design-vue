@@ -19,31 +19,31 @@ Under different screen sizes, there should be different performance
 
 <template>
   <div class="components-page-header-demo-responsive" style="border: 1px solid rgb(235, 237, 240)">
-    <a-page-header title="Title" sub-title="This is a subtitle" @back="() => $router.go(-1)">
+    <xy-page-header title="Title" sub-title="This is a subtitle" @back="() => $router.go(-1)">
       <template #extra>
-        <a-button key="3">Operation</a-button>
-        <a-button key="2">Operation</a-button>
-        <a-button key="1" type="primary">Primary</a-button>
+        <xy-button key="3">Operation</xy-button>
+        <xy-button key="2">Operation</xy-button>
+        <xy-button key="1" type="primary">Primary</xy-button>
       </template>
       <template #footer>
-        <a-tabs>
-          <a-tab-pane key="1" tab="Details" />
-          <a-tab-pane key="2" tab="Rule" />
-        </a-tabs>
+        <xy-tabs>
+          <xy-tab-pane key="1" tab="Details" />
+          <xy-tab-pane key="2" tab="Rule" />
+        </xy-tabs>
       </template>
       <div class="content">
         <div class="main">
-          <a-descriptions size="small" :column="2">
-            <a-descriptions-item label="Created">Lili Qu</a-descriptions-item>
-            <a-descriptions-item label="Association">
+          <xy-descriptions size="small" :column="2">
+            <xy-descriptions-item label="Created">Lili Qu</xy-descriptions-item>
+            <xy-descriptions-item label="Association">
               <a>421421</a>
-            </a-descriptions-item>
-            <a-descriptions-item label="Creation Time">2017-01-10</a-descriptions-item>
-            <a-descriptions-item label="Effective Time">2017-10-10</a-descriptions-item>
-            <a-descriptions-item label="Remarks">
+            </xy-descriptions-item>
+            <xy-descriptions-item label="Creation Time">2017-01-10</xy-descriptions-item>
+            <xy-descriptions-item label="Effective Time">2017-10-10</xy-descriptions-item>
+            <xy-descriptions-item label="Remarks">
               Gonghu Road, Xihu District, Hangzhou, Zhejiang, China
-            </a-descriptions-item>
-          </a-descriptions>
+            </xy-descriptions-item>
+          </xy-descriptions>
         </div>
         <div class="extra">
           <div
@@ -53,18 +53,18 @@ Under different screen sizes, there should be different performance
               justifyContent: 'flex-end',
             }"
           >
-            <a-statistic
+            <xy-statistic
               title="Status"
               value="Pending"
               :style="{
                 marginRight: '32px',
               }"
             />
-            <a-statistic title="Price" prefix="$" :value="568.08" />
+            <xy-statistic title="Price" prefix="$" :value="568.08" />
           </div>
         </div>
       </div>
-    </a-page-header>
+    </xy-page-header>
   </div>
 </template>
 <style scoped>
@@ -77,7 +77,7 @@ Under different screen sizes, there should be different performance
 #components-page-header-demo-responsive .content {
   display: flex;
 }
-#components-page-header-demo-responsive .ant-statistic-content {
+#components-page-header-demo-responsive .xy-statistic-content {
   font-size: 20px;
   line-height: 28px;
 }

@@ -17,7 +17,7 @@ Customize column header content with `#headerCell`, and set header cell attribut
 </docs>
 
 <template>
-  <a-table :columns="columns" :data-source="data" :pagination="false">
+  <xy-table :columns="columns" :data-source="data" :pagination="false">
     <template #title>自定义表格标题</template>
 
     <template #headerCell="{ column, title }">
@@ -25,9 +25,9 @@ Customize column header content with `#headerCell`, and set header cell attribut
         <span>
           <user-outlined style="margin-right: 4px" />
           {{ title }}
-          <a-tooltip title="用户姓名">
+          <xy-tooltip title="用户姓名">
             <info-circle-outlined style="margin-left: 4px; color: rgba(0, 0, 0, 0.45)" />
-          </a-tooltip>
+          </xy-tooltip>
         </span>
       </template>
       <template v-else-if="column.key === 'age'">
@@ -50,7 +50,7 @@ Customize column header content with `#headerCell`, and set header cell attribut
         <a>Edit</a>
       </template>
     </template>
-  </a-table>
+  </xy-table>
 </template>
 <script lang="ts" setup>
 import { UserOutlined, InfoCircleOutlined, SettingOutlined } from '@ant-design/icons-vue';

@@ -10,7 +10,7 @@ import useStyle from './style';
 
 export default defineComponent({
   compatConfig: { MODE: 3 },
-  name: 'ACheckboxGroup',
+  name: 'XyCheckboxGroup',
   inheritAttrs: false,
   props: checkboxGroupProps(),
   // emits: ['change', 'update:value'],

@@ -33,7 +33,7 @@ coverDark: https://mdn.alipayobjects.com/huamei_7uahnr/afts/img/A*3OpRQKcygo8AAA
 
 ```html
 <template>
-  <a-date-picker v-model:value="value" :locale="locale" />
+  <xy-date-picker v-model:value="value" :locale="locale" />
 </template>
 <script>
   import locale from 'ant-design-vue/es/date-picker/locale/zh_CN';
@@ -51,9 +51,9 @@ coverDark: https://mdn.alipayobjects.com/huamei_7uahnr/afts/img/A*3OpRQKcygo8AAA
 
 ```html
 <template>
-  <a-config-provider :locale="locale">
-    <a-date-picker v-model:value="value" />
-  </a-config-provider>
+  <xy-config-provider :locale="locale">
+    <xy-date-picker v-model:value="value" />
+  </xy-config-provider>
 </template>
 <script>
   // 默认语言为 en-US，如果你需要设置其他语言，推荐在入口文件全局设置 locale

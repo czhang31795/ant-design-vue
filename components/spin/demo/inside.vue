@@ -18,7 +18,7 @@ Spin in a container.
 
 <template>
   <div class="example">
-    <a-spin />
+    <xy-spin />
   </div>
 </template>
 <style scoped>

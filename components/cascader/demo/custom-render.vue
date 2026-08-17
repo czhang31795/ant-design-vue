@@ -16,7 +16,7 @@ For instance, add an external link after the selected value.
 
 </docs>
 <template>
-  <a-cascader
+  <xy-cascader
     v-model:value="value"
     placeholder="Please select"
     :options="options"
@@ -34,7 +34,7 @@ For instance, add an external link after the selected value.
         <span v-else>{{ label }} /</span>
       </span>
     </template>
-  </a-cascader>
+  </xy-cascader>
 </template>
 
 <script lang="ts" setup>

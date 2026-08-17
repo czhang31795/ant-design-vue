@@ -14,34 +14,34 @@ title:
 Custom each Segmented Item.
 </docs>
 <template>
-  <a-segmented v-model:value="value" :options="data">
+  <xy-segmented v-model:value="value" :options="data">
     <template #label="{ value: val, payload = {} }">
       <div style="padding: 4px 4px">
         <template v-if="payload.icon">
-          <a-avatar :src="payload.src" :style="payload.style">
+          <xy-avatar :src="payload.src" :style="payload.style">
             <template #icon><component :is="payload.icon" /></template>
             {{ payload.content }}
-          </a-avatar>
+          </xy-avatar>
         </template>
         <template v-else>
-          <a-avatar :src="payload.src" :style="payload.style">
+          <xy-avatar :src="payload.src" :style="payload.style">
             {{ payload.content }}
-          </a-avatar>
+          </xy-avatar>
         </template>
         <div>{{ val }}</div>
       </div>
     </template>
-  </a-segmented>
+  </xy-segmented>
   <br />
   <br />
-  <a-segmented v-model:value="value2" :options="options2">
+  <xy-segmented v-model:value="value2" :options="options2">
     <template #label="{ payload }">
       <div style="padding: 4px 4px">
         <div>{{ payload.title }}</div>
         <div>{{ payload.subTitle }}</div>
       </div>
     </template>
-  </a-segmented>
+  </xy-segmented>
 </template>
 
 <script lang="ts" setup>

@@ -17,5 +17,5 @@ Simplest Usage.
 </docs>
 
 <template>
-  <a-empty />
+  <xy-empty />
 </template>

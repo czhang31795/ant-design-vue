@@ -18,9 +18,9 @@ Change the placement of the guide relative to the target, there are 12 placement
 </docs>
 
 <template>
-  <a-button ref="btnRef" type="primary" @click="handleOpen(true)">Begin Tour</a-button>
+  <xy-button ref="btnRef" type="primary" @click="handleOpen(true)">Begin Tour</xy-button>
 
-  <a-tour :open="open" :steps="steps" @close="handleOpen(false)" />
+  <xy-tour :open="open" :steps="steps" @close="handleOpen(false)" />
 </template>
 
 <script lang="ts" setup>

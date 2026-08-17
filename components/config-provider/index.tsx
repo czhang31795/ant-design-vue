@@ -1,4 +1,5 @@
 import type { App, MaybeRef, Plugin, WatchStopHandle } from 'vue';
+import { registerComponent } from '../_util/registerComponent';
 import { watch, computed, reactive, defineComponent, watchEffect } from 'vue';
 import defaultRenderEmpty from './renderEmpty';
 import type { RenderEmptyHandler } from './renderEmpty';
@@ -36,7 +37,7 @@ export type {
   CSPConfig,
   DirectionType,
 } from './context';
-export const defaultPrefixCls = 'ant';
+export const defaultPrefixCls = 'xy';
 export { defaultIconPrefixCls };
 function getGlobalPrefixCls() {
   return globalConfigForApi.prefixCls || defaultPrefixCls;
@@ -122,13 +123,13 @@ export const globalConfig = () => ({
 
 const ConfigProvider = defineComponent({
   compatConfig: { MODE: 3 },
-  name: 'AConfigProvider',
+  name: 'XyConfigProvider',
   inheritAttrs: false,
   props: configProviderProps(),
   setup(props, { slots }) {
     const parentContext = useConfigContextInject();
     const getPrefixCls = (suffixCls?: string, customizePrefixCls?: string) => {
-      const { prefixCls = 'ant' } = props;
+      const { prefixCls = defaultPrefixCls } = props;
       if (customizePrefixCls) return customizePrefixCls;
       const mergedPrefixCls = prefixCls || parentContext.getPrefixCls('');
       return suffixCls ? `${mergedPrefixCls}-${suffixCls}` : mergedPrefixCls;
@@ -292,7 +293,7 @@ const ConfigProvider = defineComponent({
 ConfigProvider.config = setGlobalConfig;
 
 ConfigProvider.install = function (app: App) {
-  app.component(ConfigProvider.name, ConfigProvider);
+  registerComponent(app, ConfigProvider);
 };
 
 export default ConfigProvider as typeof ConfigProvider &

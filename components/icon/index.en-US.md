@@ -55,7 +55,7 @@ More discussion of SVG icon reference at [#10353](https://github.com/ant-design/
 
 > ⚠️ Given the extra bundle size caused by all SVG icons imported in 1.2.0, we will provide a new API to allow developers to import icons as needed, you can track [#12011](https://github.com/ant-design/ant-design/issues/12011) for updates.
 >
-> While you wait, you can use [webpack plugin](https://github.com/Beven91/webpack-ant-icon-loader) from the community to chunk the icon file.
+> While you wait, you can use [webpack plugin](https://github.com/Beven91/webpack-xy-icon-loader) from the community to chunk the icon file.
 
 The properties `theme`, `component` and `twoToneColor` were added in `1.2.0`. The best practice is to pass the property `theme` to every `<Icon />` component.
 

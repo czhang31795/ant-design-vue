@@ -17,7 +17,7 @@ With `layout="vertical"`: drag record column headers to reorder **dataSource**; 
 </docs>
 
 <template>
-  <a-table
+  <xy-table
     layout="vertical"
     bordered
     column-draggable

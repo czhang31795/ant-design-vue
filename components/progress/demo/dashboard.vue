@@ -18,6 +18,6 @@ By setting `type=dashboard`, you can get a dashboard style of progress easily.
 
 <template>
   <div>
-    <a-progress type="dashboard" :percent="75" />
+    <xy-progress type="dashboard" :percent="75" />
   </div>
 </template>

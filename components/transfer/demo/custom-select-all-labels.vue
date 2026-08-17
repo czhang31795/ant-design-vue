@@ -19,7 +19,7 @@ Custom the labels for select all checkboxs.
 
 <template>
   <div>
-    <a-transfer
+    <xy-transfer
       v-model:target-keys="targetKeys"
       v-model:selected-keys="selectedKeys"
       :data-source="mockData"
@@ -31,7 +31,7 @@ Custom the labels for select all checkboxs.
       @selectChange="handleSelectChange"
       @scroll="handleScroll"
     />
-    <a-switch
+    <xy-switch
       v-model:checked="disabled"
       un-checked-children="enabled"
       checked-children="disabled"

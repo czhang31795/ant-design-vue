@@ -17,25 +17,25 @@ Use `collapsible.showCollapsibleIcon` to control icon visibility: `auto` on hove
 </docs>
 
 <template>
-  <a-space direction="vertical" style="width: 100%" :size="16">
-    <a-space>
+  <xy-space direction="vertical" style="width: 100%" :size="16">
+    <xy-space>
       <span>ShowCollapsibleIcon:</span>
-      <a-radio-group v-model:value="showIconMode" :options="options" />
-    </a-space>
+      <xy-radio-group v-model:value="showIconMode" :options="options" />
+    </xy-space>
     <div class="demo-splitter">
-      <a-splitter>
-        <a-splitter-panel :collapsible="collapsible" min="20%">
+      <xy-splitter>
+        <xy-splitter-panel :collapsible="collapsible" min="20%">
           <div class="demo-panel">First</div>
-        </a-splitter-panel>
-        <a-splitter-panel :collapsible="collapsible">
+        </xy-splitter-panel>
+        <xy-splitter-panel :collapsible="collapsible">
           <div class="demo-panel">Second</div>
-        </a-splitter-panel>
-        <a-splitter-panel :collapsible="collapsible">
+        </xy-splitter-panel>
+        <xy-splitter-panel :collapsible="collapsible">
           <div class="demo-panel">Third</div>
-        </a-splitter-panel>
-      </a-splitter>
+        </xy-splitter-panel>
+      </xy-splitter>
     </div>
-  </a-space>
+  </xy-space>
 </template>
 
 <script lang="ts" setup>

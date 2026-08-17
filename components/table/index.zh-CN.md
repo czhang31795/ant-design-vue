@@ -25,7 +25,7 @@ coverDark: https://mdn.alipayobjects.com/huamei_7uahnr/afts/img/A*Sv8XQ50NB40AAA
 
 ```html
 <template>
-  <a-table :dataSource="dataSource" :columns="columns" />
+  <xy-table :dataSource="dataSource" :columns="columns" />
 </template>
 <script>
   export default {

@@ -1,26 +1,26 @@
 <template>
-  <a-menu
+  <xy-menu
     id="nav"
     class="menu-site"
     :mode="menuMode"
     :selected-keys="[activeMenuItem]"
     disabled-overflow
   >
-    <a-menu-item key="docs/vue">
+    <xy-menu-item key="docs/vue">
       <router-link :to="getLocalizedPathname('/docs/vue/introduce', isZhCN)">
         {{ $t('app.header.menu.documentation') }}
       </router-link>
-    </a-menu-item>
-    <a-menu-item key="components">
+    </xy-menu-item>
+    <xy-menu-item key="components">
       <router-link :to="getLocalizedPathname('/components/overview/', isZhCN)">
         {{ $t('app.header.menu.components') }}
       </router-link>
-    </a-menu-item>
+    </xy-menu-item>
     <template v-if="isMobile">
-      <a-menu-item key="switch-lang" @click="$emit('langChange')">
+      <xy-menu-item key="switch-lang" @click="$emit('langChange')">
         {{ $t('app.header.lang') }}
-      </a-menu-item>
-      <a-menu-item key="github">
+      </xy-menu-item>
+      <xy-menu-item key="github">
         <a
           href="https://github.com/vueComponent/ant-design-vue"
           target="_blank"
@@ -28,9 +28,9 @@
         >
           Github
         </a>
-      </a-menu-item>
+      </xy-menu-item>
     </template>
-  </a-menu>
+  </xy-menu>
 </template>
 <script lang="ts">
 import type { GlobalConfig } from '../../type';
@@ -79,11 +79,11 @@ export default defineComponent({
   font-size: 14px;
   border: 0;
 
-  &.ant-menu-horizontal {
+  &.xy-menu-horizontal {
     border-bottom: none;
 
-    & > .ant-menu-item,
-    & > .ant-menu-submenu {
+    & > .xy-menu-item,
+    & > .xy-menu-submenu {
       min-width: (40px + 12px * 2);
       height: var(--header-height);
       padding-right: 12px;
@@ -99,19 +99,19 @@ export default defineComponent({
       }
     }
 
-    & .ant-menu-submenu-title .anticon {
+    & .xy-menu-submenu-title .anticon {
       margin: 0;
     }
 
-    & > .ant-menu-item-selected {
+    & > .xy-menu-item-selected {
       a {
         color: var(--primary-color);
       }
     }
   }
 
-  & > .ant-menu-item,
-  & > .ant-menu-submenu {
+  & > .xy-menu-item,
+  & > .xy-menu-submenu {
     text-align: center;
   }
 }
@@ -120,7 +120,7 @@ export default defineComponent({
   color: var(--site-text-color);
 }
 
-.ant-menu-item-active .header-link {
+.xy-menu-item-active .header-link {
   color: var(--primary-color);
 }
 
@@ -128,24 +128,24 @@ export default defineComponent({
 .popover-menu {
   width: 300px;
 
-  .ant-popover-inner-content {
+  .xy-popover-inner-content {
     padding: 0;
 
     #nav {
-      .ant-menu-item,
-      .ant-menu-submenu {
+      .xy-menu-item,
+      .xy-menu-submenu {
         text-align: left;
       }
 
-      .ant-menu-item-group-title {
+      .xy-menu-item-group-title {
         padding-left: 24px;
       }
 
-      .ant-menu-item-group-list {
+      .xy-menu-item-group-list {
         padding: 0 16px;
       }
 
-      .ant-menu-item,
+      .xy-menu-item,
       a {
         color: #333;
       }

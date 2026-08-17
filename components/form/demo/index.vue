@@ -91,7 +91,7 @@ export default defineComponent({
 });
 </script>
 <style>
-.code-box-demo .ant-form:not(.ant-form-inline):not(.ant-form-vertical) {
+.code-box-demo .xy-form:not(.xy-form-inline):not(.xy-form-vertical) {
   max-width: 600px;
 }
 

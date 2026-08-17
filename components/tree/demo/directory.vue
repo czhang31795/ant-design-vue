@@ -17,12 +17,12 @@ Built-in directory tree. `multiple` support `ctrl(Windows)` / `command(Mac)` sel
 </docs>
 
 <template>
-  <a-directory-tree
+  <xy-directory-tree
     v-model:expandedKeys="expandedKeys"
     v-model:selectedKeys="selectedKeys"
     multiple
     :tree-data="treeData"
-  ></a-directory-tree>
+  ></xy-directory-tree>
 </template>
 <script lang="ts" setup>
 import type { TreeProps } from 'ant-design-vue';

@@ -1,17 +1,17 @@
 <template>
   <Header />
   <div v-if="headers.length" class="toc-affix" :style="y > 102 ? 'position:fixed; top: 16px;' : ''">
-    <a-anchor style="width: 160px" :items="headers">
+    <xy-anchor style="width: 160px" :items="headers">
       <template #customTitle="item">
         <LinkOutlined v-if="item.target" />
         {{ item.title }}
       </template>
-    </a-anchor>
+    </xy-anchor>
   </div>
   <div class="main-wrapper">
-    <a-row>
+    <xy-row>
       <template v-if="isMobile">
-        <a-drawer
+        <xy-drawer
           key="mobile-menu"
           v-model:open="visible"
           :closable="false"
@@ -21,41 +21,41 @@
           width="60%"
         >
           <Menu :menus="dataSource" :active-menu-item="activeMenuItem" :is-zh-c-n="isZhCN" />
-        </a-drawer>
+        </xy-drawer>
         <div class="drawer-handle" @click="handleClickShowButton">
           <close-outlined v-if="visible" :style="iconStyle" />
           <MenuOutlined v-else :style="iconStyle" />
         </div>
       </template>
       <template v-else>
-        <a-col :xxxl="4" :xxl="4" :xl="5" :lg="6" :md="6" :sm="24" :xs="24" class="main-menu">
-          <a-affix>
+        <xy-col :xxxl="4" :xxl="4" :xl="5" :lg="6" :md="6" :sm="24" :xs="24" class="main-menu">
+          <xy-affix>
             <section class="main-menu-inner">
               <Menu :menus="dataSource" :active-menu-item="activeMenuItem" :is-zh-c-n="isZhCN" />
             </section>
-          </a-affix>
-        </a-col>
+          </xy-affix>
+        </xy-col>
       </template>
-      <a-col :xxxl="20" :xxl="20" :xl="19" :lg="18" :md="18" :sm="24" :xs="24">
+      <xy-col :xxxl="20" :xxl="20" :xl="19" :lg="18" :md="18" :sm="24" :xs="24">
         <section :class="mainContainerClass">
           <Demo v-if="isDemo" :page-data="pageData" :is-zh-c-n="isZhCN">
             <component :is="matchCom" />
           </Demo>
           <router-view v-else />
         </section>
-        <a-float-button-group trigger="click">
+        <xy-float-button-group trigger="click">
           <template #icon>
             <ThemeIcon />
           </template>
-          <a-float-button
+          <xy-float-button
             :tooltip="$t('app.floatButton.theme-editor')"
             @click="$router.push(isZhCN ? '/theme-editor-cn' : '/theme-editor')"
           >
             <template #icon>
               <ThemeEditorIcon />
             </template>
-          </a-float-button>
-          <a-float-button
+          </xy-float-button>
+          <xy-float-button
             :tooltip="$t('app.floatButton.dark-theme')"
             :type="themeMode.theme.value === 'dark' ? 'primary' : 'default'"
             @click="themeMode.changeTheme(themeMode.theme.value === 'dark' ? 'light' : 'dark')"
@@ -63,8 +63,8 @@
             <template #icon>
               <DarkIcon />
             </template>
-          </a-float-button>
-          <a-float-button
+          </xy-float-button>
+          <xy-float-button
             :tooltip="$t('app.floatButton.compact-theme')"
             :type="themeMode.compactTheme.value === 'compact' ? 'primary' : 'default'"
             @click="
@@ -76,12 +76,12 @@
             <template #icon>
               <CompactIcon />
             </template>
-          </a-float-button>
-        </a-float-button-group>
+          </xy-float-button>
+        </xy-float-button-group>
         <PrevAndNext :menus="menus" :current-menu-index="currentMenuIndex" :is-zh-c-n="isZhCN" />
         <Footer />
-      </a-col>
-    </a-row>
+      </xy-col>
+    </xy-row>
   </div>
 </template>
 <script lang="ts">
@@ -240,14 +240,14 @@ export default defineComponent({
   backdrop-filter: blur(10px);
 }
 
-.toc-affix :deep(.ant-anchor) {
+.toc-affix :deep(.xy-anchor) {
   font-size: 12px;
   max-width: 110px;
 
-  .ant-anchor-ink::before {
+  .xy-anchor-ink::before {
     display: none;
   }
-  .ant-anchor-ink-ball {
+  .xy-anchor-ink-ball {
     display: none;
   }
 }

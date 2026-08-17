@@ -17,19 +17,19 @@ Use `treeLine` to show the line style.
 </docs>
 
 <template>
-  <a-space direction="vertical">
-    <a-switch
+  <xy-space direction="vertical">
+    <xy-switch
       v-model:checked="treeLine"
       checked-children="treeLine"
       un-checked-children="treeLine"
-    ></a-switch>
-    <a-switch
+    ></xy-switch>
+    <xy-switch
       v-model:checked="showLeafIcon"
       :disabled="!treeLine"
       checked-children="showLeafIcon"
       un-checked-children="showLeafIcon"
-    ></a-switch>
-    <a-tree-select
+    ></xy-switch>
+    <xy-tree-select
       v-model:value="value"
       style="width: 300px"
       placeholder="Please select"
@@ -41,8 +41,8 @@ Use `treeLine` to show the line style.
         <b v-if="val === 'parent 1-1'" style="color: #08c">sss</b>
         <template v-else>{{ title }}</template>
       </template>
-    </a-tree-select>
-  </a-space>
+    </xy-tree-select>
+  </xy-space>
 </template>
 <script lang="ts" setup>
 import { ref, watch } from 'vue';

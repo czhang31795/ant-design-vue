@@ -78,7 +78,7 @@ function createTimePicker<
 
   const { TimePicker: InternalTimePicker, RangePicker: InternalRangePicker } = DatePicker as any;
   const TimePicker = defineComponent<DTimePickerProps>({
-    name: 'ATimePicker',
+    name: 'XyTimePicker',
     inheritAttrs: false,
     props: {
       ...commonProps<any>(),
@@ -156,7 +156,7 @@ function createTimePicker<
   });
 
   const TimeRangePicker = defineComponent<DTimeRangePickerProps>({
-    name: 'ATimeRangePicker',
+    name: 'XyTimeRangePicker',
     inheritAttrs: false,
     props: {
       ...commonProps<any>(),

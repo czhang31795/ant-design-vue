@@ -19,13 +19,13 @@ Table cell supports `colSpan` and `rowSpan` that set in render return object. Wh
 </docs>
 
 <template>
-  <a-table :columns="columns" :data-source="data" bordered>
+  <xy-table :columns="columns" :data-source="data" bordered>
     <template #bodyCell="{ column, text }">
       <template v-if="column.dataIndex === 'name'">
         <a href="javascript:;">{{ text }}</a>
       </template>
     </template>
-  </a-table>
+  </xy-table>
 </template>
 <script lang="ts" setup>
 import type { TableColumnType } from 'ant-design-vue';

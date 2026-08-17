@@ -18,7 +18,7 @@ The most basic usage of `Transfer` involves providing the source data and target
 
 <template>
   <div>
-    <a-transfer
+    <xy-transfer
       v-model:target-keys="targetKeys"
       v-model:selected-keys="selectedKeys"
       :data-source="mockData"
@@ -29,7 +29,7 @@ The most basic usage of `Transfer` involves providing the source data and target
       @selectChange="handleSelectChange"
       @scroll="handleScroll"
     />
-    <a-switch
+    <xy-switch
       v-model:checked="disabled"
       un-checked-children="enabled"
       checked-children="disabled"

@@ -19,7 +19,7 @@ const defaultIconRender = (visible: boolean) =>
   visible ? <EyeOutlined /> : <EyeInvisibleOutlined />;
 export default defineComponent({
   compatConfig: { MODE: 3 },
-  name: 'AInputPassword',
+  name: 'XyInputPassword',
   inheritAttrs: false,
   props: {
     ...inputProps(),

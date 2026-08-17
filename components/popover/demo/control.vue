@@ -16,12 +16,12 @@ Use `visible` prop to control the display of the card.
 
 </docs>
 <template>
-  <a-popover v-model:open="visible" title="Title" trigger="click">
+  <xy-popover v-model:open="visible" title="Title" trigger="click">
     <template #content>
       <a @click="hide">Close</a>
     </template>
-    <a-button type="primary">Click me</a-button>
-  </a-popover>
+    <xy-button type="primary">Click me</xy-button>
+  </xy-popover>
 </template>
 
 <script lang="ts" setup>

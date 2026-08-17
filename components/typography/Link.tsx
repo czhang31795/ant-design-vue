@@ -29,7 +29,7 @@ const Link: FunctionalComponent<LinkProps> = (props, { slots, attrs }) => {
   return <Base {...mergedProps} v-slots={slots}></Base>;
 };
 
-Link.displayName = 'ATypographyLink';
+Link.displayName = 'XyTypographyLink';
 Link.inheritAttrs = false;
 Link.props = linkProps();
 

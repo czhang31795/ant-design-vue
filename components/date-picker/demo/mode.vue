@@ -17,14 +17,14 @@ Determing which panel to show with `mode` and `onPanelChange`.
 </docs>
 
 <template>
-  <a-space direction="vertical" :size="12">
-    <a-date-picker
+  <xy-space direction="vertical" :size="12">
+    <xy-date-picker
       :mode="mode1"
       show-time
       @openChange="handleOpenChange1"
       @panelChange="handlePanelChange1"
     />
-    <a-range-picker
+    <xy-range-picker
       :placeholder="['Start month', 'End month']"
       format="YYYY-MM"
       :value="value"
@@ -32,7 +32,7 @@ Determing which panel to show with `mode` and `onPanelChange`.
       @panelChange="handlePanelChange2"
       @change="handleChange"
     />
-  </a-space>
+  </xy-space>
 </template>
 <script lang="ts" setup>
 import { ref } from 'vue';

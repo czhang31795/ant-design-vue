@@ -17,9 +17,9 @@ coverDark: https://mdn.alipayobjects.com/huamei_7uahnr/afts/img/A*5oPiTqPxGAUAAA
 ## API
 
 ```html
-<a-select>
-  <a-select-option value="lucy">lucy</a-select-option>
-</a-select>
+<xy-select>
+  <xy-select-option value="lucy">lucy</xy-select-option>
+</xy-select>
 ```
 
 ### Select props

@@ -17,9 +17,9 @@ Callback with affixed state.
 </docs>
 
 <template>
-  <a-affix :offset-top="120" @change="change">
-    <a-button>120px to affix top</a-button>
-  </a-affix>
+  <xy-affix :offset-top="120" @change="change">
+    <xy-button>120px to affix top</xy-button>
+  </xy-affix>
 </template>
 <script lang="ts" setup>
 const change = (affixed: boolean) => {

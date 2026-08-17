@@ -19,7 +19,7 @@ the notification box will never close automatically.
 </docs>
 
 <template>
-  <a-button type="primary" @click="openNotification">Open the notification box</a-button>
+  <xy-button type="primary" @click="openNotification">Open the notification box</xy-button>
 </template>
 <script lang="ts" setup>
 import { notification } from 'ant-design-vue';

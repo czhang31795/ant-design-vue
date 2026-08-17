@@ -13,7 +13,7 @@ import defaultLocale from '../locale/en_US';
 import type { VueNode } from '../_util/type';
 
 const panelRender = defineComponent({
-  name: 'ATourPanel',
+  name: 'XyTourPanel',
   inheritAttrs: false,
   props: tourStepProps(),
   setup(props, { attrs, slots }) {

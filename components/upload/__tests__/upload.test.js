@@ -265,7 +265,7 @@ describe('Upload', () => {
     };
     const wrapper = mount(Upload, props);
     setTimeout(() => {
-      const linkNode = wrapper.find('a.ant-upload-list-item-name');
+      const linkNode = wrapper.find('a.xy-upload-list-item-name');
       expect(linkNode.props().download).toBe('image');
       expect(linkNode.props().rel).toBe('noopener');
     }, 0);
@@ -293,7 +293,7 @@ describe('Upload', () => {
     };
     const wrapper = mount(Upload, props);
     setTimeout(() => {
-      const linkNode = wrapper.find('a.ant-upload-list-item-name');
+      const linkNode = wrapper.find('a.xy-upload-list-item-name');
       expect(linkNode.props().download).toBe('image');
       expect(linkNode.props().rel).toBe('noopener');
     }, 0);

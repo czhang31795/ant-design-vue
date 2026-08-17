@@ -16,9 +16,9 @@ ConfigProvider 使用 Vue 的 [provide / inject](https://vuejs.org/v2/api/#provi
 
 ```html
 <template>
-  <a-config-provider :getPopupContainer="getPopupContainer">
+  <xy-config-provider :getPopupContainer="getPopupContainer">
     <app />
-  </a-config-provider>
+  </xy-config-provider>
 </template>
 <script>
   export default {
@@ -40,9 +40,9 @@ ConfigProvider 使用 Vue 的 [provide / inject](https://vuejs.org/v2/api/#provi
 部分组件为了支持波纹效果，使用了动态样式。如果开启了 Content Security Policy (CSP)，你可以通过 `csp` 属性来进行配置：
 
 ```html
-<a-config-provider :csp="{ nonce: 'YourNonceCode' }">
-  <a-button>My Button</a-button>
-</a-config-provider>
+<xy-config-provider :csp="{ nonce: 'YourNonceCode' }">
+  <xy-button>My Button</xy-button>
+</xy-config-provider>
 ```
 
 ## API
@@ -60,7 +60,7 @@ ConfigProvider 使用 Vue 的 [provide / inject](https://vuejs.org/v2/api/#provi
 | input | 设置 Input 组件的通用属性 | { autocomplete?: string } | - | 3.0 |
 | locale | 语言包配置，语言包可到 [ant-design-vue/es/locale](http://unpkg.com/ant-design-vue/es/locale/) 目录下寻找 | object | - | 1.5.0 |
 | pageHeader | 统一设置 pageHeader 的 ghost，参考 [pageHeader](<(/components/page-header)>) | { ghost: boolean } | 'true' | 1.5.0 |
-| prefixCls | 设置统一样式前缀。注意：需要配合 `less` 变量 `@ant-prefix` 使用 | string | `ant` |  |
+| prefixCls | 设置统一样式前缀。默认 `xy`，便于与官方 `ant-design-vue`（`ant`）同页共存。CSS-in-JS 会自动使用该前缀；若仍编译 less，需同步修改 `@ant-prefix` | string | `xy` |  |
 | renderEmpty | 自定义组件空状态。参考 [空状态](/components/empty/) | slot \| Function(componentName: string): VNode | - |  |
 | space | 设置 Space 的 `size`，参考 [Space](/components/space) | { size: `small` \| `middle` \| `large` \| `number` } | - | 3.0 |
 | transformCellText | Table 数据渲染前可以再次改变，一般用户空数据的默认配置 | Function({ text, column, record, index }) => any | - | 1.5.4 |
@@ -73,7 +73,7 @@ ConfigProvider 使用 Vue 的 [provide / inject](https://vuejs.org/v2/api/#provi
 
 ```jsx
 ConfigProvider.config({
-  prefixCls: 'ant',
+  prefixCls: 'xy',
 });
 ```
 
@@ -81,7 +81,7 @@ or
 
 ```jsx
 // 如下配置支持响应式数据，你可以通过 prefixCls.value = 'other' 直接改变
-const prefixCls = ref('ant');
+const prefixCls = ref('xy');
 ConfigProvider.config({
   prefixCls,
 });

@@ -17,14 +17,14 @@ Complex error feedback.
 </docs>
 
 <template>
-  <a-result
+  <xy-result
     status="error"
     title="Submission Failed"
     sub-title="Please check and modify the following information before resubmitting."
   >
     <template #extra>
-      <a-button key="console" type="primary">Go Console</a-button>
-      <a-button key="buy">Buy Again</a-button>
+      <xy-button key="console" type="primary">Go Console</xy-button>
+      <xy-button key="buy">Buy Again</xy-button>
     </template>
 
     <div class="desc">
@@ -42,7 +42,7 @@ Complex error feedback.
         <a>Apply Unlock &gt;</a>
       </p>
     </div>
-  </a-result>
+  </xy-result>
 </template>
 <script lang="ts" setup>
 import { CloseCircleOutlined } from '@ant-design/icons-vue';

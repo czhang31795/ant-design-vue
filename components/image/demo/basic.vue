@@ -17,7 +17,7 @@ Click the image to zoom in.
 </docs>
 
 <template>
-  <a-image
+  <xy-image
     :width="200"
     src="https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png"
   />

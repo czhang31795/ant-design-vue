@@ -12,11 +12,11 @@
 
 ### 当我点击 `Select Dropdown DatePicker TimePicker Popover Popconfirm` 内的另一个 popup 组件时它会消失，如何解决？
 
-使用 `<a-select :getPopupContainer="trigger => trigger.parentNode">` 来在 Popover 中渲染组件，或者使用其他的 getXxxxContainer 参数。
+使用 `<xy-select :getPopupContainer="trigger => trigger.parentNode">` 来在 Popover 中渲染组件，或者使用其他的 getXxxxContainer 参数。
 
 ### `Select Dropdown DatePicker TimePicker Popover Popconfirm` 会跟随滚动条上下移动？
 
-使用 `<a-select :getPopupContainer="trigger => trigger.parentNode">` 来将组件渲染到滚动区域内，或者使用其他的 getXxxxContainer 参数。
+使用 `<xy-select :getPopupContainer="trigger => trigger.parentNode">` 来将组件渲染到滚动区域内，或者使用其他的 getXxxxContainer 参数。
 
 ### 如何修改 Ant Design Vue 的默认主题？
 

@@ -4,7 +4,7 @@ import { uploadProps } from './interface';
 
 export default defineComponent({
   compatConfig: { MODE: 3 },
-  name: 'AUploadDragger',
+  name: 'XyUploadDragger',
   inheritAttrs: false,
   props: uploadProps(),
   setup(props, { slots, attrs }) {

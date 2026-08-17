@@ -2,7 +2,7 @@ import { nextTick } from 'vue';
 import { addClass, removeClass } from '../vc-util/Dom/class';
 import type { CSSMotionProps } from './transition';
 
-const collapseMotion = (name = 'ant-motion-collapse', appear = true): CSSMotionProps => {
+const collapseMotion = (name = 'xy-motion-collapse', appear = true): CSSMotionProps => {
   return {
     name,
     appear,

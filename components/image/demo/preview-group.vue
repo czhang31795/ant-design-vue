@@ -17,8 +17,8 @@ Click the left and right switch buttons to preview multiple images.
 </docs>
 
 <template>
-  <a-image-preview-group>
-    <a-image :width="200" src="https://www.antdv.com/vue.png" />
-    <a-image :width="200" src="https://www.antdv.com/logo.png" />
-  </a-image-preview-group>
+  <xy-image-preview-group>
+    <xy-image :width="200" src="https://www.antdv.com/vue.png" />
+    <xy-image :width="200" src="https://www.antdv.com/logo.png" />
+  </xy-image-preview-group>
 </template>

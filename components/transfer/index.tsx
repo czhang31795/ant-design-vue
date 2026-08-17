@@ -122,7 +122,7 @@ export type TransferProps = Partial<ExtractPropTypes<ReturnType<typeof transferP
 
 const Transfer = defineComponent({
   compatConfig: { MODE: 3 },
-  name: 'ATransfer',
+  name: 'XyTransfer',
   inheritAttrs: false,
   props: transferProps(),
   slots: Object as CustomSlotsType<{

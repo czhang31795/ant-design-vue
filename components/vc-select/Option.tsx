@@ -14,5 +14,5 @@ export interface OptionFC extends FunctionalComponent<OptionProps> {
 
 const Option: OptionFC = () => null;
 Option.isSelectOption = true;
-Option.displayName = 'ASelectOption';
+Option.displayName = 'XySelectOption';
 export default Option;

@@ -17,7 +17,7 @@ Use 'content' to set a string array to specify multi-line text watermark content
 </docs>
 
 <template>
-  <a-watermark :content="['Ant Design Vue', 'Happy Working']">
+  <xy-watermark :content="['Ant Design Vue', 'Happy Working']">
     <div style="height: 500px" />
-  </a-watermark>
+  </xy-watermark>
 </template>

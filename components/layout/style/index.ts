@@ -22,7 +22,7 @@ export interface LayoutToken extends FullToken<'Layout'> {
 const genLayoutStyle: GenerateStyle<LayoutToken, CSSObject> = token => {
   const {
     antCls, // .ant
-    componentCls, // .ant-layout
+    componentCls, // .xy-layout
     colorText,
     colorTextLightSolid,
     colorBgHeader,

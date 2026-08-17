@@ -17,7 +17,7 @@ Submenus open as pop-ups.
 </docs>
 
 <template>
-  <a-menu
+  <xy-menu
     v-model:openKeys="openKeys"
     v-model:selectedKeys="selectedKeys"
     style="width: 256px"

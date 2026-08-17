@@ -25,7 +25,7 @@ import { ProLayout } from '@czxingyu/ant-design-vue';
 
 </docs>
 <template>
-  <a-pro-layout
+  <xy-pro-layout
     layout="mix"
     :split-menus="false"
     v-model:collapsed="collapsed"
@@ -37,33 +37,33 @@ import { ProLayout } from '@czxingyu/ant-design-vue';
     :breadcrumb="[{ title: '欢迎' }]"
   >
     <template #headerRight>
-      <span class="ant-pro-layout-header-action"><search-outlined /></span>
-      <span class="ant-pro-layout-header-action"><question-circle-outlined /></span>
-      <span class="ant-pro-layout-header-action"><bell-outlined /></span>
-      <span class="ant-pro-layout-header-account">
-        <a-avatar
+      <span class="xy-pro-layout-header-action"><search-outlined /></span>
+      <span class="xy-pro-layout-header-action"><question-circle-outlined /></span>
+      <span class="xy-pro-layout-header-action"><bell-outlined /></span>
+      <span class="xy-pro-layout-header-account">
+        <xy-avatar
           size="small"
           src="https://gw.alipayobjects.com/zos/antfincdn/XAosXuNZyF/BiazfanxmamNRoxxVxka.png"
         />
-        <span class="ant-pro-layout-header-name">ProUser</span>
+        <span class="xy-pro-layout-header-name">ProUser</span>
       </span>
     </template>
 
-    <a-row :gutter="[16, 16]">
-      <a-col v-for="item in statCards" :key="item.title" :xs="24" :sm="12" :md="6">
-        <a-card size="small" :bordered="false">
+    <xy-row :gutter="[16, 16]">
+      <xy-col v-for="item in statCards" :key="item.title" :xs="24" :sm="12" :md="6">
+        <xy-card size="small" :bordered="false">
           <div class="demo-stat-title">{{ item.title }}</div>
           <div class="demo-stat-value">{{ item.value }}</div>
           <div class="demo-stat-desc">{{ item.desc }}</div>
-        </a-card>
-      </a-col>
-      <a-col :span="24">
-        <a-card title="销售趋势" :bordered="false">
+        </xy-card>
+      </xy-col>
+      <xy-col :span="24">
+        <xy-card title="销售趋势" :bordered="false">
           <div class="demo-chart-placeholder">此处可放置图表 / 表格等内容</div>
-        </a-card>
-      </a-col>
-    </a-row>
-  </a-pro-layout>
+        </xy-card>
+      </xy-col>
+    </xy-row>
+  </xy-pro-layout>
 </template>
 <script lang="ts" setup>
 import { h, ref } from 'vue';

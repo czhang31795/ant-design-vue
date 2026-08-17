@@ -25,9 +25,9 @@ describe('Table.resize', () => {
     });
     await Vue.nextTick();
 
-    const handles = wrapper.findAll('.ant-table-resize-handle');
+    const handles = wrapper.findAll('.xy-table-resize-handle');
     expect(handles).toHaveLength(2);
-    expect(wrapper.find('.ant-table-wrapper-resizable').exists()).toBe(true);
+    expect(wrapper.find('.xy-table-wrapper-resizable').exists()).toBe(true);
   });
 
   it('drag commit updates column.width and ColGroup uses declared width', async () => {
@@ -49,7 +49,7 @@ describe('Table.resize', () => {
     });
     await Vue.nextTick();
 
-    const handle = wrapper.find('.ant-table-resize-handle');
+    const handle = wrapper.find('.xy-table-resize-handle');
     const th = handle.element.parentElement;
     th.getBoundingClientRect = () => ({
       x: 0,
